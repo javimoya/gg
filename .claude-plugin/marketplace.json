@@ -1,0 +1,18 @@
+{
+  "name": "javimoya",
+  "owner": {
+    "name": "Francisco J. Moya",
+    "email": "francisco.j.moya@gmail.com"
+  },
+  "metadata": {
+    "description": "javimoya's Claude Code plugins."
+  },
+  "plugins": [
+    {
+      "name": "gg",
+      "source": "./",
+      "description": "A disciplined, multi-session workflow for building software with Claude Code: phase 0 builds the whole product (ideate then discover then next-task), then you refine it phase by phase from captured notes — all project state on disk, with recorded assumptions and a dev/launched stage.",
+      "category": "productivity"
+    }
+  ]
+}
