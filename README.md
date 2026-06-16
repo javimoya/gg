@@ -142,7 +142,7 @@ Enforced by `PRINCIPLES.md` (the constitution) and the commands themselves.
 
 - **Decompose, don't drop, or set a boundary.** "Later" becomes a task, a note, or a recorded assumption. Genuinely out of scope? It goes into the VISION as an approved boundary. It never just disappears.
 - **Good defaults, recorded and reversible.** Discovery asks the load-bearing questions and logs the rest as numbered assumptions you can veto at sign-off or overturn later with a note. The cut is the *unrecorded* assumption, not the default.
-- **dev ≠ launched.** While a product is still in development it gets none of the defensive work that only pays off once it's live (migrations, backward-compatibility, preservation); in `dev`, gg recreates and reseeds freely. But your **own** work is protected in both stages: it never destroys anything already on disk without naming the rollback and asking first.
+- **dev ≠ launched.** In a spec-driven build, the agent burns whole phases on migrations, backward-compatibility, and preservation that a product with no users yet doesn't need. gg knows it isn't live and skips that defensive work until you launch.
 - **Verify before you claim.** A per-project `RUNBOOK.md` pins the exact full-suite command; a phase closes only when it's green and the real deliverable runs. You try it at the phase close.
 - **Capture, don't stash.** Ideas go into `.gg/NOTES.md`, never the agent's private memory. Nothing the project should remember lives outside `.gg/`.
 - **One task per run, resumable everywhere.** `/gg:next-task` does exactly one task, records "where to resume" in `PROGRESS.md`, and stops. `/clear` and run it again. The on-disk state *is* the handoff.
