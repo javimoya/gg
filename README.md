@@ -9,7 +9,7 @@
 
 **gg will save you months of figuring out how to build real, maintainable software with Claude Code.** You get a whole working product on day one, and an agent that never forgets why you built it that way, so the change you make on day 100 doesn't quietly break the decision you made on day one.
 
-> The speed of vibe-coding. The memory of spec-driven development. None of the ceremony of either. **This is what agentic engineering should feel like.**
+> The speed of vibe-coding. The memory of spec-driven development. None of the ceremony of either. **Just agentic engineering, done right.**
 
 `gg` is a small Claude Code plugin: five Markdown slash commands (`/gg:ideate`, `/gg:discover`, `/gg:next-task`, `/gg:capture`, `/gg:orient`) that build your whole product in one first pass and then let you refine it, with every decision kept on disk so a fresh session always knows what's going on. No hooks, no background process: you run a command when you want it, and the rest of the time it stays out of your way.
 
