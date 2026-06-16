@@ -1,6 +1,5 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="gg-dark.png">
     <img src="gg-light.png" alt="gg — build the whole product on day one, then refine it phase by phase" width="100%">
   </picture>
 </p>
