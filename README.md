@@ -1,6 +1,6 @@
 <p align="center">
   <picture>
-    <img src="gg-light.png" alt="gg — build the whole product on day one, then refine it phase by phase" width="100%">
+    <img src="gg-light.png" alt="gg: build the whole product on day one, then refine it phase by phase" width="100%">
   </picture>
 </p>
 
