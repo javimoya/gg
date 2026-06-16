@@ -34,7 +34,7 @@ There's the trap: vibe-coding is fast but forgetful; spec-driven remembers but i
 
 **And it stays out of your way.** gg is five Markdown commands and nothing else: no hooks, no background agents, no installer beyond adding the plugin. You invoke a command when you want it, and when you don't, it does nothing at all. The only trace it leaves in your repo is a plain-text `.gg/` folder you can read and commit.
 
-**The magic lives entirely in those five carefully crafted commands.** Distilled from months of building real products with agents: what works, what quietly breaks, and how to land the exact product in your head, with its full memory, at the least effort possible.
+**The magic lives entirely in those five carefully crafted commands.** Distilled from months of building real products with agents: what works, what quietly breaks or creates friction, and how to land the exact product in your head, with its full memory, at the least effort possible.
 
 It's the best first draft you've seen, and one you can actually keep building on.
 
