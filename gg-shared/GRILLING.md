@@ -95,6 +95,5 @@ lowers the *what*.
 the finished product will **never** include (→ `VISION.md`). Test it: *will the product ever include
 this?* If there's a "later", it's a note, not a boundary — and it must not be parked in the VISION, a
 SPEC line, or the JOURNAL, where nothing re-reads it. Watch the partial case: an area can be part
-boundary, part deferral — e.g. *the fixed set of options is a boundary, but which of them are shown is
-deferred behaviour → a note*; classify each piece separately. (See `CONSTITUTION.md` → "Boundaries
-vs. cuts".)
+boundary, part deferral — classify each piece separately. (See `CONSTITUTION.md` → "Boundaries vs.
+cuts" for the decisive test, the trap, and the worked example.)

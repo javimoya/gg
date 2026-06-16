@@ -16,8 +16,7 @@ Shared protocols in `${CLAUDE_PLUGIN_ROOT}/gg-shared/`: `GRILLING.md`, `CONSTITU
 
 ## 0. Precondition
 Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
-- **No `.gg/`** → no project yet. **Stop**, route to `/gg:ideate`.
-- **`state: visioning`** → ideation isn't finished. **Stop**, route to `/gg:ideate`.
+- **No `.gg/`** → no project yet (or ideation was cut before it scaffolded). **Stop**, route to `/gg:ideate`.
 - **`state: scoping`** → proceed. Either phase 0 right after ideate, or **resuming** a discovery (the
   SPEC's "Open questions" is your queue).
 - **`state: building`** → a phase is already designed and mid-build. Don't silently re-discover and

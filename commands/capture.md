@@ -15,7 +15,7 @@ entry — an idea during `/gg:next-task` — applies the same protocol without l
 
 ## 0. Precondition
 Read `.gg/ROADMAP.md`'s header:
-- **No `.gg/`, or `state: visioning`** → there's no product to refine yet. **Stop**: route to
+- **No `.gg/`** → there's no product to refine yet. **Stop**: route to
   `/gg:ideate` (or, if you're mid-ideation, raise the idea in the grilling).
 - **`state: scoping`** → you're mid-`/gg:discover`. **Stop** and tell the user to **raise it in the
   current grilling** — that's where scope is decided, not the backlog.

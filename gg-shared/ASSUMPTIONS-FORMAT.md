@@ -41,7 +41,7 @@ reversible, not hidden.
   one. This keeps the ledger a real control, not a wall nobody reads.
 - **An assumption is not an inferred AC.** It decides *what to build*, on the record — it never
   licenses claiming an acceptance criterion passed without evidence (that stays forbidden;
-  `HANDOFF`/`JOURNAL` acceptance evidence must be real).
+  the phase-close `JOURNAL` acceptance evidence must be real).
 - **Reversed, not deleted.** When a note overturns a default, move its block to `## Overridden` —
   same move-don't-erase discipline as `NOTES.md` and the ROADMAP changelog.
 - **Created lazily** at the first default recorded, with the `# ASSUMPTIONS — {name}` header. No

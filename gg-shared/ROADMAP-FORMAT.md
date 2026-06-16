@@ -10,7 +10,7 @@ per-chunk state machine here: the current phase's tasks live in `PROGRESS.md`.
 # Roadmap — {Project name}
 
 ## State
-- **state**: {visioning | scoping | building | shipped}
+- **state**: {scoping | building | shipped}
 - **phase**: {N}            <!-- 0 = the initial product; 1, 2, … = refinement phases -->
 - **stage**: {dev | launched}
 
@@ -29,9 +29,10 @@ folded.}
 - **The header is the single source of truth for dispatch.** `state` / `phase` / `stage` route every
   command — `/gg:orient` reports them and each command's precondition checks them. Update them the
   moment they change; a stale header mis-routes the next clean session.
-- **State vocabulary.** `visioning` (in `/gg:ideate`) → `scoping` (in `/gg:discover`) → `building`
-  (in `/gg:next-task`) → `shipped` (phase done, product runnable and tried). The only back-edge is
-  `shipped → scoping`: a new refinement phase begins when `/gg:discover` runs with pending notes.
+- **State vocabulary.** `scoping` (set at `/gg:ideate`'s close, where `/gg:discover` designs the
+  phase) → `building` (in `/gg:next-task`) → `shipped` (phase done, product runnable and tried). The
+  only back-edge is `shipped → scoping`: a new refinement phase begins when `/gg:discover` runs with
+  pending notes. Before `.gg/` exists there is no state at all — `/gg:ideate` hasn't scaffolded yet.
 - **`phase` counts cycles, not chunks.** Phase 0 is the initial `discover → next-task*` cycle; each
   refinement phase increments it. A phase's tasks live in `PROGRESS.md`, not here.
 - **`stage` is flipped only by `/gg:orient`** (`STAGE.md`), on the user's explicit go; record the flip

@@ -31,7 +31,7 @@ This is **not** triage or design. Which notes a phase includes, and how they're 
 later by `/gg:discover` (the triage gate + grilling). Capture only records and relates.
 
 ## When capture is NOT the move
-- **No product yet** (`state ∈ {visioning, scoping}` — you're mid-`/gg:ideate` or mid-`/gg:discover`):
+- **No product yet** (no `.gg/` — mid-`/gg:ideate` — or `state: scoping` — mid-`/gg:discover`):
   an idea right now belongs **in the live grilling**, not the backlog. Redirect the user there.
 - **It's a cut you were tempted to make** in the current task — that's the constitution's anti-cut
   reframe (do it right, or a later task of this phase), not a note.

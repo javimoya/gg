@@ -38,9 +38,8 @@ it? (deployed ≠ launched — only flip when real users' data must survive.)"*
 - **No** → change nothing.
 - **Yes** → flip per `STAGE.md`: name the rollback, show the behavior table, get the explicit go, then
   set `stage` in the ROADMAP header (extra-loud for `launched → dev`). On **`dev → launched`**, seed
-  the **launch-readiness notes** into `.gg/NOTES.md ## Pending` (migration baseline, contract snapshot,
-  gate the reset/seed scripts, quarantine wipe-on-setup tests). Run the close ritual
-  (`CLOSE-FORMAT.md`): a changelog line + a `JOURNAL.md` entry.
+  the **launch-readiness notes** into `.gg/NOTES.md ## Pending` (the set `STAGE.md` → "The launch
+  flip" defines). Run the close ritual (`CLOSE-FORMAT.md`): a changelog line + a `JOURNAL.md` entry.
 
 ## Close — breadcrumb
 End with the exact next action, e.g.:
