@@ -77,7 +77,7 @@ Every step ends with a one-line breadcrumb telling you exactly what to run next.
 
 ```mermaid
 flowchart LR
-    I["/gg:ideate<br/>vision (once)"] --> D["/gg:discover<br/>design + spec + task list"]
+    I["/gg:ideate<br/>sharp vision"] --> D["/gg:discover<br/>design + spec + task list"]
     D --> N["/gg:next-task<br/>one task per run"]
     N -- tasks remain --> N
     N -- last task --> S(["phase shipped<br/>(try it)"])
@@ -102,7 +102,7 @@ A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the who
 
 | Command | Run it… |
 |---|---|
-| **`/gg:ideate`** | only to **start** a project (no `.gg/` yet). Once. |
+| **`/gg:ideate`** | to **start** a project (no `.gg/` yet) — or to **resume** an unfinished ideation (`state: visioning`). Once per project. |
 | **`/gg:discover`** | right after `ideate` (phase 0), **or** after a phase ships **when there are pending notes** (phase N). |
 | **`/gg:next-task`** | after `discover`, or after a previous `next-task`, while the current phase still has tasks left. |
 | **`/gg:capture`** | once a product exists, during `next-task` or between phases. *Not* during ideate/discover (raise it in the grilling instead). |

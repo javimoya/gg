@@ -3,6 +3,23 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.1.0
+
+`/gg:ideate` is now **resumable**: `visioning` is a real, first-class state, not just a documented name.
+
+### Changed
+- **`visioning` is the project's first on-disk state.** `/gg:ideate` writes the `ROADMAP.md` header
+  (`state: visioning`) the moment it scaffolds `.gg/`, *before* grilling — so an ideation cut before the
+  vision is sharp is now **resumable**: re-run `/gg:ideate` and it continues the grilling from where it
+  stopped instead of treating the project as already kicked off. The vision-sharp close promotes
+  `visioning → scoping`.
+- **Every command routes on `visioning`.** `/gg:discover`, `/gg:next-task`, and `/gg:capture` send a
+  mid-ideation project back to `/gg:ideate`; `/gg:orient` reports "ideation in progress" and skips the
+  stage toggle (there's no product to stage yet).
+- **State vocabulary documented.** `ROADMAP-FORMAT.md` now spells out all four states —
+  `visioning → scoping → building → shipped` — and that each one is resumable by re-running its owning
+  command (`/gg:ideate`, `/gg:discover`, `/gg:next-task` respectively).
+
 ## 2.0.0
 
 The first public release of `gg` — a Claude Code workflow plugin that builds a product in **phase 0**

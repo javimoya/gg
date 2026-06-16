@@ -10,15 +10,15 @@ per-chunk state machine here: the current phase's tasks live in `PROGRESS.md`.
 # Roadmap — {Project name}
 
 ## State
-- **state**: {scoping | building | shipped}
+- **state**: {visioning | scoping | building | shipped}
 - **phase**: {N}            <!-- 0 = the initial product; 1, 2, … = refinement phases -->
 - **stage**: {dev | launched}
 
 ## Phase log
 {One line per phase, newest last. Phase 0 is the whole product; each later phase names the notes it
 folded.}
-- **Phase 0** — the initial product — {building | shipped {YYYY-MM-DD}}
-- **Phase 1** — {the notes folded, e.g. "home redesign + dark mode"} — {building | shipped {YYYY-MM-DD}}
+- **Phase 0** — the initial product — {visioning | scoping | building | shipped {YYYY-MM-DD}}
+- **Phase 1** — {the notes folded, e.g. "home redesign + dark mode"} — {scoping | building | shipped {YYYY-MM-DD}}
 
 ## Structural changelog
 - {YYYY-MM-DD} — project kicked off by /gg:ideate (stage: dev).
@@ -29,10 +29,16 @@ folded.}
 - **The header is the single source of truth for dispatch.** `state` / `phase` / `stage` route every
   command — `/gg:orient` reports them and each command's precondition checks them. Update them the
   moment they change; a stale header mis-routes the next clean session.
-- **State vocabulary.** `scoping` (set at `/gg:ideate`'s close, where `/gg:discover` designs the
-  phase) → `building` (in `/gg:next-task`) → `shipped` (phase done, product runnable and tried). The
-  only back-edge is `shipped → scoping`: a new refinement phase begins when `/gg:discover` runs with
-  pending notes. Before `.gg/` exists there is no state at all — `/gg:ideate` hasn't scaffolded yet.
+- **State vocabulary.** `visioning` (set the moment `/gg:ideate` scaffolds `.gg/`, before any grilling
+  — the vision isn't sharp yet) → `scoping` (set at `/gg:ideate`'s close once the vision is sharp; this
+  is where `/gg:discover` designs the phase) → `building` (in `/gg:next-task`) → `shipped` (phase done,
+  product runnable and tried). The only back-edge is `shipped → scoping`: a new refinement phase begins
+  when `/gg:discover` runs with pending notes. **Each state is resumable** by re-running its owning
+  command on a clean session: `visioning` → `/gg:ideate` (it continues the grilling — it does **not**
+  treat the project as already kicked off); `scoping` → `/gg:discover`; `building` → `/gg:next-task`.
+  Before `.gg/` exists there is no state at all. `/gg:ideate` writes the header (`state: visioning`,
+  `phase: 0`, `stage: dev`) and the kickoff changelog line at scaffold, then promotes `visioning →
+  scoping` at its close. Only phase 0 passes through `visioning`; refinement phases open at `scoping`.
 - **`phase` counts cycles, not chunks.** Phase 0 is the initial `discover → next-task*` cycle; each
   refinement phase increments it. A phase's tasks live in `PROGRESS.md`, not here.
 - **`stage` is flipped only by `/gg:orient`** (`STAGE.md`), on the user's explicit go; record the flip

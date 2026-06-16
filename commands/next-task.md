@@ -13,6 +13,7 @@ project directory (cwd); state lives in `<cwd>/.gg/`. Protocols in `${CLAUDE_PLU
 ## 0. Precondition (don't build the wrong thing)
 Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
 - **No `.gg/`** → **stop**, route to `/gg:ideate`.
+- **`state: visioning`** → ideation isn't finished (no SPEC / task list yet). **Stop**, route to `/gg:ideate`.
 - **`state: scoping`** → there's no SPEC / task list yet. **Stop** and route to `/gg:discover`.
 - **`state: building`** → proceed; read `.gg/PROGRESS.md` and work the next task. If the task board has
   **no pending/in-progress task left**, finish it via §6 (phase close).
