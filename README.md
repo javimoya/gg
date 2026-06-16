@@ -4,8 +4,6 @@
   </picture>
 </p>
 
-# gg
-
 **The speed of vibe-coding. The memory of spec-driven development. None of the ceremony of either. Just agentic engineering, done right.**
 
 > gg will save you months of figuring out how to build real, maintainable software with Claude Code.
