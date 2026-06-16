@@ -36,8 +36,6 @@ There's the trap: vibe-coding is fast but forgetful; spec-driven remembers but i
 
 **The magic lives entirely in those five carefully crafted commands.** Distilled from months of building real products with agents: what works, what quietly breaks or creates friction, and how to land the exact product in your head, with its full memory, at the least effort possible.
 
-It's the best first draft you've seen, and one you can actually keep building on.
-
 ---
 
 ## Where gg fits
