@@ -6,9 +6,9 @@
 
 # gg
 
-**gg will save you months of figuring out how to build real, maintainable software with Claude Code.**
+**The speed of vibe-coding. The memory of spec-driven development. None of the ceremony of either. Just agentic engineering, done right.**
 
-> The speed of vibe-coding. The memory of spec-driven development. None of the ceremony of either. **Just agentic engineering, done right.**
+> gg will save you months of figuring out how to build real, maintainable software with Claude Code.
 
 `gg` is a small Claude Code plugin: five Markdown slash commands (`/gg:ideate`, `/gg:discover`, `/gg:next-task`, `/gg:capture`, `/gg:orient`) that build your whole product in one first pass and then let you refine it. Every decision lives on disk and each task runs in its own clean session, so the context never rots and the next one always knows what's going on. No hooks, no background process: you run a command when you want it, and the rest of the time it stays out of your way.
 
