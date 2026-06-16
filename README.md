@@ -6,7 +6,7 @@
 
 # gg
 
-**gg will save you months of figuring out how to build real, maintainable software with Claude Code.** You get a whole working product on day one, and an agent that never forgets why you built it that way, so the change you make on day 100 doesn't quietly break the decision you made on day one.
+**gg will save you months of figuring out how to build real, maintainable software with Claude Code.**
 
 > The speed of vibe-coding. The memory of spec-driven development. None of the ceremony of either. **Just agentic engineering, done right.**
 
@@ -48,10 +48,9 @@ It's the best first draft you've seen, and one you can actually keep building on
 | **Design & nuances kept on disk** | ✗ lost each session | ✓ | ✓ | ✓ per feature | ✓ vision + blueprint + glossary + ADRs |
 | **Records the defaults the AI assumed** | ✗ | ✗ | ✗ | ✗ | ✓ numbered & reversible |
 | **Effort per change (any size)** | low, but risky | full workflow | full workflow | full workflow | **low: a note, one pass** |
-| **Knows dev vs launched** | ✗ | ✗ | ✗ | ✗ | ✓ |
 | **Footprint** | just Claude | CLI + templates | installer + subagents | plugin + subagents | **5 Markdown commands, on demand** |
 
-*These are all good tools that genuinely solve the memory problem, and they're evolving fast. gg just makes a different bet: the whole product first, fully documented, then a light loop with no machinery in the way.*
+*These are all good tools that genuinely solve the memory problem. gg just makes a different bet: the whole product first, fully documented, then a light loop with no machinery in the way.*
 
 ---
 
