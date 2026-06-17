@@ -126,6 +126,12 @@ never protecting *what already exists* (including the developer's own authored t
   `MEMORY.md`, no `~/.claude/**/memory/`. Every durable idea, note, decision, or default goes into
   `.gg/` so it is versioned, auditable, and visible to every clean session and to `/gg:orient`. A
   thread parked outside `.gg/` is, to this system, a silent drop.
+- **Write `.gg/` content in English.** All `.gg/` docs are authored in English, regardless of the
+  conversation language — the agent adheres better to one consistent language and the state stays
+  auditable across sessions. The one exception: a verbatim user quote (e.g. a NOTES `Idea` in the
+  user's words) stays in the user's original language, marked as a quote; the agent's surrounding text
+  (the gloss, the why) is English. This governs the `.gg/` prose only — never the project's own code,
+  stack, or product language.
 - **You only own what this session changed.** The tree may already be dirty when you start. Record
   the pre-existing dirty paths up front; those changes are the user's, not yours.
 - **Restore known-good state before stacking a fix — but only your own steps.** When *your* change
