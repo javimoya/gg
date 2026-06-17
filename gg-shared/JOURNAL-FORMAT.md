@@ -30,7 +30,7 @@ the next phase reads:
   |----|---------------|-----------|-----------------|--------|
   | AC-1 | automated | {test} | {what you saw} | confirmed |
 - **Tests**: baseline {N pass / M fail at phase start} → close {N pass / 0 fail} ({the RUNBOOK suite})
-- **Notes applied**: {which `## Pending` notes were folded, now in NOTES `## Applied`} (— for phase 0)
+- **Items applied**: {which queued backlog items shipped, now in `BACKLOG-ARCHIVE.md ## Applied`} (— for phase 0)
 - **VISION conformance**: {does the product now meet "done and perfect", or what remains}
 - **State change**: building → shipped; phase {N}
 - **Next**: {the breadcrumb — try it, then capture + discover for the next phase}

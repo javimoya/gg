@@ -15,10 +15,10 @@ per-chunk state machine here: the current phase's tasks live in `PROGRESS.md`.
 - **stage**: {dev | launched}
 
 ## Phase log
-{One line per phase, newest last. Phase 0 is the whole product; each later phase names the notes it
-folded.}
+{One line per phase, newest last. Phase 0 is the whole product; each later phase names the backlog
+items it folded.}
 - **Phase 0** — the initial product — {visioning | scoping | building | shipped {YYYY-MM-DD}}
-- **Phase 1** — {the notes folded, e.g. "home redesign + dark mode"} — {scoping | building | shipped {YYYY-MM-DD}}
+- **Phase 1** — {the backlog items folded, e.g. "home redesign + dark mode"} — {scoping | building | shipped {YYYY-MM-DD}}
 
 ## Structural changelog
 - {YYYY-MM-DD} — project kicked off by /gg:ideate (stage: dev).
@@ -33,7 +33,7 @@ folded.}
   — the vision isn't sharp yet) → `scoping` (set at `/gg:ideate`'s close once the vision is sharp; this
   is where `/gg:discover` designs the phase) → `building` (in `/gg:next-task`) → `shipped` (phase done,
   product runnable and tried). The only back-edge is `shipped → scoping`: a new refinement phase begins
-  when `/gg:discover` runs with pending notes. **Each state is resumable** by re-running its owning
+  when `/gg:discover` runs with items queued by `/gg:refine-backlog`. **Each state is resumable** by re-running its owning
   command on a clean session: `visioning` → `/gg:ideate` (it continues the grilling — it does **not**
   treat the project as already kicked off); `scoping` → `/gg:discover`; `building` → `/gg:next-task`.
   Before `.gg/` exists there is no state at all. `/gg:ideate` writes the header (`state: visioning`,

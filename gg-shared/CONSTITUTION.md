@@ -10,7 +10,7 @@ and nothing ships half-built.
 The complete product is reached **across phases**, not in one shot. Phase 0 builds the whole product
 end to end — complete in scope, close (not perfect) to the vision; later refinement phases close the
 gap. The bar is the **destination of the loop**: each phase is at full bar for what it builds, and
-the recorded assumptions and the notes backlog hold everything not yet perfected — visibly, never
+the recorded assumptions and the backlog hold everything not yet perfected — visibly, never
 silently. "Close, not perfect, then refine" is legitimate *because* every gap is a recorded
 assumption or an open note, never a quiet omission.
 
@@ -34,8 +34,8 @@ mid-work, whether you raised it or the user did** — that's not a signal to cut
 **decompose**. The permitted moves:
 - If it's the continuation of the work in progress → a later **TASK** of the current phase (in
   `PROGRESS.md`).
-- If it's a refinement or a new capability for later → a **note** in `.gg/NOTES.md` (`CAPTURE.md`),
-  folded into a future phase by `/gg:discover`'s triage.
+- If it's a refinement or a new capability for later → a **backlog item** in `.gg/BACKLOG.md ## New`
+  (`CAPTURE.md`), triaged by `/gg:refine-backlog` and folded into a future phase by `/gg:discover`.
 - If it's a low-stakes decision not worth the user's time right now → a **recorded assumption**
   (`A-NN` in `ASSUMPTIONS.md`): a default taken on the record, reversible by a note. (High-stakes
   decisions are grilled, never defaulted — see "Defaults and assumptions".)
@@ -50,7 +50,7 @@ final product's quality (FORBIDDEN). Sequencing = same product, different order/
 > way?"**
 > - **Yes → forbidden.** It's a cut. Do it right, or turn it into a task/note/phase at full bar.
 > - **No, it's only order → allowed.** The agreed product is decomposed into phases and tasks; each
->   at full bar; the notes backlog and assumptions ledger hold the rest without lowering anything.
+>   at full bar; the backlog and assumptions ledger hold the rest without lowering anything.
 
 ## Defaults and assumptions
 
@@ -82,17 +82,17 @@ and in silence**. When tempted to leave something out you have honest moves — 
 task/note (it's inside the product → sequence it), record a default (a low-stakes choice → log the
 assumption), or take it to the user as a boundary (it's outside the product → get an explicit,
 recorded decision). Never the dishonest move: dropping it quietly. A *boundary* lives in `VISION.md`
-(not re-read later as work to do); *sequencing inside the product* lives as a **note** in
-`.gg/NOTES.md` (re-read at the next `/gg:discover` triage); a *deferred low-stakes choice* lives as
+(not re-read later as work to do); *sequencing inside the product* lives as a **backlog item** in
+`.gg/BACKLOG.md` (triaged at the next `/gg:refine-backlog`); a *deferred low-stakes choice* lives as
 an **assumption** in `.gg/ASSUMPTIONS.md`.
 
 **The decisive test — and the trap that bites.** Ask: *will the finished product ever include this?*
-**No, never →** a boundary (→ `VISION.md`). **Yes, just not yet →** sequencing (→ a **note** in
-`.gg/NOTES.md`); the very fact that there is a "later" for it proves it's in the product, so it is a
-note, **never** a boundary. The trap: **out of this phase ≠ out of the product.** Filing a deferral as
-a "boundary", or parking it anywhere other than `.gg/NOTES.md` — a SPEC line, a `JOURNAL.md` entry,
-the VISION — is a silent drop in disguise: none of those is re-read when the work comes due; only the
-notes backlog is. And **a feature can split**: the same area may be part boundary, part deferral —
+**No, never →** a boundary (→ `VISION.md`). **Yes, just not yet →** sequencing (→ a **backlog item** in
+`.gg/BACKLOG.md`); the very fact that there is a "later" for it proves it's in the product, so it is a
+backlog item, **never** a boundary. The trap: **out of this phase ≠ out of the product.** Filing a
+deferral as a "boundary", or parking it anywhere other than `.gg/BACKLOG.md` — a SPEC line, a
+`JOURNAL.md` entry, the VISION — is a silent drop in disguise: none of those is re-read when the work
+comes due; only the backlog is. And **a feature can split**: the same area may be part boundary, part deferral —
 classify each piece on its own. *Example: the fixed set of supported options is a boundary (you'll
 never add another); which of them are shown is deferred behaviour → a note.* Don't let "this area has
 a boundary" pull the deferred part in with it.
@@ -128,7 +128,7 @@ never protecting *what already exists* (including the developer's own authored t
   thread parked outside `.gg/` is, to this system, a silent drop.
 - **Write `.gg/` content in English.** All `.gg/` docs are authored in English, regardless of the
   conversation language — the agent adheres better to one consistent language and the state stays
-  auditable across sessions. The one exception: a verbatim user quote (e.g. a NOTES `Idea` in the
+  auditable across sessions. The one exception: a verbatim user quote (e.g. a BACKLOG `Idea` in the
   user's words) stays in the user's original language, marked as a quote; the agent's surrounding text
   (the gloss, the why) is English. This governs the `.gg/` prose only — never the project's own code,
   stack, or product language.
@@ -150,10 +150,10 @@ Your project's `CLAUDE.md`, when present, may deepen this; the floor above alway
 
 ## Each phase's contract
 
-A **phase** is one `/gg:discover → /gg:next-task*` cycle (phase 0 = the whole product; phase N = a
-selected set of notes). A phase does not close without ALL of this:
+A **phase** is one `/gg:discover → /gg:next-task*` cycle (phase 0 = the whole product; phase N = the
+backlog items you queued with `/gg:refine-backlog`). A phase does not close without ALL of this:
 1. **A vertical, end-to-end product** — phase 0 is the complete product runnable end to end (the
-   foundational spine built first); phase N coherently folds in its selected notes.
+   foundational spine built first); phase N coherently folds in its queued backlog items.
 2. **A concrete, runnable deliverable** with a **"How to see it"** (a real command or steps), built
    at the phase's last task — **this is the only point the user tries the product**.
 3. **Acceptance criteria** (defined in the SPEC during `/gg:discover`, before building).
@@ -197,9 +197,9 @@ Cutting early and handing off cleanly always beats pushing a degraded session.
 
 ## Breadcrumb
 
-**Every** working skill (`/gg:ideate`, `/gg:discover`, `/gg:next-task`, and `/gg:orient` when it
-flips the stage) ends by reminding the user, in one line: *where you are + what's next + which command
-to continue with*. This connects the manual flow between clean sessions. It is the last step of the
+**Every** working skill (`/gg:ideate`, `/gg:discover`, `/gg:next-task`, `/gg:refine-backlog`, and
+`/gg:orient` when it flips the stage) ends by reminding the user, in one line: *where you are + what's
+next + which command to continue with*. This connects the manual flow between clean sessions. It is the last step of the
 shared close ritual (`CLOSE-FORMAT.md`), which also updates the ROADMAP and appends to the
 append-only `JOURNAL.md`. `/gg:orient` otherwise only reads.
 

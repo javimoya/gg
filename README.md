@@ -8,7 +8,7 @@
 
 `gg` will save you months of figuring out how to build real, maintainable software with Claude Code.
 
-`gg` is a small Claude Code plugin: five Markdown slash commands (`/gg:ideate`, `/gg:discover`, `/gg:next-task`, `/gg:capture`, `/gg:orient`) that build your whole product in one first pass and then let you refine it. Every decision lives on disk and each task runs in its own clean session, so the context never rots and the next one always knows what's going on. No hooks, no background process: you run a command when you want it, and the rest of the time it stays out of your way.
+`gg` is a small Claude Code plugin: six Markdown slash commands (`/gg:ideate`, `/gg:discover`, `/gg:next-task`, `/gg:refine-backlog`, `/gg:capture`, `/gg:orient`) that build your whole product in one first pass and then let you refine it. Every decision lives on disk and each task runs in its own clean session, so the context never rots and the next one always knows what's going on. No hooks, no background process: you run a command when you want it, and the rest of the time it stays out of your way.
 
 ---
 
@@ -30,11 +30,11 @@ There's the trap: vibe-coding is fast but forgetful; spec-driven remembers but i
 
 **Iteration 0 builds the whole product**, fast, like that first magical prompt. But it grills you first (one sharp question at a time), designs the entire thing up front, and writes it all down as it goes: the vision, the architecture, and **every default it had to assume because it didn't stop to ask you.** You end up with a complete, running product to actually try, *and* a paper trail of why it is the way it is, so it stays maintainable instead of becoming a black box.
 
-**Then you refine a real, running product.** You don't re-run a spec ceremony. You jot notes as you use it ("make this bigger", "add that", "this is wrong"), and gg folds a batch of them into the next phase. The design memory is always there, so it stops breaking what it shouldn't. And because it knows your product isn't live yet, it won't pile on defensive work that a product in development simply doesn't need.
+**Then you refine a real, running product.** You don't re-run a spec ceremony. You jot notes as you use it ("make this bigger", "add that", "this is wrong"), and you triage a batch of them into the next phase. The design memory is always there, so it stops breaking what it shouldn't. And because it knows your product isn't live yet, it won't pile on defensive work that a product in development simply doesn't need.
 
-**And it stays out of your way.** gg is five Markdown commands and nothing else: no hooks, no background agents, no installer beyond adding the plugin. You invoke a command when you want it, and when you don't, it does nothing at all. The only trace it leaves in your repo is a plain-text `.gg/` folder you can read and commit.
+**And it stays out of your way.** gg is six Markdown commands and nothing else: no hooks, no background agents, no installer beyond adding the plugin. You invoke a command when you want it, and when you don't, it does nothing at all. The only trace it leaves in your repo is a plain-text `.gg/` folder you can read and commit.
 
-**The magic lives entirely in those five carefully crafted commands.** Distilled from months of building real products with agents: what works, what quietly breaks or creates friction, and how to land the exact product in your head, with its full memory, at the least effort possible.
+**The magic lives entirely in those six carefully crafted commands.** Distilled from months of building real products with agents: what works, what quietly breaks or creates friction, and how to land the exact product in your head, with its full memory, at the least effort possible.
 
 ---
 
@@ -46,7 +46,7 @@ There's the trap: vibe-coding is fast but forgetful; spec-driven remembers but i
 | **Design & nuances kept on disk** | ✗ lost each session | ✓ | ✓ | ✓ per feature | ✓ vision + blueprint + glossary + ADRs |
 | **Records the defaults the AI assumed** | ✗ | ✗ | ✗ | ✗ | ✓ numbered & reversible |
 | **Effort per change (any size)** | low, but risky | full workflow | full workflow | full workflow | **low: a note, one pass** |
-| **Footprint** | just Claude | CLI + templates | installer + subagents | plugin + subagents | **5 Markdown commands, on demand** |
+| **Footprint** | just Claude | CLI + templates | installer + subagents | plugin + subagents | **6 Markdown commands, on demand** |
 
 *These are all good tools that genuinely solve the memory problem. gg just makes a different bet: the whole product first, fully documented, then a light loop with no machinery in the way.*
 
@@ -81,18 +81,21 @@ flowchart LR
     D --> N["/gg:next-task<br/>one task per run"]
     N -- tasks remain --> N
     N -- last task --> S(["phase shipped<br/>(try it)"])
-    S -- capture ideas --> C["/gg:capture<br/>jot to the backlog"]
-    C --> D
-    O(["/gg:orient<br/>where am I? + stage"]) -.-> D
+    S -- capture ideas / bugs --> C["/gg:capture<br/>jot to the backlog"]
+    C --> R["/gg:refine-backlog<br/>triage: next / later / discard"]
+    R --> D
+    O(["/gg:orient<br/>where am I? + stage"]) -.-> R
+    O -.-> D
     O -.-> N
 ```
 
-A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the whole product; **phase 1, 2, …** each fold in a batch of notes you captured. Run each command in its own clean Claude session, with `/clear` between, to keep the context sharp.
+A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the whole product; **phase 1, 2, …** each fold in the backlog items you triaged into them. Run each command in its own clean Claude session, with `/clear` between, to keep the context sharp.
 
 1. **`/gg:ideate`** runs once and turns the idea into a sharp VISION.
 2. **`/gg:discover`** designs the whole product (a BLUEPRINT: data model and architecture), grills the load-bearing questions, records good defaults for the rest, and produces a testable SPEC plus an ordered task list.
 3. **`/gg:next-task`** builds exactly the next task, with tests, then checkpoints and stops. Run it again for the next one. You try the product only when the last task closes the phase; between tasks, the agent verifies its own work.
-4. When you want changes, **`/gg:capture`** them as you go, then run **`/gg:discover`** again. It asks which notes to include, grills them, and `next-task` builds them. Repeat.
+4. When you want changes, **`/gg:capture`** them as you go (ideas or bugs) — they land in the backlog (`.gg/BACKLOG.md`), never the agent's memory.
+5. Between phases, **`/gg:refine-backlog`** walks the backlog **one item at a time** so you decide each: next phase / later / discard. Then **`/gg:discover`** designs the set you queued and **`/gg:next-task`** builds it. Repeat.
 
 ---
 
@@ -103,8 +106,9 @@ A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the who
 | Command | Run it… |
 |---|---|
 | **`/gg:ideate`** | to **start** a project (no `.gg/` yet) — or to **resume** an unfinished ideation (`state: visioning`). Once per project. |
-| **`/gg:discover`** | right after `ideate` (phase 0), **or** after a phase ships **when there are pending notes** (phase N). |
+| **`/gg:discover`** | right after `ideate` (phase 0), **or** after a phase ships **once you've queued items with `refine-backlog`** (phase N). |
 | **`/gg:next-task`** | after `discover`, or after a previous `next-task`, while the current phase still has tasks left. |
+| **`/gg:refine-backlog`** | after a phase ships, to triage the backlog one item at a time (next / later / discard) before the next `discover`. |
 | **`/gg:capture`** | once a product exists, during `next-task` or between phases. *Not* during ideate/discover (raise it in the grilling instead). |
 | **`/gg:orient`** | any time. Read-only, plus it offers the `dev ↔ launched` stage flip. |
 
@@ -123,7 +127,8 @@ Everything the workflow knows lives in a `.gg/` folder at the root of your proje
 ├── ASSUMPTIONS.md    # the recorded-defaults ledger (every choice not grilled, reversible)
 ├── SPEC.md           # the living contract: acceptance criteria with typed evidence
 ├── PROGRESS.md       # the task board for the current phase + where to resume
-├── NOTES.md          # the refinement backlog (pending / applied), triaged by discover
+├── BACKLOG.md        # the active backlog (new / next phase / later), triaged by refine-backlog
+├── BACKLOG-ARCHIVE.md # closed backlog items (applied / discarded) — kept for the trace
 ├── RUNBOOK.md        # the pinned run/verify commands (full suite, deliverable, destructive paths)
 ├── CONTEXT.md        # a glossary of your project's domain terms
 ├── JOURNAL.md        # append-only history; phase-close entries are the hand-offs
@@ -138,11 +143,11 @@ Commit this folder alongside your code. Anyone (you tomorrow, a teammate, or a f
 
 Enforced by `PRINCIPLES.md` (the constitution) and the commands themselves.
 
-- **Decompose, don't drop, or set a boundary.** "Later" becomes a task, a note, or a recorded assumption. Genuinely out of scope? It goes into the VISION as an approved boundary. It never just disappears.
+- **Decompose, don't drop, or set a boundary.** "Later" becomes a task, a backlog item, or a recorded assumption. Genuinely out of scope? It goes into the VISION as an approved boundary. It never just disappears.
 - **Good defaults, recorded and reversible.** Discovery asks the load-bearing questions and logs the rest as numbered assumptions you can veto at sign-off or overturn later with a note. The cut is the *unrecorded* assumption, not the default.
 - **dev ≠ launched.** In a spec-driven build, the agent burns whole phases on migrations, backward-compatibility, and preservation that a product with no users yet doesn't need. gg knows it isn't live and skips that defensive work until you launch.
 - **Verify before you claim.** A per-project `RUNBOOK.md` pins the exact full-suite command; a phase closes only when it's green and the real deliverable runs. You try it at the phase close.
-- **Capture, don't stash.** Ideas go into `.gg/NOTES.md`, never the agent's private memory. Nothing the project should remember lives outside `.gg/`.
+- **Capture, don't stash.** Ideas and bugs go into `.gg/BACKLOG.md`, never the agent's private memory. Nothing the project should remember lives outside `.gg/`.
 - **One task per run, resumable everywhere.** `/gg:next-task` does exactly one task, records "where to resume" in `PROGRESS.md`, and stops. `/clear` and run it again. The on-disk state *is* the handoff.
 
 ---
@@ -173,7 +178,7 @@ Developing locally? Point the marketplace at your checkout instead of GitHub:
 
 **Is this a library or framework I import?** No. It's a set of Markdown instructions that steer Claude Code. There's no runtime and nothing to import.
 
-**Does it run hooks or anything in the background?** No. gg is five Markdown commands you invoke by hand. When you don't call one, it does nothing. The only thing it leaves in your repo is the plain-text `.gg/` folder.
+**Does it run hooks or anything in the background?** No. gg is six Markdown commands you invoke by hand. When you don't call one, it does nothing. The only thing it leaves in your repo is the plain-text `.gg/` folder.
 
 **Does it work for any language or stack?** Yes, it's stack-agnostic. The commands talk about a blueprint, specs, tests, and deliverables; you bring the language.
 

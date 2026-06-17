@@ -9,7 +9,9 @@
   Release via the web (`https://github.com/javimoya/gg/releases/new?tag=vX.Y.Z`) or their own `gh`.
 
 ## What gg is
-A pure-Markdown command plugin: five commands (`ideate`, `discover`, `next-task`, `capture`,
-`orient`) that build a product in **phase 0** then refine it **phase by phase**. A "phase" is one `discover → next-task*` cycle. All project state lives in each project's
+A pure-Markdown command plugin: six commands (`ideate`, `discover`, `next-task`, `refine-backlog`,
+`capture`, `orient`) that build a product in **phase 0** then refine it **phase by phase**. A "phase"
+is one `discover → next-task*` cycle; between phases, `refine-backlog` triages the captured backlog
+(`.gg/BACKLOG.md`) one item at a time into the next phase. All project state lives in each project's
 `.gg/`; the shared protocols/formats live in `gg-shared/`. There is no runtime and no state.json by
 design.

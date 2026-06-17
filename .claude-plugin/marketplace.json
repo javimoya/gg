@@ -11,7 +11,7 @@
     {
       "name": "gg",
       "source": "./",
-      "description": "A disciplined, multi-session workflow for building software with Claude Code: phase 0 builds the whole product (ideate then discover then next-task), then you refine it phase by phase from captured notes — all project state on disk, with recorded assumptions and a dev/launched stage.",
+      "description": "A disciplined, multi-session workflow for building software with Claude Code: phase 0 builds the whole product (ideate then discover then next-task), then you refine it phase by phase from a backlog you triage (capture then refine-backlog then discover) — all project state on disk, with recorded assumptions and a dev/launched stage.",
       "category": "productivity"
     }
   ]

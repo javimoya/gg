@@ -21,7 +21,7 @@ REPO = Path(__file__).resolve().parent.parent
 COMMANDS = sorted((REPO / "commands").glob("*.md"))
 
 # The exact command set. A missing or stray command is a failure (keeps docs/tests honest).
-EXPECTED = {"ideate.md", "discover.md", "next-task.md", "capture.md", "orient.md"}
+EXPECTED = {"ideate.md", "discover.md", "next-task.md", "refine-backlog.md", "capture.md", "orient.md"}
 
 # Commands that take an explicit argument and must advertise it.
 WANT_ARG_HINT = {"next-task.md", "capture.md"}

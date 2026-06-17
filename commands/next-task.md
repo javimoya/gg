@@ -19,8 +19,9 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
   **no pending/in-progress task left**, finish it via §6 (phase close).
 - **`state: shipped`** → the phase is done; the product is ready to try. **Stop — don't build here.**
   Anything the try-it surfaces — a new idea **or a bug in what shipped** — is **captured, not fixed on
-  the spot**: jot it (inline, per `CAPTURE.md`; mark a defect `[bug]`), then `/gg:discover` triages and
-  fixes it as the next phase (`/gg:orient` will route you). Patching a shipped defect inline — off the
+  the spot**: jot it (inline, per `CAPTURE.md`; mark a defect `[bug]`), then `/gg:refine-backlog`
+  triages it and `/gg:discover` designs the fix as the next phase (`/gg:orient` will route you).
+  Patching a shipped defect inline — off the
   board, off the SPEC — is the misstep that leaves the record stale; everything, bugs included, goes
   through the cycle so it gets a task, a test, and a JOURNAL entry.
 
@@ -49,8 +50,8 @@ If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):
 - **Anti-cut reframe**: tempted to stub / defer / leave a `TODO`? Apply the constitution's test. Honest
   moves only — a later **task** in this phase (record it in PROGRESS), or take it to the user as a
   boundary. Never a silent drop.
-- **New scope mid-task** (often the user raises it): **jot it** to `.gg/NOTES.md` per `CAPTURE.md`
-  (jot-only, no grilling) — it's handled in a *later* phase — and **return to the current task**.
+- **New scope mid-task** (often the user raises it): **jot it** to `.gg/BACKLOG.md ## New` per
+  `CAPTURE.md` (jot-only, no grilling) — it's handled in a *later* phase — and **return to the current task**.
   Never derail the build.
 - **Record ADRs** for architectural/surprising decisions (the three criteria of `ADR-FORMAT.md`).
 - **External wall** (a missing credential, a third party, a product decision only the user can make):
@@ -76,10 +77,10 @@ When the last task is done — **this is the only point the user tries the produ
 - **Self-accounting gate** (`CONSTITUTION.md`): list everything simplified / deferred / defaulted; turn
   each into a note or justify it. Ask the **VISION-conformance** question (does the product now meet
   "done and perfect", or what remains?).
-- Move the phase's applied notes to `.gg/NOTES.md ## Applied`; mark any default a note reversed as
-  `ASSUMPTIONS.md ## Overridden`.
+- Move the phase's items from `.gg/BACKLOG.md ## Next phase` to `.gg/BACKLOG-ARCHIVE.md ## Applied`
+  (with where each landed); mark any default an applied item reversed as `ASSUMPTIONS.md ## Overridden`.
 - Write the **phase-close `JOURNAL.md` entry** (`JOURNAL-FORMAT.md`): built / how-to-verify + real
-  result / acceptance-evidence table / baseline→close tests / notes applied / VISION conformance.
+  result / acceptance-evidence table / baseline→close tests / items applied / VISION conformance.
 - Set `state: shipped`; update the ROADMAP phase-log line to `shipped {date}`.
 - Breadcrumb: *"Phase {N} shipped — try it: {how to see it}. Then `/gg:capture` anything to change, and
   `/clear` + `/gg:discover` for the next phase."*

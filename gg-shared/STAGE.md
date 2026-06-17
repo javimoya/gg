@@ -43,8 +43,8 @@ reversibility"):
 ## The launch flip (dev → launched)
 
 Flipping to `launched` is not a one-line state change — it **consumes the caution dev deferred**.
-`/gg:orient` seeds **launch-readiness notes** into `.gg/NOTES.md ## Pending`, folded into the next
-phase by `/gg:discover`:
+`/gg:orient` seeds **launch-readiness items** into `.gg/BACKLOG.md ## New`, triaged by
+`/gg:refine-backlog` and folded into the next phase by `/gg:discover`:
 - establish a migration baseline from the current schema;
 - snapshot the current API/data shape as the v1 contract;
 - reclassify every dev reset/seed script as destructive and gate it (RUNBOOK "Destructive paths");

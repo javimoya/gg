@@ -3,6 +3,35 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.2.0
+
+A real **backlog** with its own triage command. What used to be `NOTES.md` is now `BACKLOG.md`, and a
+new `/gg:refine-backlog` lets you triage it one item at a time — instead of deciding everything inside
+`/gg:discover`.
+
+### Added
+- **`/gg:refine-backlog` — a sixth command.** Between phases it walks each new backlog item one at a
+  time and you give it a disposition: **next phase**, **later**, **future**, or **discard** (archived
+  with a reason). It is **idempotent** — by default it walks only `## New`, so a triaged item is never
+  shown again; `--later` / `--future` revisit those deferral tiers on purpose, and every run opens with
+  the counts of all sections so nothing is invisible. It only triages — `/gg:discover` still designs.
+- **`BACKLOG-ARCHIVE.md`.** Closed items leave the active backlog: **applied** items at phase close,
+  **discarded** items when you drop them (with a recorded reason) — kept for the trace, never deleted.
+- **Provenance + a `[bug]` marker on every item.** The `Captured` line records whether **you** raised
+  it or the **agent** deferred it; a defect in shipped behavior is prefixed `[bug]`.
+
+### Changed
+- **`NOTES.md` → `BACKLOG.md`, sectioned by lifecycle.** The backlog is now `## New` / `## Next phase`
+  / `## Later` / `## Future` instead of one `## Pending` list — an item's state *is* its section.
+- **Triage left `/gg:discover`.** Discover no longer asks "which notes?" — it **consumes the
+  `## Next phase` set** that `/gg:refine-backlog` already queued, and grills those items together.
+- **A bug found while trying the shipped product is captured, not patched inline.** It flows through the
+  normal `capture → refine-backlog → discover` cycle (so it gets a task, a test, and a `JOURNAL.md`
+  entry), instead of an off-spec inline fix that left the record stale.
+- **All `.gg/` content is written in English.** A new constitution rule pins the project's on-disk state
+  to one language (verbatim user quotes excepted) so the agent's adherence stays sharp; it governs the
+  `.gg/` prose only, never the project's own code or stack.
+
 ## 2.1.0
 
 `/gg:ideate` is now **resumable**: `visioning` is a real, first-class state, not just a documented name.

@@ -1,8 +1,8 @@
 # Close ritual (shared)
 
-The end-of-session ritual every **working** skill (`/gg:ideate`, `/gg:discover`, `/gg:next-task`, and
-`/gg:orient` when it flips the stage) runs before it stops — whether the session finished its goal or
-is being cut mid-way. `/gg:orient`'s read-only report does not run it. Running the same ritual
+The end-of-session ritual every **working** skill (`/gg:ideate`, `/gg:discover`, `/gg:next-task`,
+`/gg:refine-backlog`, and `/gg:orient` when it flips the stage) runs before it stops — whether the
+session finished its goal or is being cut mid-way. `/gg:orient`'s read-only report does not run it. Running the same ritual
 everywhere keeps the ROADMAP, the JOURNAL, and the breadcrumb from drifting apart between clean
 sessions.
 
@@ -10,8 +10,8 @@ sessions.
 
 1. **Persist the skill's own artifacts.** Whatever this skill owns is written and consistent on disk:
    the ROADMAP header, and (as applicable) `VISION.md`, `BLUEPRINT.md`, `ASSUMPTIONS.md`, `SPEC.md`,
-   `PROGRESS.md`, `RUNBOOK.md`, `NOTES.md`. A cut session persists its partial state too (discover's
-   "Open questions"; next-task's "Where to resume").
+   `PROGRESS.md`, `RUNBOOK.md`, `BACKLOG.md` / `BACKLOG-ARCHIVE.md`. A cut session persists its partial
+   state too (discover's "Open questions"; next-task's "Where to resume"; refine-backlog's dispositions).
 2. **Update the ROADMAP header + changelog.** `state` / `phase` / `stage` reflect reality, and any
    structural change (kickoff, a new phase opened, a stage flip) has its dated line in the
    `## Structural changelog` (`ROADMAP-FORMAT.md`).

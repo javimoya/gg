@@ -37,9 +37,9 @@ Read `.gg/ROADMAP.md`'s header — route on `state`, not merely on whether `.gg/
   - Copy `${CLAUDE_PLUGIN_ROOT}/gg-shared/CONSTITUTION.md` → `.gg/PRINCIPLES.md` (verbatim — the
     constitution).
   - Create `.gg/VISION.md` (skeleton) following `${CLAUDE_PLUGIN_ROOT}/gg-shared/VISION-FORMAT.md`.
-  - `CONTEXT.md`, `BLUEPRINT.md`, `ASSUMPTIONS.md`, `SPEC.md`, `PROGRESS.md`, `RUNBOOK.md`, `NOTES.md`,
+  - `CONTEXT.md`, `BLUEPRINT.md`, `ASSUMPTIONS.md`, `SPEC.md`, `PROGRESS.md`, `RUNBOOK.md`, `BACKLOG.md`,
     `adr/`, and `JOURNAL.md` are created **lazily** later (most in `/gg:discover` / `/gg:next-task`;
-    `JOURNAL.md` at this first close).
+    `BACKLOG.md` at the first capture; `JOURNAL.md` at this first close).
 - Read `.gg/PRINCIPLES.md` and internalize it: the final product is complete to the agreed bar;
   effort is never a reason to cut; nothing is dropped silently; "close, not perfect, then refine" is
   legitimate only because gaps are recorded (assumptions/notes).

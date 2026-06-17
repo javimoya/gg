@@ -73,26 +73,26 @@ writing. Two checkpoints, both mandatory:
 Offer to record a decision as an ADR **only** when all three are true (see `ADR-FORMAT.md`): hard to
 reverse, surprising without context, and the result of a real trade-off. If one is missing, no ADR.
 
-## The note triage gate (refinement phases only)
+## The queued set (refinement phases only)
 
-When `/gg:discover` opens a **refinement phase** (phase N, after a product already exists), it first
-reads `.gg/NOTES.md ## Pending` and asks the user **which notes this phase includes** — all, a
-specific one, a recommended set (with one-line reasoning), or a pick — **calling out the `[bug]`-marked
-notes** (defects in shipped behavior) so fixes can be prioritized over new ideas. The selected set *is*
-the phase. Grilling then runs over the selected notes **together** — a joint view, so their tasks come out
-coherent, not note-by-note. Unselected notes stay pending for a later phase (never dropped).
+Triage no longer happens in grilling — `/gg:refine-backlog` owns it (one item at a time) before
+`/gg:discover` runs. When `/gg:discover` opens a **refinement phase** (phase N, after a product already
+exists), it reads the set the user already queued in `.gg/BACKLOG.md ## Next phase` — **that set *is*
+the phase**. Grilling then runs over those items **together** — a joint view, so their tasks come out
+coherent, not item-by-item. Items still in `## New` / `## Later` stay in the backlog for a later phase
+(never dropped).
 
 ## The anti-scope-cut bar applies here too
 
 Grilling is **never** a tool for reducing scope. If something "for later" surfaces during the
 interrogation, it is not dropped — it follows the constitution's moves (`CONSTITUTION.md`,
-`CAPTURE.md`): a later **task** of the current phase, a **note** in `.gg/NOTES.md` for a future
-phase, or — for a low-stakes choice — a recorded **assumption** (`A-NN`). Grilling defines the
+`CAPTURE.md`): a later **task** of the current phase, a **backlog item** in `.gg/BACKLOG.md` for a
+future phase, or — for a low-stakes choice — a recorded **assumption** (`A-NN`). Grilling defines the
 complete product at the agreed bar; it only decides *order/phase* and *which defaults stand*, never
 lowers the *what*.
 
 **Never mislabel a deferral as a boundary.** Something pushed to a later phase is *sequencing* → a
-**note** in `.gg/NOTES.md` (the only record re-read at the next discover); a *boundary* is something
+**backlog item** in `.gg/BACKLOG.md` (triaged at the next `/gg:refine-backlog`); a *boundary* is something
 the finished product will **never** include (→ `VISION.md`). Test it: *will the product ever include
 this?* If there's a "later", it's a note, not a boundary — and it must not be parked in the VISION, a
 SPEC line, or the JOURNAL, where nothing re-reads it. Watch the partial case: an area can be part

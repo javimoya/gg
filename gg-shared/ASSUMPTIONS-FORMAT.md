@@ -42,10 +42,10 @@ reversible, not hidden.
 - **An assumption is not an inferred AC.** It decides *what to build*, on the record — it never
   licenses claiming an acceptance criterion passed without evidence (that stays forbidden;
   the phase-close `JOURNAL` acceptance evidence must be real).
-- **Reversed, not deleted.** When a note overturns a default, move its block to `## Overridden` —
-  same move-don't-erase discipline as `NOTES.md` and the ROADMAP changelog.
+- **Reversed, not deleted.** When a backlog item overturns a default, move its block to `## Overridden` —
+  same move-don't-erase discipline as the backlog archive and the ROADMAP changelog.
 - **Created lazily** at the first default recorded, with the `# ASSUMPTIONS — {name}` header. No
   secrets — record the *name* of an env var, never its value.
 - **The launch flip seeds assumptions into work.** The data-defensiveness skipped in `dev` is
   recorded here; flipping to `launched` (`STAGE.md`) consumes those entries into launch-readiness
-  notes — sequencing, not a cut.
+  backlog items — sequencing, not a cut.
