@@ -77,8 +77,9 @@ reverse, surprising without context, and the result of a real trade-off. If one 
 
 When `/gg:discover` opens a **refinement phase** (phase N, after a product already exists), it first
 reads `.gg/NOTES.md ## Pending` and asks the user **which notes this phase includes** — all, a
-specific one, a recommended set (with one-line reasoning), or a pick. The selected set *is* the
-phase. Grilling then runs over the selected notes **together** — a joint view, so their tasks come out
+specific one, a recommended set (with one-line reasoning), or a pick — **calling out the `[bug]`-marked
+notes** (defects in shipped behavior) so fixes can be prioritized over new ideas. The selected set *is*
+the phase. Grilling then runs over the selected notes **together** — a joint view, so their tasks come out
 coherent, not note-by-note. Unselected notes stay pending for a later phase (never dropped).
 
 ## The anti-scope-cut bar applies here too

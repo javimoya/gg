@@ -36,7 +36,9 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
 ## 2. Triage gate (refinement phases only)
 If this is a refinement phase (`state: shipped` with pending notes), **before grilling** read
 `.gg/NOTES.md ## Pending` and ask the user **which notes this phase includes** (`GRILLING.md` → "The
-note triage gate"): all / a specific one / a recommended set (with one-line reasoning) / a pick. The
+note triage gate"): all / a specific one / a recommended set (with one-line reasoning) / a pick.
+**Surface any `[bug]` notes explicitly** — a defect in shipped behavior usually outranks a new idea, so
+the user can prioritize fixes. The
 **selected set is phase N**: bump `phase`, set `state: scoping`, add its phase-log line. Unselected
 notes stay pending. (In phase 0 there are no notes — the scope is the whole product.)
 

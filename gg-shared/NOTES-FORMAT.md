@@ -1,7 +1,7 @@
 # NOTES.md format
 
-`.gg/NOTES.md` is the project's **refinement backlog** — the ideas you capture (with `/gg:capture` or
-inline during `/gg:next-task`) once a product exists, waiting for a future phase. `/gg:discover`
+`.gg/NOTES.md` is the project's **refinement backlog** — the ideas, and bugs, you capture (with
+`/gg:capture` or inline during `/gg:next-task`) once a product exists, waiting for a future phase. `/gg:discover`
 triages it at the start of a refinement phase: you pick which notes the phase includes, it grills them
 together, and on phase close they move to `## Applied`.
 
@@ -12,7 +12,8 @@ together, and on phase close they move to `## Applied`.
 
 ## Pending
 {Captured, not yet built. Newest first. One `###` block per note. Free-form ideas — NOT typed
-add/change/remove.}
+add/change/remove. A note that is a **defect in already-shipped behavior** is prefixed `[bug]` in its
+title — the one optional marker, so triage can see what's broken apart from a new idea.}
 
 ### {short title}
 - **Captured**: {YYYY-MM-DD}, {who raised it / which session}
@@ -31,7 +32,10 @@ add/change/remove.}
 ## Rules
 
 - **Free-form, not categorized.** A note is an idea in the user's words; gg does not force an
-  add/change/remove type. The shaping happens later in `/gg:discover`, not at capture.
+  add/change/remove type. The shaping happens later in `/gg:discover`, not at capture. The **one
+  optional marker** is `[bug]` in the title, for a defect in already-shipped behavior — broken is not a
+  new idea, so triage can prioritize it; for a `[bug]` the **Idea** line names what's broken vs. what's
+  expected, in the user's words. Everything else stays untyped.
 - **Capture reconciles against the backlog** (`CAPTURE.md`): a new idea may **fold into** an existing
   pending note, be flagged as **contradicting** one (and reconciled with the user), or stand alone —
   recorded in `Relates`. The point is a coherent backlog, not a blind append; but capture never grills.

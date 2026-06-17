@@ -1,7 +1,7 @@
 # Capturing an idea into the backlog (shared)
 
-This is how a new idea, change, or refinement gets recorded **the moment it surfaces** — whether you
-thought of it or the user raised it. The thread never lives only in your head, in prose, or in
+This is how a new idea, change, refinement, **or a bug in the shipped product** gets recorded **the
+moment it surfaces** — whether you thought of it or the user raised it. The thread never lives only in your head, in prose, or in
 Claude's native memory. It is the lightest form of the constitution's **"decompose, don't drop"**
 (`CONSTITUTION.md`): capture **jots and reconciles — it does not grill**.
 
@@ -18,7 +18,10 @@ Two entry points share this protocol:
 
 ## What capture does (jot + light reconciliation — no grilling)
 1. **Write the idea to `.gg/NOTES.md ## Pending`** (create the file if missing) per `NOTES-FORMAT.md`:
-   the idea in the user's words, the date, and the area it touches if known.
+   the idea in the user's words, the date, and the area it touches if known. If it's a **defect in
+   already-shipped behavior**, prefix the title `[bug]` and record what's broken vs. what's expected
+   (in the user's words) — it is still only jotted, fixed via the next `/gg:discover`, never patched on
+   the spot.
 2. **Reconcile against the existing backlog** — the "little more" beyond a blind append:
    - if it refines or duplicates a pending note → offer to **fold it in** (merge the nuance);
    - if it contradicts a pending note → **surface the contradiction** and let the user reconcile;
@@ -36,6 +39,9 @@ later by `/gg:discover` (the triage gate + grilling). Capture only records and r
   the user there.
 - **It's a cut you were tempted to make** in the current task — that's the constitution's anti-cut
   reframe (do it right, or a later task of this phase), not a note.
+- **It's a bug in the task you're building right now** — fix it as part of doing this task to the bar
+  (the same anti-cut reframe), don't capture it. Capture a `[bug]` only for a defect in **already-
+  shipped** behavior (or another area), to be fixed in a later phase.
 
 ## Don't derail
 Capturing is a quick interjection. Inline, you **return to the task you were on** — you are not

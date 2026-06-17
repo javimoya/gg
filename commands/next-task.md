@@ -17,8 +17,12 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
 - **`state: scoping`** → there's no SPEC / task list yet. **Stop** and route to `/gg:discover`.
 - **`state: building`** → proceed; read `.gg/PROGRESS.md` and work the next task. If the task board has
   **no pending/in-progress task left**, finish it via §6 (phase close).
-- **`state: shipped`** → the phase is done. **Stop**: the product is ready to try; for the next phase,
-  `/gg:capture` ideas and then `/gg:discover` (`/gg:orient` will route you).
+- **`state: shipped`** → the phase is done; the product is ready to try. **Stop — don't build here.**
+  Anything the try-it surfaces — a new idea **or a bug in what shipped** — is **captured, not fixed on
+  the spot**: jot it (inline, per `CAPTURE.md`; mark a defect `[bug]`), then `/gg:discover` triages and
+  fixes it as the next phase (`/gg:orient` will route you). Patching a shipped defect inline — off the
+  board, off the SPEC — is the misstep that leaves the record stale; everything, bugs included, goes
+  through the cycle so it gets a task, a test, and a JOURNAL entry.
 
 ## 1. Constitution + context load
 - Read `.gg/PRINCIPLES.md` and internalize it (full bar; effort is never a reason to cut; decompose ≠

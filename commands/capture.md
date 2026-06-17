@@ -1,5 +1,5 @@
 ---
-description: Jots an idea into the gg backlog (.gg/NOTES.md) the moment it surfaces, so it isn't lost to Claude's memory or a future you'll forget. It is deliberately light — it records the idea and lightly reconciles it against the pending backlog (folds a refinement into an existing note, flags a contradiction) but does NOT grill or design; the shaping happens later in /gg:discover's triage. Use it once a product exists (during /gg:next-task or between phases); it refuses while you're mid-ideate or mid-discover (raise it in the grilling instead).
+description: Jots an idea — or a bug in the shipped product — into the gg backlog (.gg/NOTES.md) the moment it surfaces, so it isn't lost to Claude's memory or a future you'll forget. It is deliberately light — it records the idea and lightly reconciles it against the pending backlog (folds a refinement into an existing note, flags a contradiction) but does NOT grill or design; the shaping happens later in /gg:discover's triage. Use it once a product exists (during /gg:next-task or between phases); it refuses while you're mid-ideate or mid-discover (raise it in the grilling instead).
 model: inherit
 disable-model-invocation: true
 argument-hint: "[the idea]"
@@ -25,6 +25,7 @@ Read `.gg/ROADMAP.md`'s header:
 ## 1. Jot + lightly reconcile (`CAPTURE.md`)
 - Read `.gg/NOTES.md ## Pending` (create the file lazily if missing).
 - Write the idea per `NOTES-FORMAT.md`: the idea in the user's words, the date, the area it touches.
+  If it's a **defect in shipped behavior**, prefix the title `[bug]` and note what's broken vs. expected.
 - **Reconcile** against the backlog — the only "smarts", and never grilling: if it refines/duplicates a
   pending note, offer to **fold it in**; if it **contradicts** one, surface that and let the user
   reconcile; otherwise add it standalone. Record the relationship on the note's `Relates` line. If it
