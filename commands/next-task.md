@@ -86,5 +86,6 @@ When the last task is done — **this is the only point the user tries the produ
   `/clear` + `/gg:discover` for the next phase."*
 
 ## --gate (optional)
-With `--gate`, after §1 show the acceptance criteria + the task you're about to do and **wait for an
-explicit go** before any code. Without it, running `/gg:next-task` is the go.
+The user invoked `/gg:next-task $ARGUMENTS` — gate on that literal value. **If `$ARGUMENTS` contains
+`--gate`**, after §1 show the acceptance criteria + the task you're about to do and **wait for an
+explicit go** before any code. **If it's empty**, running `/gg:next-task` is itself the go — proceed.

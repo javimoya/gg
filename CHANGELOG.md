@@ -3,6 +3,18 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.3.1
+
+### Fixed
+- **`/gg:orient` no longer runs the audit unasked — and now surfaces it.** The `--audit` integrity pass
+  is gated firmly to the flag — `/gg:orient` now **gates on the literal `$ARGUMENTS` value** instead of
+  inferring it, so plain `/gg:orient` does the GPS report only (no drift-hunting) and **names**
+  `/gg:orient --audit` as an available deeper check. (Previously the rich `--audit` checklist could leak
+  into a default run, and the option wasn't advertised.)
+- **All argument-bearing commands now gate on the literal `$ARGUMENTS`.** `/gg:next-task --gate`,
+  `/gg:refine-backlog --later` / `--future`, and `/gg:capture`'s idea read the actual argument value
+  instead of inferring it from context — more reliable flag handling across the board.
+
 ## 2.3.0
 
 ### Added

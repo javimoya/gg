@@ -39,8 +39,9 @@ If `.gg/BACKLOG.md` is missing, or the section this run walks is empty (`## New`
 - **Open with a one-line summary** of the backlog by state — across **all** sections, so deferred
   items are never invisible: *"Backlog: {N} new · {M} queued for the next phase · {K} later · {F}
   future · (archive: {A} applied, {D} discarded)."* The user sees the whole shape before triaging.
-- **Read the argument** to pick which section to walk: no flag → `## New` (§2); `--later` → `## Later`;
-  `--future` → `## Future` (§3). The dispositions are the same wherever you walk.
+- **Read the argument** `$ARGUMENTS` to pick which section to walk (gate on the literal value):
+  **empty** → `## New` (§2); **`--later`** → `## Later`; **`--future`** → `## Future` (§3). The
+  dispositions are the same wherever you walk.
 
 ## 2. Walk the NEW items, one at a time (idempotent)
 For each item in `## New` (newest first) — **one at a time, wait for the answer before the next**:

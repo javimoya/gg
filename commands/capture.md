@@ -25,9 +25,11 @@ Read `.gg/ROADMAP.md`'s header:
 ## 1. Jot + lightly reconcile (`CAPTURE.md`)
 - Read `.gg/BACKLOG.md` (`## New` + `## Next phase` + `## Later`, for reconcile; create the file lazily
   if missing).
-- Write the idea into `## New` per `BACKLOG-FORMAT.md`: the idea in the user's words, the date, who
-  raised it (`user`/`agent`), the area it touches. If it's a **defect in shipped behavior**, prefix the
-  title `[bug]` and note what's broken vs. expected.
+- Write the idea into `## New` per `BACKLOG-FORMAT.md`. The idea is `$ARGUMENTS` if the user passed it
+  as an argument; otherwise it's the one they just raised in conversation (inline during a build, or
+  after a bare `/gg:capture`). Record it in the user's words, with the date, who raised it
+  (`user`/`agent`), and the area it touches. If it's a **defect in shipped behavior**, prefix the title
+  `[bug]` and note what's broken vs. expected.
 - **Reconcile** against the active backlog — the only "smarts", and never grilling: if it
   refines/duplicates an existing item, offer to **fold it in**; if it **contradicts** one, surface that
   and let the user reconcile; otherwise add it standalone. Record the relationship on the item's

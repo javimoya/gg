@@ -9,10 +9,18 @@ argument-hint: "[--audit]"
 # /gg:orient — Where am I? (and the stage toggle)
 
 You are the project's GPS. You reconstruct state from disk and say what's next; the **only** change you
-may make is flipping the stage, on the user's explicit go. With `--audit` you additionally run a deep,
-**read-only** integrity check of the record — and in that mode you change **nothing at all** (no stage
-flip). You work in the project directory (cwd); state lives in `<cwd>/.gg/`. Protocols:
-`${CLAUDE_PLUGIN_ROOT}/gg-shared/STAGE.md`, `CLOSE-FORMAT.md`.
+may make is flipping the stage, on the user's explicit go. **Without `--audit` you do a quick GPS report
+only (§1–§4): a fast read of where you are — you do NOT run the integrity checklist, cross-check
+documents, or hunt for drift. That pass is `--audit`-only.** With `--audit` you additionally run that deep, **read-only** integrity
+check — and in that mode you change **nothing at all** (no stage flip). You work in the project
+directory (cwd); state lives in `<cwd>/.gg/`. Protocols: `${CLAUDE_PLUGIN_ROOT}/gg-shared/STAGE.md`,
+`CLOSE-FORMAT.md`.
+
+## 0. Read the argument (gate on the literal value, don't infer)
+The user invoked `/gg:orient $ARGUMENTS`. Gate on that exact value:
+- **Empty** → do the GPS report only (§1–§4); do **not** run the §--audit checks (only *name* `--audit`
+  as an option in §3).
+- **Contains `--audit`** → after §3, also run the integrity pass (§--audit).
 
 ## 1. Is there a project?
 - **No `.gg/`** → say so and route to `/gg:ideate`. Done.
@@ -30,15 +38,18 @@ flip). You work in the project directory (cwd); state lives in `<cwd>/.gg/`. Pro
     go into the next phase) and the VISION's "done and perfect" for the conformance read.
 - `.gg/BACKLOG.md` → the counts by state (new / queued for next phase / later / future); nothing
   captured stays invisible; skip if `visioning` — no backlog yet.
-- Skim `.gg/PRINCIPLES.md` and `.gg/VISION.md` for the bar and the one-line vision (both may be partial
-  or absent during `visioning`).
+- Read the one-line vision from `.gg/VISION.md` (may be partial/absent during `visioning`). **Keep it
+  quick** — this is the GPS, not the audit: read just these routing-critical bits, not the whole corpus,
+  and skip `PRINCIPLES.md` (orient reports state, it doesn't enforce the bar).
 
 ## 3. Report (concise)
 A few lines: project + one-sentence vision; **phase {N}, state, stage**; what's delivered so far (the
 phase log); **you are here** ("ideation in progress — vision not yet sharp" if `visioning`, the next
 open question if `scoping`, the next task if `building`, "ready to try + refine" if `shipped`); the
 backlog counts (new / queued / later / future); and — if `shipped` — a one-line VISION-conformance read
-(does it meet "done and perfect", or what remains).
+(does it meet "done and perfect", or what remains). End by **naming `/gg:orient --audit`** as an
+available deeper, read-only integrity check (worth offering when `shipped`, before a launch flip, or
+resuming after a gap) — **name the option, do not run those checks here.**
 
 ## 4. Offer the stage toggle
 (**Skip this entirely when `state: visioning`** — there's no product to stage yet; just report that
@@ -53,8 +64,10 @@ real users' data must survive.)"*
   flip" defines). Run the close ritual (`CLOSE-FORMAT.md`): a changelog line + a `JOURNAL.md` entry.
 
 ## --audit (optional) — deep integrity check of the record
-With `--audit`, after the §3 report run a **read-only** integrity pass over the whole `.gg/` record and
-report what's inconsistent — for each finding, name the one command that reconciles it. You change
+**Runs only when the user passed `--audit`.** Plain `/gg:orient` does the GPS report (§1–§4) and stops
+— it does **not** run any check below and does not hunt for drift (it only *names* `--audit` as an
+option). With `--audit`, after the §3 report run a **read-only** integrity pass over the whole `.gg/`
+record and report what's inconsistent — for each finding, name the one command that reconciles it. You change
 **nothing** in this mode (§4's stage toggle is skipped — a check, not a change). Good before a `dev →
 launched` flip, after a migration or a hand-edit of `.gg/`, or when resuming a long-dormant project.
 This is the one "audit" gg has — and it audits the **record's integrity**, never the product's cuts
