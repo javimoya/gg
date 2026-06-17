@@ -47,8 +47,11 @@ One question at a time, with your recommended answer, exploring the code when th
 - **Phase 0 — design the whole product.** Grill the **load-bearing** decisions and write the design
   into `.gg/BLUEPRINT.md` (`BLUEPRINT-FORMAT.md`): the **whole data model / schema**, the architecture,
   the shared types. Designing it whole up front is what stops later phases from layering and migrating.
-- **Phase N — grill the queued items together** (a joint view, so their tasks come out coherent),
-  **extending** the BLUEPRINT rather than re-opening frozen structures.
+- **Phase N — grill the queued items together** (a joint view, so their tasks come out coherent). The
+  phase-0 BLUEPRINT is **frozen**; **append** a dated `## Phase N` section recording this phase's design
+  impact (`BLUEPRINT-FORMAT.md`), never editing earlier content. **Depth scales**: a heterogeneous set
+  of only bugs/tweaks gets a one-liner ("… — no design change"); a new entity/field/component or a
+  supersession of an earlier decision gets the full detail.
 - **Record every default.** You can't ask everything. Ask the load-bearing question per area;
   everything else becomes a numbered `A-NN` in `.gg/ASSUMPTIONS.md` (`ASSUMPTIONS-FORMAT.md`) — the
   default, why, how to reverse it, blast-radius. **High-blast decisions are grilled, never defaulted.**

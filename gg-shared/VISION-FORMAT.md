@@ -54,5 +54,6 @@ whose data must survive. Default `dev`; flipped only by `/gg:orient`.}
 - **Dev-stage simplifications are assumptions, not boundaries.** "No migrations / no backward-compat"
   while `dev` is a reversible default recorded in `ASSUMPTIONS.md` and consumed at launch — it does
   **not** belong in "It is not" (that's for permanent product exclusions).
-- **Stable.** If something big changes here, the BLUEPRINT and the plan almost certainly need
-  revisiting.
+- **Stable.** If something big changes here, the plan and the BLUEPRINT almost certainly need
+  revisiting — recorded as a new appended `## Phase N` section in the BLUEPRINT, never an edit to its
+  frozen phase-0 design (`BLUEPRINT-FORMAT.md`).

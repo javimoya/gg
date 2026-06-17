@@ -3,6 +3,20 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.3.0
+
+### Changed
+- **The BLUEPRINT is now append-only.** `/gg:discover` designs the whole product in phase 0, and that
+  design is then **frozen** — never edited. **Every refinement phase appends a dated `## Phase N`
+  section** so the design ledger has no gaps, and the **depth scales**: a phase of only bugs/tweaks gets
+  a one-line "no design change", while a phase that adds an entity/field/component or supersedes an
+  earlier decision gets the full detail. Earlier content is never rewritten — the same move-don't-delete
+  discipline as the `JOURNAL.md` and the assumptions ledger. This removes the silent design-drift that a
+  living, hand-edited blueprint invites.
+- **Link, don't duplicate, in the BLUEPRINT.** It restates no fact that lives authoritatively elsewhere
+  — the test framework and run/verify commands belong to `RUNBOOK.md`, acceptance to `SPEC.md`, the
+  "why" of a big call to an ADR — so a duplicated fact can't drift out of sync.
+
 ## 2.2.0
 
 A real **backlog** with its own triage command. What used to be `NOTES.md` is now `BACKLOG.md`, and a
