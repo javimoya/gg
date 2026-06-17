@@ -84,11 +84,6 @@ Then **apply the chosen dispositions in one batch** — move each item's `###` b
 product will never do this", that's a `VISION.md` boundary — offer to note it in "It is not"; otherwise
 archiving is enough.)
 
-**Idempotent, with deferral tiers.** By default you report only `## New`, so an item you already triaged
-is never presented again — and you never nag the deferral tiers. The opening summary always shows their
-counts (so nothing is invisible), and a flag reports a tier on purpose (`--later` / `--future`) whenever
-the user wants to reconsider it. This is what keeps a deferred item from becoming a black hole.
-
 ## Close — ritual + breadcrumb
 No `state` change — triage doesn't open a phase (`/gg:discover` does). Run the close ritual
 (`CLOSE-FORMAT.md`): persist `.gg/BACKLOG.md` and `.gg/BACKLOG-ARCHIVE.md`, append a `JOURNAL.md` entry

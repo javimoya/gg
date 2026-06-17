@@ -9,8 +9,9 @@ still be `dev`.
 
 - Stored as `stage: dev | launched` in `.gg/ROADMAP.md`'s header. **Default `dev`** at kickoff
   (`/gg:ideate`).
-- **Only `/gg:orient` flips it**, on the user's explicit go (it offers the toggle every time it
-  runs). Flipping is a loud, recorded state change (a `JOURNAL.md` entry + a ROADMAP changelog line).
+- **Only `/gg:orient` flips it**, on the user's explicit go (it offers the toggle on every report where
+  there's a product to stage — `/gg:orient` §4 skips the offer during `visioning` and in `--audit`
+  mode). Flipping is a loud, recorded state change (a `JOURNAL.md` entry + a ROADMAP changelog line).
   There is no separate stage command.
 - The **user** decides the flip — deploying does not. `launched → dev` is especially loud ("this
   tells gg your users' data is expendable").

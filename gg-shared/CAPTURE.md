@@ -19,11 +19,10 @@ Two entry points share this protocol:
 ## What capture does (jot + light reconciliation — no grilling)
 1. **Write the idea to `.gg/BACKLOG.md ## New`** (create the file if missing) per `BACKLOG-FORMAT.md`:
    the idea in the user's words, the date, who raised it (`user`/`agent`), and the area it touches if
-   known. **Assign it the next `B-NN` id** — one past the highest `B-NN` found in **both**
-   `.gg/BACKLOG.md` and `.gg/BACKLOG-ARCHIVE.md`, so a new id never collides with an archived (applied or
-   discarded) one (`BACKLOG-FORMAT.md`). If it's a **defect in already-shipped behavior**, prefix the
-   title `[bug]` and record what's broken vs. what's expected (in the user's words) — it is still only
-   jotted, triaged later by `/gg:refine-backlog` and fixed via `/gg:discover`, never patched on the spot.
+   known. **Assign it the next stable `B-NN` id** per `BACKLOG-FORMAT.md` (never reused). If it's a
+   **defect in already-shipped behavior**, prefix the title `[bug]` and record what's broken vs. what's
+   expected (in the user's words) — it is still only jotted, triaged later by `/gg:refine-backlog` and
+   fixed via `/gg:discover`, never patched on the spot.
 2. **Reconcile against the active backlog** (New + Next phase + Later) — the "little more" beyond a
    blind append:
    - if it refines or duplicates an existing item → offer to **fold it in** (merge the nuance);

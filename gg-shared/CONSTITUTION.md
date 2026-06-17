@@ -197,11 +197,9 @@ Cutting early and handing off cleanly always beats pushing a degraded session.
 
 ## Breadcrumb
 
-**Every** working skill (`/gg:ideate`, `/gg:discover`, `/gg:next-task`, `/gg:refine-backlog`, and
-`/gg:orient` when it flips the stage) ends by reminding the user, in one line: *where you are + what's
-next + which command to continue with*. This connects the manual flow between clean sessions. It is the last step of the
-shared close ritual (`CLOSE-FORMAT.md`), which also updates the ROADMAP and appends to the
-append-only `JOURNAL.md`. `/gg:orient` otherwise only reads.
+**Every** working skill ends by reminding the user, in one line: *where you are + what's next + which
+command to continue with*. This connects the manual flow between clean sessions; it is the last step of
+the shared close ritual (`CLOSE-FORMAT.md`). `/gg:orient` otherwise only reads.
 
 ## Close-out gate (self-accounting)
 

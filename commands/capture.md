@@ -23,22 +23,15 @@ Read `.gg/ROADMAP.md`'s header:
 - **`state: building` or `shipped`** → proceed (a product exists; this is the right time to jot).
 
 ## 1. Jot + lightly reconcile (`CAPTURE.md`)
-- Read `.gg/BACKLOG.md` (`## New` + `## Next phase` + `## Later`, for reconcile; create the file lazily
-  if missing).
-- Write the idea into `## New` per `BACKLOG-FORMAT.md`. The idea is `$ARGUMENTS` if the user passed it
-  as an argument; otherwise it's the one they just raised in conversation (inline during a build, or
-  after a bare `/gg:capture`). Record it in the user's words, with the date, who raised it
-  (`user`/`agent`), and the area it touches. **Assign the next `B-NN` id** — one past the highest found
-  in **both** `.gg/BACKLOG.md` and `.gg/BACKLOG-ARCHIVE.md`, so it never collides with an archived id. If
-  it's a **defect in shipped behavior**, prefix the title `[bug]` and note what's broken vs. expected.
-- **Reconcile** against the active backlog — the only "smarts", and never grilling: if it
-  refines/duplicates an existing item, offer to **fold it in**; if it **contradicts** one, surface that
-  and let the user reconcile; otherwise add it standalone. Record the relationship on the item's
-  `Relates` line, by the other item's `B-NN`. If it **reverses a recorded default**, point it at that
-  `A-NN`.
-- **Never** write to Claude's native memory; **never** mutate the ROADMAP, triage, or open a phase
-  (triage is `/gg:refine-backlog`'s job, design is `/gg:discover`'s); **never** derail — if you're
-  inline in a build, return to your task.
+Apply the `CAPTURE.md` protocol — jot the idea, then lightly reconcile it; no grilling, no design. The
+idea is `$ARGUMENTS` if the user passed it as an argument; otherwise it's the one they just raised in
+conversation (inline during a build, or after a bare `/gg:capture`). Write it to `.gg/BACKLOG.md ## New`
+per `BACKLOG-FORMAT.md` (create the file lazily if missing), assigning the next stable `B-NN` id, and
+reconcile against the active backlog (fold in / flag a contradiction / stand alone).
+
+**Never** write to Claude's native memory; **never** mutate the ROADMAP, triage, or open a phase (triage
+is `/gg:refine-backlog`'s job, design is `/gg:discover`'s); **never** derail — if you're inline in a
+build, return to your task.
 
 ## Close
 No state change, no `JOURNAL.md` entry — the dated item in `.gg/BACKLOG.md ## New` is the record. End

@@ -9,12 +9,10 @@ argument-hint: "[--audit]"
 # /gg:orient — Where am I? (and the stage toggle)
 
 You are the project's GPS. You reconstruct state from disk and say what's next; the **only** change you
-may make is flipping the stage, on the user's explicit go. **Without `--audit` you do a quick GPS report
-only (§1–§4): a fast read of where you are — you do NOT run the integrity checklist, cross-check
-documents, or hunt for drift. That pass is `--audit`-only.** With `--audit` you additionally run that deep, **read-only** integrity
-check — and in that mode you change **nothing at all** (no stage flip). You work in the project
-directory (cwd); state lives in `<cwd>/.gg/`. Protocols: `${CLAUDE_PLUGIN_ROOT}/gg-shared/STAGE.md`,
-`CLOSE-FORMAT.md`.
+may make is flipping the stage, on the user's explicit go. Plain `/gg:orient` is a quick GPS report
+(§1–§4); `--audit` adds a deep, **read-only** integrity pass (§--audit) and changes nothing at all. You
+work in the project directory (cwd); state lives in `<cwd>/.gg/`. Protocols:
+`${CLAUDE_PLUGIN_ROOT}/gg-shared/STAGE.md`, `CLOSE-FORMAT.md`.
 
 ## 0. Read the argument (gate on the literal value, don't infer)
 The user invoked `/gg:orient $ARGUMENTS`. Gate on that exact value:
@@ -107,4 +105,4 @@ End with the exact next action, e.g.:
 - *(`--audit`)* *"Record consistent — no drift; you're {where}."* or *"Audit found {N} issues — fix with
   {commands}, then re-run `/gg:orient --audit`."*
 
-If you did **not** flip the stage, you changed nothing on disk (`--audit` never changes anything).
+If you did **not** flip the stage, you changed nothing on disk.
