@@ -75,8 +75,8 @@ reverse, surprising without context, and the result of a real trade-off. If one 
 
 ## The queued set (refinement phases only)
 
-Triage no longer happens in grilling — `/gg:refine-backlog` owns it (one item at a time) before
-`/gg:discover` runs. When `/gg:discover` opens a **refinement phase** (phase N, after a product already
+Triage no longer happens in grilling — `/gg:refine-backlog` owns it (one reviewed report, then a single
+decision) before `/gg:discover` runs. When `/gg:discover` opens a **refinement phase** (phase N, after a product already
 exists), it reads the set the user already queued in `.gg/BACKLOG.md ## Next phase` — **that set *is*
 the phase**. Grilling then runs over those items **together** — a joint view, so their tasks come out
 coherent, not item-by-item. Items still in `## New` / `## Later` stay in the backlog for a later phase

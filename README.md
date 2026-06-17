@@ -82,7 +82,7 @@ flowchart LR
     N -- tasks remain --> N
     N -- last task --> S(["phase shipped<br/>(try it)"])
     S -- capture ideas / bugs --> C["/gg:capture<br/>jot to the backlog"]
-    C --> R["/gg:refine-backlog<br/>triage: next / later / discard"]
+    C --> R["/gg:refine-backlog<br/>triage: next / later / future / discard"]
     R --> D
     O(["/gg:orient<br/>where am I? + stage"]) -.-> R
     O -.-> D
@@ -95,7 +95,7 @@ A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the who
 2. **`/gg:discover`** designs the whole product (a BLUEPRINT: data model and architecture), grills the load-bearing questions, records good defaults for the rest, and produces a testable SPEC plus an ordered task list.
 3. **`/gg:next-task`** builds exactly the next task, with tests, then checkpoints and stops. Run it again for the next one. You try the product only when the last task closes the phase; between tasks, the agent verifies its own work.
 4. When you want changes, **`/gg:capture`** them as you go (ideas or bugs) — they land in the backlog (`.gg/BACKLOG.md`), never the agent's memory.
-5. Between phases, **`/gg:refine-backlog`** walks the backlog **one item at a time** so you decide each: next phase / later / discard. Then **`/gg:discover`** designs the set you queued and **`/gg:next-task`** builds it. Repeat.
+5. Between phases, **`/gg:refine-backlog`** reviews the backlog in **one report** — each item with a recommended disposition (next phase / later / future / discard) — so you decide in a single step: accept the recommendations, send only the bugs, send everything, or override item by item. Then **`/gg:discover`** designs the set you queued and **`/gg:next-task`** builds it. Repeat.
 
 ---
 
@@ -108,7 +108,7 @@ A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the who
 | **`/gg:ideate`** | to **start** a project (no `.gg/` yet) — or to **resume** an unfinished ideation (`state: visioning`). Once per project. |
 | **`/gg:discover`** | right after `ideate` (phase 0), **or** after a phase ships **once you've queued items with `refine-backlog`** (phase N). |
 | **`/gg:next-task`** | after `discover`, or after a previous `next-task`, while the current phase still has tasks left. |
-| **`/gg:refine-backlog`** | after a phase ships, to triage the backlog one item at a time (next / later / discard) before the next `discover`. |
+| **`/gg:refine-backlog`** | after a phase ships, to triage the backlog — one reviewed report, then a single decision (next / later / future / discard) — before the next `discover`. |
 | **`/gg:capture`** | once a product exists, during `next-task` or between phases. *Not* during ideate/discover (raise it in the grilling instead). |
 | **`/gg:orient`** | any time. Read-only, plus it offers the `dev ↔ launched` stage flip. |
 
@@ -127,7 +127,7 @@ Everything the workflow knows lives in a `.gg/` folder at the root of your proje
 ├── ASSUMPTIONS.md    # the recorded-defaults ledger (every choice not grilled, reversible)
 ├── SPEC.md           # the living contract: acceptance criteria with typed evidence
 ├── PROGRESS.md       # the task board for the current phase + where to resume
-├── BACKLOG.md        # the active backlog (new / next phase / later), triaged by refine-backlog
+├── BACKLOG.md        # the active backlog (new / next phase / later / future), triaged by refine-backlog
 ├── BACKLOG-ARCHIVE.md # closed backlog items (applied / discarded) — kept for the trace
 ├── RUNBOOK.md        # the pinned run/verify commands (full suite, deliverable, destructive paths)
 ├── CONTEXT.md        # a glossary of your project's domain terms

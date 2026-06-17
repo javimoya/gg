@@ -3,6 +3,28 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.4.0
+
+### Changed
+- **`/gg:refine-backlog` is now one reviewed report + a single decision — no more item-by-item walk.**
+  It reads the section (`## New` by default; `--later` / `--future` with the flag) and presents **one
+  report**: every item with its idea, its `[bug]` marker if any, who raised it, what it touches, and the
+  agent's **recommended disposition** (next phase / later / future / discard) with a one-line why. Then
+  it asks **one** question — accept the recommendations, send **only the bugs** to the next phase
+  (offered only when the set has a `[bug]`: it moves the bugs and leaves everything else exactly where it
+  is), send everything, or decide item by item by id — and applies the whole set in a single pass.
+  Previously it asked a disposition per item, which was slow on a long backlog.
+
+### Added
+- **Backlog items now carry a stable `B-NN` id**, mirroring the assumptions ledger's `A-NN` discipline.
+  The id is assigned at `/gg:capture`, is **stable** (it travels with the item across every section and
+  into the archive, and is never renumbered), and is **never reused** — the next id is one past the
+  highest `B-NN` found in **both** `.gg/BACKLOG.md` and `.gg/BACKLOG-ARCHIVE.md`, so a new id can never
+  collide with an applied or discarded one. The id is how you reference items in `/gg:refine-backlog`'s
+  single decision, and `Relates` lines now point at the `B-NN`. `/gg:orient --audit` gained a check for a
+  duplicate `B-NN`. Ids are assigned **going forward only** — a backlog created before this version is
+  not back-filled; the plugin never rewrites an existing project's record to match a newer version.
+
 ## 2.3.1
 
 ### Fixed

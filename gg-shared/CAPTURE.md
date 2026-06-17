@@ -19,21 +19,24 @@ Two entry points share this protocol:
 ## What capture does (jot + light reconciliation — no grilling)
 1. **Write the idea to `.gg/BACKLOG.md ## New`** (create the file if missing) per `BACKLOG-FORMAT.md`:
    the idea in the user's words, the date, who raised it (`user`/`agent`), and the area it touches if
-   known. If it's a **defect in already-shipped behavior**, prefix the title `[bug]` and record what's
-   broken vs. what's expected (in the user's words) — it is still only jotted, triaged later by
-   `/gg:refine-backlog` and fixed via `/gg:discover`, never patched on the spot.
+   known. **Assign it the next `B-NN` id** — one past the highest `B-NN` found in **both**
+   `.gg/BACKLOG.md` and `.gg/BACKLOG-ARCHIVE.md`, so a new id never collides with an archived (applied or
+   discarded) one (`BACKLOG-FORMAT.md`). If it's a **defect in already-shipped behavior**, prefix the
+   title `[bug]` and record what's broken vs. what's expected (in the user's words) — it is still only
+   jotted, triaged later by `/gg:refine-backlog` and fixed via `/gg:discover`, never patched on the spot.
 2. **Reconcile against the active backlog** (New + Next phase + Later) — the "little more" beyond a
    blind append:
    - if it refines or duplicates an existing item → offer to **fold it in** (merge the nuance);
    - if it contradicts one → **surface the contradiction** and let the user reconcile;
    - otherwise → add it standalone.
-   Record the relationship on the item's `Relates` line so the backlog stays coherent.
+   Record the relationship on the item's `Relates` line, pointing at the other item's `B-NN` (e.g.
+   `refines: B-03`), so the backlog stays coherent.
 3. **If it reverses a recorded default**, point the item at that `A-NN` (`reverses: A-NN`); the
    assumption moves to `ASSUMPTIONS.md ## Overridden` only when the item is later applied.
 
 This is **not** triage or design. Which items a phase includes is decided by `/gg:refine-backlog`
-(triage, one item at a time), and how they're shaped by `/gg:discover` (design). Capture only records
-and relates.
+(triage — one reviewed report, then a single decision), and how they're shaped by `/gg:discover`
+(design). Capture only records and relates.
 
 ## When capture is NOT the move
 - **No product yet** (no `.gg/` or `state: visioning` — mid-`/gg:ideate` — or `state: scoping` —

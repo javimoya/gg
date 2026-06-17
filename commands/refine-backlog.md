@@ -1,5 +1,5 @@
 ---
-description: Triages the gg backlog one item at a time. By default walks each NEW item in .gg/BACKLOG.md — explains it (idea, [bug]/feature, who raised it, what it touches) — and asks you to send it to the next phase, keep it for later, park it for the future, or discard it (archived with a reason). Idempotent — already-triaged items are never re-presented; pass --later or --future to revisit those deferral tiers on purpose. Run it after a phase ships, before /gg:discover, so discover then designs exactly what you queued. Phase 0 has no backlog to refine.
+description: Triages the gg backlog as one reviewed report, then a single decision — not a per-item walk. By default it reads every NEW item in .gg/BACKLOG.md and presents one report — each item with its idea, whether it's a [bug], who raised it, what it touches, and the agent's recommended disposition (next phase / later / future / discard). Then it asks ONE question — accept the recommendations, send only the bugs to the next phase, send everything, or decide item by item — and applies it in a single pass. Every item carries a stable B-NN id so you can reference it. Idempotent — already-triaged items are never re-presented; pass --later or --future to review those deferral tiers on purpose. Run it after a phase ships, before /gg:discover, so discover designs exactly what you queued. Phase 0 has no backlog to refine.
 model: inherit
 disable-model-invocation: true
 argument-hint: "[--later | --future]"
@@ -8,15 +8,16 @@ argument-hint: "[--later | --future]"
 # /gg:refine-backlog — Triage the backlog
 
 You groom the refinement backlog so the next phase is built from a deliberate, reviewed set. You
-**triage — you do not design, grill, or build**: each item gets one of four dispositions (next phase /
-later / future / discard) and that's it. `/gg:discover` designs whatever you queue here. You work in
-the project directory (cwd); state lives in `<cwd>/.gg/`. Shared protocols in
+**triage — you do not design, grill, or build**: you read the section, give **every item a recommended
+disposition in one report** (next phase / later / future / discard), then take **one decision** from the
+user and apply it in a single pass. `/gg:discover` designs whatever you queue here. You work in the
+project directory (cwd); state lives in `<cwd>/.gg/`. Shared protocols in
 `${CLAUDE_PLUGIN_ROOT}/gg-shared/`: `BACKLOG-FORMAT.md`, `CONSTITUTION.md`, `VISION-FORMAT.md`,
 `CLOSE-FORMAT.md`.
 
-`/gg:refine-backlog` walks **`## New`** by default; `--later` walks **`## Later`**, `--future` walks
-**`## Future`** (revisit a deferral tier on purpose). The two deferral tiers: `## Later` = not now but
-on the radar; `## Future` = someday / maybe, parked further out.
+`/gg:refine-backlog` reports **`## New`** by default; `--later` reports **`## Later`**, `--future`
+reports **`## Future`** (review a deferral tier on purpose). The two deferral tiers: `## Later` = not now
+but on the radar; `## Future` = someday / maybe, parked further out.
 
 ## 0. Precondition
 Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
@@ -28,7 +29,7 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
   the user explicitly wants to groom the backlog now.
 - **`state: shipped`** → proceed. This is the between-phases grooming step.
 
-If `.gg/BACKLOG.md` is missing, or the section this run walks is empty (`## New` by default, or the
+If `.gg/BACKLOG.md` is missing, or the section this run reports is empty (`## New` by default, or the
 `## Later` / `## Future` tier named by the flag): **stop** — nothing to triage. Tell the user to
 `/gg:capture` an idea first.
 
@@ -36,46 +37,62 @@ If `.gg/BACKLOG.md` is missing, or the section this run walks is empty (`## New`
 - Read `.gg/PRINCIPLES.md` (the bar; decompose-don't-drop; a discard is a **recorded** product
   decision, never a silent cut), `.gg/VISION.md` (the destination, to judge what's in or out of the
   product), and `.gg/BACKLOG.md`.
-- **Open with a one-line summary** of the backlog by state — across **all** sections, so deferred
-  items are never invisible: *"Backlog: {N} new · {M} queued for the next phase · {K} later · {F}
-  future · (archive: {A} applied, {D} discarded)."* The user sees the whole shape before triaging.
-- **Read the argument** `$ARGUMENTS` to pick which section to walk (gate on the literal value):
-  **empty** → `## New` (§2); **`--later`** → `## Later`; **`--future`** → `## Future` (§3). The
-  dispositions are the same wherever you walk.
+- **Open with a one-line summary** of the backlog by state — across **all** sections, so deferred items
+  are never invisible: *"Backlog: {N} new · {M} queued for the next phase · {K} later · {F} future ·
+  (archive: {A} applied, {D} discarded)."* The user sees the whole shape before triaging.
+- **Read the argument** `$ARGUMENTS` to pick which section to report (gate on the literal value):
+  **empty** → `## New`; **`--later`** → `## Later`; **`--future`** → `## Future`. The dispositions are
+  the same wherever you report; only which tier counts as "stay put" differs (§2).
+- **Note the ids.** Every item already carries a stable `B-NN`, assigned at `/gg:capture`
+  (`BACKLOG-FORMAT.md`). They are how the user references items in the decision (§3) — you read them,
+  you do not assign or change them.
 
-## 2. Walk the NEW items, one at a time (idempotent)
-For each item in `## New` (newest first) — **one at a time, wait for the answer before the next**:
-- **Explain it**: the idea in the user's words; whether it's a `[bug]` or a feature; who raised it
-  (`user` / `agent`); what it `Touches`; any `Relates` / `reverses: A-NN`. Give your **recommended
-  disposition** with one line of why — a question without a recommendation is work pushed back onto the
-  user (`GRILLING.md`).
-- Take the disposition (move the item's `###` block):
-  - **next phase** → `## Next phase`.
-  - **later** → `## Later` (on the radar).
-  - **future** → `## Future` (someday / maybe).
-  - **discard** → `.gg/BACKLOG-ARCHIVE.md ## Discarded` with a one-line **Why** (the user's reason). A
-    discard is a recorded decision — never a silent drop. (If the user frames it as "the product will
-    never do this", that's a VISION boundary — offer to note it in `VISION.md`'s "It is not"; otherwise
-    archiving is enough.)
-- **Do not design, grill, or build.** This is disposition only. If the user starts shaping an item,
-  redirect: the design happens in `/gg:discover` once the item is queued.
-- Walk **only `## New`** (no flag). Already-triaged items (`Next phase` / `Later` / `Future` / archived)
-  are **not** re-presented — this is what makes the command idempotent across clean sessions.
+## 2. Build the triage report (one report — not a walk)
+Read the whole reported section and present **one report**, newest first, one entry per item — so the
+user sees the full set at once instead of being asked one at a time:
+- **Each entry**: its `B-NN`; the title (prefixed `[bug] ` if it's a defect in shipped behavior); who
+  raised it (`user` / `agent`) and when; the idea in the user's words; what it `Touches`; any `Relates`
+  / `reverses: A-NN`.
+- **Your recommended disposition + one line of why** — a report without a recommendation per item is
+  work pushed back onto the user (`GRILLING.md`). From `## New`: next phase / later / future / discard.
+  From `## Later`: promote to next phase / keep in later / push to future / discard. From `## Future`:
+  promote / pull back to later / keep / discard.
+- **Recommend discard sparingly.** A discard drops the item from the product — recommend it only when
+  the item plainly falls outside `VISION.md` or duplicates a kept item; when unsure, recommend a
+  deferral tier, never discard (decompose, don't drop — `CONSTITUTION.md`). For any item you do
+  recommend discarding, **flag it distinctly and show the proposed one-line reason**, so accepting the
+  report is an informed, recorded decision — never a silent drop.
+- **Do not design, grill, or build.** This is disposition reasoning only — `/gg:discover` shapes
+  whatever gets queued. If the user starts shaping an item, redirect there.
 
-## 3. Revisit a deferral tier (only with a flag)
-By default you walk only `## New` — you never nag about the deferral tiers. To reconsider one, the user
-runs the command with a flag:
-- **`/gg:refine-backlog --later`** → walk `## Later` (newest first), same four dispositions: promote to
-  `## Next phase`, keep in `## Later`, push to `## Future`, or discard.
-- **`/gg:refine-backlog --future`** → walk `## Future`, same dispositions (promote, pull back to
-  `## Later`, keep, or discard).
-This is what keeps a deferred item from becoming a black hole: it's never forced on you, but the
-summary always shows the counts and a flag walks the tier whenever you want.
+## 3. One decision — then apply in a single pass
+Ask **one** question (the harness question tool; leave the door open to a free-form answer — the best
+answer often isn't on the menu). Lead with the recommendation:
+1. **Accept the recommendations** *(recommended)* — apply each item's recommended disposition exactly. A
+   recommended discard uses the reason shown in the report (your acceptance is the recorded decision).
+2. **Only the bugs → next phase** *(offer this only when the reported set has at least one `[bug]`)* —
+   move the `[bug]` items to `## Next phase` and **leave every other item exactly where it is**; that
+   ends the run. For when you want the next phase to be bug-fixes only and to keep deliberating on the rest.
+3. **Everything → next phase** — move every reported item to `## Next phase`.
+4. **Decide item by item** — the user names the exceptions by id (e.g. *"B-07 and B-06 → next phase, B-05
+   → later, discard B-04"*); every item not named follows its recommended disposition. Ask for the
+   one-line reason on any discard the user adds.
+
+Then **apply the chosen dispositions in one batch** — move each item's `###` block to its target section,
+**keeping its `B-NN`**; a discard moves to `.gg/BACKLOG-ARCHIVE.md ## Discarded` with its one-line
+**Why**. A discard is a recorded decision, never a silent drop. (If the user frames an item as "the
+product will never do this", that's a `VISION.md` boundary — offer to note it in "It is not"; otherwise
+archiving is enough.)
+
+**Idempotent, with deferral tiers.** By default you report only `## New`, so an item you already triaged
+is never presented again — and you never nag the deferral tiers. The opening summary always shows their
+counts (so nothing is invisible), and a flag reports a tier on purpose (`--later` / `--future`) whenever
+the user wants to reconsider it. This is what keeps a deferred item from becoming a black hole.
 
 ## Close — ritual + breadcrumb
 No `state` change — triage doesn't open a phase (`/gg:discover` does). Run the close ritual
 (`CLOSE-FORMAT.md`): persist `.gg/BACKLOG.md` and `.gg/BACKLOG-ARCHIVE.md`, append a `JOURNAL.md` entry
-recording the dispositions taken (`State change: —`), then the breadcrumb:
+recording the dispositions taken (cite the `B-NN`s; `State change: —`), then the breadcrumb:
 - **Something queued**: *"Backlog refined: {X} queued for the next phase, {Y} later, {W} future, {Z}
   discarded. Next: `/clear` then `/gg:discover` to design the next phase."*
 - **Nothing queued** (all later/discarded): *"Backlog refined: nothing queued for now. `/gg:capture`
