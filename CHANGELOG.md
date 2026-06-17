@@ -5,6 +5,15 @@ All notable changes to `gg` are recorded here. Versions follow the `version` fie
 
 ## 2.3.0
 
+### Added
+- **`/gg:orient --audit` — a read-only integrity check of the record.** A deep pass over the whole
+  `.gg/` that flags drift the inline discipline doesn't re-validate: header-vs-artifacts contradictions,
+  stale `A-NN` cross-refs, duplicated facts that drifted, an `AC-N` marked met without evidence, backlog
+  hygiene, dangling blocks, and stray non-English prose. It reports each issue with the command that
+  fixes it, **changes nothing** (no stage flip in this mode), and is meant for before a launch flip,
+  after a migration, or on resuming a dormant project. It audits the record's *integrity* — never the
+  product's *cuts*, which stay the inline self-accounting gate at phase close.
+
 ### Changed
 - **The BLUEPRINT is now append-only.** `/gg:discover` designs the whole product in phase 0, and that
   design is then **frozen** — never edited. **Every refinement phase appends a dated `## Phase N`
