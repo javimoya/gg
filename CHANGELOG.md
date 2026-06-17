@@ -3,6 +3,26 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.4.1
+
+### Changed
+- **Command specs consolidated — one home per rule, no restated copies.** `/gg:capture` now points at
+  the shared `CAPTURE.md` protocol instead of re-listing its jot + reconcile steps; the `B-NN`
+  assignment rule lives once in `BACKLOG-FORMAT.md` (capture and `CAPTURE.md` reference it). `/gg:orient`
+  and `/gg:refine-backlog` drop inline paragraphs that duplicated wording already stated elsewhere (the
+  `--audit` "changes nothing" caveat, the "idempotent, with deferral tiers" note). No behavior change —
+  these mirror the constitution's "link, don't duplicate."
+
+### Fixed
+- **`STAGE.md` now describes the stage toggle accurately.** It states that `/gg:orient` offers the
+  toggle on every report where there's a product to stage — `§4` skips the offer during `visioning` and
+  in `--audit` mode — replacing the inaccurate "offers it every time it runs."
+- **The constitution's breadcrumb rule no longer reads as binding on `/gg:capture`.** "Every working
+  skill" is re-scoped with its explicit set (`/gg:ideate`, `/gg:discover`, `/gg:next-task`,
+  `/gg:refine-backlog`, and `/gg:orient` on a stage flip) and excludes `/gg:capture`, which only jots and
+  returns — so it can't be read to contradict capture's lighter close (a one-line confirmation, no
+  ritual, no `JOURNAL.md` entry).
+
 ## 2.4.0
 
 ### Changed
