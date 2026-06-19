@@ -99,7 +99,7 @@ End with the exact next action, e.g.:
 - *"Next: `/clear` then `/gg:discover` (phase 0)."*
 - *"You're on task 2/5 of phase 0; `/clear` + `/gg:next-task` to continue."*
 - *"Phase 1 shipped — try it, then `/gg:capture` ideas, `/gg:refine-backlog` to triage, and
-  `/gg:discover` for phase 2."*
+  `/gg:discover` for phase 2 (or `/gg:quick` to fast-track one small fix)."*
 - *"Stage flipped to launched; {K} launch-readiness items added to the backlog; `/clear` +
   `/gg:refine-backlog` to triage them, then `/gg:discover`."*
 - *(`--audit`)* *"Record consistent — no drift; you're {where}."* or *"Audit found {N} issues — fix with

@@ -5,17 +5,20 @@ and scope deferred from `/gg:ideate` / `/gg:discover` / `/gg:next-task`) recorde
 waiting to be triaged into a future phase. It stays **lean**: closed items (applied or discarded) move
 out to `.gg/BACKLOG-ARCHIVE.md`, so what's left is only live work.
 
-Three commands act on it: `/gg:capture` (and the agent's inline jot) **adds** items — always to
+Four commands act on it: `/gg:capture` (and the agent's inline jot) **adds** items — always to
 `## New`, assigning each a stable `B-NN` id; `/gg:refine-backlog` **triages** — it reports the items
 with a recommended disposition each and applies the user's one decision in a single pass (→ next phase /
-later / future / discarded); and `/gg:discover` **consumes** the `## Next phase` set when it opens a
-refinement phase. There is no in-discover triage question anymore — `/gg:refine-backlog` owns triage.
+later / future / discarded); `/gg:discover` **consumes** the `## Next phase` set when it opens a
+refinement phase; and `/gg:quick` (the express lane) **records a single item straight to `## Next phase`**
+— skipping `## New` and the triage step — then designs it immediately. There is no in-discover triage
+question anymore — `/gg:refine-backlog` owns triage.
 
 ## The item lifecycle
 
 ```text
 new ──(refine-backlog)──► next-phase ──(discover designs it; phase ships)──► applied   (→ ARCHIVE)
- │
+ │                        ▲
+ │      (quick) ──────────┘  records a single item straight to next-phase (the express lane)
  ├──(refine-backlog)──► later         (on the radar; revisit with --later)
  ├──(refine-backlog)──► future        (someday / maybe; revisit with --future)
  └──(refine-backlog)──► discarded                                          (→ ARCHIVE, with a reason)
@@ -45,8 +48,9 @@ prefixed `[bug]` in its title (the one optional marker).}
 - **Relates**: {optional, set by capture's reconciliation — "refines: B-03" / "contradicts: B-05" / "reverses: A-NN"}
 
 ## Next phase
-{Triaged by `/gg:refine-backlog` as "do next". `/gg:discover` consumes this set, grills the items
-together, and on phase close they move to the archive's `## Applied`. Same `###` block shape as New.}
+{Triaged by `/gg:refine-backlog` as "do next" (or recorded straight here by `/gg:quick`, the express
+lane). `/gg:discover` consumes this set, grills the items together, and on phase close they move to the
+archive's `## Applied`. Same `###` block shape as New.}
 
 ## Later
 {Triaged as "not now, but on the radar". Revisit with `/gg:refine-backlog --later`. Same `###` block shape.}
@@ -79,7 +83,10 @@ together, and on phase close they move to the archive's `## Applied`. Same `###`
 - **State = section.** A new item is triaged to `## Next phase`, `## Later`, or `## Future`, or is
   discarded (archived). `/gg:capture` and the agent only ever write `## New`; only `/gg:refine-backlog`
   moves items between sections (and to the archive's `## Discarded`); only a phase close
-  (`/gg:next-task` §6) moves `## Next phase` items to the archive's `## Applied`.
+  (`/gg:next-task` §6) moves `## Next phase` items to the archive's `## Applied`. **The one exception is
+  `/gg:quick`**, which records its single express item **directly to `## Next phase`** (skipping
+  `## New`) — the express auto-triage — and only when `## Next phase` is otherwise empty, so the item is
+  the whole micro-phase.
 - **Stable, never-reused `B-NN` ids.** Every item carries a `B-NN` id, assigned at `/gg:capture`. The id
   is **stable**: it travels with the item through every section and into the archive, and **never
   changes**. It is **never reused** — the next id is one past the highest `B-NN` found **anywhere** in
@@ -102,6 +109,7 @@ together, and on phase close they move to the archive's `## Applied`. Same `###`
   that assumption moves to `ASSUMPTIONS.md ## Overridden` only when the item is later applied.
 - **Moved, not deleted.** Applied and discarded items go to `.gg/BACKLOG-ARCHIVE.md`; nothing is
   erased — same discipline as the assumptions ledger and the ROADMAP changelog.
-- **Created lazily.** `BACKLOG.md` at the first capture/jot (with `# Backlog — {name}` and `## New`);
-  `BACKLOG-ARCHIVE.md` at the first applied/discarded item. No secrets — record the *name* of an env
+- **Created lazily.** `BACKLOG.md` at the first capture/jot (with `# Backlog — {name}` and `## New` — or
+  a `## Next phase` section when `/gg:quick` is the first writer); `BACKLOG-ARCHIVE.md` at the first
+  applied/discarded item. No secrets — record the *name* of an env
   var, never its value.

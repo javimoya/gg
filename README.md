@@ -8,7 +8,7 @@
 
 `gg` will save you months of figuring out how to build real, maintainable software with Claude Code.
 
-`gg` is a small Claude Code plugin: six Markdown slash commands (`/gg:ideate`, `/gg:discover`, `/gg:next-task`, `/gg:refine-backlog`, `/gg:capture`, `/gg:orient`) that build your whole product in one first pass and then let you refine it. Every decision lives on disk and each task runs in its own clean session, so the context never rots and the next one always knows what's going on. No hooks, no background process: you run a command when you want it, and the rest of the time it stays out of your way.
+`gg` is a small Claude Code plugin: seven Markdown slash commands (`/gg:ideate`, `/gg:discover`, `/gg:next-task`, `/gg:refine-backlog`, `/gg:capture`, `/gg:quick`, `/gg:orient`) that build your whole product in one first pass and then let you refine it. Every decision lives on disk and each task runs in its own clean session, so the context never rots and the next one always knows what's going on. No hooks, no background process: you run a command when you want it, and the rest of the time it stays out of your way.
 
 ---
 
@@ -32,9 +32,9 @@ There's the trap: vibe-coding is fast but forgetful; spec-driven remembers but i
 
 **Then you refine a real, running product.** You don't re-run a spec ceremony. You jot notes as you use it ("make this bigger", "add that", "this is wrong"), and you triage a batch of them into the next phase. The design memory is always there, so it stops breaking what it shouldn't. And because it knows your product isn't live yet, it won't pile on defensive work that a product in development simply doesn't need.
 
-**And it stays out of your way.** gg is six Markdown commands and nothing else: no hooks, no background agents, no installer beyond adding the plugin. You invoke a command when you want it, and when you don't, it does nothing at all. The only trace it leaves in your repo is a plain-text `.gg/` folder you can read and commit.
+**And it stays out of your way.** gg is seven Markdown commands and nothing else: no hooks, no background agents, no installer beyond adding the plugin. You invoke a command when you want it, and when you don't, it does nothing at all. The only trace it leaves in your repo is a plain-text `.gg/` folder you can read and commit.
 
-**The magic lives entirely in those six carefully crafted commands.** Distilled from months of building real products with agents: what works, what quietly breaks or creates friction, and how to land the exact product in your head, with its full memory, at the least effort possible.
+**The magic lives entirely in those seven carefully crafted commands.** Distilled from months of building real products with agents: what works, what quietly breaks or creates friction, and how to land the exact product in your head, with its full memory, at the least effort possible.
 
 ---
 
@@ -46,7 +46,7 @@ There's the trap: vibe-coding is fast but forgetful; spec-driven remembers but i
 | **Design & nuances kept on disk** | ✗ lost each session | ✓ | ✓ | ✓ per feature | ✓ vision + blueprint + glossary + ADRs |
 | **Records the defaults the AI assumed** | ✗ | ✗ | ✗ | ✗ | ✓ numbered & reversible |
 | **Effort per change (any size)** | low, but risky | full workflow | full workflow | full workflow | **low: a note, one pass** |
-| **Footprint** | just Claude | CLI + templates | installer + subagents | plugin + subagents | **6 Markdown commands, on demand** |
+| **Footprint** | just Claude | CLI + templates | installer + subagents | plugin + subagents | **7 Markdown commands, on demand** |
 
 *These are all good tools that genuinely solve the memory problem. gg just makes a different bet: the whole product first, fully documented, then a light loop with no machinery in the way.*
 
@@ -84,6 +84,8 @@ flowchart LR
     S -- capture ideas / bugs --> C["/gg:capture<br/>jot to the backlog"]
     C --> R["/gg:refine-backlog<br/>triage: next / later / future / discard"]
     R --> D
+    S -- one small fix, now --> Q["/gg:quick<br/>fast-track one item"]
+    Q --> D
     O(["/gg:orient<br/>where am I? + stage"]) -.-> R
     O -.-> D
     O -.-> N
@@ -96,6 +98,7 @@ A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the who
 3. **`/gg:next-task`** builds exactly the next task, with tests, then checkpoints and stops. Run it again for the next one. You try the product only when the last task closes the phase; between tasks, the agent verifies its own work.
 4. When you want changes, **`/gg:capture`** them as you go (ideas or bugs) — they land in the backlog (`.gg/BACKLOG.md`), never the agent's memory.
 5. Between phases, **`/gg:refine-backlog`** reviews the backlog in **one report** — each item with a recommended disposition (next phase / later / future / discard) — so you decide in a single step: accept the recommendations, send only the bugs, send everything, or override item by item. Then **`/gg:discover`** designs the set you queued and **`/gg:next-task`** builds it. Repeat.
+6. Spotted one small thing — a bug, a tweak — you want to do now (a phase just shipped, nothing else queued)? **`/gg:quick`** is the express lane: it records that single item straight into the next phase (no triage step) and runs `discover` on it immediately, then you `/gg:next-task` to build it. Same bar (it's recorded, designed, and tested like any phase); less ceremony, for a change you've already decided on. In any other state it just files the note like `/gg:capture`; for a batch, use `capture` + `refine-backlog`.
 
 ---
 
@@ -106,10 +109,11 @@ A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the who
 | Command | Run it… |
 |---|---|
 | **`/gg:ideate`** | to **start** a project (no `.gg/` yet) — or to **resume** an unfinished ideation (`state: visioning`). Once per project. |
-| **`/gg:discover`** | right after `ideate` (phase 0), **or** after a phase ships **once you've queued items with `refine-backlog`** (phase N). |
+| **`/gg:discover`** | right after `ideate` (phase 0), **or** after a phase ships once `## Next phase` is queued — via `refine-backlog` (a batch) or `quick` (one item) (phase N). |
 | **`/gg:next-task`** | after `discover`, or after a previous `next-task`, while the current phase still has tasks left. |
 | **`/gg:refine-backlog`** | after a phase ships, to triage the backlog — one reviewed report, then a single decision (next / later / future / discard) — before the next `discover`. |
 | **`/gg:capture`** | once a product exists, during `next-task` or between phases. *Not* during ideate/discover (raise it in the grilling instead). |
+| **`/gg:quick`** | after a phase ships with nothing else queued, to fast-track **one** small change you've decided to do: it records the item and runs `discover` on it, skipping triage. A batch? Use `capture` + `refine-backlog` instead. |
 | **`/gg:orient`** | any time. Read-only, plus it offers the `dev ↔ launched` stage flip. |
 
 ---
@@ -127,7 +131,7 @@ Everything the workflow knows lives in a `.gg/` folder at the root of your proje
 ├── ASSUMPTIONS.md    # the recorded-defaults ledger (every choice not grilled, reversible)
 ├── SPEC.md           # the living contract: acceptance criteria with typed evidence
 ├── PROGRESS.md       # the task board for the current phase + where to resume
-├── BACKLOG.md        # the active backlog (new / next phase / later / future), triaged by refine-backlog
+├── BACKLOG.md        # the active backlog (new / next phase / later / future), triaged by refine-backlog (or fast-tracked by quick)
 ├── BACKLOG-ARCHIVE.md # closed backlog items (applied / discarded) — kept for the trace
 ├── RUNBOOK.md        # the pinned run/verify commands (full suite, deliverable, destructive paths)
 ├── CONTEXT.md        # a glossary of your project's domain terms
@@ -178,7 +182,7 @@ Developing locally? Point the marketplace at your checkout instead of GitHub:
 
 **Is this a library or framework I import?** No. It's a set of Markdown instructions that steer Claude Code. There's no runtime and nothing to import.
 
-**Does it run hooks or anything in the background?** No. gg is six Markdown commands you invoke by hand. When you don't call one, it does nothing. The only thing it leaves in your repo is the plain-text `.gg/` folder.
+**Does it run hooks or anything in the background?** No. gg is seven Markdown commands you invoke by hand. When you don't call one, it does nothing. The only thing it leaves in your repo is the plain-text `.gg/` folder.
 
 **Does it work for any language or stack?** Yes, it's stack-agnostic. The commands talk about a blueprint, specs, tests, and deliverables; you bring the language.
 

@@ -2,9 +2,11 @@
 
 The end-of-session ritual every **working** skill (`/gg:ideate`, `/gg:discover`, `/gg:next-task`,
 `/gg:refine-backlog`, and `/gg:orient` when it flips the stage) runs before it stops — whether the
-session finished its goal or is being cut mid-way. `/gg:orient`'s read-only report does not run it. Running the same ritual
-everywhere keeps the ROADMAP, the JOURNAL, and the breadcrumb from drifting apart between clean
-sessions.
+session finished its goal or is being cut mid-way. `/gg:orient`'s read-only report does not run it, and
+`/gg:capture` / `/gg:quick` run no ritual of their own — the express `/gg:quick` reaches this ritual
+through the `/gg:discover` it invokes (degrading to a plain `/gg:capture` jot otherwise). Running the
+same ritual everywhere keeps the ROADMAP, the JOURNAL, and the breadcrumb from drifting apart between
+clean sessions.
 
 ## The ritual (in order)
 

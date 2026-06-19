@@ -20,7 +20,9 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
 - **`state: shipped`** → the phase is done; the product is ready to try. **Stop — don't build here.**
   Anything the try-it surfaces — a new idea **or a bug in what shipped** — is **captured, not fixed on
   the spot**: jot it (inline, per `CAPTURE.md`; mark a defect `[bug]`), then `/gg:refine-backlog`
-  triages it and `/gg:discover` designs the fix as the next phase (`/gg:orient` will route you).
+  triages it and `/gg:discover` designs the fix as the next phase (`/gg:orient` will route you). For a
+  **single** small one you've decided to do now, `/gg:quick` records it and fast-tracks it to
+  `/gg:discover` — same cycle (still a task, a test, a JOURNAL entry), just skipping the triage step.
   Patching a shipped defect inline — off the
   board, off the SPEC — is the misstep that leaves the record stale; everything, bugs included, goes
   through the cycle so it gets a task, a test, and a JOURNAL entry.
@@ -82,8 +84,8 @@ When the last task is done — **this is the only point the user tries the produ
 - Write the **phase-close `JOURNAL.md` entry** (`JOURNAL-FORMAT.md`): built / how-to-verify + real
   result / acceptance-evidence table / baseline→close tests / items applied / VISION conformance.
 - Set `state: shipped`; update the ROADMAP phase-log line to `shipped {date}`.
-- Breadcrumb: *"Phase {N} shipped — try it: {how to see it}. Then `/gg:capture` anything to change, and
-  `/clear` + `/gg:discover` for the next phase."*
+- Breadcrumb: *"Phase {N} shipped — try it: {how to see it}. Then `/gg:capture` anything to change
+  (or `/gg:quick` to fast-track one small fix), and `/clear` + `/gg:discover` for the next phase."*
 
 ## --gate (optional)
 The user invoked `/gg:next-task $ARGUMENTS` — gate on that literal value. **If `$ARGUMENTS` contains

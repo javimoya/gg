@@ -5,11 +5,14 @@ moment it surfaces** — whether you thought of it or the user raised it. The th
 Claude's native memory. It is the lightest form of the constitution's **"decompose, don't drop"**
 (`CONSTITUTION.md`): capture **jots and reconciles — it does not grill**.
 
-Two entry points share this protocol:
+Three entry points share this protocol:
 - **Standalone** — `/gg:capture`, run once a product already exists (during `/gg:next-task` or between
   phases).
 - **Inline** — an idea surfaces *while `/gg:next-task` is running*; you jot it without leaving the
   session, then return to the task you were on.
+- **Express** — `/gg:quick` reuses this jot (same `B-NN`, same fields, same light reconcile) but writes
+  the item straight to `## Next phase` instead of `## New` and designs it immediately via `/gg:discover`
+  (still never patched inline) — the one exception to "capture only ever writes `## New`" (`quick.md`).
 
 ## The iron rule
 - **Never Claude native memory.** No `MEMORY.md`, no `~/.claude/**/memory/`. `.gg/` is the only memory.
@@ -17,7 +20,8 @@ Two entry points share this protocol:
   outside `.gg/` is a cut.
 
 ## What capture does (jot + light reconciliation — no grilling)
-1. **Write the idea to `.gg/BACKLOG.md ## New`** (create the file if missing) per `BACKLOG-FORMAT.md`:
+1. **Write the idea to `.gg/BACKLOG.md ## New`** (create the file if missing) per `BACKLOG-FORMAT.md`
+   (the express `/gg:quick` writes to `## Next phase` instead — the one auto-triage):
    the idea in the user's words, the date, who raised it (`user`/`agent`), and the area it touches if
    known. **Assign it the next stable `B-NN` id** per `BACKLOG-FORMAT.md` (never reused). If it's a
    **defect in already-shipped behavior**, prefix the title `[bug]` and record what's broken vs. what's

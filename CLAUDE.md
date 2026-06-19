@@ -19,9 +19,11 @@ nothing real to migrate: recreate, don't shim. The same rule applies to `/gg:ori
 **report** drift, but it never assumes older projects must be upgraded.
 
 ## What gg is
-A pure-Markdown command plugin: six commands (`ideate`, `discover`, `next-task`, `refine-backlog`,
-`capture`, `orient`) that build a product in **phase 0** then refine it **phase by phase**. A "phase"
-is one `discover → next-task*` cycle; between phases, `refine-backlog` triages the captured backlog
-(`.gg/BACKLOG.md`) — one reviewed report, then a single decision — into the next phase. All project state lives in each project's
-`.gg/`; the shared protocols/formats live in `gg-shared/`. There is no runtime and no state.json by
-design.
+A pure-Markdown command plugin: seven commands (`ideate`, `discover`, `next-task`, `refine-backlog`,
+`capture`, `quick`, `orient`) that build a product in **phase 0** then refine it **phase by phase**. A
+"phase" is one `discover → next-task*` cycle; between phases, `refine-backlog` triages the captured
+backlog (`.gg/BACKLOG.md`) — one reviewed report, then a single decision — into the next phase.
+`quick` is the express lane: it records one small item straight to `## Next phase` and runs `discover`
+on it immediately, skipping triage (for a single change you've already decided to do). All project state
+lives in each project's `.gg/`; the shared protocols/formats live in `gg-shared/`. There is no runtime
+and no state.json by design.

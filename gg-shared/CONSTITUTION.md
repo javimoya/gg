@@ -151,7 +151,8 @@ Your project's `CLAUDE.md`, when present, may deepen this; the floor above alway
 ## Each phase's contract
 
 A **phase** is one `/gg:discover → /gg:next-task*` cycle (phase 0 = the whole product; phase N = the
-backlog items you queued with `/gg:refine-backlog`). A phase does not close without ALL of this:
+backlog items you queued with `/gg:refine-backlog`, or a single item fast-tracked by `/gg:quick`). A
+phase does not close without ALL of this:
 1. **A vertical, end-to-end product** — phase 0 is the complete product runnable end to end (the
    foundational spine built first); phase N coherently folds in its queued backlog items.
 2. **A concrete, runnable deliverable** with a **"How to see it"** (a real command or steps), built
@@ -173,7 +174,7 @@ suite, the runnable deliverable, and the self-accounting gate below carry verifi
 **Tasks** split *only* the `/gg:next-task` work of a phase, so each fits one fresh session. A task
 has **no** validatable deliverable and **no** tests of its own — those live at the phase level.
 `/gg:next-task` does **exactly one task per run**, then checkpoints to `PROGRESS.md` and stops.
-`/gg:ideate`, `/gg:discover`, `/gg:orient`, and `/gg:capture` are not split into tasks.
+`/gg:ideate`, `/gg:discover`, `/gg:orient`, `/gg:capture`, and `/gg:quick` are not split into tasks.
 
 ## Context discipline
 
@@ -198,9 +199,10 @@ Cutting early and handing off cleanly always beats pushing a degraded session.
 ## Breadcrumb
 
 **Every** working skill that closes a phase or task (`/gg:ideate`, `/gg:discover`, `/gg:next-task`,
-`/gg:refine-backlog`, and `/gg:orient` when it flips the stage — **not** `/gg:capture`, which only jots
-and returns) ends by reminding the user, in one line: *where you are + what's next + which command to
-continue with*. This connects the manual flow between clean sessions; it is the last step of the shared
+`/gg:refine-backlog`, `/gg:quick`, and `/gg:orient` when it flips the stage — **not** `/gg:capture`,
+which only jots and returns) ends by reminding the user, in one line: *where you are + what's next +
+which command to continue with*. (`/gg:quick` borrows `/gg:discover`'s breadcrumb; when it degrades to a
+plain capture it ends like `/gg:capture`, with no ritual.) This connects the manual flow between clean sessions; it is the last step of the shared
 close ritual (`CLOSE-FORMAT.md`). `/gg:orient` otherwise only reads.
 
 ## Close-out gate (self-accounting)
