@@ -24,8 +24,12 @@ regulatory, risk — and the tradeoffs deliberately accepted. Each is a *product
 loud so it isn't mistaken for a silent cut. Empty is fine; never use it to smuggle in scope cuts.}
 
 ## "Done and perfect" (global definition of done)
-{What the complete, robust product looks like. The bar everything is measured against — and the bar
-the refinement phases close toward.}
+{What the complete, robust product looks like — the bar everything is measured against, and the bar the
+refinement phases close toward. Write it as clauses, and tag each by how it can be judged:}
+- {a clause} — `[declared]` {judgeable without running the product — a capability that's present or
+  absent, closed by an `AC-N`}
+- {a clause} — `[discovered]` {only judgeable by *seeing it run* — a felt / emergent / qualitative
+  property the author confirms by watching, closed by a cited `F-NN`}
 
 ## Quality bar and non-negotiables
 {Cross-cutting requirements no phase may lower. Numbers where they exist.}
@@ -43,6 +47,13 @@ whose data must survive. Default `dev`; flipped only by `/gg:orient`.}
 - **Describe the destination, not an MVP.** "Done and perfect" is the bar the whole loop closes
   toward; make it concrete enough to measure against (the phase-close VISION-conformance check uses
   it).
+- **Tag each "done and perfect" clause `[declared]` or `[discovered]`.** `[declared]` is judgeable
+  without running — a present/absent capability, closed by an `AC-N`. `[discovered]` is only judgeable
+  by *watching the product run* — a felt / emergent / qualitative property (the look, the feel, the tone,
+  the sense that it's right) — closed at a phase close by a cited `F-NN` observation, never asserted from a green
+  suite. The tag is a grilling question (`GRILLING.md`); when in doubt, a clause that *could* become a
+  runnable check is `[declared]` — reserve `[discovered]` for what genuinely can't be reduced to one,
+  so the tag never excuses leaving a checkable thing vague.
 - **Non-negotiables must be checkable.** A quality bar nobody can verify is decoration. Put numbers
   where they exist.
 - **Product intent, not architecture.** No implementation detail here; the design lives in

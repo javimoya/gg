@@ -3,6 +3,37 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.5.0
+
+Support for **open-ended / experimental** projects — where the target is learned by *seeing* the product
+run, and only the author's eye on the running result can judge whether it's right.
+
+### Added
+- **`FINDINGS.md` — a home for observations (`F-NN`).** `gg-shared/FINDINGS-FORMAT.md` and a
+  lazily-created `.gg/FINDINGS.md` record what the running product *did* when it was run or tried — the
+  fourth "decompose, don't drop" home beside a later task, a backlog item, and an `A-NN` assumption (each
+  records a decision *not yet made*; a finding records an observation *already made*). `CAPTURE.md` routes
+  by tense: a past-tense observation → `FINDINGS.md`, a future-tense idea / change / bug →
+  `BACKLOG.md ## New`.
+- **`[declared]` / `[discovered]` tags on every "done and perfect" clause (`VISION-FORMAT.md`).** A
+  `[declared]` clause is judgeable without running, closed by an `AC-N`; a `[discovered]` clause is only
+  judgeable by *watching the product run* — a felt / emergent / qualitative property — and is closed at a
+  phase close by a cited `F-NN`, never asserted from a green suite. `/gg:next-task`'s close gate and
+  `/gg:orient --audit` enforce it.
+- **`show` tasks — the user's looks at the running product.** A `show` builds a watchable slice and stops
+  for the user to look (`/gg:next-task` runs it and routes reactions to `FINDINGS.md` / the backlog, never
+  inline). `/gg:discover` places shows **where the felt character meaningfully changes** — where a
+  `[discovered]` clause becomes judgeable. The **first show is mandatory when the phase has a
+  `[discovered]` clause**, anchored to the riskiest one, and **drives task ordering** so it lands as early
+  as the non-retrofittable foundation allows (a thin vertical first, then thickened to full bar); its
+  placement is surfaced for the user's veto at the `/gg:discover` sign-off. The user's try-it points are
+  the phase's shows and the phase close. `PROGRESS-FORMAT.md` carries a `kind` column; `SPEC-FORMAT.md` a
+  shows entry.
+- **Grilling "elicit by reacting" (`GRILLING.md`).** For a subjective / `[discovered]` dimension, the
+  agent shows a concrete contrast (a sketch, a vivid end-state, a small real sample) and records the
+  user's *reaction* instead of an abstract menu pick — and names the cost of the lean option out loud
+  before the user chooses, so an austere bar is never picked blind.
+
 ## 2.4.1
 
 ### Changed

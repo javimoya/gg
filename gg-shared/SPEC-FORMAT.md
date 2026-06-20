@@ -22,7 +22,10 @@ phase that introduced it. IDs are stable for the life of the project.}
 - **AC-2** (phase 0) — …
 
 ## Deliverable + "How to see it"
-- **Deliverable**: {the runnable/observable product the user tries at the end of a phase}
+- **Shows**: {the look points + their one-line "How to see it" — each a watchable slice placed where a
+  `[discovered]` clause becomes judgeable (`PROGRESS-FORMAT.md` → `kind: show`); mark the first, which is
+  mandatory and placed as early as the foundation allows when the phase has a `[discovered]` clause}
+- **Deliverable**: {the runnable/observable product the user tries at the phase close — the decisive try-it}
 - **How to see it**: {the real command or steps the user runs, and what to observe}
 
 ## Design
@@ -44,7 +47,8 @@ question, most important first. Emptied before discover moves the project to `bu
 - **Phase N extends the contract, it doesn't fork it.** A refinement phase adds new `AC-N` (tagged
   with its phase) or revises existing ones in place; the SPEC always describes the *current* product.
 - **The deliverable is runnable/observable, and "How to see it" is a real command or concrete steps**
-  — never a vague description. It is what the user tries at a phase close (the only try-it point).
+  — never a vague description. It is what the user tries at a phase close (the decisive try-it point; the
+  shows are the earlier looks).
 - **References the blueprint; never reduplicates the schema.** WHAT and the acceptance live here; the
   design (data model, architecture) lives in `BLUEPRINT.md`. One source of truth each.
 - **An assumption is not an AC.** Defaults `/gg:discover` took live in `ASSUMPTIONS.md`; they decide

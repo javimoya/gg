@@ -14,6 +14,22 @@ Three entry points share this protocol:
   the item straight to `## Next phase` instead of `## New` and designs it immediately via `/gg:discover`
   (still never patched inline) — the one exception to "capture only ever writes `## New`" (`quick.md`).
 
+## Idea or observation? (route to the right ledger first)
+
+Before jotting, decide which kind of thing this is — the tense gives it away:
+- **A future-tense idea / change / bug** ("we should…", "it'd be better if…", "X is broken") → a
+  **backlog item** (`B-NN` in `.gg/BACKLOG.md ## New`), the rest of this protocol.
+- **A past-tense observation** of what the running product actually *did* ("when I ran it, X happened",
+  "it behaves like Y under this input") → a **finding** (`F-NN` in `.gg/FINDINGS.md`,
+  `FINDINGS-FORMAT.md`): record `Observed` / `What happened` / `Reading` / `Leads to`, created lazily.
+  It is a fact on the record, not a decision. If the observation *implies* a change worth doing, capture
+  that change **too** as a `B-NN` and link it from the finding's **Leads to** — the observation stays a
+  finding; only the decision it triggers is a backlog item.
+
+A try-it at a `show` task or at a phase close usually produces *both*: observations (→ findings) and
+reactions you want to act on (→ backlog). Record each in its own ledger; never inline in the build,
+never only in prose.
+
 ## The iron rule
 - **Never Claude native memory.** No `MEMORY.md`, no `~/.claude/**/memory/`. `.gg/` is the only memory.
 - **Never a silent drop**, and never "I'll remember it later" as the only record. A thread parked

@@ -59,6 +59,21 @@ propose possible features, capabilities, and out-of-the-box ideas the user hasn'
 adjacent products and other domains — to open up areas they haven't contemplated. **Diverge first**
 (generate and contrast options), **then converge** (grill until it's nailed down).
 
+### Elicit by reacting (subjective dimensions — show, don't only ask)
+Some choices can't be settled by an abstract menu — they're *felt*: the look, the tone, the pace, the
+aesthetic, the sense that it's right. For any dimension you'd tag `[discovered]`
+(`VISION-FORMAT.md`), the user often **can't know what they want until they see it**, so a word-pick
+silently locks the wrong target. Don't force the pick — provoke a reaction:
+- **Show a concrete contrast, not a list of adjectives.** Sketch two or three end-states vividly (or
+  show a tiny real sample / ASCII mock / reference example) and ask which is closer — record the
+  *reaction*, not a menu label.
+- **Name the latent cost of the lean option out loud.** When one choice is cheaper to build or to
+  *certify* but risks disappointing, say so before they choose: *"the lean target is cheap to hit but may
+  feel flat in use — is that acceptable, or is the quality you're after part of the bar?"* If the user
+  takes the austere option, they must take it **knowing** the cost, never by default.
+- A dimension that stays subjective after this becomes a `[discovered]` "done and perfect" clause,
+  confirmed later by *watching the product run* (a cited `F-NN`), not by a green suite.
+
 ### Confirm before you stop — and confirm the defaults you took
 When you think you've worked through the load-bearing questions, **don't silently move on** to
 writing. Two checkpoints, both mandatory:

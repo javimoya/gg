@@ -19,11 +19,12 @@ Terse is fine; unambiguous is mandatory.
 - **Owned paths**: {files this phase created or changed — grows as tasks proceed}
 
 ## Task board
-| # | task | status |
-|---|------|--------|
-| 1 | {name} | done |
-| 2 | {name} | in-progress |
-| 3 | {name} | pending |
+| # | task | kind | status |
+|---|------|------|--------|
+| 1 | {name} | — | done |
+| 2 | {name} | — | done |
+| 3 | {name} | show | in-progress |
+| 4 | {name} | — | pending |
 
 ## Where to resume
 - **Next**: task {N} — {file:line / the concrete next step}
@@ -39,6 +40,11 @@ Terse is fine; unambiguous is mandatory.
 
 - **The task board is the source of truth for "what's left in this phase."** One row per task,
   status ∈ `pending` / `in-progress` / `done`. It mirrors the plan `/gg:discover` produced.
+- **`kind: show` marks a try-it task** (`/gg:discover` sets it, placed where the felt character changes /
+  a `[discovered]` clause becomes judgeable — not on a task count). A `show` carries a thin runnable slice
+  + a one-line "How to see it" and ends with a *look-at-this* stop (`/gg:next-task`); a normal build task
+  is `—` and has no deliverable of its own. The full green suite is always phase-level — a `show` look is
+  not a phase close.
 - **`/gg:next-task` does exactly one task per run** and updates the board + "Where to resume" before
   stopping. That single handoff is why no separate wrap command is needed.
 - **Provenance is written once, before any code change, and not rewritten.** Only "Owned paths" grows.

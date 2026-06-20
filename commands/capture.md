@@ -23,11 +23,13 @@ Read `.gg/ROADMAP.md`'s header:
 - **`state: building` or `shipped`** → proceed (a product exists; this is the right time to jot).
 
 ## 1. Jot + lightly reconcile (`CAPTURE.md`)
-Apply the `CAPTURE.md` protocol — jot the idea, then lightly reconcile it; no grilling, no design. The
-idea is `$ARGUMENTS` if the user passed it as an argument; otherwise it's the one they just raised in
-conversation (inline during a build, or after a bare `/gg:capture`). Write it to `.gg/BACKLOG.md ## New`
-per `BACKLOG-FORMAT.md` (create the file lazily if missing), assigning the next stable `B-NN` id, and
-reconcile against the active backlog (fold in / flag a contradiction / stand alone).
+Apply the `CAPTURE.md` protocol — jot the thing, then lightly reconcile it; no grilling, no design. The
+input is `$ARGUMENTS` if the user passed it as an argument; otherwise it's what they just raised in
+conversation (inline during a build, or after a bare `/gg:capture`). **Route by tense first** (`CAPTURE.md`
+→ "Idea or observation?"): a *future-tense* idea / change / bug goes to `.gg/BACKLOG.md ## New` per
+`BACKLOG-FORMAT.md` (next stable `B-NN`, reconciled against the active backlog — fold in / flag a
+contradiction / stand alone); a *past-tense observation* of what the running product did goes to
+`.gg/FINDINGS.md` per `FINDINGS-FORMAT.md` (next stable `F-NN`). Create either file lazily if missing.
 
 **Never** write to Claude's native memory; **never** mutate the ROADMAP, triage, or open a phase (triage
 is `/gg:refine-backlog`'s job, design is `/gg:discover`'s); **never** derail — if you're inline in a

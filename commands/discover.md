@@ -68,14 +68,35 @@ One question at a time, with your recommended answer, exploring the code when th
   type + Verify, tagged by phase), the deliverable + "How to see it". Reference the BLUEPRINT; don't
   reduplicate the schema.
 - Write the **ordered task list** into `.gg/PROGRESS.md` (`PROGRESS-FORMAT.md`): sized so each task
-  fits one fresh `/gg:next-task` session, **foundational-first** (the integrating spine before
-  features, so later tasks build on a working base). Tasks have no deliverable/tests of their own.
+  fits one fresh `/gg:next-task` session, **foundational-first** — the integrating spine before features,
+  so later tasks build on a working base. "Spine" is a **thin vertical** through the whole stack, not
+  each subsystem built to full breadth first: only what genuinely **can't be retrofitted** — the
+  load-bearing decisions later work can't be re-sequenced onto — must precede the first show; everything
+  else is thickened after it (below).
+  - **Place the shows** (`kind: show`, `PROGRESS-FORMAT.md`) — a task that builds a watchable slice and
+    stops for the user to look. A show goes **where the felt character meaningfully changes** — where a
+    `[discovered]` clause (`VISION-FORMAT.md`) becomes more judgeable — never on a task count.
+  - **The first show is mandatory iff the phase has a `[discovered]` clause in play**, and it is
+    load-bearing: anchor it to the **riskiest** `[discovered]` clause — the thinnest slice at which the
+    user could form a genuine opinion about it — and **drive the task order to reach it as early as the
+    expensive-to-retrofit foundation allows** (a thin vertical first, then thicken; the whole design is
+    settled up front in the BLUEPRINT, so thickening is sequencing, not rework). The only
+    legitimate "why not earlier" is foundation that can't be retrofitted. Keep the slice honestly thin
+    but **representative** — real spine, no stub (a slice that *looks* right but misleads is worse than
+    none). A phase with **no** `[discovered]` clause (a bug-batch, a purely `[declared]` refinement) needs
+    no forced show — its `AC-N` + the phase-close try-it bind it.
+  - Tasks otherwise have **no** deliverable or tests of their own; **a `show` is the deliberate
+    exception** — it carries a runnable slice + a "How to see it" (still no full suite — that stays at the
+    phase close).
 
 ## 5. Sign-off (confirm questions done + defaults taken)
 Before closing (`GRILLING.md` → "Confirm before you stop"): (1) name any areas still worth probing and
 let the user decide whether to keep grilling; (2) **surface the high/medium-blast defaults** you
-recorded, for veto. Only when "Open questions" is empty and the user is satisfied, set `state:
-building` and update the ROADMAP phase-log line.
+recorded, for veto; (3) when the phase has a `[discovered]` clause, **surface where the first show lands
+and why it can't be earlier** — *"you won't see {the riskiest discovered clause} until task {N}, because
+{the foundation that must exist first}; everything after thickens it"* — for the user's veto. This is the
+control that stops the first (riskiest) look from drifting to the end. Only when "Open questions" is empty and
+the user is satisfied, set `state: building` and update the ROADMAP phase-log line.
 
 ## Close — ritual + breadcrumb
 Run the close ritual (`CLOSE-FORMAT.md`): persist BLUEPRINT / ASSUMPTIONS / SPEC / PROGRESS / ROADMAP,

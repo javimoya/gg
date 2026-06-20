@@ -95,7 +95,7 @@ A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the who
 
 1. **`/gg:ideate`** runs once and turns the idea into a sharp VISION.
 2. **`/gg:discover`** designs the whole product (a BLUEPRINT: data model and architecture), grills the load-bearing questions, records good defaults for the rest, and produces a testable SPEC plus an ordered task list.
-3. **`/gg:next-task`** builds exactly the next task, with tests, then checkpoints and stops. Run it again for the next one. You try the product only when the last task closes the phase; between tasks, the agent verifies its own work.
+3. **`/gg:next-task`** builds exactly the next task, with tests, then checkpoints and stops. Run it again for the next one. You try the product at the phase's **shows** — watchable slices placed where its character first (and next) becomes judgeable, the first as early as the riskiest discovered target allows, so a wrong target shows up early — and you give the decisive verdict when the last task closes the phase; between those the agent verifies its own work and you don't babysit it task by task.
 4. When you want changes, **`/gg:capture`** them as you go (ideas or bugs) — they land in the backlog (`.gg/BACKLOG.md`), never the agent's memory.
 5. Between phases, **`/gg:refine-backlog`** reviews the backlog in **one report** — each item with a recommended disposition (next phase / later / future / discard) — so you decide in a single step: accept the recommendations, send only the bugs, send everything, or override item by item. Then **`/gg:discover`** designs the set you queued and **`/gg:next-task`** builds it. Repeat.
 6. Spotted one small thing — a bug, a tweak — you want to do now (a phase just shipped, nothing else queued)? **`/gg:quick`** is the express lane: it records that single item straight into the next phase (no triage step) and runs `discover` on it immediately, then you `/gg:next-task` to build it. Same bar (it's recorded, designed, and tested like any phase); less ceremony, for a change you've already decided on. In any other state it just files the note like `/gg:capture`; for a batch, use `capture` + `refine-backlog`.
@@ -186,7 +186,7 @@ Developing locally? Point the marketplace at your checkout instead of GitHub:
 
 **Does it work for any language or stack?** Yes, it's stack-agnostic. The commands talk about a blueprint, specs, tests, and deliverables; you bring the language.
 
-**Do I try the product between tasks?** No, only at the **end of a phase** (its last task). Between tasks the agent runs its own tests and checks; you don't babysit it task by task.
+**Do I try the product between tasks?** At the phase's **shows**, not task by task: a `show` is a watchable slice `/gg:discover` places where the product's character becomes judgeable — the first as early as the foundation allows, so a wrong target surfaces early — plus the decisive try-it at the **phase close**. Between those the agent runs its own tests and checks; you don't babysit it task by task.
 
 **Is there an audit or a wrap step?** No, `gg` deliberately has neither. Verification is the green test suite at the phase close, the runnable deliverable you try, and a self-accounting gate. And there's nothing to "wrap": `/gg:next-task` checkpoints to `PROGRESS.md` every run, so you just `/clear` and run it again.
 

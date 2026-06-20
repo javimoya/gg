@@ -61,6 +61,11 @@ Read `.gg/ROADMAP.md`'s header — route on `state`, not merely on whether `.gg/
 - Fill `.gg/VISION.md` per `VISION-FORMAT.md`: problem/opportunity, for whom, what it is / is not,
   constraints and accepted tradeoffs (boundaries, not cuts), **"done and perfect"** (the real bar,
   not an MVP), non-negotiables, unknowns.
+- **Tag each "done and perfect" clause `[declared]` or `[discovered]`** (`VISION-FORMAT.md`): a clause
+  judgeable without running is `[declared]` (closed by an `AC-N`); one only judgeable by *watching it
+  run* — a felt / emergent / qualitative property — is `[discovered]` (closed later by a cited `F-NN`).
+  This is itself a grilling question; a `[discovered]` clause is the signal a dimension is subjective and
+  is best sharpened by **showing, not asking** (`GRILLING.md` → "Elicit by reacting").
 - **Confirm the stage.** §1 wrote `stage: dev` provisionally; a new project has no real users
   (`STAGE.md`). Confirm with the pointed question — *"is this already launched to real users whose data
   must survive? (deployed ≠ launched)"* — defaulting to `dev` (normally a no-op). Record it in

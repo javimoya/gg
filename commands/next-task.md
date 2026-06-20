@@ -1,5 +1,5 @@
 ---
-description: Builds the current phase of a gg project, one task at a time. Each run implements exactly the next task to the full bar (with tests), verifies it internally, checkpoints PROGRESS, and stops — you /clear and run it again for the next task. On the last task it closes the phase — green full suite, runnable deliverable, and a phase-close JOURNAL entry — and only then do you try the product. Pass --gate to pause for a go before coding. Run it after /gg:discover, and again while tasks remain.
+description: Builds the current phase of a gg project, one task at a time. Each run implements exactly the next task to the full bar (with tests), verifies it internally, checkpoints PROGRESS, and stops — you /clear and run it again for the next task. On the last task it closes the phase — green full suite, runnable deliverable, and a phase-close JOURNAL entry — the decisive try-it. You also see watchable slices early at the phase's show tasks — the first placed as early as the riskiest discovered target allows — so a wrong target surfaces fast. Pass --gate to pause for a go before coding. Run it after /gg:discover, and again while tasks remain.
 model: inherit
 disable-model-invocation: true
 argument-hint: "[--gate]"
@@ -29,7 +29,8 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
 
 ## 1. Constitution + context load
 - Read `.gg/PRINCIPLES.md` and internalize it (full bar; effort is never a reason to cut; decompose ≠
-  drop; the user tries the product only at phase close; dev ≠ launched).
+  drop; the user tries the product at the phase's **shows** and at the phase close — not task by task;
+  dev ≠ launched).
 - Read `.gg/PROGRESS.md` (the task board — which task is next), `.gg/SPEC.md` (acceptance criteria),
   `.gg/BLUEPRINT.md` (the design), `.gg/ASSUMPTIONS.md`, `.gg/RUNBOOK.md`, `.gg/CONTEXT.md`, the ADRs,
   and the `stage`.
@@ -46,6 +47,10 @@ If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):
 ## 3. Implement exactly the next task to the bar
 - Build **only the next task** complete and robust; cover the edge cases; **write tests** mapping to
   the acceptance criteria.
+- **If the task's `kind` is `show`** (`PROGRESS-FORMAT.md`): its definition of done is *it runs and is
+  watchable* via its own "How to see it" — built at full bar (thin but real spine, **no stub**). It
+  carries no full suite (that stays phase-level), but the slice itself must actually work; the look
+  happens at §5.
 - **Stage-aware** (`STAGE.md`): in `dev`, no migrations / backward-compat / preservation tests —
   recreate & reseed freely. In **both** stages, **name the rollback and get a yes before destroying
   data that exists on disk** (recreating a *populated* store counts).
@@ -61,8 +66,9 @@ If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):
   condition}`) and stop — don't fake or cut.
 
 ## 4. Verify internally + checkpoint
-- Run the **focused** test/check the task needs and record its real result. (No user try-it here —
-  that's phase close only; between tasks, *you* verify, the user doesn't.)
+- Run the **focused** test/check the task needs and record its real result. (For a normal task, *you*
+  verify and the user doesn't; the user's looks are the phase's **shows** and the phase close — see
+  §5/§6 — not every task in between.)
 - Update `.gg/PROGRESS.md`: mark the task `done`, add touched files to **owned paths**, write the
   one-line closed-task log and the **"Where to resume"** for the next task.
 
@@ -71,14 +77,23 @@ If pending tasks remain, **stop here** (one task per run). Leave the tree clean 
 close ritual (`CLOSE-FORMAT.md`) and the breadcrumb: *"Phase {N}: task {N}/{M} done. Next: `/clear` +
 `/gg:next-task` (task {N+1} — {where})."* (If the user told you to wrap up mid-task, carve the
 remainder into a new follow-up task first, then stop — the same checkpoint.)
+- **If the task just done is a `show`** (a designed look, *not* the phase close): also **run its "How to
+  see it" yourself**, then make the breadcrumb a *look-at-this* — invite the user to run it and react now.
+  Route whatever the look surfaces per `CAPTURE.md`: an observation → `FINDINGS.md` (`F-NN`), a wanted
+  change or bug → `BACKLOG.md ## New` (`B-NN`) — **never** patch it inline or fold it into the current
+  build. Breadcrumb: *"Phase {N}: task {N}/{M} done — show: try it → {how to see it}. React and I'll
+  capture it; then `/clear` + `/gg:next-task` (task {N+1})."*
 
 ## 6. Last task → close the phase
-When the last task is done — **this is the only point the user tries the product**:
+When the last task is done — **the phase's decisive try-it point**, where the *whole* phase is judged
+green and runnable (the earlier looks, if any, were the phase's shows):
 - Build the **deliverable**; **run the SPEC's "How to see it" yourself** and record the real result.
 - Run the **RUNBOOK full suite**: it must be **green**; record the delta against the baseline.
 - **Self-accounting gate** (`CONSTITUTION.md`): list everything simplified / deferred / defaulted; turn
   each into a note or justify it. Ask the **VISION-conformance** question (does the product now meet
-  "done and perfect", or what remains?).
+  "done and perfect", or what remains?). A **`[discovered]`** clause (`VISION-FORMAT.md`) is counted met
+  **only** if a cited `F-NN` — an actual try-it observation — backs it; never infer it from the green
+  suite, and if it was never looked at it is *not yet met* (record the gap, don't claim it).
 - Move the phase's items from `.gg/BACKLOG.md ## Next phase` to `.gg/BACKLOG-ARCHIVE.md ## Applied`
   (with where each landed); mark any default an applied item reversed as `ASSUMPTIONS.md ## Overridden`.
 - Write the **phase-close `JOURNAL.md` entry** (`JOURNAL-FORMAT.md`): built / how-to-verify + real

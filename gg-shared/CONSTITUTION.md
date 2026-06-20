@@ -40,6 +40,11 @@ mid-work, whether you raised it or the user did** — that's not a signal to cut
   (`A-NN` in `ASSUMPTIONS.md`): a default taken on the record, reversible by a note. (High-stakes
   decisions are grilled, never defaulted — see "Defaults and assumptions".)
 
+Those three record a decision **not yet made**. Its past-tense sibling: when instead you've just
+**observed** how the running product behaves — a result, a surprise, a measurement — that observation is
+recorded as a **finding** (`F-NN` in `.gg/FINDINGS.md`; `CAPTURE.md`), a fact on the record, so the
+learning never dissolves into `PROGRESS`/`JOURNAL` prose. See "Findings" below.
+
 Capturing new scope mid-work **never** uses Claude's native memory, and any change to the canonical
 plan is confirmed with the user first. The thread is never dropped silently. Deferring = lowering the
 final product's quality (FORBIDDEN). Sequencing = same product, different order/phase (ALLOWED).
@@ -68,6 +73,24 @@ questions and records every other choice as a numbered **assumption** (`A-NN` in
   recorded, up front). It is the opposite of claiming an acceptance criterion is met *without
   evidence* — that is still forbidden (see "Each phase's contract"). Deciding to build X by default
   is fine; asserting X works without running it is not.
+
+## Findings — observations on the record
+
+The moves above record a decision **not yet made**; a **finding** records an observation **already
+made** — what the running product actually *did* when you ran or tried it. It is the fourth memory the
+`.gg/` folder keeps, and it exists because experimental and exploratory work *learns by observing*: a
+result, a surprise, a measurement, a "huh, that's not what I expected" has to land somewhere durable, not
+dissolve into an oversized `PROGRESS` or a duplicate `JOURNAL`.
+
+- **An observation is recorded as `F-NN` in `.gg/FINDINGS.md`** (`FINDINGS-FORMAT.md`), the moment it's
+  seen, by whoever saw it — the agent mid-build or the user at a try-it. `CAPTURE.md` routes a
+  past-tense observation here; a future-tense idea / change / bug still goes to `BACKLOG.md ## New`.
+- **A finding is a fact, not a decision.** It never licenses a cut and is never the next step on its
+  own; if it should change the plan it spawns a `B-NN` (backlog) or an `R-NN` (vision revision), linked
+  from its **Leads to** — so a generative result (an observation that points at the next thing to try) is
+  queued, never recorded-and-dropped.
+- **It is not an assumption.** An `A-NN` decides *what to build* before the fact; an `F-NN` reports
+  *what happened* after running. Keeping them apart keeps each honest.
 
 ## Boundaries vs. cuts
 
@@ -156,7 +179,8 @@ phase does not close without ALL of this:
 1. **A vertical, end-to-end product** — phase 0 is the complete product runnable end to end (the
    foundational spine built first); phase N coherently folds in its queued backlog items.
 2. **A concrete, runnable deliverable** with a **"How to see it"** (a real command or steps), built
-   at the phase's last task — **this is the only point the user tries the product**.
+   at the phase's last task — **the decisive try-it point**; the earlier looks happen at the phase's
+   **shows** (see "Tasks").
 3. **Acceptance criteria** (defined in the SPEC during `/gg:discover`, before building).
 4. **A complete, green test suite** — the full suite pinned in `.gg/RUNBOOK.md` — covering the
    criteria + regression, with a **recorded baseline**. Real coverage, not decorative. Each
@@ -165,14 +189,21 @@ phase does not close without ALL of this:
 5. **A phase-close `JOURNAL.md` entry** so the next clean session (and the next phase's discover) can
    continue without you explaining it.
 
-Between tasks, *you* run whatever tests and checks you need to close each task — but the **user** is
-not asked to try anything until the phase's last task. **There is no separate audit**: the green
+Between tasks, *you* run whatever tests and checks you need to close each task. The **user** tries the
+product at the phase's **shows** and at the phase close — not task by task: a show surfaces a wrong
+target early, the close is the decisive judgment. A show is a *look*, not a re-litigation of every task;
+reactions are captured (`CAPTURE.md`), never patched inline. **There is no separate audit**: the green
 suite, the runnable deliverable, and the self-accounting gate below carry verification.
 
 ## Tasks (partition of a phase's build)
 
 **Tasks** split *only* the `/gg:next-task` work of a phase, so each fits one fresh session. A task
-has **no** validatable deliverable and **no** tests of its own — those live at the phase level.
+has **no** validatable deliverable and **no** tests of its own — those live at the phase level. The one
+exception is a **`show`** task: it carries a thin runnable slice + a "How to see it" (a designed look at
+the running product), but still no full suite — that stays at the phase level. `/gg:discover` places the
+shows where the felt character changes; the **first show is mandatory when the phase has a `[discovered]`
+clause**, anchored to the riskiest one and ordered as early as the foundation allows — and a phase with
+**no** `[discovered]` clause needs no forced show (its `AC-N` plus the phase-close try-it bind it).
 `/gg:next-task` does **exactly one task per run**, then checkpoints to `PROGRESS.md` and stops.
 `/gg:ideate`, `/gg:discover`, `/gg:orient`, `/gg:capture`, and `/gg:quick` are not split into tasks.
 
@@ -212,4 +243,7 @@ default, or solved with a shortcut. For each: turn it into a task/note, log it a
 justify it with the test above. **Nothing closes with uncounted cuts.** Since there is no independent
 audit, this gate is the primary cut-defense — run it honestly. At a **phase close**, also ask the
 VISION-conformance question: *does the product now meet the VISION's "done and perfect", or what
-remains?* — so "are we done?" stays answerable across the loop.
+remains?* — so "are we done?" stays answerable across the loop. A `[declared]` clause is answered by its
+`AC-N` evidence; a **`[discovered]`** clause (`VISION-FORMAT.md`) is answered only by a cited `F-NN` — an
+actual try-it observation, never inferred from a green suite. A `[discovered]` clause nobody has looked
+at is *not yet met*, and saying so is the honest close, not the cut.
