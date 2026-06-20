@@ -73,6 +73,15 @@ run, and only the author's eye on the running result can judge whether it's righ
   agent shows a concrete contrast (a sketch, a vivid end-state, a small real sample) and records the
   user's *reaction* instead of an abstract menu pick — and names the cost of the lean option out loud
   before the user chooses, so an austere bar is never picked blind.
+- **`/gg:quick` — a seventh command (the express lane), and `/gg:capture --next`.** For one small change
+  you've already decided to do now (a phase just shipped, nothing else queued), `/gg:quick` records the
+  single item straight into `.gg/BACKLOG.md ## Next phase` with a stable `B-NN` — skipping
+  `/gg:refine-backlog`'s triage, because choosing to run `/gg:quick` *is* the triage — then runs
+  `/gg:discover` to design just that item as its own micro-phase and hands to `/gg:next-task`. It does
+  **not** skip the bar (recorded, designed, tested like any phase); in any other state it degrades to a
+  plain `/gg:capture` so the idea is never lost. `/gg:capture --next` is the lighter sibling — it queues an
+  item straight to `## Next phase` (self-triage to "do next") **without** designing it, and with no
+  emptiness requirement, so several jots can assemble a multi-item next phase.
 
 ## 2.4.1
 

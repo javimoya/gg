@@ -7,7 +7,7 @@ frontmatter parses, and that the invariants we rely on (no auto-invocation, an i
 arg-hints where a command takes an argument, and no forked context) are present. It does NOT model
 project state — there is none by design (it lives in each project's .gg/).
 
-Exit non-zero on the first failure so CI fails loudly.
+Exit non-zero if any check fails (every problem is listed first) so CI fails loudly.
 """
 import sys
 from pathlib import Path
@@ -28,19 +28,23 @@ WANT_ARG_HINT = {"next-task.md", "capture.md", "quick.md", "orient.md", "refine-
 
 
 def frontmatter(path: Path) -> dict:
-    text = path.read_text()
-    if not text.startswith("---"):
+    """Parse a command's YAML frontmatter block.
+
+    The block is the YAML between an opening line that is exactly ``---`` and the next
+    line that is exactly ``---``. Matching whole *lines* (not a ``\\n---`` prefix) is what
+    keeps a literal ``---`` inside a value, a longer rule like ``----``, or a horizontal
+    rule in the body from truncating the block and silently dropping keys.
+    """
+    lines = path.read_text().splitlines()
+    if not lines or lines[0].rstrip() != "---":
         raise ValueError("no frontmatter block")
-    # Split only on the closing delimiter line, so a literal "---" inside a frontmatter
-    # value (or a horizontal rule in the body) can't truncate the block and drop keys.
-    end = text.find("\n---", len("---"))
-    if end == -1:
-        raise ValueError("unterminated frontmatter block")
-    fm = text[len("---"):end]
-    data = yaml.safe_load(fm)
-    if not isinstance(data, dict):
-        raise ValueError("frontmatter is not a mapping")
-    return data
+    for i in range(1, len(lines)):
+        if lines[i].rstrip() == "---":
+            data = yaml.safe_load("\n".join(lines[1:i]))
+            if not isinstance(data, dict):
+                raise ValueError("frontmatter is not a mapping")
+            return data
+    raise ValueError("unterminated frontmatter block")
 
 
 def main() -> int:
@@ -70,8 +74,11 @@ def main() -> int:
             errors.append(f"{name}: expected model: inherit, got {fm.get('model')!r}")
         if fm.get("disable-model-invocation") is not True:
             errors.append(f"{name}: must set disable-model-invocation: true")
-        if name in WANT_ARG_HINT and not fm.get("argument-hint"):
+        has_arg_hint = bool(fm.get("argument-hint"))
+        if name in WANT_ARG_HINT and not has_arg_hint:
             errors.append(f"{name}: expected an argument-hint")
+        if name not in WANT_ARG_HINT and has_arg_hint:
+            errors.append(f"{name}: unexpected argument-hint (not in WANT_ARG_HINT)")
 
         # No gg command runs in a forked context.
         if fm.get("context") == "fork":

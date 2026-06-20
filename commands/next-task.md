@@ -31,8 +31,8 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
 - Read `.gg/PROGRESS.md` (the task board — which task is next), `.gg/SPEC.md` (acceptance criteria),
   `.gg/BLUEPRINT.md` (the design), `.gg/ASSUMPTIONS.md`, `.gg/RUNBOOK.md`, `.gg/CONTEXT.md`, the ADRs,
   the `stage`, and the `kind` (`build` or `research` — a research phase closes on a `reported`
-  measurement, §6). For a research phase, also read `.gg/FINDINGS.md` (prior observations the search
-  builds on).
+  measurement, §6). For a research phase, also read `.gg/FINDINGS.md` (if present — prior observations
+  the search builds on; it's created lazily, so a research phase's first task may run before it exists).
 
 ## 2. Durable start (first run of the phase only)
 If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):

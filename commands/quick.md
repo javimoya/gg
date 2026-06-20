@@ -44,16 +44,21 @@ Any other state **degrades to a plain `/gg:capture`** (`CAPTURE.md`) so the idea
 Apply `CAPTURE.md`'s jot + light reconcile, with **one deviation** — the item (or, if the reconcile folds
 it into an existing **`## New`** item, that survivor keeping its `B-NN`) lands in **`## Next phase`**, not
 `## New`. (A fold that matches an already-**deferred** item — `## Later` / `## Future` — is surfaced and
-left where triage put it; promoting it is `/gg:refine-backlog`'s call, per `BACKLOG-FORMAT.md`.) The
+left where triage put it; promoting it is `/gg:refine-backlog`'s call, per `BACKLOG-FORMAT.md`. In that
+case **`## Next phase` stays empty — there is nothing new to design: stop here and route to
+`/gg:refine-backlog` instead of running §2**, like the degrade endings in Close.) The
 input is `$ARGUMENTS` if passed, else the idea the user just raised. Create `.gg/BACKLOG.md` with a
 `# Backlog — {name}` header and both `## New` + `## Next phase` sections if it doesn't exist yet (the common
 right-after-phase-0-ship case). Field shape, the `[bug]` prefix, the next stable `B-NN`, and `reverses: A-NN`
 are all per `BACKLOG-FORMAT.md` / `CAPTURE.md` — unchanged. Because §0's precondition kept `## Next phase`
-empty, it ends holding **exactly this one item**; that placement *is* the skip of `/gg:refine-backlog` (the
-item is already triaged to "do next").
+empty, in the normal case it ends holding **exactly this one item**; that placement *is* the skip of
+`/gg:refine-backlog` (the item is already triaged to "do next"). The one exception is the deferred-fold
+branch above — it queues nothing and stops at §1.
 
 ## 2. Design it now — run `/gg:discover` for the one-item micro-phase
-Run the **`/gg:discover` protocol unchanged** (`discover.md`). With `state: shipped` and `## Next phase`
+Run the **`/gg:discover` protocol unchanged** (`discover.md`) — **unless §1 hit the deferred-fold branch
+and left `## Next phase` empty, in which case there is nothing to design: stop and route to
+`/gg:refine-backlog`.** With `state: shipped` and `## Next phase`
 holding exactly your item, discover opens it as the next phase and designs **only it** — depth scales
 (`discover.md` §3): a bug or tweak gets a one-line BLUEPRINT note ("… — no design change"), a new
 entity/field/component gets the full detail, and an `[exp]` item opens a one-item **`research`** phase
@@ -74,3 +79,7 @@ what actually happened:
   set}."*
 - **Routed away, nothing recorded** (no `.gg/`, `visioning`, `scoping`): *"No product to change here —
   {route to `/gg:ideate`, or raise it in the current grilling}."*
+- **Folded into a deferred item** (the reconcile matched a `## Later` / `## Future` item, so `## Next
+  phase` stayed empty and §2 was skipped): *"{B-NN} already exists in {Later | Future}; I surfaced it but
+  left it there — promoting it is `/gg:refine-backlog`'s call. Nothing to design; run `/gg:refine-backlog
+  --later` / `--future` to promote it."*

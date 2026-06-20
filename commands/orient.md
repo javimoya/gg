@@ -78,7 +78,7 @@ This is the one "audit" gg has — and it audits the **record's integrity**, nev
   `ASSUMPTIONS.md`; an *applied* backlog item with `reverses: A-NN` whose `A-NN` never moved to
   `ASSUMPTIONS.md ## Overridden`; a **duplicate `A-NN`** across `## Open` and `## Overridden` (ids are
   stable and never reused — `ASSUMPTIONS-FORMAT.md`).
-- **Duplicated facts that drifted** (`BLUEPRINT-FORMAT.md` → "link, don't duplicate"): a fact restated
+- **Duplicated facts that drifted** (`BLUEPRINT-FORMAT.md` → "Link, don't duplicate"): a fact restated
   in the BLUEPRINT that now contradicts its source (`RUNBOOK.md` / `SPEC.md` / an ADR).
 - **Acceptance without evidence**: an `AC-N` recorded met without a cited real result (`confirmed`
   demands an observed result, never "should work"); a **`reported`** `AC-N` recorded closed with no cited
