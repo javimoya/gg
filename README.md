@@ -102,6 +102,95 @@ A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the who
 
 ---
 
+## What it looks like on real projects
+
+The loop never changes — `ideate → discover → next-task`, then `capture / refine-backlog / quick` to refine. What changes is how the **dials** turn: how deep the grilling goes, how many phases there are, whether a phase *builds* or *searches*, and whether you're in `dev` or `launched`. Four sketches across very different shapes (the projects are invented; the shapes are real).
+
+### `sift` — a CLI that files your Downloads by rules you write
+
+**Small and already-decided.** There's not much to discover here, and you don't want a spec marathon for a 300-line tool.
+
+```
+/gg:ideate            # idea: a CLI that files ~/Downloads into folders by rules I write
+/gg:discover          # phase 0 = the whole tool: one BLUEPRINT (rule schema + dry-run model),
+                      #   a SPEC, ~5 tasks, one show at the dry-run output
+/gg:next-task   (×5)  # spine first (the rule engine), then the show, then --apply and polish
+#  → ship: a tool you actually run
+
+/gg:capture "support an ~/.siftrc so rules live in one place"   # lands in the backlog for later
+/gg:quick   "files with no extension get skipped — fix"         # one decided change:
+                      #   records + designs + builds it as a micro-phase, no triage
+```
+
+Here **phase 0 *is* the product**, and `/gg:quick` is your everyday lane. The ceremony stays proportional — a short grilling, a handful of tasks, one show.
+
+### `Dispatchly` — multi-tenant scheduling & dispatch for field-service crews
+
+**Gigantic and multi-quarter.** You can't (and shouldn't) build the whole feature set in phase 0. You build a *spine*, then steer for months.
+
+```
+/gg:ideate            # multi-tenant scheduling + dispatch for HVAC / plumbing crews
+/gg:discover          # phase 0 settles only the LOAD-BEARING foundation: the tenancy model,
+                      #   the data model, the auth + dispatch seams — then drives ONE thin vertical
+                      #   (create job → assign tech → tech sees it) to an early show. Not every feature.
+/gg:next-task  (×N)   # phase 0 ships a real, usable spine — not a stub, not the whole backlog
+
+#  → then, for months, you steer with the backlog:
+/gg:capture  ...           # jot relentlessly as the team uses it
+/gg:refine-backlog         # one report → a coherent phase: "recurring jobs + SMS reminders"
+/gg:discover / next-task   # BLUEPRINT frozen; each phase APPENDS its design impact — extend, never migrate
+#  … phases 1‥12: billing, offline mobile mode, route optimization, audit log, SSO …
+
+/gg:orient            # the day the first crew goes live, flip dev → launched —
+                      #   now migration & backward-compat questions become real, and discovery asks them
+```
+
+Phase 0 buys a **working spine, not the feature set.** A frozen-then-extended BLUEPRINT and a flat `.gg/` keep a twelve-phase product legible; `refine-backlog` is the steering wheel; the `dev → launched` flip changes what discovery even asks.
+
+### `Warrens` — a roguelike dungeon generator whose levels must *feel* "tense but fair"
+
+**Open-ended.** The character can't be written down up front; you discover it by looking. gg handles this without dropping the no-cuts bar.
+
+```
+/gg:ideate            # a procedural dungeon generator; levels should feel tense but fair
+/gg:discover          # phase 0 settles the irreversible foundation (the tile/graph model) and designs an
+                      #   EXTENSION POINT — a registry of room archetypes — because the set that feels good
+                      #   isn't knowable yet. Names the riskiest open question ("does the tension read as
+                      #   fair, or cheap?") and drives a thin vertical to an EARLY, walkable show.
+/gg:next-task         # the first show lands as early as the foundation allows — because "fun" is only
+                      #   judgeable by playing, you LOOK here, not at the end
+
+#  → you play, you capture: "rooms feel samey", "loot pacing is off"
+/gg:refine-backlog    # recognizes an item isn't a build — it's an open question → a RESEARCH phase
+/gg:discover          # designs the SEARCH, not a feature: the experiment, the harness, the signal.
+                      #   Acceptance is REPORTED — it can close honestly even on "mix B felt cheap"
+/gg:next-task         # runs it, records a FINDING (F-NN); a result can even correct the VISION's
+                      #   target via a traceable R-NN — never a quiet scope cut
+```
+
+You can't spec "fun," so phase 0 settles **only the foundation + an extension point** and races to an early look. From there the loop **alternates build and research phases**, and the destination itself is correctable from evidence.
+
+### `Lookout` — semantic search over a company's internal docs
+
+**Research-first.** Already shipped, but retrieval quality stalled. You don't guess your way out — you run a search and close on what you *learned*.
+
+```
+#  Lookout is live, but precision plateaued. Investigate instead of cargo-culting a fix.
+/gg:capture "search misses obvious docs — precision@5 feels ~0.6"
+/gg:refine-backlog    # this isn't a feature to build — it's an open question → a RESEARCH phase
+/gg:discover          # designs the search: hypothesis ("a reranker clears 0.8"), the experiment,
+                      #   the eval harness, the signal (precision@5 on a labeled set). Acceptance = REPORTED
+/gg:next-task         # runs the experiment, writes the FINDING:
+                      #   "reranking → 0.74; the real bottleneck is chunking" — a near-negative, honestly closed
+#  → the finding redirects the next phase (fix chunking) and corrects the VISION's target via R-NN
+```
+
+gg treats **"we don't know yet" as a first-class phase**, not a detour. A research phase closes on what it *learned* — yes, no, and inconclusive are all honest — records it as a citable finding, and can move the goalposts *with a paper trail* instead of quietly.
+
+> **The loop is the same every time.** What differs is the dials: a one-show phase 0 for a CLI vs. a load-bearing spine for a SaaS; a handful of tasks vs. a dozen phases; `dev` vs. `launched`; a `build` phase vs. a `research` one. You learn the seven commands once and they fit a 300-line script and a multi-quarter platform alike.
+
+---
+
 ## When you can run each command
 
 `gg` is strict about ordering: each command **refuses out of turn** and points you to the right one.
