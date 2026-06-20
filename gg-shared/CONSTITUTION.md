@@ -90,7 +90,7 @@ dissolve into an oversized `PROGRESS` or a duplicate `JOURNAL`.
   including one that revises the VISION), linked from its **Leads to** — so a generative result is queued,
   never recorded-and-dropped: an observation pointing at the next **experiment** to run is queued as a
   `B-NN` marked `[exp]` (`BACKLOG-FORMAT.md`); one contradicting a "done and perfect" target spawns a
-  `B-NN` that, when applied, becomes an `R-NN` revision (correction-from-evidence, above).
+  `B-NN` that, when applied, becomes an `R-NN` revision (correction-from-evidence, below).
 - **A finding closes what only running can settle.** A `[discovered]` "done and perfect" clause
   (`VISION-FORMAT.md`) and a `reported` acceptance criterion (`SPEC-FORMAT.md`) are both closed by a
   **cited `F-NN`** — the felt target and the measured answer alike close on an observation, never on

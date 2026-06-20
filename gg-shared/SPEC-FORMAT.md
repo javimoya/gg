@@ -22,9 +22,13 @@ phase that introduced it. IDs are stable for the life of the project.}
     `reported`, the experiment to run and the `F-NN` finding that records its measured result}
 - **AC-2** (phase 0) — …
 
+## Shows
+{The phase's look points — each a watchable slice the user reacts to, with its one-line "How to see it"
+(`type: show` in `PROGRESS.md`; placement rule in `/gg:discover` §4). The single home for that text, read
+by `/gg:next-task`. Present only when the phase has show tasks; one bullet per show.}
+- {the show} — {its one-line "How to see it"}
+
 ## Deliverable + "How to see it"
-- **Shows**: {the look points + their one-line "How to see it" — each a watchable slice (`kind: show`;
-  placement rule in `/gg:discover` §4)}
 - **Deliverable**: {the runnable/observable product the user tries at the phase close — the decisive try-it}
 - **How to see it**: {the real command or steps the user runs, and what to observe}
 

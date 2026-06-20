@@ -19,7 +19,7 @@ Terse is fine; unambiguous is mandatory.
 - **Owned paths**: {files this phase created or changed — grows as tasks proceed}
 
 ## Task board
-| # | task | kind | status |
+| # | task | type | status |
 |---|------|------|--------|
 | 1 | {name} | — | done |
 | 2 | {name} | — | done |
@@ -40,7 +40,7 @@ Terse is fine; unambiguous is mandatory.
 
 - **The task board is the source of truth for "what's left in this phase."** One row per task,
   status ∈ `pending` / `in-progress` / `done`. It mirrors the plan `/gg:discover` produced.
-- **`kind: show` marks a try-it task** (`/gg:discover` sets it; placement rule in `/gg:discover` §4). A
+- **`type: show` marks a try-it task** (`/gg:discover` sets it; placement rule in `/gg:discover` §4). A
   `show` builds a thin runnable slice;
   its one-line "How to see it" lives in the SPEC's `## Shows` entry (`SPEC-FORMAT.md`), not on the board,
   and it ends with a *look-at-this* stop (`/gg:next-task`); a normal build task is `—` and has no

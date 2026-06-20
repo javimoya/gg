@@ -67,8 +67,8 @@ run, and only the author's eye on the running result can judge whether it's righ
   `[discovered]` clause**, anchored to the riskiest one, and **drives task ordering** so it lands as early
   as the non-retrofittable foundation allows (a thin vertical first, then thickened to full bar); its
   placement is surfaced for the user's veto at the `/gg:discover` sign-off. The user's try-it points are
-  the phase's shows and the phase close. `PROGRESS-FORMAT.md` carries a `kind` column; `SPEC-FORMAT.md` a
-  shows entry.
+  the phase's shows and the phase close. `PROGRESS-FORMAT.md` carries a task `type` column; `SPEC-FORMAT.md`
+  a `## Shows` entry.
 - **Grilling "elicit by reacting" (`GRILLING.md`).** For a subjective / `[discovered]` dimension, the
   agent shows a concrete contrast (a sketch, a vivid end-state, a small real sample) and records the
   user's *reaction* instead of an abstract menu pick — and names the cost of the lean option out loud

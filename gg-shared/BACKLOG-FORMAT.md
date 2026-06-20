@@ -19,7 +19,7 @@ refinement phase; and `/gg:quick` (the express lane) **records a single item str
 ```text
 new ──(refine-backlog)──► next-phase ──(discover designs it; phase ships)──► applied   (→ ARCHIVE)
  │                        ▲
- │      (quick) ──────────┘  records a single item straight to next-phase (the express lane)
+ │   (quick / --next) ────┘  record straight to next-phase: express lane (quick) / self-triage (capture --next)
  ├──(refine-backlog)──► later         (on the radar; revisit with --later)
  ├──(refine-backlog)──► future        (someday / maybe; revisit with --future)
  └──(refine-backlog)──► discarded                                          (→ ARCHIVE, with a reason)
@@ -83,13 +83,17 @@ archive's `## Applied`. Same `###` block shape as New.}
 ## Rules
 
 - **State = section.** A new item is triaged to `## Next phase`, `## Later`, or `## Future`, or is
-  discarded (archived). The agent's inline jot and a bare `/gg:capture` only ever write `## New`; only
-  `/gg:refine-backlog` moves items between sections (and to the archive's `## Discarded`); only a phase
-  close (`/gg:next-task` §6) moves `## Next phase` items to the archive's `## Applied`. **Two commands
-  write `## Next phase` directly — the self-triage to "do next":** `/gg:quick` records its single express
-  item there (skipping `## New`) and designs it immediately, only when `## Next phase` is otherwise empty
-  so the item is the whole micro-phase; and `/gg:capture --next` records there too but does **not** design
-  — with no emptiness requirement, so it can assemble a multi-item next phase. Both skip
+  discarded (archived). The agent's inline jot and a bare `/gg:capture` only ever write `## New`;
+  `/gg:refine-backlog` is the general mover of items between sections (and to the archive's
+  `## Discarded`); only a phase close (`/gg:next-task` §6) moves `## Next phase` items to the archive's
+  `## Applied`. **Two commands also write `## Next phase` directly — the self-triage to "do next":**
+  `/gg:quick` records its single express item there and designs it immediately, only when `## Next phase`
+  is otherwise empty so the item is the whole micro-phase; and `/gg:capture --next` records there too but
+  does **not** design — with no emptiness requirement, so it can assemble a multi-item next phase. For
+  both, a fresh item lands straight in `## Next phase` (it never waits in `## New`); and if the light
+  reconcile **folds** the new wording into an existing `## New` item, that surviving item is **promoted
+  out of `## New` into `## Next phase`** (keeping its `B-NN`) rather than left stranded — that promotion is
+  part of the same direct write, not a general section move. Both skip
   `/gg:refine-backlog`.
 - **Stable, never-reused `B-NN` ids.** Every item carries a `B-NN` id, assigned at `/gg:capture`. The id
   is **stable**: it travels with the item through every section and into the archive, and **never

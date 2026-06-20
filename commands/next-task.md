@@ -46,7 +46,7 @@ If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):
 ## 3. Implement exactly the next task to the bar
 - Build **only the next task** complete and robust; cover the edge cases; **write tests** mapping to
   the acceptance criteria.
-- **If the task's `kind` is `show`** (`PROGRESS-FORMAT.md`): its definition of done is *it runs and is
+- **If the task's `type` is `show`** (`PROGRESS-FORMAT.md`): its definition of done is *it runs and is
   watchable* via its "How to see it" (the SPEC's `## Shows` entry, `SPEC-FORMAT.md`) — built at full bar
   (thin but real spine, **no stub**). It
   carries no full suite (that stays phase-level), but the slice itself must actually work; the look

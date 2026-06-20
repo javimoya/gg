@@ -102,7 +102,7 @@ One question at a time, with your recommended answer, exploring the code when th
   each subsystem built to full breadth first: only what genuinely **can't be retrofitted** — the
   load-bearing decisions later work can't be re-sequenced onto — must precede the first show; everything
   else is thickened after it (below).
-  - **Place the shows** (`kind: show`, `PROGRESS-FORMAT.md`) — a task that builds a watchable slice and
+  - **Place the shows** (`type: show`, `PROGRESS-FORMAT.md`) — a task that builds a watchable slice and
     stops for the user to look. A show goes **where the felt character meaningfully changes** — where a
     `[discovered]` clause (`VISION-FORMAT.md`) becomes more judgeable — never on a task count.
   - **The first show is mandatory iff the phase has a `[discovered]` clause in play**, and it is
