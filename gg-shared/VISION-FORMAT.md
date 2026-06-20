@@ -1,7 +1,8 @@
 # VISION.md format
 
 `.gg/VISION.md` is the project's north star, produced by `/gg:ideate`. It states the complete
-destination — not an MVP. Stable; changes rarely (when the product's scope genuinely grows).
+destination — not an MVP. Stable; it changes rarely — when scope genuinely grows, or when evidence
+corrects the target (a recorded `R-NN`, below).
 
 ## Structure
 
@@ -39,7 +40,22 @@ refinement phases close toward. Write it as clauses, and tag each by how it can 
 whose data must survive. Default `dev`; flipped only by `/gg:orient`.}
 
 ## Unknowns / risks
-{What we don't know yet and will have to discover.}
+{What we don't know yet and will have to discover. An open/empirical project names its **central open
+question** here — the one the build exists to answer — usually mirrored by a `[discovered]` "done and
+perfect" clause and pursued in a `research` phase (`ROADMAP-FORMAT.md`).}
+
+## Revisions
+{Corrections to the destination forced by evidence — **empty until** a finding contradicts a clause
+above. One `R-NN` block each, newest last; append-only. A revision **edits the clause in place above**
+and records the change here, citing the `F-NN` that triggered it. This is the *only* sanctioned way the
+destination changes (`CONSTITUTION.md` → "Boundaries vs. cuts" → correction-from-evidence) — never a
+silent edit.}
+
+### R-01 — {short title}
+- **Revised**: {YYYY-MM-DD} — {the clause / section changed}
+- **Was**: {the old wording}
+- **Now**: {the new wording — set by the evidence, not by what was hard to build}
+- **Trigger**: `F-NN` — {the observed result that proved the old target wrong}
 ```
 
 ## Rules
@@ -65,6 +81,15 @@ whose data must survive. Default `dev`; flipped only by `/gg:orient`.}
 - **Dev-stage simplifications are assumptions, not boundaries.** "No migrations / no backward-compat"
   while `dev` is a reversible default recorded in `ASSUMPTIONS.md` and consumed at launch — it does
   **not** belong in "It is not" (that's for permanent product exclusions).
+- **The destination is corrected only by a recorded `R-NN` — never silently.** VISION is stable, but a
+  phase can prove a "done and perfect" clause *wrong about reality*. When a finding (`F-NN`,
+  `FINDINGS-FORMAT.md`) contradicts a clause, it spawns a `B-NN` (the single intake — `CONSTITUTION.md` →
+  "Findings"); applying that item **edits the clause in place** and logs an append-only `R-NN` in
+  `## Revisions` that **cites the triggering `F-NN`**. The decisive guard (`CONSTITUTION.md` → "Boundaries
+  vs. cuts" → **correction-from-evidence**): a revision is legitimate only when *evidence proved the
+  target wrong*, never when *the target was hard to build* — the latter is a forbidden cut. A revision
+  with no citable `F-NN`, or whose `F-NN` doesn't contradict the clause, is a cut in disguise
+  (`/gg:orient --audit` flags it). `R-NN` ids are stable and never reused.
 - **Stable.** If something big changes here, the plan and the BLUEPRINT almost certainly need
   revisiting — recorded as a new appended `## Phase N` section in the BLUEPRINT, never an edit to its
   frozen phase-0 design (`BLUEPRINT-FORMAT.md`).

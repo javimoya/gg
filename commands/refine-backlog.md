@@ -50,9 +50,15 @@ If `.gg/BACKLOG.md` is missing, or the section this run reports is empty (`## Ne
 ## 2. Build the triage report (one report — not a walk)
 Read the whole reported section and present **one report**, newest first, one entry per item — so the
 user sees the full set at once instead of being asked one at a time:
-- **Each entry**: its `B-NN`; the title (prefixed `[bug] ` if it's a defect in shipped behavior); who
-  raised it (`user` / `agent`) and when; the idea in the user's words; what it `Touches`; any `Relates`
-  / `reverses: A-NN`.
+- **Each entry**: its `B-NN`; the title (prefixed `[bug] ` for a shipped-behavior defect, `[exp] ` for
+  the next experiment to run); who raised it (`user` / `agent`) and when; the idea in the user's words;
+  what it `Touches`; any `Relates` / `reverses: A-NN`; and if it cites an `F-NN` that contradicts a "done
+  and perfect" clause, flag it as a **correction-from-evidence** the next `/gg:discover` will apply to the
+  VISION (`CONSTITUTION.md` → "Boundaries vs. cuts").
+- **`[exp]` items map onto the normal dispositions** — no separate science vocabulary: next phase = run
+  it (a `## Next phase` of `[exp]` items / an open question opens a **`research`** phase at
+  `/gg:discover`, `ROADMAP-FORMAT.md`); later / future = defer the line; discard = abandon it (a recorded
+  decision, with the reason).
 - **Your recommended disposition + one line of why** — a report without a recommendation per item is
   work pushed back onto the user (`GRILLING.md`). From `## New`: next phase / later / future / discard.
   From `## Later`: promote to next phase / keep in later / push to future / discard. From `## Future`:

@@ -29,6 +29,7 @@ the next phase reads:
   | AC | evidence type | check run | observed result | status |
   |----|---------------|-----------|-----------------|--------|
   | AC-1 | automated | {test} | {what you saw} | confirmed |
+  | AC-7 | reported | {the experiment} | {the measured answer} | reported ({yes\|no\|inconclusive}, cites `F-NN`) |
 - **Tests**: baseline {N pass / M fail at phase start} → close {N pass / 0 fail} ({the RUNBOOK suite})
 - **Items applied**: {which queued backlog items shipped, now in `BACKLOG-ARCHIVE.md ## Applied`} (— for phase 0)
 - **VISION conformance**: {does the product now meet "done and perfect", or what remains}
@@ -44,7 +45,9 @@ the next phase reads:
   read-only report writes nothing here — only its stage flip, a working action, gets an entry.
 - **The phase-close entry is the hand-off and is self-sufficient.** "How to verify" cites the REAL
   observed result (never "should work"); every `AC-N` is `confirmed` only with cited evidence; the
-  test line is baseline→close with the RUNBOOK command. An `AC` you can only infer is NOT met.
+  test line is baseline→close with the RUNBOOK command. An `AC` you can only infer is NOT met. A
+  `research` phase's **`reported`** `AC-N` (`SPEC-FORMAT.md`) is recorded `reported ({yes|no|inconclusive})`
+  with its cited `F-NN`, never `confirmed` — a negative answer is an honest, complete close.
 - **`Next` mirrors the breadcrumb** so the journal and the hand-off never disagree.
 - **Link, don't duplicate.** Point to the SPEC/BLUEPRINT/ADR that holds the detail.
 - **Created lazily** at the first close, with the `# Journal — {name}` header.

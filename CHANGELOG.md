@@ -3,6 +3,46 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.6.0
+
+**Research phases and an empirically-correctable target** — for a project whose specification is the
+*output* of the work rather than its input: where what to build next emerges from the last result, and
+the destination itself can be corrected by evidence, all without giving up the no-cuts / zero-tech-debt
+bar.
+
+### Added
+- **`kind: build | research` — a per-phase axis (`ROADMAP-FORMAT.md`).** A phase is `build` (capability
+  to a known spec) or `research` (*a search*: a question/hypothesis → an experiment → an observed result
+  → the next step decided from it). `/gg:discover` sets `kind` from the queued set — a `[exp]`
+  experiments / open-question set opens a `research` phase — surfaced for the user's veto at sign-off. A
+  research phase uses the same `scoping → building → shipped` states (no new state, no new command); phase
+  0 is always `build`, laying the foundation a later search runs on.
+- **`reported` — a SPEC evidence type for an open empirical question (`SPEC-FORMAT.md`).** A `reported`
+  `AC-N` is an open question whose answer isn't known at spec time, **closed by a cited `F-NN`** —
+  `yes` / `no` / `inconclusive` are all honest, green closes; a negative result is the finding, not a
+  failure. Four guardrails keep it from becoming a cut: a measure-question never a disguised capability,
+  real reproduced evidence (never "should work"), `research` phases only, and the answer is the
+  deliverable rather than a pre-written target.
+- **`R-NN` vision revisions — the destination corrected from evidence (`VISION-FORMAT.md`).** A finding
+  that contradicts a "done and perfect" clause flows through the single `B-NN` intake and, when applied by
+  `/gg:discover`, **edits the clause in place and logs an append-only `R-NN`** in a VISION `## Revisions`
+  ledger citing the triggering `F-NN`, cascading to the BLUEPRINT. The constitution gains a **third**
+  "Boundaries vs. cuts" category — **correction-from-evidence** — with a decisive test: *evidence proved
+  the target wrong* (allowed) versus *it was hard to build* (a forbidden cut). `/gg:orient --audit` flags
+  an `R-NN` with no supporting `F-NN`.
+- **`[exp]` — a backlog marker for the next experiment to run (`BACKLOG-FORMAT.md`).** A research action
+  gets a distinct, non-droppable home beside `[bug]`, reusing the whole `capture → refine-backlog →
+  discover` spine; it maps onto the normal dispositions (next phase = run it, discard = abandon the line).
+
+### Changed
+- **The BLUEPRINT rule reads "whole means settled, not always enumerated" (`BLUEPRINT-FORMAT.md`).** The
+  foundation and the seams are settled once; where a property space is genuinely not-yet-knowable, the
+  model carries an **extension point** — an open map / registry / plug-point — so a discovered property
+  extends it in place without a migration. A closed domain is enumerated; an open one carries extension
+  points, and that *is* its honest complete design. An extension point is reserved for what truly can't be
+  enumerated — an open map used to dodge a knowable schema is the same dodge as a `[discovered]` tag on a
+  checkable clause.
+
 ## 2.5.0
 
 Support for **open-ended / experimental** projects — where the target is learned by *seeing* the product

@@ -1,10 +1,12 @@
 # BLUEPRINT.md format
 
 `.gg/BLUEPRINT.md` is the **whole-product design**, designed by `/gg:discover` in phase 0. It is the
-artifact that kills the layering bug: because the data model and architecture are decided **once, up
-front**, later phases build on a coherent design instead of re-opening a structure an earlier phase
-froze (and then writing migrations to protect it). Each phase's SPEC is a *slice* of this blueprint and
-never reduplicates it.
+artifact that kills the layering bug: the foundation — the data model and the architecture — is **settled
+once, up front**, so later phases build on a coherent design instead of re-opening a structure an earlier
+phase froze (and then writing migrations to protect it). Settling it whole does **not** mean enumerating
+what can't yet be known: where a property space is genuinely open, the model is designed to **extend**
+(below), not faked as a fixed list. Each phase's SPEC is a *slice* of this blueprint and never
+reduplicates it.
 
 After phase 0 the blueprint is **append-only**: the phase-0 design is **frozen** — never edited — and
 **every refinement phase appends a dated `## Phase N` section**, newest last, so the design ledger has
@@ -25,9 +27,12 @@ design is the phase-0 content plus the appended sections read in order (the late
 {The architecture in a few sentences: the major components and how they connect.}
 
 ## Data model
-{The whole data model / schema, designed up front so later phases extend it rather than re-layering
-it. Entities/tables/collections, their key fields, and relationships. This is the part that, designed
-whole, removes the need for incremental migrations.}
+{The data model / schema, **settled whole up front** so later phases extend it rather than re-layering
+it. Entities/tables/collections, their key fields, and relationships. **Enumerate what is knowable; for a
+property space that genuinely can't be enumerated yet, design an extension point** — an open map /
+registry / plug-point keyed by name — so a newly-discovered property *extends* the model in place instead
+of forcing a migration or a re-architecture. This is the part that, settled whole, removes the need for
+incremental migrations.}
 
 ## Shared types & contracts
 {Cross-cutting types, API shapes, and naming used across the product, so phases agree on the seams.}
@@ -64,9 +69,15 @@ Never edit the content above; the delta lives here.}
   that changed no design gets a **one-line** entry (naming what it did + "no design change" — an explicit
   record, never a silent omission, so the reader never wonders if a change was forgotten); a phase that
   added or superseded design gets the detail it deserves.
-- **Designed whole is what removes migrations.** The reason to design the full data model up front is
-  precisely so it isn't built in slices that each need a migration. In `dev`, a shape change is a
-  recreate-and-reseed (`STAGE.md`); in `launched`, it's a real migration.
+- **Whole means settled, not always enumerated.** The reason to settle the model up front is precisely
+  so it isn't built in slices that each need a migration. "Whole" is the **foundation and the seams**
+  decided once — and, where a property space is genuinely not-yet-knowable, an **extension point** (an
+  open map / registry / plug-point) that absorbs a discovered property without re-architecture. A closed
+  domain is enumerated (you can); an open one carries extension points — that *is* its honest complete
+  design, not a deferral. **Reserve an extension point for what genuinely can't be enumerated**: an open
+  map used to dodge a *knowable* schema is the same dodge as a `[discovered]` tag on a checkable clause
+  (`VISION-FORMAT.md`) — when in doubt, enumerate. In `dev`, a shape change is a recreate-and-reseed
+  (`STAGE.md`); in `launched`, it's a real migration.
 - **Link, don't duplicate.** The blueprint is the single source of truth for the **design** (data
   model, architecture). Don't restate facts that live authoritatively elsewhere — the test framework
   and run/verify commands are in `RUNBOOK.md`, per-phase acceptance is in `SPEC.md`, the "why" of a big

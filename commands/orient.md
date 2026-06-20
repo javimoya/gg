@@ -25,7 +25,7 @@ The user invoked `/gg:orient $ARGUMENTS`. Gate on that exact value:
 - Otherwise continue.
 
 ## 2. Read the state (read-only)
-- `.gg/ROADMAP.md` header → `state` / `phase` / `stage`, and the phase log.
+- `.gg/ROADMAP.md` header → `state` / `phase` / `kind` / `stage`, and the phase log.
 - `.gg/JOURNAL.md` (latest entry, if present) → what the last session did and said comes next.
 - Based on `state`:
   - `visioning` → ideation is still in progress; there's no SPEC/PROGRESS/BACKLOG yet. Read the partial
@@ -41,9 +41,10 @@ The user invoked `/gg:orient $ARGUMENTS`. Gate on that exact value:
   and skip `PRINCIPLES.md` (orient reports state, it doesn't enforce the bar).
 
 ## 3. Report (concise)
-A few lines: project + one-sentence vision; **phase {N}, state, stage**; what's delivered so far (the
-phase log); **you are here** ("ideation in progress — vision not yet sharp" if `visioning`, the next
-open question if `scoping`, the next task if `building`, "ready to try + refine" if `shipped`); the
+A few lines: project + one-sentence vision; **phase {N}, state, kind, stage** (note when the current
+phase is `research`); what's delivered so far (the phase log); **you are here** ("ideation in progress —
+vision not yet sharp" if `visioning`, the next open question if `scoping`, the next task if `building`,
+"ready to try + refine" if `shipped`); the
 backlog counts (new / queued / later / future); and — if `shipped` — a one-line VISION-conformance read
 (does it meet "done and perfect", or what remains). End by **naming `/gg:orient --audit`** as an
 available deeper, read-only integrity check (worth offering when `shipped`, before a launch flip, or
@@ -79,9 +80,15 @@ This is the one "audit" gg has — and it audits the **record's integrity**, nev
 - **Duplicated facts that drifted** (`BLUEPRINT-FORMAT.md` → "link, don't duplicate"): a fact restated
   in the BLUEPRINT that now contradicts its source (`RUNBOOK.md` / `SPEC.md` / an ADR).
 - **Acceptance without evidence**: an `AC-N` recorded met without a cited real result (`confirmed`
-  demands an observed result, never "should work"); a **`[discovered]`** "done and perfect" clause
-  reported met in a shipped phase with no cited `F-NN` behind it (`VISION-FORMAT.md` — a discovered
-  clause is closed only by an observed try-it, never inferred from a green suite).
+  demands an observed result, never "should work"); a **`reported`** `AC-N` recorded closed with no cited
+  `F-NN`, or whose cited `F-NN` doesn't exist (`SPEC-FORMAT.md` — a reported criterion closes only on a
+  recorded measurement); a **`[discovered]`** "done and perfect" clause reported met in a shipped phase
+  with no cited `F-NN` behind it (`VISION-FORMAT.md` — a discovered clause is closed only by an observed
+  try-it, never inferred from a green suite).
+- **Vision revisions** (`VISION-FORMAT.md`): an `R-NN` in `## Revisions` with no cited triggering
+  `F-NN`, or whose `F-NN` doesn't exist — a correction-from-evidence without its evidence is a cut in
+  disguise (`CONSTITUTION.md` → "Boundaries vs. cuts"); a **duplicate `R-NN`** (ids are stable, never
+  reused).
 - **Backlog hygiene**: an item in `BACKLOG-ARCHIVE.md` still sitting in the active `BACKLOG.md`; an
   active item missing its `Captured` provenance; a **duplicate `B-NN`** across the active backlog and the
   archive (ids are stable and never reused — `BACKLOG-FORMAT.md`); an orphan `Relates` / `reverses`

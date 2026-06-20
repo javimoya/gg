@@ -31,8 +31,9 @@ Read `.gg/ROADMAP.md`'s header — route on `state`, not merely on whether `.gg/
   - `mkdir -p .gg`
   - Create `.gg/ROADMAP.md` per `${CLAUDE_PLUGIN_ROOT}/gg-shared/ROADMAP-FORMAT.md` and **write its
     header immediately**, before anything else: `state: visioning`, `phase: 0`, `stage: dev` (provisional
-    default — confirmed in §3), the phase-log line *"Phase 0 — the initial product — visioning"*, and the
-    dated `## Structural changelog` line *"project kicked off by /gg:ideate (stage: dev)"*.
+    default — confirmed in §3), `kind: build` (phase 0 lays the foundation), the phase-log line *"Phase 0
+    — the initial product — visioning"*, and the dated `## Structural changelog` line *"project kicked off
+    by /gg:ideate (stage: dev)"*.
   - Copy `${CLAUDE_PLUGIN_ROOT}/gg-shared/CONSTITUTION.md` → `.gg/PRINCIPLES.md` (verbatim — the
     constitution).
   - Create `.gg/VISION.md` (skeleton) following `${CLAUDE_PLUGIN_ROOT}/gg-shared/VISION-FORMAT.md`.
@@ -64,7 +65,10 @@ Read `.gg/ROADMAP.md`'s header — route on `state`, not merely on whether `.gg/
   judgeable without running is `[declared]` (closed by an `AC-N`); one only judgeable by *watching it
   run* — a felt / emergent / qualitative property — is `[discovered]` (closed later by a cited `F-NN`).
   This is itself a grilling question; a `[discovered]` clause is the signal a dimension is subjective and
-  is best sharpened by **showing, not asking** (`GRILLING.md` → "Elicit by reacting").
+  is best sharpened by **showing, not asking** (`GRILLING.md` → "Elicit by reacting"). For an **open /
+  empirical** idea — where the destination is itself partly a question — name the **central open question**
+  in `## Unknowns / risks` (usually mirrored by a `[discovered]` clause); it is answered later in a
+  `research` phase (`ROADMAP-FORMAT.md`), not pinned now.
 - **Confirm the stage.** §1 wrote `stage: dev` provisionally; a new project has no real users
   (`STAGE.md`). Confirm with the pointed question — *"is this already launched to real users whose data
   must survive? (deployed ≠ launched)"* — defaulting to `dev` (normally a no-op). Record it in

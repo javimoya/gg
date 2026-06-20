@@ -1,8 +1,8 @@
 # BACKLOG.md format
 
 `.gg/BACKLOG.md` is the project's **active refinement backlog** — the unprocessed items (ideas, bugs,
-and scope deferred from `/gg:ideate` / `/gg:discover` / `/gg:next-task`) recorded once a product exists,
-waiting to be triaged into a future phase. It stays **lean**: closed items (applied or discarded) move
+experiments to run, and scope deferred from `/gg:ideate` / `/gg:discover` / `/gg:next-task`) recorded
+once a product exists, waiting to be triaged into a future phase. It stays **lean**: closed items (applied or discarded) move
 out to `.gg/BACKLOG-ARCHIVE.md`, so what's left is only live work.
 
 Four commands act on it: `/gg:capture` (and the agent's inline jot) **adds** items to `## New`, assigning
@@ -11,8 +11,8 @@ design); `/gg:refine-backlog` **triages** — it reports the items
 with a recommended disposition each and applies the user's one decision in a single pass (→ next phase /
 later / future / discarded); `/gg:discover` **consumes** the `## Next phase` set when it opens a
 refinement phase; and `/gg:quick` (the express lane) **records a single item straight to `## Next phase`**
-— skipping `## New` and the triage step — then designs it immediately. There is no in-discover triage
-question anymore — `/gg:refine-backlog` owns triage.
+— skipping `## New` and the triage step — then designs it immediately. `/gg:refine-backlog` owns triage;
+`/gg:discover` consumes the queued set and does not triage.
 
 ## The item lifecycle
 
@@ -39,10 +39,11 @@ item across every section and into the archive, and is never reused (see Rules).
 
 ## New
 {Recorded, NOT yet triaged. Newest first. A bare `/gg:capture` (no `--next`) and the agent's inline jot write here. One
-`###` block per item. Free-form — NOT typed add/change/remove. A defect in already-shipped behavior is
-prefixed `[bug]` in its title (the one optional marker).}
+`###` block per item. Free-form — NOT typed add/change/remove. Two optional title markers: `[bug]` for a
+defect in already-shipped behavior, and `[exp]` for the next experiment to run (a research action — see
+Rules).}
 
-### B-NN — {short title}   <!-- prefix the title with "[bug] " if it's a defect in shipped behavior -->
+### B-NN — {short title}   <!-- prefix the title with "[bug] " (a defect in shipped behavior) or "[exp] " (a research experiment to run) -->
 - **Captured**: {YYYY-MM-DD} — {user | agent}, via {command, e.g. /gg:capture or /gg:next-task task 4}
 - **Idea**: {the idea/change/bug, in the user's words, plus any why; for a `[bug]`, what's broken vs. expected}
 - **Touches**: {the area(s) of the product it affects, if known}
@@ -96,10 +97,13 @@ archive's `## Applied`. Same `###` block shape as New.}
   `.gg/BACKLOG.md` *and* `.gg/BACKLOG-ARCHIVE.md`, so a discarded item's id is retired, never handed out
   again. (Compute the next id from both files; never renumber an existing one.) Same `*-NN` discipline as
   the assumptions ledger's `A-NN`.
-- **Free-form, not categorized.** An item is an idea in the user's words; gg does not force an
-  add/change/remove type. The one optional marker is `[bug]` in the title, for a defect in
-  already-shipped behavior — broken is not a new idea, so triage can prioritize it; for a `[bug]` the
-  **Idea** line names what's broken vs. what's expected. Everything else stays untyped.
+- **Free-form, with two optional markers.** An item is an idea in the user's words; gg does not force an
+  add/change/remove type. Two optional title markers: **`[bug]`** for a defect in already-shipped behavior
+  (broken is not a new idea, so triage can prioritize it; its **Idea** line names what's broken vs. what's
+  expected), and **`[exp]`** for *the next experiment to run* — a research action, distinct from a
+  capability or a bug so it isn't weighed as product scope or silently dropped. A `## Next phase` set of
+  `[exp]` items / an open question is what makes `/gg:discover` open a **`research`** phase
+  (`ROADMAP-FORMAT.md`); a capability/bug set makes a `build` phase. Everything else stays untyped.
 - **Idempotent triage, with deferral tiers.** `/gg:refine-backlog` reports only `## New` by default, so a
   triaged item is never re-presented. The deferral tiers are revisited on purpose: `--later` reports
   `## Later` (on the radar), `--future` reports `## Future` (someday / maybe). Every run opens with the

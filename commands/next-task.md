@@ -30,7 +30,9 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
   dev ≠ launched).
 - Read `.gg/PROGRESS.md` (the task board — which task is next), `.gg/SPEC.md` (acceptance criteria),
   `.gg/BLUEPRINT.md` (the design), `.gg/ASSUMPTIONS.md`, `.gg/RUNBOOK.md`, `.gg/CONTEXT.md`, the ADRs,
-  and the `stage`.
+  the `stage`, and the `kind` (`build` or `research` — a research phase closes on a `reported`
+  measurement, §6). For a research phase, also read `.gg/FINDINGS.md` (prior observations the search
+  builds on).
 
 ## 2. Durable start (first run of the phase only)
 If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):
@@ -87,10 +89,18 @@ remainder into a new follow-up task first, then stop — the same checkpoint.)
 ## 6. Last task → close the phase
 When the last task is done — **the phase's decisive try-it point**, where the *whole* phase is judged
 green and runnable (the earlier looks, if any, were the phase's shows):
-- Build the **deliverable**; **run the SPEC's "How to see it" yourself** and record the real result.
-- Run the **RUNBOOK full suite**: it must be **green**; record the delta against the baseline.
+- Build the **deliverable**; **run the SPEC's "How to see it" yourself** and record the real result. In a
+  **`research`** phase (`ROADMAP-FORMAT.md`) "How to see it" runs the **experiment**: record its measured
+  result as an `F-NN` (`FINDINGS-FORMAT.md`) and **close each `reported` `AC-N` by citing that `F-NN`** —
+  `yes` / `no` / `inconclusive` are all honest, green closes; a negative result is the finding, not a
+  failure.
+- Run the **RUNBOOK full suite**: it must be **green**; record the delta against the baseline. (A research
+  phase's experiment harness is real code under that suite — no stub; only its *result* is `reported`,
+  not pass/fail.)
 - **Self-accounting gate** (`CONSTITUTION.md`): list everything simplified / deferred / defaulted; turn
-  each into a note or justify it. Ask the **VISION-conformance** question (does the product now meet
+  each into a note or justify it. **A research phase's negative or inconclusive `reported` result is an
+  honest finding, never a cut to account for** — what *would* be a cut is faking a target it didn't reach
+  or trimming the experiment. Ask the **VISION-conformance** question (does the product now meet
   "done and perfect", or what remains?). A **`[discovered]`** clause (`VISION-FORMAT.md`) is counted met
   **only** if a cited `F-NN` — an actual try-it observation — backs it; never infer it from the green
   suite, and if it was never looked at it is *not yet met* (record the gap, don't claim it).

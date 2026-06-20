@@ -54,7 +54,8 @@ item is already triaged to "do next").
 Run the **`/gg:discover` protocol unchanged** (`discover.md`). With `state: shipped` and `## Next phase`
 holding exactly your item, discover opens it as the next phase and designs **only it** — depth scales
 (`discover.md` §3): a bug or tweak gets a one-line BLUEPRINT note ("… — no design change"), a new
-entity/field/component gets the full detail. Discover writes the SPEC + the ordered task list, records
+entity/field/component gets the full detail, and an `[exp]` item opens a one-item **`research`** phase
+with `reported` acceptance (`ROADMAP-FORMAT.md`). Discover writes the SPEC + the ordered task list, records
 any defaults as `A-NN`, sets `state: building`, runs its close ritual (`CLOSE-FORMAT.md`), and ends with
 its breadcrumb to `/gg:next-task`. The build happens in a **fresh session** — the express lane stops at
 design, because **one task per fresh `/gg:next-task` session** stays the rule (`CONSTITUTION.md` →

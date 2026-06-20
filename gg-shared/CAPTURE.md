@@ -19,14 +19,15 @@ Three entry points share this protocol:
 ## Idea or observation? (route to the right ledger first)
 
 Before jotting, decide which kind of thing this is — the tense gives it away:
-- **A future-tense idea / change / bug** ("we should…", "it'd be better if…", "X is broken") → a
-  **backlog item** (`B-NN` in `.gg/BACKLOG.md ## New`), the rest of this protocol.
+- **A future-tense idea / change / bug / experiment** ("we should…", "it'd be better if…", "X is
+  broken", "the next thing to try is…") → a **backlog item** (`B-NN` in `.gg/BACKLOG.md ## New`), the rest
+  of this protocol. A *next experiment to run* is marked `[exp]` (`BACKLOG-FORMAT.md`).
 - **A past-tense observation** of what the running product actually *did* ("when I ran it, X happened",
   "it behaves like Y under this input") → a **finding** (`F-NN` in `.gg/FINDINGS.md`,
   `FINDINGS-FORMAT.md`): record `Observed` / `What happened` / `Reading` / `Leads to`, created lazily.
   It is a fact on the record, not a decision. If the observation *implies* a change worth doing, capture
-  that change **too** as a `B-NN` and link it from the finding's **Leads to** — the observation stays a
-  finding; only the decision it triggers is a backlog item.
+  that change **too** as a `B-NN` (a follow-up experiment marked `[exp]`) and link it from the finding's
+  **Leads to** — the observation stays a finding; only the decision it triggers is a backlog item.
 
 A try-it at a `show` task or at a phase close usually produces *both*: observations (→ findings) and
 reactions you want to act on (→ backlog). Record each in its own ledger; never inline in the build,
@@ -43,8 +44,9 @@ never only in prose.
    the idea in the user's words, the date, who raised it (`user`/`agent`), and the area it touches if
    known. **Assign it the next stable `B-NN` id** per `BACKLOG-FORMAT.md` (never reused). If it's a
    **defect in already-shipped behavior**, prefix the title `[bug]` and record what's broken vs. what's
-   expected (in the user's words) — it is still only jotted, triaged later by `/gg:refine-backlog` and
-   fixed via `/gg:discover`, never patched on the spot.
+   expected (in the user's words); if it's **the next experiment to run**, prefix the title `[exp]` — both
+   are still only jotted, triaged later by `/gg:refine-backlog` and shaped via `/gg:discover`, never acted
+   on the spot.
 2. **Reconcile against the active backlog** (New + Next phase + Later) — the "little more" beyond a
    blind append:
    - if it refines or duplicates an existing item → offer to **fold it in** (merge the nuance);

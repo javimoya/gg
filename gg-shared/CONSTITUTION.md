@@ -87,27 +87,40 @@ dissolve into an oversized `PROGRESS` or a duplicate `JOURNAL`.
   past-tense observation here; a future-tense idea / change / bug still goes to `BACKLOG.md ## New`.
 - **A finding is a fact, not a decision.** It never licenses a cut and is never the next step on its
   own; if it should change the plan it spawns a `B-NN` (a backlog item — the single intake for any change,
-  including one that revises the VISION), linked from its **Leads to** — so a generative result (an
-  observation that points at the next thing to try) is queued, never recorded-and-dropped.
+  including one that revises the VISION), linked from its **Leads to** — so a generative result is queued,
+  never recorded-and-dropped: an observation pointing at the next **experiment** to run is queued as a
+  `B-NN` marked `[exp]` (`BACKLOG-FORMAT.md`); one contradicting a "done and perfect" target spawns a
+  `B-NN` that, when applied, becomes an `R-NN` revision (correction-from-evidence, above).
+- **A finding closes what only running can settle.** A `[discovered]` "done and perfect" clause
+  (`VISION-FORMAT.md`) and a `reported` acceptance criterion (`SPEC-FORMAT.md`) are both closed by a
+  **cited `F-NN`** — the felt target and the measured answer alike close on an observation, never on
+  "should work". A `reported` close is honest on **any** answer, a negative result included.
 - **It is not an assumption.** An `A-NN` decides *what to build* before the fact; an `F-NN` reports
   *what happened* after running. Keeping them apart keeps each honest.
 
 ## Boundaries vs. cuts
 
-Two things look similar and must never be confused:
+Three things look similar and must never be confused:
 - A **boundary** — the agreed product deliberately excludes something. A *product decision*:
   explicit, approved by the user, recorded in `VISION.md`. Allowed.
 - A **cut** — quietly shipping less of the *agreed* product: a stub, a dropped edge case, a "v1 is
   fine" nobody approved. Forbidden, always.
+- A **correction-from-evidence** — the agreed *target itself* was wrong about reality, and a proven
+  result says so. A *product decision forced by evidence*: a cited `F-NN` (`FINDINGS-FORMAT.md`)
+  contradicts a "done and perfect" clause, and the clause is revised to what the evidence shows — a
+  recorded `R-NN` in `VISION.md` (`VISION-FORMAT.md`). Allowed: it corrects the destination's
+  *description* to match discovered truth; it never lowers the bar on a target that's still right.
 
-The line: a boundary is decided **by product and out loud**; a cut is decided **by the implementer
-and in silence**. When tempted to leave something out you have honest moves — turn it into a
-task/note (it's inside the product → sequence it), record a default (a low-stakes choice → log the
-assumption), or take it to the user as a boundary (it's outside the product → get an explicit,
-recorded decision). Never the dishonest move: dropping it quietly. A *boundary* lives in `VISION.md`
-(not re-read later as work to do); *sequencing inside the product* lives as a **backlog item** in
-`.gg/BACKLOG.md` (triaged at the next `/gg:refine-backlog`); a *deferred low-stakes choice* lives as
-an **assumption** in `.gg/ASSUMPTIONS.md`.
+The line: a boundary is decided **by product and out loud**; a correction is decided **by evidence and
+out loud**; a cut is decided **by the implementer and in silence**. When tempted to leave something out
+you have honest moves — turn it into a task/note (it's inside the product → sequence it), record a
+default (a low-stakes choice → log the assumption), take it to the user as a boundary (it's outside the
+product → get an explicit, recorded decision), or — only when a proven result contradicts the target —
+revise the target itself as a recorded `R-NN` (see the correction test below). Never the dishonest move:
+dropping it quietly. A *boundary* lives in `VISION.md` (not re-read later as work to do); *sequencing
+inside the product* lives as a **backlog item** in `.gg/BACKLOG.md` (triaged at the next
+`/gg:refine-backlog`); a *deferred low-stakes choice* lives as an **assumption** in
+`.gg/ASSUMPTIONS.md`.
 
 **The decisive test — and the trap that bites.** Ask: *will the finished product ever include this?*
 **No, never →** a boundary (→ `VISION.md`). **Yes, just not yet →** sequencing (→ a **backlog item** in
@@ -115,7 +128,16 @@ an **assumption** in `.gg/ASSUMPTIONS.md`.
 backlog item, **never** a boundary. The trap: **out of this phase ≠ out of the product.** Filing a
 deferral as a "boundary", or parking it anywhere other than `.gg/BACKLOG.md` — a SPEC line, a
 `JOURNAL.md` entry, the VISION — is a silent drop in disguise: none of those is re-read when the work
-comes due; only the backlog is. And **a feature can split**: the same area may be part boundary, part deferral —
+comes due; only the backlog is.
+
+**The second decisive test — correction vs. cut.** A "done and perfect" target *can* be revised, but
+only one way is honest. Ask: *is the target changing because evidence proved it wrong, or because it was
+hard to build?* **Evidence-wrong →** a **correction-from-evidence** (→ a recorded `R-NN` in `VISION.md`
+citing the `F-NN`). **Hard →** a **cut**; forbidden — the no-cuts bar holds, decompose instead. The
+trap: "the target was unreachable" is a correction **only** when a real observation shows it was
+*mistaken about reality*, never when the build was merely expensive. A revision with no citable `F-NN`,
+or whose `F-NN` doesn't contradict the clause, is a cut wearing a costume (`/gg:orient --audit` flags
+it). And **a feature can split**: the same area may be part boundary, part deferral —
 classify each piece on its own. *Example: the fixed set of supported options is a boundary (you'll
 never add another); which of them are shown is deferred behaviour → a note.* Don't let "this area has
 a boundary" pull the deferred part in with it.
@@ -175,7 +197,10 @@ Your project's `CLAUDE.md`, when present, may deepen this; the floor above alway
 
 A **phase** is one `/gg:discover → /gg:next-task*` cycle (phase 0 = the whole product; phase N = the
 backlog items you queued with `/gg:refine-backlog`, or a single item fast-tracked by `/gg:quick`). A
-phase does not close without ALL of this:
+phase has a **kind** (`build` or `research`, `ROADMAP-FORMAT.md`): a `build` phase builds capability to
+its SPEC; a **`research` phase is a search** — its deliverable is a measured finding, and it closes
+honestly even on a negative result (`reported` acceptance, `SPEC-FORMAT.md`). Either way a phase does not
+close without ALL of this:
 1. **A vertical, end-to-end product** — phase 0 is the complete product runnable end to end (the
    foundational spine built first); phase N coherently folds in its queued backlog items.
 2. **A concrete, runnable deliverable** with a **"How to see it"** (a real command or steps), built
@@ -185,7 +210,9 @@ phase does not close without ALL of this:
 4. **A complete, green test suite** — the full suite pinned in `.gg/RUNBOOK.md` — covering the
    criteria + regression, with a **recorded baseline**. Real coverage, not decorative. Each
    acceptance criterion is closed by reproducible evidence (`automated`/`manual`/`visual`/
-   `performance`/`security`), never by an inferred "should work".
+   `performance`/`security`/`reported`), never by an inferred "should work". A `research` phase's
+   `reported` criteria close on a cited `F-NN` — `yes`/`no`/`inconclusive` all honest — while the
+   experiment's own harness is still real code under the green suite (no stub).
 5. **A phase-close `JOURNAL.md` entry** so the next clean session (and the next phase's discover) can
    continue without you explaining it.
 
@@ -239,7 +266,10 @@ skill that runs no ritual emits no breadcrumb.
 Before closing any phase or task, **explicitly** list everything you simplified, deferred, left as a
 default, or solved with a shortcut. For each: turn it into a task/note, log it as an assumption, or
 justify it with the test above. **Nothing closes with uncounted cuts.** Since there is no independent
-audit, this gate is the primary cut-defense — run it honestly. At a **phase close**, also ask the
+audit, this gate is the primary cut-defense — run it honestly. (A `research` phase's negative or
+inconclusive `reported` result is an honest finding, never a cut — it closes on its cited `F-NN` and
+needs no further accounting; what *would* be a cut is faking a target it didn't reach, or quietly
+trimming the experiment.) At a **phase close**, also ask the
 VISION-conformance question: *does the product now meet the VISION's "done and perfect", or what
 remains?* — so "are we done?" stays answerable across the loop. A `[declared]` clause is answered by its
 `AC-N` evidence; a **`[discovered]`** clause (`VISION-FORMAT.md`) is answered only by a cited `F-NN` — an
