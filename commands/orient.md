@@ -86,7 +86,7 @@ This is the one "audit" gg has — and it audits the **record's integrity**, nev
   active item missing its `Captured` provenance; a **duplicate `B-NN`** across the active backlog and the
   archive (ids are stable and never reused — `BACKLOG-FORMAT.md`); an orphan `Relates` / `reverses`
   reference (a `B-NN` / `A-NN` that points at nothing).
-- **Findings hygiene** (`FINDINGS-FORMAT.md`): a finding whose `Leads to` points at a `B-NN` / `R-NN`
+- **Findings hygiene** (`FINDINGS-FORMAT.md`): a finding whose `Leads to` points at a `B-NN`
   that doesn't exist; a **duplicate `F-NN`** (ids are stable, never reused); raw logs pasted into a
   finding instead of a reduced result.
 - **Dangling blocks**: a `Blocked:` note in `PROGRESS.md` whose unblock condition already reads met.

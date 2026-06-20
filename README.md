@@ -133,6 +133,7 @@ Everything the workflow knows lives in a `.gg/` folder at the root of your proje
 ├── PROGRESS.md       # the task board for the current phase + where to resume
 ├── BACKLOG.md        # the active backlog (new / next phase / later / future), triaged by refine-backlog (or fast-tracked by quick)
 ├── BACKLOG-ARCHIVE.md # closed backlog items (applied / discarded) — kept for the trace
+├── FINDINGS.md       # observations of what the running product did (F-NN), created lazily
 ├── RUNBOOK.md        # the pinned run/verify commands (full suite, deliverable, destructive paths)
 ├── CONTEXT.md        # a glossary of your project's domain terms
 ├── JOURNAL.md        # append-only history; phase-close entries are the hand-offs
@@ -150,7 +151,7 @@ Enforced by `PRINCIPLES.md` (the constitution) and the commands themselves.
 - **Decompose, don't drop, or set a boundary.** "Later" becomes a task, a backlog item, or a recorded assumption. Genuinely out of scope? It goes into the VISION as an approved boundary. It never just disappears.
 - **Good defaults, recorded and reversible.** Discovery asks the load-bearing questions and logs the rest as numbered assumptions you can veto at sign-off or overturn later with a note. The cut is the *unrecorded* assumption, not the default.
 - **dev ≠ launched.** In a spec-driven build, the agent burns whole phases on migrations, backward-compatibility, and preservation that a product with no users yet doesn't need. gg knows it isn't live and skips that defensive work until you launch.
-- **Verify before you claim.** A per-project `RUNBOOK.md` pins the exact full-suite command; a phase closes only when it's green and the real deliverable runs. You try it at the phase close.
+- **Verify before you claim.** A per-project `RUNBOOK.md` pins the exact full-suite command; a phase closes only when it's green and the real deliverable runs. You try it at the phase's shows and at the phase close.
 - **Capture, don't stash.** Ideas and bugs go into `.gg/BACKLOG.md`, never the agent's private memory. Nothing the project should remember lives outside `.gg/`.
 - **One task per run, resumable everywhere.** `/gg:next-task` does exactly one task, records "where to resume" in `PROGRESS.md`, and stops. `/clear` and run it again. The on-disk state *is* the handoff.
 

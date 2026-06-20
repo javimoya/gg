@@ -109,7 +109,7 @@ archive's `## Applied`. Same `###` block shape as New.}
   that assumption moves to `ASSUMPTIONS.md ## Overridden` only when the item is later applied.
 - **Moved, not deleted.** Applied and discarded items go to `.gg/BACKLOG-ARCHIVE.md`; nothing is
   erased — same discipline as the assumptions ledger and the ROADMAP changelog.
-- **Created lazily.** `BACKLOG.md` at the first capture/jot (with `# Backlog — {name}` and `## New` — or
-  a `## Next phase` section when `/gg:quick` is the first writer); `BACKLOG-ARCHIVE.md` at the first
-  applied/discarded item. No secrets — record the *name* of an env
+- **Created lazily.** `BACKLOG.md` at the first capture/jot (with `# Backlog — {name}` and `## New` — plus
+  a `## Next phase` section when `/gg:quick` is the first writer, since its item lands there);
+  `BACKLOG-ARCHIVE.md` at the first applied/discarded item. No secrets — record the *name* of an env
   var, never its value.

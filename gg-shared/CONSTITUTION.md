@@ -86,9 +86,9 @@ dissolve into an oversized `PROGRESS` or a duplicate `JOURNAL`.
   seen, by whoever saw it — the agent mid-build or the user at a try-it. `CAPTURE.md` routes a
   past-tense observation here; a future-tense idea / change / bug still goes to `BACKLOG.md ## New`.
 - **A finding is a fact, not a decision.** It never licenses a cut and is never the next step on its
-  own; if it should change the plan it spawns a `B-NN` (backlog) or an `R-NN` (vision revision), linked
-  from its **Leads to** — so a generative result (an observation that points at the next thing to try) is
-  queued, never recorded-and-dropped.
+  own; if it should change the plan it spawns a `B-NN` (a backlog item — the single intake for any change,
+  including one that revises the VISION), linked from its **Leads to** — so a generative result (an
+  observation that points at the next thing to try) is queued, never recorded-and-dropped.
 - **It is not an assumption.** An `A-NN` decides *what to build* before the fact; an `F-NN` reports
   *what happened* after running. Keeping them apart keeps each honest.
 

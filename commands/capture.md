@@ -1,5 +1,5 @@
 ---
-description: Jots an idea — or a bug in the shipped product — into the gg backlog (.gg/BACKLOG.md ## New) the moment it surfaces, so it isn't lost to Claude's memory or a future you'll forget. It is deliberately light — it records the idea and lightly reconciles it against the active backlog (folds a refinement into an existing item, flags a contradiction) but does NOT grill, triage, or design; triage happens later in /gg:refine-backlog and the design in /gg:discover. Use it once a product exists (during /gg:next-task or between phases); it refuses while you're mid-ideate or mid-discover (raise it in the grilling instead).
+description: Jots whatever just surfaced — a future idea/change/bug into the gg backlog (.gg/BACKLOG.md ## New), or a past-tense observation of what the running product did into .gg/FINDINGS.md (F-NN) — the moment it surfaces, so it isn't lost to Claude's memory or a future you'll forget. It is deliberately light — it records the thing and lightly reconciles it against the active backlog (folds a refinement into an existing item, flags a contradiction) but does NOT grill, triage, or design; triage happens later in /gg:refine-backlog and the design in /gg:discover. Use it once a product exists (during /gg:next-task or between phases); it refuses while you're mid-ideate or mid-discover (raise it in the grilling instead).
 model: inherit
 disable-model-invocation: true
 argument-hint: "[the idea]"
@@ -36,6 +36,8 @@ is `/gg:refine-backlog`'s job, design is `/gg:discover`'s); **never** derail —
 build, return to your task.
 
 ## Close
-No state change, no `JOURNAL.md` entry — the dated item in `.gg/BACKLOG.md ## New` is the record. End
-with a one-line confirmation, not the full ritual:
-- *"Noted in the backlog ({short title}). It'll be triaged when you next `/gg:refine-backlog`. Carry on."*
+No state change, no `JOURNAL.md` entry — the dated item is the record (`.gg/BACKLOG.md ## New` for an
+idea/change/bug, `.gg/FINDINGS.md` for a past-tense observation). End with a one-line confirmation that
+names where it landed, not the full ritual:
+- backlog item: *"Noted in the backlog ({short title}). It'll be triaged when you next `/gg:refine-backlog`. Carry on."*
+- finding: *"Recorded as a finding in `.gg/FINDINGS.md` ({F-NN} — {short title}); it's on the record, not triaged. Carry on."* (name any `B-NN` it also spawned.)

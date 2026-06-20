@@ -20,7 +20,7 @@ never edited away, only its "Leads to" is updated when it spawns work.}
   terms — e.g. "the task-3 show slice" / "the phase-2 deliverable"}
 - **What happened**: {the observed result — concrete and measured where it can be, not a guess}
 - **Reading**: {one line — what it means / why it matters}
-- **Leads to**: {`B-NN` (a backlog item it spawned) | `R-NN` (a vision revision) | `—` (just on the record)}
+- **Leads to**: {`B-NN` (a backlog item it spawned — the single intake for any change, including one that revises the VISION) | `—` (just on the record)}
 ```
 
 ## Rules
@@ -28,7 +28,7 @@ never edited away, only its "Leads to" is updated when it spawns work.}
 - **A finding is an observation, not a decision.** It records what the running product *did* — distinct
   from an `A-NN` assumption (which decides *what to build*, before the fact) and from a `B-NN` backlog
   item (a not-yet-made decision about what to build next). Recording the observation is not itself a
-  decision; the decision it may trigger is a separate `B-NN` / `R-NN`, linked from **Leads to**.
+  decision; the decision it may trigger is a separate `B-NN`, linked from **Leads to**.
 - **Append-only, numbered, never deleted.** `F-NN` ids are stable and never reused. A finding is a fact
   on the record; you never erase it — when it is acted on you update its **Leads to**, you don't remove
   the block (same move-don't-erase discipline as the backlog archive and the assumptions ledger).

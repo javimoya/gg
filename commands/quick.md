@@ -41,19 +41,23 @@ Any other state **degrades to a plain `/gg:capture`** (`CAPTURE.md`) so the idea
 - **`state: shipped` and `## Next phase` is empty** → the express lane (§1–§2).
 
 ## 1. Record the item straight to `## Next phase` (the express auto-triage)
-Apply `CAPTURE.md`'s jot, with **one deviation**: the item lands in **`## Next phase`**, not `## New`
-(create `.gg/BACKLOG.md` with a `# Backlog — {name}` header and a `## Next phase` section if the file
-doesn't exist yet — the common right-after-phase-0-ship case). The idea is `$ARGUMENTS` if the user
-passed it as an argument; otherwise the one they just raised in conversation. Record it per
-`BACKLOG-FORMAT.md` — the idea in the user's words, the date, who raised it (`user` / `agent`), what it
-`Touches`, and any `Relates` — and **assign the next stable `B-NN` id** (`BACKLOG-FORMAT.md`; never
-reused). If it's a **defect in shipped behavior**, prefix the title `[bug]` and note what's broken vs.
-expected; if the fix **reverses a recorded default**, point it at that `A-NN` (`reverses: A-NN`) — it
-moves to `ASSUMPTIONS.md ## Overridden` when this item closes to Applied (`next-task.md` §6).
-**Reconcile lightly** (`CAPTURE.md` steps 2–3) — if it clearly duplicates an existing item, fold it in
-and record the relation (`refines: B-NN`); **and if that duplicate currently sits in `## New` / `## Later`,
-the merged survivor is the one moved into `## Next phase` (keeping its `B-NN`)**, so it — not a stranded
-copy — is what gets designed. Writing straight to `## Next phase` **is** "skip `/gg:refine-backlog`": the
+Apply `CAPTURE.md`'s jot, with **one deviation**: the item ends up in **`## Next phase`**, not `## New`
+(create `.gg/BACKLOG.md` with a `# Backlog — {name}` header and `## New` + `## Next phase` sections if the
+file doesn't exist yet — the common right-after-phase-0-ship case). The input is `$ARGUMENTS` if the user
+passed it as an argument; otherwise the one they just raised in conversation. **Reconcile first, then
+write, so `## Next phase` ends holding exactly one item:**
+- **If it clearly duplicates an existing item** (`CAPTURE.md` steps 2–3): don't create a second item —
+  fold the new wording into that item, record the relation on it (`refines: …`), and **move that survivor
+  into `## Next phase` keeping its `B-NN`** (it can only sit in `## New` / `## Later`, since the
+  precondition kept `## Next phase` empty). The survivor — not a stranded copy — is what gets designed.
+- **Otherwise**: record a fresh item per `BACKLOG-FORMAT.md` straight in `## Next phase` — the idea in the
+  user's words, the date, who raised it (`user` / `agent`), what it `Touches`, any `Relates` — and
+  **assign the next stable `B-NN` id** (never reused). If it's a **defect in shipped behavior**, prefix
+  the title `[bug]` and note what's broken vs. expected; if the fix **reverses a recorded default**, point
+  it at that `A-NN` (`reverses: A-NN`) — it moves to `ASSUMPTIONS.md ## Overridden` when this item closes
+  to Applied (`next-task.md` §6).
+
+Writing straight to `## Next phase` (or moving the survivor there) **is** "skip `/gg:refine-backlog`": the
 item is already triaged to "do next." Either way `## Next phase` ends holding **exactly this one item**.
 
 ## 2. Design it now — run `/gg:discover` for the one-item micro-phase

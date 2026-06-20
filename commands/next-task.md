@@ -48,7 +48,8 @@ If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):
 - Build **only the next task** complete and robust; cover the edge cases; **write tests** mapping to
   the acceptance criteria.
 - **If the task's `kind` is `show`** (`PROGRESS-FORMAT.md`): its definition of done is *it runs and is
-  watchable* via its own "How to see it" — built at full bar (thin but real spine, **no stub**). It
+  watchable* via its "How to see it" (the SPEC's `## Shows` entry, `SPEC-FORMAT.md`) — built at full bar
+  (thin but real spine, **no stub**). It
   carries no full suite (that stays phase-level), but the slice itself must actually work; the look
   happens at §5.
 - **Stage-aware** (`STAGE.md`): in `dev`, no migrations / backward-compat / preservation tests —
@@ -78,11 +79,13 @@ close ritual (`CLOSE-FORMAT.md`) and the breadcrumb: *"Phase {N}: task {N}/{M} d
 `/gg:next-task` (task {N+1} — {where})."* (If the user told you to wrap up mid-task, carve the
 remainder into a new follow-up task first, then stop — the same checkpoint.)
 - **If the task just done is a `show`** (a designed look, *not* the phase close): also **run its "How to
-  see it" yourself**, then make the breadcrumb a *look-at-this* — invite the user to run it and react now.
-  Route whatever the look surfaces per `CAPTURE.md`: an observation → `FINDINGS.md` (`F-NN`), a wanted
-  change or bug → `BACKLOG.md ## New` (`B-NN`) — **never** patch it inline or fold it into the current
-  build. Breadcrumb: *"Phase {N}: task {N}/{M} done — show: try it → {how to see it}. React and I'll
-  capture it; then `/clear` + `/gg:next-task` (task {N+1})."*
+  see it" yourself** (the SPEC's `## Shows` entry), then make the breadcrumb a *look-at-this* — invite the
+  user to run it and react now. Route whatever the look surfaces per `CAPTURE.md`: **record the user's
+  verdict on the show's `[discovered]` target as an `F-NN`** in `FINDINGS.md` (that verdict is the show's
+  reason for being — even "this feels right" is the citable observation a phase close needs); any further
+  observation → another `F-NN`, a wanted change or bug → `BACKLOG.md ## New` (`B-NN`) — **never** patch it
+  inline or fold it into the current build. Breadcrumb: *"Phase {N}: task {N}/{M} done — show: try it →
+  {how to see it}. React and I'll capture it; then `/clear` + `/gg:next-task` (task {N+1})."*
 
 ## 6. Last task → close the phase
 When the last task is done — **the phase's decisive try-it point**, where the *whole* phase is judged

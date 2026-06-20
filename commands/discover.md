@@ -1,5 +1,5 @@
 ---
-description: Designs and scopes a phase of a gg project, then hands off to /gg:next-task. In phase 0 it grills the whole product into a BLUEPRINT (data model + architecture), a testable SPEC, recorded ASSUMPTIONS for everything not asked, and an ordered task list. In a refinement phase it consumes the set you already queued with /gg:refine-backlog (BACKLOG ## Next phase) and grills those items together. Resumable. Run it right after /gg:ideate, or after a phase ships once you've queued items with /gg:refine-backlog.
+description: Designs and scopes a phase of a gg project, then hands off to /gg:next-task. In phase 0 it grills the whole product into a BLUEPRINT (data model + architecture), a testable SPEC, recorded ASSUMPTIONS for everything not asked, and an ordered task list. In a refinement phase it consumes the set you already queued with /gg:refine-backlog (BACKLOG ## Next phase) and grills those items together. Resumable. Run it right after /gg:ideate, or after a phase ships once ## Next phase is queued — via /gg:refine-backlog (a batch) or /gg:quick (one item).
 model: inherit
 disable-model-invocation: true
 ---
@@ -65,8 +65,9 @@ One question at a time, with your recommended answer, exploring the code when th
 
 ## 4. Write the SPEC + the task list
 - Write/extend `.gg/SPEC.md` (`SPEC-FORMAT.md`): the acceptance criteria (each `AC-N` with evidence
-  type + Verify, tagged by phase), the deliverable + "How to see it". Reference the BLUEPRINT; don't
-  reduplicate the schema.
+  type + Verify, tagged by phase), the **`## Shows` entry** (each show's one-line "How to see it" when the
+  phase has any — the single home for that text, which `/gg:next-task` reads), and the deliverable +
+  "How to see it". Reference the BLUEPRINT; don't reduplicate the schema.
 - Write the **ordered task list** into `.gg/PROGRESS.md` (`PROGRESS-FORMAT.md`): sized so each task
   fits one fresh `/gg:next-task` session, **foundational-first** — the integrating spine before features,
   so later tasks build on a working base. "Spine" is a **thin vertical** through the whole stack, not
@@ -83,8 +84,12 @@ One question at a time, with your recommended answer, exploring the code when th
     settled up front in the BLUEPRINT, so thickening is sequencing, not rework). The only
     legitimate "why not earlier" is foundation that can't be retrofitted. Keep the slice honestly thin
     but **representative** — real spine, no stub (a slice that *looks* right but misleads is worse than
-    none). A phase with **no** `[discovered]` clause (a bug-batch, a purely `[declared]` refinement) needs
-    no forced show — its `AC-N` + the phase-close try-it bind it.
+    none). **Each `[discovered]` clause the phase intends to close needs a show** at the point it becomes
+    judgeable — the first (riskiest) mandatory and earliest, the rest where each becomes judgeable; a
+    clause given no show can't be closed at phase close (no `F-NN` to cite — `next-task.md` §6), so leave
+    it showless only if the phase deliberately defers it. A phase with **no** `[discovered]` clause (a
+    bug-batch, a purely `[declared]` refinement) needs no forced show — its `AC-N` + the phase-close
+    try-it bind it.
   - Tasks otherwise have **no** deliverable or tests of their own; **a `show` is the deliberate
     exception** — it carries a runnable slice + a "How to see it" (still no full suite — that stays at the
     phase close).
