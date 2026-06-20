@@ -3,6 +3,29 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.6.1
+
+A whole-repo code-review pass — bug fixes and documentation sync. No change to the workflow's behavior.
+
+### Fixed
+- **The CI frontmatter check is now robust (`tests/check_commands.py`).** It split the block on the first
+  `---` it found rather than on a whole delimiter line, so a `---` inside a frontmatter value could
+  truncate the block and silently drop keys (`model`, `disable-model-invocation`) — the opposite of what
+  its own comment promised. It now matches whole `---` delimiter lines, rejects a malformed `----` fence
+  with a clear error, and also flags a command that declares an `argument-hint` it shouldn't (the check
+  was one-directional before).
+- **`/gg:quick`'s deferred-fold branch no longer dead-ends.** When the single express item folds into an
+  already-deferred (`## Later` / `## Future`) backlog item, `## Next phase` stays empty; `/gg:quick` now
+  stops and routes to `/gg:refine-backlog` instead of running `/gg:discover` on an empty queue (which
+  would bounce and leave a misleading breadcrumb).
+- **`CHANGELOG.md` now records `/gg:quick` and `/gg:capture --next`** under 2.5.0 — the seventh command's
+  introduction had been missing from the history.
+- **The plugin and marketplace descriptions name all seven commands** — `/gg:orient` had been omitted
+  from both.
+- **Cross-reference fixes.** `/gg:orient`'s citation of the BLUEPRINT "Link, don't duplicate" rule is
+  capitalized to match its heading, and `/gg:next-task` hedges the lazily-created `.gg/FINDINGS.md` with
+  "(if present)".
+
 ## 2.6.0
 
 **Research phases and an empirically-correctable target** — for a project whose specification is the
