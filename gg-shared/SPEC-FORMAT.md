@@ -22,9 +22,8 @@ phase that introduced it. IDs are stable for the life of the project.}
 - **AC-2** (phase 0) — …
 
 ## Deliverable + "How to see it"
-- **Shows**: {the look points + their one-line "How to see it" — each a watchable slice placed where a
-  `[discovered]` clause becomes judgeable (`PROGRESS-FORMAT.md` → `kind: show`); mark the first, which is
-  mandatory and placed as early as the foundation allows when the phase has a `[discovered]` clause}
+- **Shows**: {the look points + their one-line "How to see it" — each a watchable slice (`kind: show`;
+  placement rule in `/gg:discover` §4)}
 - **Deliverable**: {the runnable/observable product the user tries at the phase close — the decisive try-it}
 - **How to see it**: {the real command or steps the user runs, and what to observe}
 

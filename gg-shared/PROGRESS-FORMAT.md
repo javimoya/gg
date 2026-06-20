@@ -40,8 +40,8 @@ Terse is fine; unambiguous is mandatory.
 
 - **The task board is the source of truth for "what's left in this phase."** One row per task,
   status ∈ `pending` / `in-progress` / `done`. It mirrors the plan `/gg:discover` produced.
-- **`kind: show` marks a try-it task** (`/gg:discover` sets it, placed where the felt character changes /
-  a `[discovered]` clause becomes judgeable — not on a task count). A `show` builds a thin runnable slice;
+- **`kind: show` marks a try-it task** (`/gg:discover` sets it; placement rule in `/gg:discover` §4). A
+  `show` builds a thin runnable slice;
   its one-line "How to see it" lives in the SPEC's `## Shows` entry (`SPEC-FORMAT.md`), not on the board,
   and it ends with a *look-at-this* stop (`/gg:next-task`); a normal build task is `—` and has no
   deliverable of its own. The full green suite is always phase-level — a `show` look is not a phase close.

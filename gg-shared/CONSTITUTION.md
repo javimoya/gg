@@ -229,12 +229,10 @@ Cutting early and handing off cleanly always beats pushing a degraded session.
 
 ## Breadcrumb
 
-**Every** working skill that closes a phase or task (`/gg:ideate`, `/gg:discover`, `/gg:next-task`,
-`/gg:refine-backlog`, `/gg:quick`, and `/gg:orient` when it flips the stage — **not** `/gg:capture`,
-which only jots and returns) ends by reminding the user, in one line: *where you are + what's next +
-which command to continue with*. (`/gg:quick` borrows `/gg:discover`'s breadcrumb; when it degrades to a
-plain capture it ends like `/gg:capture`, with no ritual.) This connects the manual flow between clean sessions; it is the last step of the shared
-close ritual (`CLOSE-FORMAT.md`). `/gg:orient` otherwise only reads.
+The shared close ritual's last step (`CLOSE-FORMAT.md`, step 4) is the **breadcrumb**: one line stating
+*where you are + what's next + which command to continue with*. It connects the manual flow between clean
+sessions. `CLOSE-FORMAT.md` owns the roster of which skills run the ritual (and thus emit a breadcrumb); a
+skill that runs no ritual emits no breadcrumb.
 
 ## Close-out gate (self-accounting)
 

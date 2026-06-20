@@ -35,11 +35,12 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
   `ASSUMPTIONS.md` (if they exist), `.gg/RUNBOOK.md`, and the `stage`.
 
 ## 2. Load the queued set (refinement phases only)
-If this is a refinement phase (`state: shipped`), the set was **already triaged in `/gg:refine-backlog`**
-— read `.gg/BACKLOG.md ## Next phase`. **That set *is* phase N** (no triage question here): bump
-`phase`, set `state: scoping`, add its phase-log line. The items stay in `## Next phase` while you
-build; they move to `BACKLOG-ARCHIVE.md ## Applied` at phase close. Items in `## New` / `## Later` are
-not in this phase. (In phase 0 there is no backlog — the scope is the whole product.)
+If this is a refinement phase (`state: shipped`), read `.gg/BACKLOG.md ## Next phase` — the set
+`/gg:refine-backlog` already triaged (`GRILLING.md` → "The queued set" for why that set *is* phase N and
+why `## New` / `## Later` items stay put). Here just record the move: bump `phase`, set `state: scoping`,
+add its phase-log line. The items stay in `## Next phase` while you build; they move to
+`BACKLOG-ARCHIVE.md ## Applied` at phase close. (In phase 0 there is no backlog — the scope is the whole
+product.)
 
 ## 3. Grill (the `GRILLING.md` protocol) — and record defaults
 One question at a time, with your recommended answer, exploring the code when the answer is there.

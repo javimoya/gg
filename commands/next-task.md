@@ -23,9 +23,6 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
   triages it and `/gg:discover` designs the fix as the next phase (`/gg:orient` will route you). For a
   **single** small one you've decided to do now, `/gg:quick` records it and fast-tracks it to
   `/gg:discover` — same cycle (still a task, a test, a JOURNAL entry), just skipping the triage step.
-  Patching a shipped defect inline — off the
-  board, off the SPEC — is the misstep that leaves the record stale; everything, bugs included, goes
-  through the cycle so it gets a task, a test, and a JOURNAL entry.
 
 ## 1. Constitution + context load
 - Read `.gg/PRINCIPLES.md` and internalize it (full bar; effort is never a reason to cut; decompose ≠
@@ -53,8 +50,8 @@ If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):
   carries no full suite (that stays phase-level), but the slice itself must actually work; the look
   happens at §5.
 - **Stage-aware** (`STAGE.md`): in `dev`, no migrations / backward-compat / preservation tests —
-  recreate & reseed freely. In **both** stages, **name the rollback and get a yes before destroying
-  data that exists on disk** (recreating a *populated* store counts).
+  recreate & reseed freely; the stage-independent safety floor (name the rollback, get a yes before
+  destroying data that exists on disk — `STAGE.md` → "Stage-independent") still binds.
 - **Anti-cut reframe**: tempted to stub / defer / leave a `TODO`? Apply the constitution's test. Honest
   moves only — a later **task** in this phase (record it in PROGRESS), or take it to the user as a
   boundary. Never a silent drop.

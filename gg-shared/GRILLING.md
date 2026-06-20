@@ -99,17 +99,9 @@ coherent, not item-by-item. Items still in `## New` / `## Later` stay in the bac
 
 ## The anti-scope-cut bar applies here too
 
-Grilling is **never** a tool for reducing scope. If something "for later" surfaces during the
-interrogation, it is not dropped — it follows the constitution's moves (`CONSTITUTION.md`,
-`CAPTURE.md`): a later **task** of the current phase, a **backlog item** in `.gg/BACKLOG.md` for a
-future phase, or — for a low-stakes choice — a recorded **assumption** (`A-NN`). Grilling defines the
-complete product at the agreed bar; it only decides *order/phase* and *which defaults stand*, never
-lowers the *what*.
-
-**Never mislabel a deferral as a boundary.** Something pushed to a later phase is *sequencing* → a
-**backlog item** in `.gg/BACKLOG.md` (triaged at the next `/gg:refine-backlog`); a *boundary* is something
-the finished product will **never** include (→ `VISION.md`). Test it: *will the product ever include
-this?* If there's a "later", it's a note, not a boundary — and it must not be parked in the VISION, a
-SPEC line, or the JOURNAL, where nothing re-reads it. Watch the partial case: an area can be part
-boundary, part deferral — classify each piece separately. (See `CONSTITUTION.md` → "Boundaries vs.
-cuts" for the decisive test, the trap, and the worked example.)
+Grilling is **never** a tool for reducing scope. It defines the complete product at the agreed bar; it
+only decides *order/phase* and *which defaults stand*, never lowers the *what*. Anything that surfaces
+"for later" follows the constitution's honest moves — a later **task**, a **backlog item** in
+`.gg/BACKLOG.md`, or a low-stakes **assumption** (`A-NN`) — never a silent drop or a deferral mislabeled
+as a boundary. (See `CONSTITUTION.md` → "Boundaries vs. cuts" for the decisive test, the trap, and the
+worked example.)

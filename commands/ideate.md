@@ -32,8 +32,7 @@ Read `.gg/ROADMAP.md`'s header — route on `state`, not merely on whether `.gg/
   - Create `.gg/ROADMAP.md` per `${CLAUDE_PLUGIN_ROOT}/gg-shared/ROADMAP-FORMAT.md` and **write its
     header immediately**, before anything else: `state: visioning`, `phase: 0`, `stage: dev` (provisional
     default — confirmed in §3), the phase-log line *"Phase 0 — the initial product — visioning"*, and the
-    dated `## Structural changelog` line *"project kicked off by /gg:ideate (stage: dev)"*. Writing the
-    header first is what makes a cut-short ideation detectable and resumable (`state: visioning` on disk).
+    dated `## Structural changelog` line *"project kicked off by /gg:ideate (stage: dev)"*.
   - Copy `${CLAUDE_PLUGIN_ROOT}/gg-shared/CONSTITUTION.md` → `.gg/PRINCIPLES.md` (verbatim — the
     constitution).
   - Create `.gg/VISION.md` (skeleton) following `${CLAUDE_PLUGIN_ROOT}/gg-shared/VISION-FORMAT.md`.
@@ -75,8 +74,8 @@ Read `.gg/ROADMAP.md`'s header — route on `state`, not merely on whether `.gg/
 ## 4. Promote the ROADMAP header (only once the vision is sharp)
 The header already exists from §1 (`state: visioning`). Once the vision is sharp and the user is
 satisfied (the `GRILLING.md` "confirm before you stop" checkpoint), **promote it**: set `state: scoping`
-and rewrite the Phase 0 phase-log word in place from `visioning` to `scoping`. Leave `phase: 0`, the
-`stage`, and the kickoff changelog line exactly as §1 wrote them — don't re-add them. There is no
+and rewrite the Phase 0 phase-log word in place from `visioning` to `scoping`. Leave everything else §1
+wrote untouched. There is no
 per-phase table — a "phase" is a whole `discover → next-task*` cycle; the product's structure is
 designed in `/gg:discover`'s BLUEPRINT. If the vision is **not** yet sharp, leave `state: visioning` and
 take the cut-short close below.
