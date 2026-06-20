@@ -42,9 +42,11 @@ contradiction / stand alone); a *past-tense observation* of what the running pro
 **`--next` (only at `state: shipped`, only for a backlog item):** the `$ARGUMENTS` flag `--next` is not
 part of the idea — strip it. When present, the future-tense item lands in `## Next phase` instead of
 `## New` (still its next stable `B-NN`, still the same light reconcile). If the reconcile **folds** the new
-wording into an existing item, don't leave a stranded copy: merge the nuance into that survivor, record the
+wording into an existing **`## New`** item, don't leave a stranded copy: merge the nuance into that survivor, record the
 relation (`refines: …`), and **move the survivor — keeping its `B-NN` — into `## Next phase`** (same as
-`/gg:quick` §1, minus the design step). `--next` is meaningless for a *past-tense observation* — a finding
+`/gg:quick` §1, minus the design step). A fold that instead matches an already-**deferred** item
+(`## Later` / `## Future`) is surfaced and left where triage put it — promoting a deferred item is
+`/gg:refine-backlog`'s call (`BACKLOG-FORMAT.md`). `--next` is meaningless for a *past-tense observation* — a finding
 has no phase — so ignore it and route to `.gg/FINDINGS.md` as usual.
 
 **Never** write to Claude's native memory; **never** mutate the ROADMAP, triage, or open a phase (triage

@@ -89,7 +89,8 @@ silent edit.}
   vs. cuts" → **correction-from-evidence**): a revision is legitimate only when *evidence proved the
   target wrong*, never when *the target was hard to build* — the latter is a forbidden cut. A revision
   with no citable `F-NN`, or whose `F-NN` doesn't contradict the clause, is a cut in disguise
-  (`/gg:orient --audit` flags it). `R-NN` ids are stable and never reused.
+  (`/gg:orient --audit` flags it). `R-NN` ids are stable and never reused — the next is one past the highest in `## Revisions`
+  (append-only, so the whole ledger is the scan).
 - **Stable.** If something big changes here, the plan and the BLUEPRINT almost certainly need
   revisiting — recorded as a new appended `## Phase N` section in the BLUEPRINT, never an edit to its
   frozen phase-0 design (`BLUEPRINT-FORMAT.md`).

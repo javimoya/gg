@@ -90,7 +90,7 @@ take the cut-short close below.
    the stage. Invite any last adjustment.
 2. **Run the close ritual** (`CLOSE-FORMAT.md`): persist VISION/ROADMAP, append the first `JOURNAL.md`
    entry (`State change`: `visioning → scoping`), then the breadcrumb:
-   *"Vision set (stage: dev). Next: `/clear` then `/gg:discover` to design and scope the whole product
+   *"Vision set (stage: {dev | launched}). Next: `/clear` then `/gg:discover` to design and scope the whole product
    (phase 0)."*
 
 **Cut mid-grilling** (vision not yet sharp): leave `state: visioning` on disk, run the same close ritual

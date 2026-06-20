@@ -33,7 +33,9 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
   assumption, dev ≠ launched).
 - Read `.gg/VISION.md`, `.gg/CONTEXT.md`, `.gg/adr/`, the current `BLUEPRINT.md` / `SPEC.md` /
   `ASSUMPTIONS.md` (if they exist), `.gg/FINDINGS.md` (the observations a queued item may cite),
-  `.gg/RUNBOOK.md`, and the `stage`.
+  `.gg/RUNBOOK.md`, and the `stage`. In a **refinement phase**, also read `.gg/BACKLOG.md ## Next phase`
+  (the queued set the phase builds) here — so a **resumed** discovery (now at `state: scoping`) still has
+  the set in context, since §2's load runs only when the phase is first opened at `state: shipped`.
 
 ## 2. Load the queued set (refinement phases only)
 If this is a refinement phase (`state: shipped`), read `.gg/BACKLOG.md ## Next phase` — the set
@@ -125,7 +127,8 @@ One question at a time, with your recommended answer, exploring the code when th
 ## 5. Sign-off (confirm questions done + defaults taken)
 Before closing (`GRILLING.md` → "Confirm before you stop"): (1) for a refinement phase, **confirm the
 phase's `kind`** (build / research) for the user's veto — *"I'm opening this as a {build|research} phase
-because {the queued set is capabilities/bugs | it's an open question / experiments}"*; (2) name any areas
+because {the queued set is capabilities/bugs | it's an open question / experiments}"* — if the veto flips it, rewrite `kind` and this phase's
+phase-log line in the ROADMAP header (§2 set them provisionally); (2) name any areas
 still worth probing and let the user decide whether to keep grilling; (3) **surface the
 high/medium-blast defaults** you recorded, for veto; (4) when the phase has a `[discovered]` clause,
 **surface where the first show lands and why it can't be earlier** — *"you won't see {the riskiest

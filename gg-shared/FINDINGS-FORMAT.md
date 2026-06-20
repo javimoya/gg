@@ -29,7 +29,9 @@ never edited away, only its "Leads to" is updated when it spawns work.}
   from an `A-NN` assumption (which decides *what to build*, before the fact) and from a `B-NN` backlog
   item (a not-yet-made decision about what to build next). Recording the observation is not itself a
   decision; the decision it may trigger is a separate `B-NN`, linked from **Leads to**.
-- **Append-only, numbered, never deleted.** `F-NN` ids are stable and never reused. A finding is a fact
+- **Append-only, numbered, never deleted.** `F-NN` ids are stable and never reused — the next id is one past the highest `F-NN` on record
+  (findings are never moved out, so the whole `## Findings` list is the scan; the same discipline as the
+  backlog's `B-NN`, `BACKLOG-FORMAT.md`). A finding is a fact
   on the record; you never erase it — when it is acted on you update its **Leads to**, you don't remove
   the block (same move-don't-erase discipline as the backlog archive and the assumptions ledger).
 - **Recorded the moment it's seen**, by whoever saw it. `CAPTURE.md` routes a *past-tense observation*

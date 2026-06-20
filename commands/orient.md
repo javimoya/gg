@@ -76,7 +76,8 @@ This is the one "audit" gg has — and it audits the **record's integrity**, nev
   recorded close.
 - **Assumption cross-refs**: an `A-NN` cited in `BLUEPRINT.md` / `BACKLOG.md` that isn't in
   `ASSUMPTIONS.md`; an *applied* backlog item with `reverses: A-NN` whose `A-NN` never moved to
-  `ASSUMPTIONS.md ## Overridden`.
+  `ASSUMPTIONS.md ## Overridden`; a **duplicate `A-NN`** across `## Open` and `## Overridden` (ids are
+  stable and never reused — `ASSUMPTIONS-FORMAT.md`).
 - **Duplicated facts that drifted** (`BLUEPRINT-FORMAT.md` → "link, don't duplicate"): a fact restated
   in the BLUEPRINT that now contradicts its source (`RUNBOOK.md` / `SPEC.md` / an ADR).
 - **Acceptance without evidence**: an `AC-N` recorded met without a cited real result (`confirmed`

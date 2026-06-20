@@ -74,8 +74,8 @@ If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):
 
 ## 5. Not the last task → stop
 If pending tasks remain, **stop here** (one task per run). Leave the tree clean and known-good. Run the
-close ritual (`CLOSE-FORMAT.md`) and the breadcrumb: *"Phase {N}: task {N}/{M} done. Next: `/clear` +
-`/gg:next-task` (task {N+1} — {where})."* (If the user told you to wrap up mid-task, carve the
+close ritual (`CLOSE-FORMAT.md`) and the breadcrumb: *"Phase {N}: task {T}/{M} done. Next: `/clear` +
+`/gg:next-task` (task {T+1} — {where})."* (If the user told you to wrap up mid-task, carve the
 remainder into a new follow-up task first, then stop — the same checkpoint.)
 - **If the task just done is a `show`** (a designed look, *not* the phase close): also **run its "How to
   see it" yourself** (the SPEC's `## Shows` entry), then make the breadcrumb a *look-at-this* — invite the
@@ -83,12 +83,16 @@ remainder into a new follow-up task first, then stop — the same checkpoint.)
   verdict on the show's `[discovered]` target as an `F-NN`** in `FINDINGS.md` (that verdict is the show's
   reason for being — even "this feels right" is the citable observation a phase close needs); any further
   observation → another `F-NN`, a wanted change or bug → `BACKLOG.md ## New` (`B-NN`) — **never** patch it
-  inline or fold it into the current build. Breadcrumb: *"Phase {N}: task {N}/{M} done — show: try it →
-  {how to see it}. React and I'll capture it; then `/clear` + `/gg:next-task` (task {N+1})."*
+  inline or fold it into the current build. Breadcrumb: *"Phase {N}: task {T}/{M} done — show: try it →
+  {how to see it}. React and I'll capture it; then `/clear` + `/gg:next-task` (task {T+1})."*
 
 ## 6. Last task → close the phase
 When the last task is done — **the phase's decisive try-it point**, where the *whole* phase is judged
 green and runnable (the earlier looks, if any, were the phase's shows):
+- **If that last task is itself a `show`** (`/gg:discover` may place a `[discovered]` clause's look last):
+  fold its look into this close — run its "How to see it", invite the user to react, and record their
+  verdict on its `[discovered]` target as an `F-NN` (the §5 show ritual) as part of this decisive try-it,
+  so a show placed last is closed here, not skipped.
 - Build the **deliverable**; **run the SPEC's "How to see it" yourself** and record the real result. In a
   **`research`** phase (`ROADMAP-FORMAT.md`) "How to see it" runs the **experiment**: record its measured
   result as an `F-NN` (`FINDINGS-FORMAT.md`) and **close each `reported` `AC-N` by citing that `F-NN`** —

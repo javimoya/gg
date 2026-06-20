@@ -49,7 +49,9 @@ question, most important first. Emptied before discover moves the project to `bu
   genuinely not automatable) and an exact, reproducible **Verify**. A criterion that can only be
   *inferred* — no runnable check — isn't a criterion; sharpen it. (`reported`, below, is not the
   exception it looks like: it *has* a runnable experiment — only its *answer* is open, not whether there
-  is a check.) IDs never change once assigned.
+  is a check.) IDs never change once assigned; the next `AC-N` is one past the highest assigned anywhere
+  in this SPEC (one file for the whole product, across every phase) — never reused, even when a criterion
+  is later revised.
 - **`reported` is for a `research` phase's open question — a measure, not a capability.** A `research`
   phase (`ROADMAP-FORMAT.md`) closes on what it *learned*, so its acceptance is an **open empirical
   question** ("under {conditions}, does {X} yield {Y}?") whose answer isn't known at spec time. A

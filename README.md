@@ -280,7 +280,7 @@ Developing locally? Point the marketplace at your checkout instead of GitHub:
 
 **Do I try the product between tasks?** At the phase's **shows**, not task by task: a `show` is a watchable slice `/gg:discover` places where the product's character becomes judgeable — the first as early as the foundation allows, so a wrong target surfaces early — plus the decisive try-it at the **phase close**. Between those the agent runs its own tests and checks; you don't babysit it task by task.
 
-**Is there an audit or a wrap step?** No, `gg` deliberately has neither. Verification is the green test suite at the phase close, the runnable deliverable you try, and a self-accounting gate. And there's nothing to "wrap": `/gg:next-task` checkpoints to `PROGRESS.md` every run, so you just `/clear` and run it again.
+**Is there a mandatory audit or wrap step?** No — neither lives *in the loop*. Verification is the green test suite at the phase close, the runnable deliverable you try, and a self-accounting gate, not a separate audit phase. (One *optional*, read-only check exists for when you want it: `/gg:orient --audit` inspects the `.gg/` record's integrity — handy before a launch flip or after a hand-edit — and changes nothing.) And there's nothing to "wrap": `/gg:next-task` checkpoints to `PROGRESS.md` every run, so you just `/clear` and run it again.
 
 **Why clean sessions and `/clear` between steps?** Long sessions degrade. Each task is sized to fit one fresh session, and the `.gg/` files carry the state across, so you're always working with a sharp context.
 

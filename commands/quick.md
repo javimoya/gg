@@ -42,7 +42,9 @@ Any other state **degrades to a plain `/gg:capture`** (`CAPTURE.md`) so the idea
 
 ## 1. Record the item straight to `## Next phase` (the express auto-triage)
 Apply `CAPTURE.md`'s jot + light reconcile, with **one deviation** — the item (or, if the reconcile folds
-it into an existing item, that survivor keeping its `B-NN`) lands in **`## Next phase`**, not `## New`. The
+it into an existing **`## New`** item, that survivor keeping its `B-NN`) lands in **`## Next phase`**, not
+`## New`. (A fold that matches an already-**deferred** item — `## Later` / `## Future` — is surfaced and
+left where triage put it; promoting it is `/gg:refine-backlog`'s call, per `BACKLOG-FORMAT.md`.) The
 input is `$ARGUMENTS` if passed, else the idea the user just raised. Create `.gg/BACKLOG.md` with a
 `# Backlog — {name}` header and both `## New` + `## Next phase` sections if it doesn't exist yet (the common
 right-after-phase-0-ship case). Field shape, the `[bug]` prefix, the next stable `B-NN`, and `reverses: A-NN`

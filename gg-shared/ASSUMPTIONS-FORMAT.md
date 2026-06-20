@@ -30,7 +30,10 @@ reversible, not hidden.
 
 ## Rules
 
-- **Append-only, numbered, reversible.** `A-NN` IDs are stable. A default is legitimate *only* because
+- **Append-only, numbered, reversible.** `A-NN` IDs are stable — the next id is one past the highest
+  `A-NN` found across **both** `## Open` and `## Overridden` (an overridden default keeps its id, so its
+  number is retired, never reused; scan both sections — the same discipline as the backlog's `B-NN`,
+  `BACKLOG-FORMAT.md`). A default is legitimate *only* because
   it is recorded, attributed, and cheaply reversible by a note. The cut is the *unrecorded* assumption
   (`CONSTITUTION.md` → "Defaults and assumptions").
 - **High-blast decisions never live here.** They are grilled questions, not defaults. If you can't

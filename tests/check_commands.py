@@ -24,14 +24,19 @@ COMMANDS = sorted((REPO / "commands").glob("*.md"))
 EXPECTED = {"ideate.md", "discover.md", "next-task.md", "refine-backlog.md", "capture.md", "quick.md", "orient.md"}
 
 # Commands that take an explicit argument and must advertise it.
-WANT_ARG_HINT = {"next-task.md", "capture.md", "quick.md"}
+WANT_ARG_HINT = {"next-task.md", "capture.md", "quick.md", "orient.md", "refine-backlog.md"}
 
 
 def frontmatter(path: Path) -> dict:
     text = path.read_text()
     if not text.startswith("---"):
         raise ValueError("no frontmatter block")
-    _, fm, _ = text.split("---", 2)
+    # Split only on the closing delimiter line, so a literal "---" inside a frontmatter
+    # value (or a horizontal rule in the body) can't truncate the block and drop keys.
+    end = text.find("\n---", len("---"))
+    if end == -1:
+        raise ValueError("unterminated frontmatter block")
+    fm = text[len("---"):end]
     data = yaml.safe_load(fm)
     if not isinstance(data, dict):
         raise ValueError("frontmatter is not a mapping")

@@ -93,7 +93,10 @@ archive's `## Applied`. Same `###` block shape as New.}
   both, a fresh item lands straight in `## Next phase` (it never waits in `## New`); and if the light
   reconcile **folds** the new wording into an existing `## New` item, that surviving item is **promoted
   out of `## New` into `## Next phase`** (keeping its `B-NN`) rather than left stranded — that promotion is
-  part of the same direct write, not a general section move. Both skip
+  part of the same direct write, not a general section move. (If the reconcile instead matches an item
+  already in `## Next phase`, the fold is a no-op there; if it matches a **deferred** item in `## Later` /
+  `## Future`, surface that and leave it where triage put it — pulling a deferred item forward is
+  `/gg:refine-backlog`'s call, not a silent side effect of the direct write.) Both skip
   `/gg:refine-backlog`.
 - **Stable, never-reused `B-NN` ids.** Every item carries a `B-NN` id, assigned at `/gg:capture`. The id
   is **stable**: it travels with the item through every section and into the archive, and **never

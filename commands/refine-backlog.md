@@ -26,12 +26,16 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
   belongs in the live grilling, and there's no backlog to triage yet. **Stop** and route there.
 - **`state: building`** → a phase is mid-build. Triaging now opens nothing — the queued set is consumed
   by the **next** `/gg:discover`, not this build. **Default: stop** and route to `/gg:next-task`, unless
-  the user explicitly wants to groom the backlog now.
+  the user explicitly wants to groom the backlog now. Even while grooming a build, **never move items into
+  `## Next phase`** — that section holds the in-flight set and archives whole to `## Applied` at phase close
+  (`next-task.md` §6), so a freshly queued item would be falsely archived as applied; triage only to
+  `## Later` / `## Future` / discard, and leave next-phase promotion for after the phase ships.
 - **`state: shipped`** → proceed. This is the between-phases grooming step.
 
 If `.gg/BACKLOG.md` is missing, or the section this run reports is empty (`## New` by default, or the
-`## Later` / `## Future` tier named by the flag): **stop** — nothing to triage. Tell the user to
-`/gg:capture` an idea first.
+`## Later` / `## Future` tier named by the flag): **stop** — nothing to triage. Before stopping, if other
+tiers hold items, name them and the `--later` / `--future` flag that reviews them (so deferred work is
+never left invisible); otherwise tell the user to `/gg:capture` an idea first.
 
 ## 1. Orient + summary
 - Read `.gg/PRINCIPLES.md` (the bar; decompose-don't-drop; a discard is a **recorded** product
