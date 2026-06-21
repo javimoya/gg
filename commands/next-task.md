@@ -83,8 +83,18 @@ remainder into a new follow-up task first, then stop — the same checkpoint.)
   verdict on the show's `[discovered]` target as an `F-NN`** in `FINDINGS.md` (that verdict is the show's
   reason for being — even "this feels right" is the citable observation a phase close needs); any further
   observation → another `F-NN`, a wanted change or bug → `BACKLOG.md ## New` (`B-NN`) — **never** patch it
-  inline or fold it into the current build. Breadcrumb: *"Phase {N}: task {T}/{M} done — show: try it →
-  {how to see it}. React and I'll capture it; then `/clear` + `/gg:next-task` (task {T+1})."*
+  inline or fold it into the current build. **Then branch the breadcrumb on what the look revealed.**
+  **If the reactions mean the remaining tasks must change before the phase can continue** (the approach is
+  wrong, or new/changed work must land *before* the next pending task): route to **`/gg:discover` to
+  re-scope this phase in place** (`discover.md` §0 / §2 / §4) — it folds in the `F-NN` you just recorded
+  **and** the `## New` reactions, keeps the done tasks done, and redesigns only the pending portion (it
+  does **not** open a new phase). **Not `/gg:refine-backlog`** — these reactions belong to *this* phase,
+  not a future one (`refine-backlog.md` §0 can't queue into `## Next phase` mid-build). Breadcrumb:
+  *"Phase {N}: task {T}/{M} done — show: try it → {how to see it}. The look changed the plan; once you
+  confirm, `/clear` + `/gg:discover` to re-scope phase {N} in place (folds F-NN + the `## New` reactions,
+  keeps tasks 1–{T} done)."* **Otherwise** — the look is good, or the only captures are minor scope for a
+  *later* phase — continue: *"Phase {N}: task {T}/{M} done — show: try it → {how to see it}. React and
+  I'll capture it; then `/clear` + `/gg:next-task` (task {T+1})."*
 
 ## 6. Last task → close the phase
 When the last task is done — **the phase's decisive try-it point**, where the *whole* phase is judged

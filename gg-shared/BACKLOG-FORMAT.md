@@ -97,7 +97,12 @@ archive's `## Applied`. Same `###` block shape as New.}
   already in `## Next phase`, the fold is a no-op there; if it matches a **deferred** item in `## Later` /
   `## Future`, surface that and leave it where triage put it — pulling a deferred item forward is
   `/gg:refine-backlog`'s call, not a silent side effect of the direct write.) Both skip
-  `/gg:refine-backlog`.
+  `/gg:refine-backlog`. **A third direct writer is `/gg:discover` on an in-place re-scope** (a `show`
+  revealed the current phase's plan must change — `discover.md` §0 / §2): it consumes the just-captured
+  `## New` reactions into the **current** phase and promotes them to `## Next phase` (keeping each `B-NN`,
+  with a *"Folded into phase N"* provenance line), so they archive to `## Applied` at this phase's close
+  like normally-queued items. This is safe where `/gg:refine-backlog` mid-build is not (its §0 ban):
+  discover designs the items into the live phase, so they are genuinely applied at its close.
 - **Stable, never-reused `B-NN` ids.** Every item carries a `B-NN` id, assigned at `/gg:capture`. The id
   is **stable**: it travels with the item through every section and into the archive, and **never
   changes**. It is **never reused** — the next id is one past the highest `B-NN` found **anywhere** in

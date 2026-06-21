@@ -95,7 +95,9 @@ decision) before `/gg:discover` runs. When `/gg:discover` opens a **refinement p
 exists), it reads the set the user already queued in `.gg/BACKLOG.md ## Next phase` — **that set *is*
 the phase**. Grilling then runs over those items **together** — a joint view, so their tasks come out
 coherent, not item-by-item. Items still in `## New` / `## Later` stay in the backlog for a later phase
-(never dropped).
+(never dropped) — **except** when `/gg:discover` is asked to **re-scope the current phase in place** (a
+`show` revealed the plan must change — `discover.md` §0 / §2): it then folds the just-captured `## New`
+reactions into *this* phase and promotes them to `## Next phase`, so they archive at this phase's close.
 
 ## The anti-scope-cut bar applies here too
 

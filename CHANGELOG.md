@@ -3,6 +3,33 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.7.0
+
+A new first-class path for the mid-phase pivot: when a `show` reveals the phase is aimed wrong and work
+must change *before* continuing, `/gg:discover` re-scopes the **current** phase in place — one command,
+no detour through `/gg:refine-backlog`.
+
+### Added
+- **`/gg:discover` re-scopes the current phase in place (`state: building`).** When a `show`'s look
+  reveals the remaining plan must change, `/gg:discover` reshapes the phase under way instead of opening a
+  new one: it reads the just-captured `## New` reactions + the triggering `F-NN`, **keeps the done tasks
+  done** (Provenance / owned paths never rewritten), redesigns only the pending tasks and inserts the new
+  ones, re-places the show, appends a dated BLUEPRINT `## Phase N — revised` section, and **promotes the
+  folded `## New` items into `## Next phase`** (keeping each `B-NN`) so they archive on this phase's close
+  like normally-queued items. It does **not** bump `phase` or change `state`. (`commands/discover.md` §0
+  / §2 / §4 / Close.)
+- **`/gg:next-task`'s `show` breadcrumb now branches deterministically.** A plain look routes to the next
+  task as before; a look that means the remaining plan must change routes straight to **`/gg:discover`**
+  to re-scope in place — explicitly **not** `/gg:refine-backlog` (those reactions belong to *this* phase,
+  and `refine-backlog` can't queue into `## Next phase` mid-build). (`commands/next-task.md` §5.)
+- **`/gg:orient` names the re-scope path** when a `building` project's "Where to resume" shows a
+  plan-changing show reaction. (`commands/orient.md`.)
+
+### Changed
+- **Docs kept in sync with the new path** — `gg-shared/GRILLING.md` ("The queued set"),
+  `gg-shared/BACKLOG-FORMAT.md` (`/gg:discover` is now a third direct writer of `## Next phase`, scoped to
+  the re-scope), and the README loop. No migration or back-compat logic — clean going-forward behavior.
+
 ## 2.6.1
 
 A whole-repo code-review pass — bug fixes and documentation sync. No change to the workflow's behavior.

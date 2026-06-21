@@ -21,8 +21,14 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
   VISION/SPEC to design from yet. **Stop**, route to `/gg:ideate` to finish it.
 - **`state: scoping`** → proceed. Either phase 0 right after ideate, or **resuming** a discovery (the
   SPEC's "Open questions" is your queue).
-- **`state: building`** → a phase is already designed and mid-build. Don't silently re-discover and
-  clobber it: **stop** and route to `/gg:next-task` (re-design only if the user explicitly asks).
+- **`state: building`** → a phase is already designed and mid-build. **Default: stop** and route to
+  `/gg:next-task` — never silently re-discover and clobber the board or the done tasks. **The one
+  first-class exception is a `show` whose look revealed the remaining plan must change** (`next-task.md`
+  §5): then **re-scope the current phase in place** — fold the just-captured `F-NN` + `## New` reactions
+  into *this* phase, **keep the done tasks done**, and redesign only the pending portion. This is **not**
+  a new phase: do **not** bump `phase`, do **not** change `state` (it stays `building`). Handle it via the
+  re-scope sub-cases in §2 and §4; close with the re-scope breadcrumb. (Outside that case, re-design only
+  if the user explicitly asks, under the same in-place rules.)
 - **`state: shipped`** → a phase just shipped. Start the next phase **only if there are items queued**
   in `.gg/BACKLOG.md ## Next phase`. If that section is empty, **stop** and route to
   `/gg:refine-backlog` to triage the backlog first (or `/gg:capture` if the backlog is empty) — the
@@ -47,6 +53,20 @@ phase-log line (a `research` phase names its question). Surface the `kind` for t
 (§5). The items stay in `## Next phase` while you build; they move to `BACKLOG-ARCHIVE.md ## Applied` at
 phase close. (In phase 0 there is no backlog — the scope is the whole product, and phase 0 is always
 `kind: build`.)
+
+**Re-scope in place (`state: building` — the §0 `show` exception).** Not a new phase — you reshape the
+phase already under way. Read the **freshly-captured `## New` reactions** plus the **triggering `F-NN`**
+(the show's verdict, in `.gg/FINDINGS.md`) — that pair is the re-scope's input, the way `## Next phase`
+is a fresh phase's input. Then: **do not bump `phase`**, **do not change `state`** (it stays `building`),
+**keep the current `kind`** unless the user changes it. **Append** a dated BLUEPRINT `## Phase N —
+revised` section (a second pass appends `## Phase N — revised (2)`), never editing the frozen phase-0 or a
+prior `## Phase N` section. **Promote the folded `## New` items into `## Next phase`** — move each `###`
+block, **keep its `B-NN`**, and add a provenance line *"Folded into phase {N} (revised) — {YYYY-MM-DD},
+/gg:discover, as task {K}"* — so they archive to `BACKLOG-ARCHIVE.md ## Applied` at this phase's close
+exactly like normally-queued items (`next-task.md` §6). This promotion is correct precisely because the
+items belong to **this** phase — it is **not** the future-phase ban in `refine-backlog.md` §0 (a
+*different* command, a *different* phase). Add a dated re-scope line to the ROADMAP `## Structural
+changelog`. `## Later` / `## Future` reactions stay where triage put them.
 
 ## 3. Grill (the `GRILLING.md` protocol) — and record defaults
 One question at a time, with your recommended answer, exploring the code when the answer is there.
@@ -104,6 +124,16 @@ One question at a time, with your recommended answer, exploring the code when th
   each subsystem built to full breadth first: only what genuinely **can't be retrofitted** — the
   load-bearing decisions later work can't be re-sequenced onto — must precede the first show; everything
   else is thickened after it (below).
+  - **On a re-scope in place** (§0 / §2): the board already has **done** tasks — **leave every `done`
+    task untouched** (its row, its `Closed-task log` line, and the Provenance block — base commit,
+    pre-existing dirty paths, owned paths, written by `/gg:next-task` — **never** rewrite it). Rewrite
+    **only the pending portion**: redesign the still-pending tasks, **insert** the new/changed ones from
+    the folded `## New` items, and **re-place the show(s)** (a re-scope usually re-runs the show on the
+    new flow). Number new tasks **after** the kept ones; never renumber or re-open a done task. Then
+    write a **"re-scoped in place"** note into PROGRESS **"Where to resume"** — *"Phase {N} re-scoped in
+    place ({YYYY-MM-DD}, /gg:discover): tasks 1–{T} stay done; {folded B-NNs} folded in, tasks
+    {T+1}–{M} (re)designed; the show re-runs at task {K}."* — so the next session sees why the board
+    changed mid-build.
   - **Place the shows** (`type: show`, `PROGRESS-FORMAT.md`) — a task that builds a watchable slice and
     stops for the user to look. A show goes **where the felt character meaningfully changes** — where a
     `[discovered]` clause (`VISION-FORMAT.md`) becomes more judgeable — never on a task count.
@@ -142,5 +172,8 @@ Run the close ritual (`CLOSE-FORMAT.md`): persist BLUEPRINT / ASSUMPTIONS / SPEC
 append a `JOURNAL.md` entry, then the breadcrumb:
 - **Done** (`building`): *"Phase {N} designed: {M} tasks in PROGRESS. Next: `/clear` then
   `/gg:next-task` for task 1."*
+- **Re-scoped in place** (`building`, no phase bump): *"Phase {N} re-scoped in place: tasks 1–{T} kept
+  done, {J} tasks (re)designed/inserted ({folded B-NNs}), the show re-runs at task {K}. Next: `/clear`
+  then `/gg:next-task` (task {T+1})."*
 - **Cut mid-way** (`scoping`): *"Phase {N} discovery checkpointed; {K} open questions left, next is
   '{question}'. Continue with `/clear` + `/gg:discover`."*

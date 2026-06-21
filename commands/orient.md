@@ -32,6 +32,9 @@ The user invoked `/gg:orient $ARGUMENTS`. Gate on that exact value:
     `.gg/VISION.md` (if present) for how far the vision got. The next action is to finish ideation.
   - `scoping` → `.gg/SPEC.md` "Open questions (working)" (the next discovery question).
   - `building` → `.gg/PROGRESS.md` task board (which task is next, where to resume; any "Blocked" note).
+    If "Where to resume" (or the latest JOURNAL) says a `show` reaction means the remaining plan must
+    change, the next action is `/gg:discover` to **re-scope the phase in place**, not `/gg:next-task`
+    (`discover.md` §0).
   - `shipped` → `.gg/BACKLOG.md` (`## Next phase` already queued + `## New` not yet triaged — what could
     go into the next phase) and the VISION's "done and perfect" for the conformance read.
 - `.gg/BACKLOG.md` → the counts by state (new / queued for next phase / later / future); nothing
@@ -111,6 +114,8 @@ End with the exact next action, e.g.:
 - *"Ideation unfinished (still `visioning`); `/clear` then `/gg:ideate` to finish the vision."*
 - *"Next: `/clear` then `/gg:discover` (phase 0)."*
 - *"You're on task 2/5 of phase 0; `/clear` + `/gg:next-task` to continue."*
+- *"A show flagged the plan needs changing; `/clear` + `/gg:discover` to re-scope phase {N} in place
+  (then `/gg:next-task`)."*
 - *"Phase 1 shipped — try it, then `/gg:capture` ideas, `/gg:refine-backlog` to triage, and
   `/gg:discover` for phase 2 (or `/gg:quick` to fast-track one small fix)."*
 - *"Stage flipped to launched; {K} launch-readiness items added to the backlog; `/clear` +
