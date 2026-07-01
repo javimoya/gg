@@ -52,8 +52,15 @@ Terse is fine; unambiguous is mandatory.
   "Safety and reversibility").
 - **"Where to resume" is unambiguous** — a `file:line` or a concrete next step a stranger could act on.
   This is the whole point of the checkpoint.
-- **Closed tasks collapse to one line.** Keep the board readable as it grows; the per-task detail is
-  one line, not a journal (the JOURNAL holds the narrative).
+- **Closed tasks collapse to one line.** One `- **Task {N} — {name}**: …` bullet per task — hard cap
+  two lines, never a paragraph (the JOURNAL holds the narrative).
+- **Board cells are names.** A row's `task` cell is a short name — 80 characters at most, citing the
+  ids it builds (`B-NN` / `AC-N`) rather than restating them; descriptions and acceptance text live in
+  the SPEC and the BLUEPRINT, not on the board.
 - **No phase-level deliverable or full-suite claims here.** A task's "verified" is a *focused* check;
   the deliverable run and the full green suite are phase-level and recorded in the phase-close JOURNAL
-  entry. A new phase starts a fresh PROGRESS (the prior phase's outcome lives in its JOURNAL entry).
+  entry.
+- **One phase per file — `/gg:discover` replaces it at phase open.** `PROGRESS.md` holds exactly the
+  current phase's board; opening a new phase rewrites the file whole (`discover.md` §4). Prior boards
+  are never stacked here under any heading — a prior phase's outcome lives in its phase-close JOURNAL
+  entry.

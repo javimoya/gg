@@ -55,7 +55,7 @@ never only in prose.
    Record the relationship on the item's `Relates` line, pointing at the other item's `B-NN` (e.g.
    `refines: B-03`), so the backlog stays coherent.
 3. **If it reverses a recorded default**, point the item at that `A-NN` (`reverses: A-NN`); the
-   assumption moves to `ASSUMPTIONS.md ## Overridden` only when the item is later applied.
+   assumption moves to `ASSUMPTIONS-ARCHIVE.md ## Overridden` only when the item is later applied.
 
 This is **not** triage or design. Which items a phase includes is decided by `/gg:refine-backlog`
 (triage — one reviewed report, then a single decision), and how they're shaped by `/gg:discover`

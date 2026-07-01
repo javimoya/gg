@@ -1,7 +1,7 @@
 {
   "name": "gg",
   "description": "A disciplined, multi-session workflow for building software with Claude Code: phase 0 builds the whole product (ideate then discover then next-task), then you refine it phase by phase from a backlog you triage (capture then refine-backlog then discover, or quick to fast-track one item; orient to get your bearings anytime) — all project state on disk, with recorded assumptions and a dev/launched stage so it never over-engineers a product that's still in development.",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "author": {
     "name": "Francisco J. Moya",
     "email": "francisco.j.moya@gmail.com"

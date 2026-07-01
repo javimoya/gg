@@ -237,13 +237,15 @@ clause**, anchored to the riskiest one and ordered as early as the foundation al
 ## Context discipline
 
 A long session fills the context window and degrades results. The model **cannot reliably measure
-its own context usage**, so we don't gate on a percentage. Two levers:
+its own context usage**, so we don't gate on a percentage. Three levers:
 - `/gg:discover` **sizes tasks small** so each `/gg:next-task` comfortably fits one fresh session.
   The primary control.
 - **One task per `/gg:next-task` run.** It does the next task, records "where to resume" in
   `PROGRESS.md`, leaves the tree clean and known-good, and stops — you `/clear` and run
   `/gg:next-task` again. You can also tell a running session to wrap up early; it checkpoints the same
   way. There is no separate wrap command — `PROGRESS.md` *is* the handoff, and re-running resumes.
+- **Read `.gg/` by anchor, never a grown ledger whole** (`LEDGERS.md`). The record grows for the life
+  of the project; each session loads only the sections and id-anchored blocks the work at hand needs.
 
 Cutting early and handing off cleanly always beats pushing a degraded session.
 

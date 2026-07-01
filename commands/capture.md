@@ -14,7 +14,8 @@ the standalone entry to the shared protocol (`${CLAUDE_PLUGIN_ROOT}/gg-shared/CA
 entry — an idea during `/gg:next-task` — applies the same protocol without leaving the session.
 
 ## 0. Precondition
-Read `.gg/ROADMAP.md`'s header:
+Read `.gg/ROADMAP.md`'s header — the `## State` block + `## Phase log`, never the changelog
+(`LEDGERS.md`):
 - **No `.gg/`** → no project yet. **Stop**: route to `/gg:ideate`.
 - **`state: visioning`** → you're mid-`/gg:ideate`. **Stop**: an idea right now belongs **in the live
   ideation grilling**, not the backlog — route the user there.

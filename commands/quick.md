@@ -21,7 +21,8 @@ state lives in `<cwd>/.gg/`. Protocols in `${CLAUDE_PLUGIN_ROOT}/gg-shared/`: `C
 **one item, one micro-phase**.
 
 ## 0. Precondition (gate before fast-tracking)
-Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`). The express lane runs **only** at
+Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`) — the `## State` block + `## Phase log`,
+never the changelog (`LEDGERS.md`). The express lane runs **only** at
 `state: shipped` with an **empty `.gg/BACKLOG.md ## Next phase`** — that is what lets the recorded item
 *be* the whole micro-phase, so `/gg:discover` and `/gg:next-task` run with no change to their contract.
 Any other state **degrades to a plain `/gg:capture`** (`CAPTURE.md`) so the idea is never lost:

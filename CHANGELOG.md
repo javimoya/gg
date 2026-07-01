@@ -3,6 +3,64 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.8.0
+
+**The record that doesn't bloat** — informed by a real 15-phase project whose `.gg/` grew past what a
+session can read: a half-megabyte PROGRESS, a 176KB assumptions ledger read whole at every command
+start, and ~40K tokens of pure orientation per task. The record now stays lean by design, and commands
+read it by anchor instead of by volume.
+
+### Added
+- **`gg-shared/LEDGERS.md` — a shared read/edit discipline for `.gg/`.** Commands read by **anchor**
+  (a heading or an id like `### A-07 —` / `**AC-21**`), never a grown ledger whole — a whole-file read
+  is never load-bearing (grown ledgers can exceed the Read tool's size limit outright). It carries the
+  per-file read-depth table (ROADMAP → `## State` + `## Phase log` only; JOURNAL → the tail; SPEC /
+  BLUEPRINT / ASSUMPTIONS / FINDINGS / ADRs → the current phase's anchored sections), the edit
+  discipline (**re-read the exact block immediately before editing it**; anchor on short stable spans;
+  on a failed match, re-read from disk — never retry from memory), **"Formats are closed"** (never
+  invent a field, section, or archive area), and **"One fact, one home"** (cite ids, don't restate).
+  `/gg:ideate`, `/gg:discover`, `/gg:next-task`, `/gg:refine-backlog`, `/gg:capture`, `/gg:quick`, and
+  `/gg:orient` all load their startup context through it; the constitution's "Context discipline"
+  names it as the third lever.
+- **`ASSUMPTIONS-ARCHIVE.md` — the assumptions ledger stays lean (`ASSUMPTIONS-FORMAT.md`).** At every
+  phase close, `/gg:next-task` §6 **sweeps `## Open`**: a default whose decision is baked into shipped,
+  verified behavior moves whole to the archive's `## Consumed` (the test: *reversing it now would be a
+  change to shipped behavior — a `B-NN` — not a costless re-decision*); an overridden default now moves
+  to the archive's `## Overridden`. `## Open` holds only the defaults still in play — the set commands
+  actually read. Ids are computed across both files; stage-deferrals stay Open until the launch flip.
+  `## Open` is **appended newest last** — the same direction as every other gg ledger.
+- **AC supersession (`SPEC-FORMAT.md`).** When a phase removes or replaces shipped behavior,
+  `/gg:discover` §4 sweeps the affected criteria and **collapses each to a single line** —
+  `**AC-48** (phase 5) — superseded (phase {N}): {what removed it}` — the id stays retired and
+  scannable, the Given/When/Then goes. A criterion left describing removed behavior is a contradiction
+  in the contract, not history.
+- **New `/gg:orient --audit` checks**: PROGRESS drift (title ≠ header phase; a second board or any
+  archive-like section), invented structure (a section/field/column no format defines), changelog
+  drift (a line outside the closed set), zombie criteria, stale shows, an `## Open` default the close
+  never swept, and verbosity drift (closed-task log past the cap, board cells holding prose, a
+  BLUEPRINT phase section re-narrating items).
+
+### Changed
+- **Opening a phase replaces `PROGRESS.md` whole (`discover.md` §4, `PROGRESS-FORMAT.md`).** The fresh
+  board is written over whatever is there; prior boards are never stacked under any heading (their
+  outcome lives in the phase-close JOURNAL entries). The one exception is the in-place re-scope, which
+  edits the existing board.
+- **The ROADMAP `## Structural changelog` is a closed set (`ROADMAP-FORMAT.md`, `CLOSE-FORMAT.md`).**
+  One dated line per structural event only — kickoff · a phase opened · an in-place re-scope · a stage
+  flip. **A task close is never a changelog line**, and a phase ship updates its phase-log line
+  instead. The changelog is write-only outside `--audit`.
+- **`SPEC.md ## Shows` is transient — current phase only.** `/gg:discover` rewrites the section whole
+  at phase open and removes it when the phase has no shows; a past show's record is its `F-NN` verdict.
+- **Verbosity caps where "terse" didn't bite.** PROGRESS: closed-task log entries hard-capped at two
+  lines; board cells are names, 80 characters at most, citing `B-NN`/`AC-N` instead of restating them.
+  BLUEPRINT: a `## Phase N` section records the design delta only, capped at ~20 lines — never the
+  phase's re-narrated story. JOURNAL: one-line bullets, ids over restatement.
+- **`/gg:refine-backlog` no longer loads `PRINCIPLES.md`** — the constitutional rules triage needs are
+  stated in its own spec.
+- **The ADR filename is the index (`ADR-FORMAT.md`).** The slug says the decision
+  (`0007-sqlite-over-postgres.md`), so a session picks relevant ADRs from `ls .gg/adr/` alone — no
+  separate index file, which would only drift.
+
 ## 2.7.0
 
 A new first-class path for the mid-phase pivot: when a `show` reveals the phase is aimed wrong and work

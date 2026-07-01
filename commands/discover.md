@@ -10,12 +10,13 @@ You turn a vague scope — the whole product in phase 0, or the set queued by `/
 refinement phase — into a **design + a testable contract + an ordered task list** that `/gg:next-task`
 can build with no further questions. You work in the project directory (cwd); state lives in `<cwd>/.gg/`.
 
-Shared protocols in `${CLAUDE_PLUGIN_ROOT}/gg-shared/`: `GRILLING.md`, `CONSTITUTION.md`,
+Shared protocols in `${CLAUDE_PLUGIN_ROOT}/gg-shared/`: `GRILLING.md`, `CONSTITUTION.md`, `LEDGERS.md`,
 `BLUEPRINT-FORMAT.md`, `ASSUMPTIONS-FORMAT.md`, `SPEC-FORMAT.md`, `PROGRESS-FORMAT.md`, `BACKLOG-FORMAT.md`,
 `STAGE.md`, `CONTEXT-FORMAT.md`, `ADR-FORMAT.md`, `RUNBOOK-FORMAT.md`, `CLOSE-FORMAT.md`.
 
 ## 0. Precondition
-Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
+Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`) — the `## State` block + `## Phase log`,
+never the changelog (`LEDGERS.md`):
 - **No `.gg/`** → no project yet. **Stop**, route to `/gg:ideate`.
 - **`state: visioning`** → ideation was kicked off but cut before the vision was sharp; there's no
   VISION/SPEC to design from yet. **Stop**, route to `/gg:ideate` to finish it.
@@ -37,9 +38,12 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
 ## 1. Orient + constitution
 - Read `.gg/PRINCIPLES.md` (the bar: full product, decompose ≠ drop, the cut is the *unrecorded*
   assumption, dev ≠ launched).
-- Read `.gg/VISION.md`, `.gg/CONTEXT.md`, `.gg/adr/`, the current `BLUEPRINT.md` / `SPEC.md` /
-  `ASSUMPTIONS.md` (if they exist), `.gg/FINDINGS.md` (the observations a queued item may cite),
-  `.gg/RUNBOOK.md`, and the `stage`. In a **refinement phase**, also read `.gg/BACKLOG.md ## Next phase`
+- Read whole (bounded by design): `.gg/VISION.md`, `.gg/CONTEXT.md`, `.gg/RUNBOOK.md`, and the `stage`.
+- Read by anchor (`LEDGERS.md` — a grown ledger is never read whole; in phase 0 these don't exist yet):
+  the BLUEPRINT's `## Shape` + the phase-0 sections the queued work touches + its latest `## Phase N`
+  delta(s); the SPEC's `## Goal` + `## Open questions` + the criteria touching the queued set's areas;
+  `ASSUMPTIONS.md ## Open`; only the `F-NN` blocks the queued items cite; the ADRs whose slug touches
+  the set (`ls .gg/adr/`). In a **refinement phase**, also read `.gg/BACKLOG.md ## Next phase`
   (the queued set the phase builds) here — so a **resumed** discovery (now at `state: scoping`) still has
   the set in context, since §2's load runs only when the phase is first opened at `state: shipped`.
 
@@ -113,13 +117,22 @@ One question at a time, with your recommended answer, exploring the code when th
 ## 4. Write the SPEC + the task list
 - Write/extend `.gg/SPEC.md` (`SPEC-FORMAT.md`): the acceptance criteria (each `AC-N` with evidence
   type + Verify, tagged by phase), the **`## Shows` entry** (each show's one-line "How to see it" when the
-  phase has any — the single home for that text, which `/gg:next-task` reads), and the deliverable +
-  "How to see it". Reference the BLUEPRINT; don't reduplicate the schema. In a **`research`** phase the
-  criteria are **`reported`** — each `AC-N` an open question whose `Verify` is the experiment plus the
-  `F-NN` that will record its measured result (`SPEC-FORMAT.md`); `reported` appears only in a research
-  phase, never as a capability AC in disguise.
-- Write the **ordered task list** into `.gg/PROGRESS.md` (`PROGRESS-FORMAT.md`): sized so each task
-  fits one fresh `/gg:next-task` session, **foundational-first** — the integrating spine before features,
+  phase has any — the single home for that text, which `/gg:next-task` reads; **rewrite the section
+  fresh** — this phase's shows only, and remove it when the phase has none — `SPEC-FORMAT.md`), and the
+  deliverable + "How to see it". Reference the BLUEPRINT; don't reduplicate the schema. In a
+  **`research`** phase the criteria are **`reported`** — each `AC-N` an open question whose `Verify` is
+  the experiment plus the `F-NN` that will record its measured result (`SPEC-FORMAT.md`); `reported`
+  appears only in a research phase, never as a capability AC in disguise. **When the phase removes or
+  replaces shipped behavior**, sweep the existing criteria for the affected area (search the `AC-N` list
+  by the feature's terms — `LEDGERS.md`) and supersede each stale one (`SPEC-FORMAT.md`); a removal that
+  leaves its criteria standing ships a self-contradicting SPEC.
+- Write the **ordered task list** into `.gg/PROGRESS.md` (`PROGRESS-FORMAT.md`). **Opening a phase
+  replaces `PROGRESS.md` whole** — write the fresh board (title, Provenance placeholder, task board,
+  "Where to resume") over whatever is there; the prior phase's board is carried nowhere (no archive
+  section under any name — its outcome already lives in its phase-close JOURNAL entry). The one
+  exception is the **re-scope in place** (§0 / §2), which edits the existing board (below). Size the
+  tasks so each fits one fresh `/gg:next-task` session, **foundational-first** — the integrating spine
+  before features,
   so later tasks build on a working base. "Spine" is a **thin vertical** through the whole stack, not
   each subsystem built to full breadth first: only what genuinely **can't be retrofitted** — the
   load-bearing decisions later work can't be re-sequenced onto — must precede the first show; everything

@@ -11,12 +11,15 @@ clean sessions.
 ## The ritual (in order)
 
 1. **Persist the skill's own artifacts.** Whatever this skill owns is written and consistent on disk:
-   the ROADMAP header, and (as applicable) `VISION.md`, `BLUEPRINT.md`, `ASSUMPTIONS.md`, `SPEC.md`,
-   `PROGRESS.md`, `RUNBOOK.md`, `BACKLOG.md` / `BACKLOG-ARCHIVE.md`. A cut session persists its partial
+   the ROADMAP header, and (as applicable) `VISION.md`, `BLUEPRINT.md`,
+   `ASSUMPTIONS.md` / `ASSUMPTIONS-ARCHIVE.md`, `SPEC.md`, `PROGRESS.md`, `RUNBOOK.md`,
+   `BACKLOG.md` / `BACKLOG-ARCHIVE.md`. A cut session persists its partial
    state too (discover's "Open questions"; next-task's "Where to resume"; refine-backlog's dispositions).
-2. **Update the ROADMAP header + changelog.** `state` / `phase` / `stage` reflect reality, and any
-   structural change (kickoff, a new phase opened, a stage flip) has its dated line in the
-   `## Structural changelog` (`ROADMAP-FORMAT.md`).
+2. **Update the ROADMAP header; changelog only on a structural event.** `state` / `phase` / `stage`
+   reflect reality. The `## Structural changelog` takes one dated line per structural event **only** —
+   kickoff · a phase opened · an in-place re-scope · a stage flip — and nothing else: **a task close is
+   never a changelog line** (the board and the JOURNAL hold it), and a phase ship updates its phase-log
+   line, not the changelog (`ROADMAP-FORMAT.md`).
 3. **Append a JOURNAL entry.** Add one entry to `.gg/JOURNAL.md` per `JOURNAL-FORMAT.md` (create it on
    the first close). Append-only — never edit a prior entry. A **phase close** uses the richer
    phase-close variant (what was built, how to verify + real result, acceptance evidence,

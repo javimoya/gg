@@ -24,6 +24,10 @@ Only when they add real value (most ADRs won't need them):
 ## Numbering
 Scan `.gg/adr/` for the highest existing number and increment by one.
 
+The filename is the index: make the slug say the decision (`0007-sqlite-over-postgres.md`, not
+`0007-database.md`), so a session picks the relevant ADRs from `ls .gg/adr/` alone (`LEDGERS.md`) — no
+separate index file, which would only drift.
+
 ## When to offer an ADR
 
 All three must be true:

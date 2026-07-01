@@ -13,7 +13,7 @@ Newest entries are appended at the BOTTOM. The ordinary per-session entry:
 # Journal — {Project name}
 
 ## {YYYY-MM-DD} — /{skill}: {short title}
-- **Did**: {2–6 bullets: what happened; decisions taken (link SPEC/ADR/A-NN); what was written}
+- **Did**: {2–6 one-line bullets: what happened; decisions taken (link SPEC/ADR/A-NN); what was written}
 - **State change**: {state X → Y; phase N; stage flip; or "—"}
 - **Next**: {the one concrete next action — same as the session's breadcrumb}
 ```
@@ -50,4 +50,6 @@ the next phase reads:
   with its cited `F-NN`, never `confirmed` — a negative answer is an honest, complete close.
 - **`Next` mirrors the breadcrumb** so the journal and the hand-off never disagree.
 - **Link, don't duplicate.** Point to the SPEC/BLUEPRINT/ADR that holds the detail.
+- **Bullets are one line; ids over restatement.** Cite `AC-N` / `B-NN` / `A-NN` / `F-NN` instead of
+  restating their content (`LEDGERS.md` → "One fact, one home").
 - **Created lazily** at the first close, with the `# Journal — {name}` header.

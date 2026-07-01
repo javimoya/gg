@@ -13,14 +13,15 @@ disposition in one report** (next phase / later / future / discard), then take *
 user and apply it in a single pass. `/gg:discover` designs whatever you queue here. You work in the
 project directory (cwd); state lives in `<cwd>/.gg/`. Shared protocols in
 `${CLAUDE_PLUGIN_ROOT}/gg-shared/`: `BACKLOG-FORMAT.md`, `CONSTITUTION.md`, `VISION-FORMAT.md`,
-`CLOSE-FORMAT.md`.
+`CLOSE-FORMAT.md`, `LEDGERS.md`.
 
 `/gg:refine-backlog` reports **`## New`** by default; `--later` reports **`## Later`**, `--future`
 reports **`## Future`** (review a deferral tier on purpose). The two deferral tiers: `## Later` = not now
 but on the radar; `## Future` = someday / maybe, parked further out.
 
 ## 0. Precondition
-Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
+Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`) — the `## State` block + `## Phase log`,
+never the changelog (`LEDGERS.md`):
 - **No `.gg/`** → no project yet. **Stop**, route to `/gg:ideate`.
 - **`state: visioning` or `scoping`** → you're mid-`/gg:ideate` / `/gg:discover`; an idea right now
   belongs in the live grilling, and there's no backlog to triage yet. **Stop** and route there.
@@ -38,9 +39,10 @@ tiers hold items, name them and the `--later` / `--future` flag that reviews the
 never left invisible); otherwise tell the user to `/gg:capture` an idea first.
 
 ## 1. Orient + summary
-- Read `.gg/PRINCIPLES.md` (the bar; decompose-don't-drop; a discard is a **recorded** product
-  decision, never a silent cut), `.gg/VISION.md` (the destination, to judge what's in or out of the
-  product), and `.gg/BACKLOG.md`.
+- Read `.gg/VISION.md` (the destination, to judge what's in or out of the product) and
+  `.gg/BACKLOG.md`. No `PRINCIPLES.md` load here — the constitutional rules triage needs are already
+  stated in this spec (recommend discard sparingly; decompose, don't drop; a discard is a **recorded**
+  product decision, never a silent cut).
 - **Open with a one-line summary** of the backlog by state — across **all** sections, so deferred items
   are never invisible: *"Backlog: {N} new · {M} queued for the next phase · {K} later · {F} future ·
   (archive: {A} applied, {D} discarded)."* The user sees the whole shape before triaging.

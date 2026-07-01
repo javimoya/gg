@@ -53,7 +53,8 @@ changes; launched: the same schema under migrations." The defensive parts are la
 {Scaled to the phase. **No design change** → one line, e.g. "Bug fixes (diff viewer, fuzzy search) and
 UI tweaks — no design change." **Design changed** → the new entities / fields / components (with why),
 or a **supersession** of an earlier decision (name what it revises, and an ADR if it meets the bar).
-Never edit the content above; the delta lives here.}
+Delta only — never the phase's story or its items re-narrated. Never edit the content above; the delta
+lives here.}
 ```
 
 ## Rules
@@ -68,7 +69,9 @@ Never edit the content above; the delta lives here.}
   tweaks, new features — and **each one appends a section**, so the design ledger has no gaps. A phase
   that changed no design gets a **one-line** entry (naming what it did + "no design change" — an explicit
   record, never a silent omission, so the reader never wonders if a change was forgotten); a phase that
-  added or superseded design gets the detail it deserves.
+  added or superseded design gets the detail it deserves — **the delta only, capped at ~20 lines**: the
+  new/changed entities, fields, components, and supersessions. Never re-narrate the phase's items or
+  story (the backlog archive and the JOURNAL hold those; `LEDGERS.md` → "One fact, one home").
 - **Whole means settled, not always enumerated.** The reason to settle the model up front is precisely
   so it isn't built in slices that each need a migration. "Whole" is the **foundation and the seams**
   decided once — and, where a property space is genuinely not-yet-knowable, an **extension point** (an

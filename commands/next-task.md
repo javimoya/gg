@@ -8,10 +8,12 @@ argument-hint: "[--gate]"
 # /gg:next-task — Build the next task
 
 You implement a phase's SPEC **to the highest bar**, **exactly one task per run**. You work in the
-project directory (cwd); state lives in `<cwd>/.gg/`. Protocols in `${CLAUDE_PLUGIN_ROOT}/gg-shared/`.
+project directory (cwd); state lives in `<cwd>/.gg/`. Protocols in `${CLAUDE_PLUGIN_ROOT}/gg-shared/`;
+read and edit `.gg/` per `LEDGERS.md` — by anchor, never a grown file whole.
 
 ## 0. Precondition (don't build the wrong thing)
-Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
+Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`) — the `## State` block + `## Phase log`,
+never the changelog (`LEDGERS.md`):
 - **No `.gg/`** → **stop**, route to `/gg:ideate`.
 - **`state: visioning`** → ideation isn't finished (no SPEC / task list yet). **Stop**, route to `/gg:ideate`.
 - **`state: scoping`** → there's no SPEC / task list yet. **Stop** and route to `/gg:discover`.
@@ -28,11 +30,15 @@ Read `.gg/ROADMAP.md`'s header (`state` / `phase` / `stage`):
 - Read `.gg/PRINCIPLES.md` and internalize it (full bar; effort is never a reason to cut; decompose ≠
   drop; the user tries the product at the phase's **shows** and at the phase close — not task by task;
   dev ≠ launched).
-- Read `.gg/PROGRESS.md` (the task board — which task is next), `.gg/SPEC.md` (acceptance criteria),
-  `.gg/BLUEPRINT.md` (the design), `.gg/ASSUMPTIONS.md`, `.gg/RUNBOOK.md`, `.gg/CONTEXT.md`, the ADRs,
-  the `stage`, and the `kind` (`build` or `research` — a research phase closes on a `reported`
-  measurement, §6). For a research phase, also read `.gg/FINDINGS.md` (if present — prior observations
-  the search builds on; it's created lazily, so a research phase's first task may run before it exists).
+- Read whole (bounded by design): `.gg/PROGRESS.md` (the task board — which task is next),
+  `.gg/RUNBOOK.md`, `.gg/CONTEXT.md`, plus the `stage` and the `kind` (`build` or `research` — a
+  research phase closes on a `reported` measurement, §6).
+- Read by anchor (`LEDGERS.md` — a grown ledger is never read whole): the SPEC's `## Goal`, this
+  phase's `AC-N` (the `(phase {N})` tag), `## Shows`, and the deliverable; the BLUEPRINT's `## Shape`
+  + this phase's `## Phase {N}` section(s), pulling the phase-0 design sections the task touches;
+  `ASSUMPTIONS.md ## Open`; the ADRs whose slug touches the task (`ls .gg/adr/`). For a research
+  phase, also the `F-NN` blocks this phase's criteria cite (`.gg/FINDINGS.md` is created lazily, so a
+  research phase's first task may run before it exists). Everything else on demand, by anchor.
 
 ## 2. Durable start (first run of the phase only)
 If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):
@@ -119,7 +125,12 @@ green and runnable (the earlier looks, if any, were the phase's shows):
   **only** if a cited `F-NN` — an actual try-it observation — backs it; never infer it from the green
   suite, and if it was never looked at it is *not yet met* (record the gap, don't claim it).
 - Move the phase's items from `.gg/BACKLOG.md ## Next phase` to `.gg/BACKLOG-ARCHIVE.md ## Applied`
-  (with where each landed); mark any default an applied item reversed as `ASSUMPTIONS.md ## Overridden`.
+  (with where each landed); move any default an applied item reversed to
+  `ASSUMPTIONS-ARCHIVE.md ## Overridden`. Then **sweep `ASSUMPTIONS.md ## Open`**
+  (`ASSUMPTIONS-FORMAT.md`): every default this phase consumed — reversing it now would be a change to
+  shipped behavior (a `B-NN`), not a costless re-decision — moves whole to
+  `ASSUMPTIONS-ARCHIVE.md ## Consumed`; a default still governing unbuilt work, and every
+  stage-deferral (`STAGE.md`), stays `## Open`.
 - Write the **phase-close `JOURNAL.md` entry** (`JOURNAL-FORMAT.md`): built / how-to-verify + real
   result / acceptance-evidence table / baseline→close tests / items applied / VISION conformance.
 - Set `state: shipped`; update the ROADMAP phase-log line to `shipped {date}`.

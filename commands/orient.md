@@ -12,7 +12,7 @@ You are the project's GPS. You reconstruct state from disk and say what's next; 
 may make is flipping the stage, on the user's explicit go. Plain `/gg:orient` is a quick GPS report
 (§1–§4); `--audit` adds a deep, **read-only** integrity pass (§--audit) and changes nothing at all. You
 work in the project directory (cwd); state lives in `<cwd>/.gg/`. Protocols:
-`${CLAUDE_PLUGIN_ROOT}/gg-shared/STAGE.md`, `CLOSE-FORMAT.md`.
+`${CLAUDE_PLUGIN_ROOT}/gg-shared/STAGE.md`, `CLOSE-FORMAT.md`, `LEDGERS.md`.
 
 ## 0. Read the argument (gate on the literal value, don't infer)
 The user invoked `/gg:orient $ARGUMENTS`. Gate on that exact value:
@@ -25,8 +25,10 @@ The user invoked `/gg:orient $ARGUMENTS`. Gate on that exact value:
 - Otherwise continue.
 
 ## 2. Read the state (read-only)
-- `.gg/ROADMAP.md` header → `state` / `phase` / `kind` / `stage`, and the phase log.
-- `.gg/JOURNAL.md` (latest entry, if present) → what the last session did and said comes next.
+- `.gg/ROADMAP.md` header → `state` / `phase` / `kind` / `stage`, and the phase log (never the
+  changelog — `LEDGERS.md`).
+- `.gg/JOURNAL.md` (latest entry, if present) → what the last session did and said comes next (read
+  the file tail — the last entry — never the whole file; `LEDGERS.md`).
 - Based on `state`:
   - `visioning` → ideation is still in progress; there's no SPEC/PROGRESS/BACKLOG yet. Read the partial
     `.gg/VISION.md` (if present) for how far the vision got. The next action is to finish ideation.
@@ -77,18 +79,35 @@ This is the one "audit" gg has — and it audits the **record's integrity**, nev
 - **Header vs artifacts** (drift): `building` but every `PROGRESS.md` task is `done`; `scoping` but the
   SPEC's "Open questions" is empty with a full task list; `shipped` but the JOURNAL/code moved past the
   recorded close.
+- **PROGRESS drift**: a `# PROGRESS … Phase {K}` title that doesn't match the header's `phase`; more
+  than one board, or any archive-like section, in `PROGRESS.md` (one phase per file —
+  `PROGRESS-FORMAT.md`).
 - **Assumption cross-refs**: an `A-NN` cited in `BLUEPRINT.md` / `BACKLOG.md` that isn't in
-  `ASSUMPTIONS.md`; an *applied* backlog item with `reverses: A-NN` whose `A-NN` never moved to
-  `ASSUMPTIONS.md ## Overridden`; a **duplicate `A-NN`** across `## Open` and `## Overridden` (ids are
-  stable and never reused — `ASSUMPTIONS-FORMAT.md`).
+  `ASSUMPTIONS.md` or `ASSUMPTIONS-ARCHIVE.md`; an *applied* backlog item with `reverses: A-NN` whose
+  `A-NN` never moved to `ASSUMPTIONS-ARCHIVE.md ## Overridden`; a **duplicate `A-NN`** across
+  `ASSUMPTIONS.md` and `ASSUMPTIONS-ARCHIVE.md` (ids are stable and never reused —
+  `ASSUMPTIONS-FORMAT.md`); an `## Open` default tagged with a phase two or more behind the current
+  shipped phase (a likely consumed default the close never swept — the next phase close sweeps it).
 - **Duplicated facts that drifted** (`BLUEPRINT-FORMAT.md` → "Link, don't duplicate"): a fact restated
   in the BLUEPRINT that now contradicts its source (`RUNBOOK.md` / `SPEC.md` / an ADR).
+- **Invented structure** (`LEDGERS.md` → "Formats are closed"): a section, field, column, or archive
+  area not defined by the file's format — e.g. an archive heading inside `PROGRESS.md`, an extra
+  backlog field.
+- **Changelog drift**: a `## Structural changelog` line outside the closed set (kickoff / phase opened /
+  in-place re-scope / stage flip) — e.g. per-task "done" lines (`ROADMAP-FORMAT.md`).
 - **Acceptance without evidence**: an `AC-N` recorded met without a cited real result (`confirmed`
   demands an observed result, never "should work"); a **`reported`** `AC-N` recorded closed with no cited
   `F-NN`, or whose cited `F-NN` doesn't exist (`SPEC-FORMAT.md` — a reported criterion closes only on a
   recorded measurement); a **`[discovered]`** "done and perfect" clause reported met in a shipped phase
   with no cited `F-NN` behind it (`VISION-FORMAT.md` — a discovered clause is closed only by an observed
   try-it, never inferred from a green suite).
+- **Zombie criteria** (`SPEC-FORMAT.md`): an `AC-N` whose Verify exercises behavior the product no
+  longer has — a later phase removed the feature without superseding the criterion.
+- **Stale shows** (`SPEC-FORMAT.md`): a `## Shows` entry belonging to a phase other than the current
+  one — the section is transient.
+- **Verbosity drift**: closed-task log entries past the two-line cap or board cells holding prose
+  (`PROGRESS-FORMAT.md`); a BLUEPRINT `## Phase N` section re-narrating the phase's items instead of
+  recording the design delta (`BLUEPRINT-FORMAT.md`).
 - **Vision revisions** (`VISION-FORMAT.md`): an `R-NN` in `## Revisions` with no cited triggering
   `F-NN`, or whose `F-NN` doesn't exist — a correction-from-evidence without its evidence is a cut in
   disguise (`CONSTITUTION.md` → "Boundaries vs. cuts"); a **duplicate `R-NN`** (ids are stable, never

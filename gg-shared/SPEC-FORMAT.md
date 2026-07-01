@@ -23,9 +23,10 @@ phase that introduced it. IDs are stable for the life of the project.}
 - **AC-2** (phase 0) — …
 
 ## Shows
-{The phase's look points — each a watchable slice the user reacts to, with its one-line "How to see it"
-(`type: show` in `PROGRESS.md`; placement rule in `/gg:discover` §4). The single home for that text, read
-by `/gg:next-task`. Present only when the phase has show tasks; one bullet per show.}
+{The CURRENT phase's look points only — each a watchable slice the user reacts to, with its one-line
+"How to see it" (`type: show` in `PROGRESS.md`; placement rule in `/gg:discover` §4). The single home
+for that text, read by `/gg:next-task`. Transient: `/gg:discover` rewrites the section whole at phase
+open, and removes it when the phase has no shows; one bullet per show.}
 - {the show} — {its one-line "How to see it"}
 
 ## Deliverable + "How to see it"
@@ -72,6 +73,14 @@ question, most important first. Emptied before discover moves the project to `bu
     pre-writes the result it must hit.
 - **Phase N extends the contract, it doesn't fork it.** A refinement phase adds new `AC-N` (tagged
   with its phase) or revises existing ones in place; the SPEC always describes the *current* product.
+  **When a phase removes or replaces shipped behavior, it supersedes the criteria that described it**:
+  collapse each affected criterion to a single line —
+  `**AC-48** (phase 5) — superseded (phase {N}): {what removed or replaced it}` — the id stays retired
+  and scannable, the Given/When/Then goes. A criterion left describing removed behavior is a
+  contradiction in the contract, not history.
+- **`## Shows` is transient — current phase only.** `/gg:discover` rewrites the section whole when it
+  opens a phase, and removes it when the phase has no shows; a prior phase's shows never accumulate
+  here (a past show's record is its `F-NN` verdict).
 - **The deliverable is runnable/observable, and "How to see it" is a real command or concrete steps**
   — never a vague description. It is what the user tries at a phase close (the decisive try-it point; the
   shows are the earlier looks). For a **`research` phase** (`ROADMAP-FORMAT.md`) the deliverable is the

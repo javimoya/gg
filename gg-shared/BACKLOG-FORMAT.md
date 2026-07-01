@@ -116,6 +116,8 @@ archive's `## Applied`. Same `###` block shape as New.}
   capability or a bug so it isn't weighed as product scope or silently dropped. A `## Next phase` set of
   `[exp]` items / an open question is what makes `/gg:discover` open a **`research`** phase
   (`ROADMAP-FORMAT.md`); a capability/bug set makes a `build` phase. Everything else stays untyped.
+  An item carries exactly the fields shown — never invented ones (`LEDGERS.md` → "Formats are
+  closed").
 - **Idempotent triage, with deferral tiers.** `/gg:refine-backlog` reports only `## New` by default, so a
   triaged item is never re-presented. The deferral tiers are revisited on purpose: `--later` reports
   `## Later` (on the radar), `--future` reports `## Future` (someday / maybe). Every run opens with the
@@ -125,7 +127,7 @@ archive's `## Applied`. Same `###` block shape as New.}
   item's `B-NN` (`refines: B-03` / `contradicts: B-05`). Reconcile over the whole active backlog (New +
   Next phase + Later), never the archive; capture never triages.
 - **An item that reverses a recorded default** points at the `A-NN` it overturns (`reverses: A-NN`);
-  that assumption moves to `ASSUMPTIONS.md ## Overridden` only when the item is later applied.
+  that assumption moves to `ASSUMPTIONS-ARCHIVE.md ## Overridden` only when the item is later applied.
 - **Moved, not deleted.** Applied and discarded items go to `.gg/BACKLOG-ARCHIVE.md`; nothing is
   erased — same discipline as the assumptions ledger and the ROADMAP changelog.
 - **Created lazily.** `BACKLOG.md` at the first capture/jot (with `# Backlog — {name}` and `## New` — plus

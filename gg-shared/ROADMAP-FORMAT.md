@@ -63,6 +63,8 @@ items it folded — or, for a research phase, the question it pursued.}
   control (a missing credential, a third party, a product decision only the user can make), it records
   the blocker and the unblock condition in `PROGRESS.md` ("Notes for the next session") and stops with
   a breadcrumb — it does not invent a parallel state. The user clears it and re-runs.
-- **Changelog discipline.** Every structural change (kickoff, a new phase opened, a stage flip) gets
-  one dated line.
+- **Changelog discipline — a closed set.** One dated line per structural event: kickoff, a new phase
+  opened, an in-place re-scope (`discover.md` §2), a stage flip. Nothing else qualifies — never a line
+  per task, per session, or per shipped phase (the phase log's line already records the ship). If in
+  doubt, it isn't structural. The changelog is write-only outside `/gg:orient --audit` (`LEDGERS.md`).
 - **No secrets** (`.gg/` is committed): record the *name* of an env var/credential, never its value.

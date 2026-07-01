@@ -217,7 +217,8 @@ Everything the workflow knows lives in a `.gg/` folder at the root of your proje
 ├── VISION.md         # the complete destination: what "done and perfect" means (corrected from evidence via R-NN)
 ├── ROADMAP.md        # the dispatch header: state · phase · kind · stage · phase log
 ├── BLUEPRINT.md      # the whole-product design (data model + architecture), settled up front, extensible where open
-├── ASSUMPTIONS.md    # the recorded-defaults ledger (every choice not grilled, reversible)
+├── ASSUMPTIONS.md    # the recorded-defaults ledger (open defaults only — every choice not grilled, reversible)
+├── ASSUMPTIONS-ARCHIVE.md # closed defaults (consumed at a phase close / overridden) — kept for the trace
 ├── SPEC.md           # the living contract: acceptance criteria with typed evidence
 ├── PROGRESS.md       # the task board for the current phase + where to resume
 ├── BACKLOG.md        # the active backlog (new / next phase / later / future), triaged by refine-backlog (or fast-tracked by quick)

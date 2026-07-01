@@ -12,10 +12,11 @@ continue. You work in the project directory (cwd); state lives in `<cwd>/.gg/`. 
 
 Shared protocols live in `${CLAUDE_PLUGIN_ROOT}/gg-shared/` — read each when a step references it:
 `CONSTITUTION.md`, `GRILLING.md`, `VISION-FORMAT.md`, `ROADMAP-FORMAT.md`, `CONTEXT-FORMAT.md`,
-`STAGE.md`, `CLOSE-FORMAT.md`.
+`STAGE.md`, `CLOSE-FORMAT.md`, `LEDGERS.md`.
 
 ## 0. Precondition (only at the very start)
-Read `.gg/ROADMAP.md`'s header — route on `state`, not merely on whether `.gg/` exists:
+Read `.gg/ROADMAP.md`'s header (the `## State` block + `## Phase log`, never the changelog —
+`LEDGERS.md`) — route on `state`, not merely on whether `.gg/` exists:
 - **No `.gg/`** → this is a new project. Proceed to §1 (scaffold).
 - **`state: visioning`** → a prior ideation was cut **mid-grilling**, before the vision was sharp.
   **Resume it**: skip §1 (the scaffold is already done — do **not** re-create anything or re-log the
