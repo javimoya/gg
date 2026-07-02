@@ -32,6 +32,8 @@ open, and removes it when the phase has no shows; one bullet per show.}
 ## Deliverable + "How to see it"
 - **Deliverable**: {the runnable/observable product the user tries at the phase close — the decisive try-it}
 - **How to see it**: {the real command or steps the user runs, and what to observe}
+- **Try (this phase)**: {the phase's load-bearing flows, one line each, citing the `AC-N`/`B-NN` it
+  exercises — rewritten whole at phase open, like `## Shows`}
 
 ## Design
 {One line pointing at `BLUEPRINT.md` — the schema/architecture this contract slices. Don't reduplicate
@@ -53,6 +55,10 @@ question, most important first. Emptied before discover moves the project to `bu
   is a check.) IDs never change once assigned; the next `AC-N` is one past the highest assigned anywhere
   in this SPEC (one file for the whole product, across every phase) — never reused, even when a criterion
   is later revised.
+- **A user-triggered write path is verified through the real route.** Its `automated` evidence drives
+  the request end-to-end — request → guard → persistence → read-back — never only isolated units; a
+  unit-green path whose route was never driven is unverified (the guard that rejects what the units
+  accept is exactly what unit tests miss).
 - **`reported` is for a `research` phase's open question — a measure, not a capability.** A `research`
   phase (`ROADMAP-FORMAT.md`) closes on what it *learned*, so its acceptance is an **open empirical
   question** ("under {conditions}, does {X} yield {Y}?") whose answer isn't known at spec time. A
@@ -81,6 +87,11 @@ question, most important first. Emptied before discover moves the project to `bu
 - **`## Shows` is transient — current phase only.** `/gg:discover` rewrites the section whole when it
   opens a phase, and removes it when the phase has no shows; a prior phase's shows never accumulate
   here (a past show's record is its `F-NN` verdict).
+- **The close certifies the try list.** The deliverable carries the phase's load-bearing flows as a
+  short **Try** list (each citing its `AC-N`/`B-NN`); the user's close verdict certifies *that list*,
+  and the close's `F-NN` cites it (`next-task.md` §6). Transient like `## Shows` — `/gg:discover`
+  rewrites it whole at phase open. A flow too risky to leave to a visual pass — a user-triggered
+  write, a heavy job — belongs on the list by name.
 - **The deliverable is runnable/observable, and "How to see it" is a real command or concrete steps**
   — never a vague description. It is what the user tries at a phase close (the decisive try-it point; the
   shows are the earlier looks). For a **`research` phase** (`ROADMAP-FORMAT.md`) the deliverable is the

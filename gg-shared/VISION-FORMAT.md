@@ -69,7 +69,9 @@ silent edit.}
   the sense that it's right) — closed at a phase close by a cited `F-NN` observation, never asserted from a green
   suite. The tag is a grilling question (`GRILLING.md`); when in doubt, a clause that *could* become a
   runnable check is `[declared]` — reserve `[discovered]` for what genuinely can't be reduced to one,
-  so the tag never excuses leaving a checkable thing vague.
+  so the tag never excuses leaving a checkable thing vague. Once confirmed by a cited `F-NN` at a
+  phase close, a `[discovered]` clause stays closed for show-placement purposes until a later phase
+  touches its area or adds a new one (`discover.md` §4).
 - **Non-negotiables must be checkable.** A quality bar nobody can verify is decoration. Put numbers
   where they exist.
 - **Product intent, not architecture.** No implementation detail here; the design lives in

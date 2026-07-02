@@ -91,7 +91,7 @@ flowchart LR
     O -.-> N
 ```
 
-A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the whole product; **phase 1, 2, …** each fold in the backlog items you triaged into them. Run each command in its own clean Claude session, with `/clear` between, to keep the context sharp.
+A **phase** is one `discover, then next-task*` cycle. **Phase 0** builds the whole product; **phase 1, 2, …** each fold in the backlog items you triaged into them. Run each build task in its own clean Claude session (`/clear` between tasks); the **phase boundary** — close → capture(s) → refine-backlog → discover — may run in one session, since the try-it context is exactly what triage and design consume.
 
 1. **`/gg:ideate`** runs once and turns the idea into a sharp VISION.
 2. **`/gg:discover`** designs the whole product (a BLUEPRINT: data model and architecture), grills the load-bearing questions, records good defaults for the rest, and produces a testable SPEC plus an ordered task list.

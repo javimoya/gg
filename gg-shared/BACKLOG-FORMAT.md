@@ -12,7 +12,10 @@ with a recommended disposition each and applies the user's one decision in a sin
 later / future / discarded); `/gg:discover` **consumes** the `## Next phase` set when it opens a
 refinement phase; and `/gg:quick` (the express lane) **records a single item straight to `## Next phase`**
 — skipping `## New` and the triage step — then designs it immediately. `/gg:refine-backlog` owns triage;
-`/gg:discover` consumes the queued set and does not triage.
+`/gg:discover` consumes the queued set and does not triage. Two first-class lanes fill `## Next phase`:
+**deliberate triage** (`/gg:refine-backlog` — a reviewed report over `## New`) and an **assembled next
+phase** (`/gg:capture --next` jots, or one `/gg:quick`) when you already know what's next — neither is
+a shortcut around the other.
 
 ## The item lifecycle
 

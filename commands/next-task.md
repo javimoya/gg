@@ -25,6 +25,9 @@ never the changelog (`LEDGERS.md`):
   triages it and `/gg:discover` designs the fix as the next phase (`/gg:orient` will route you). For a
   **single** small one you've decided to do now, `/gg:quick` records it and fast-tracks it to
   `/gg:discover` — same cycle (still a task, a test, a JOURNAL entry), just skipping the triage step.
+  **A failure of a just-shipped load-bearing flow (the deliverable's Try list, `SPEC-FORMAT.md`) is
+  the express lane's case by name**: jot the `[bug]` and run `/gg:quick` — a hot-fix outside a phase
+  leaves the record blind (no task, no test, no JOURNAL entry).
 
 ## 1. Constitution + context load
 - Read `.gg/PRINCIPLES.md` and internalize it (full bar; effort is never a reason to cut; decompose ≠
@@ -51,7 +54,8 @@ If `.gg/PROGRESS.md` has no provenance yet (this is the phase's first task):
 
 ## 3. Implement exactly the next task to the bar
 - Build **only the next task** complete and robust; cover the edge cases; **write tests** mapping to
-  the acceptance criteria.
+  the acceptance criteria (a user-triggered write path is verified through the **real route**, end to
+  end — `SPEC-FORMAT.md`).
 - **If the task's `type` is `show`** (`PROGRESS-FORMAT.md`): its definition of done is *it runs and is
   watchable* via its "How to see it" (the SPEC's `## Shows` entry, `SPEC-FORMAT.md`) — built at full bar
   (thin but real spine, **no stub**). It
@@ -109,7 +113,15 @@ green and runnable (the earlier looks, if any, were the phase's shows):
   fold its look into this close — run its "How to see it", invite the user to react, and record their
   verdict on its `[discovered]` target as an `F-NN` (the §5 show ritual) as part of this decisive try-it,
   so a show placed last is closed here, not skipped.
-- Build the **deliverable**; **run the SPEC's "How to see it" yourself** and record the real result. In a
+- **Enumerate every outward action of this close upfront** — the deploy, the prod reads the
+  verification needs, any regenerate — each with its rollback named, and take **one** explicit go for
+  the enumerated set (a drip of mid-close confirmations is how an accidental "no" derails a close).
+  Anything not enumerated still asks separately.
+- Build the **deliverable**; **run the SPEC's "How to see it" yourself** and record the real result.
+  The user's decisive try-it **walks the deliverable's Try list** (`SPEC-FORMAT.md`) — the phase's
+  load-bearing flows by name, not a free visual pass — and their verdict is recorded as **one `F-NN`
+  citing that list** (one finding per close; a pending verdict is never its own finding —
+  `FINDINGS-FORMAT.md`). In a
   **`research`** phase (`ROADMAP-FORMAT.md`) "How to see it" runs the **experiment**: record its measured
   result as an `F-NN` (`FINDINGS-FORMAT.md`) and **close each `reported` `AC-N` by citing that `F-NN`** —
   `yes` / `no` / `inconclusive` are all honest, green closes; a negative result is the finding, not a
@@ -134,8 +146,11 @@ green and runnable (the earlier looks, if any, were the phase's shows):
 - Write the **phase-close `JOURNAL.md` entry** (`JOURNAL-FORMAT.md`): built / how-to-verify + real
   result / acceptance-evidence table / baseline→close tests / items applied / VISION conformance.
 - Set `state: shipped`; update the ROADMAP phase-log line to `shipped {date}`.
-- Breadcrumb: *"Phase {N} shipped — try it: {how to see it}. Then `/gg:capture` anything to change
-  (or `/gg:quick` to fast-track one small fix), and `/clear` + `/gg:discover` for the next phase."*
+- Breadcrumb: *"Phase {N} shipped — try it: {the Try list}. Then `/gg:capture` anything to change
+  (or `/gg:quick` to fast-track one small fix), `/gg:refine-backlog`, and `/gg:discover` for the next
+  phase — **this same session is fine** (the try-it context is their input; `/clear` before the next
+  `/gg:next-task`). If a listed flow **fails after the verdict**: capture the `[bug]`, then
+  `/gg:quick` — the hotfix lane, never an inline fix."*
 
 ## --gate (optional)
 The user invoked `/gg:next-task $ARGUMENTS` — gate on that literal value. **If `$ARGUMENTS` contains

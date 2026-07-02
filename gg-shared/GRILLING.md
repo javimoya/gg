@@ -84,6 +84,10 @@ writing. Two checkpoints, both mandatory:
    one). The user decides when questioning ends *and* which defaults stand — not the running-out of
    your list.
 
+Present both **together — one consolidated summary, one veto question** (the free-form answer stays
+open; that is where real vetoes arrive). A sign-off is a summary to veto, not a second interrogation:
+never successive rounds of "tick the defaults to flip".
+
 ### ADRs with judgment
 Offer to record a decision as an ADR **only** when all three are true (see `ADR-FORMAT.md`): hard to
 reverse, surprising without context, and the result of a real trade-off. If one is missing, no ADR.

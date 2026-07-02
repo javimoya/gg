@@ -229,8 +229,9 @@ has **no** validatable deliverable and **no** tests of its own — those live at
 exception is a **`show`** task: it carries a thin runnable slice + a "How to see it" (a designed look at
 the running product), but still no full suite — that stays at the phase level. `/gg:discover` places the
 shows where the felt character changes; the **first show is mandatory when the phase has a `[discovered]`
-clause**, anchored to the riskiest one and ordered as early as the foundation allows — and a phase with
-**no** `[discovered]` clause needs no forced show (its `AC-N` plus the phase-close try-it bind it).
+clause in play** — unconfirmed, or touched by this phase's set (`discover.md` §4) — anchored to the
+riskiest one and ordered as early as the foundation allows — and a phase with
+**no** `[discovered]` clause in play needs no forced show (its `AC-N` plus the phase-close try-it bind it).
 `/gg:next-task` does **exactly one task per run**, then checkpoints to `PROGRESS.md` and stops.
 `/gg:ideate`, `/gg:discover`, `/gg:orient`, `/gg:capture`, and `/gg:quick` are not split into tasks.
 
@@ -246,6 +247,11 @@ its own context usage**, so we don't gate on a percentage. Three levers:
   way. There is no separate wrap command — `PROGRESS.md` *is* the handoff, and re-running resumes.
 - **Read `.gg/` by anchor, never a grown ledger whole** (`LEDGERS.md`). The record grows for the life
   of the project; each session loads only the sections and id-anchored blocks the work at hand needs.
+
+**The phase boundary may run in one session.** After a phase close, the capture burst →
+`/gg:refine-backlog` → `/gg:discover` chain shares the try-it context that is its input — no `/clear`
+between them. `/clear` stays mandatory between build tasks and before the new phase's first
+`/gg:next-task` (anchored reads keep the boundary chain light — `LEDGERS.md`).
 
 Cutting early and handing off cleanly always beats pushing a degraded session.
 

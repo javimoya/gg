@@ -119,7 +119,10 @@ One question at a time, with your recommended answer, exploring the code when th
   type + Verify, tagged by phase), the **`## Shows` entry** (each show's one-line "How to see it" when the
   phase has any — the single home for that text, which `/gg:next-task` reads; **rewrite the section
   fresh** — this phase's shows only, and remove it when the phase has none — `SPEC-FORMAT.md`), and the
-  deliverable + "How to see it". Reference the BLUEPRINT; don't reduplicate the schema. In a
+  deliverable + "How to see it" **with its Try list** — the phase's load-bearing flows, one line each,
+  citing the `AC-N`/`B-NN` each exercises, rewritten whole at phase open (`SPEC-FORMAT.md`; a
+  user-triggered write or a heavy job belongs on it by name — the close's verdict certifies this
+  list). Reference the BLUEPRINT; don't reduplicate the schema. In a
   **`research`** phase the criteria are **`reported`** — each `AC-N` an open question whose `Verify` is
   the experiment plus the `F-NN` that will record its measured result (`SPEC-FORMAT.md`); `reported`
   appears only in a research phase, never as a capability AC in disguise. **When the phase removes or
@@ -150,7 +153,12 @@ One question at a time, with your recommended answer, exploring the code when th
   - **Place the shows** (`type: show`, `PROGRESS-FORMAT.md`) — a task that builds a watchable slice and
     stops for the user to look. A show goes **where the felt character meaningfully changes** — where a
     `[discovered]` clause (`VISION-FORMAT.md`) becomes more judgeable — never on a task count.
-  - **The first show is mandatory iff the phase has a `[discovered]` clause in play**, and it is
+  - **The first show is mandatory iff the phase has a `[discovered]` clause in play** — and *in play*
+    is earned, not inherited: a clause is in play only while it is **unconfirmed** (no cited `F-NN`
+    behind it) or when **this phase's queued set touches its area or adds a new one**
+    (`VISION-FORMAT.md`). A clause already confirmed by a cited `F-NN` that this phase doesn't touch
+    triggers nothing — the phase is close-only, with no show question at sign-off. When a clause IS in
+    play, the first show is
     load-bearing: anchor it to the **riskiest** `[discovered]` clause — the thinnest slice at which the
     user could form a genuine opinion about it — and **drive the task order to reach it as early as the
     expensive-to-retrofit foundation allows** (a thin vertical first, then thicken; the whole design is
@@ -167,18 +175,20 @@ One question at a time, with your recommended answer, exploring the code when th
     exception** — it carries a runnable slice + a "How to see it" (still no full suite — that stays at the
     phase close).
 
-## 5. Sign-off (confirm questions done + defaults taken)
-Before closing (`GRILLING.md` → "Confirm before you stop"): (1) for a refinement phase, **confirm the
-phase's `kind`** (build / research) for the user's veto — *"I'm opening this as a {build|research} phase
-because {the queued set is capabilities/bugs | it's an open question / experiments}"* — if the veto flips it, rewrite `kind` and this phase's
-phase-log line in the ROADMAP header (§2 set them provisionally); (2) name any areas
-still worth probing and let the user decide whether to keep grilling; (3) **surface the
-high/medium-blast defaults** you recorded, for veto; (4) when the phase has a `[discovered]` clause,
-**surface where the first show lands and why it can't be earlier** — *"you won't see {the riskiest
-discovered clause} until task {N}, because {the foundation that must exist first}; everything after
-thickens it"* — for the user's veto. This is the control that stops the first (riskiest) look from
-drifting to the end. Only when "Open questions" is empty and the user is satisfied, set `state: building`
-and update the ROADMAP phase-log line.
+## 5. Sign-off (one pass, one question)
+Before closing (`GRILLING.md` → "Confirm before you stop"): present **one consolidated summary** and
+take **one** veto question over it — never successive rounds of "tick the defaults to flip" (the
+free-form answer stays open; that is where real vetoes arrive). The summary covers, together:
+(1) for a refinement phase, the phase's **`kind`** (build / research) — *"I'm opening this as a
+{build|research} phase because {the queued set is capabilities/bugs | it's an open question /
+experiments}"* — if the veto flips it, rewrite `kind` and this phase's phase-log line in the ROADMAP
+header (§2 set them provisionally); (2) any areas still worth probing, for the user to decide whether
+to keep grilling; (3) the **high/medium-blast defaults** taken (the low ones listed, not walked);
+(4) when the phase has a `[discovered]` clause **in play** (§4), where the first show lands and why it
+can't be earlier — *"you won't see {the riskiest discovered clause} until task {N}, because {the
+foundation that must exist first}; everything after thickens it"*. This is the control that stops the
+first (riskiest) look from drifting to the end. Only when "Open questions" is empty and the user is
+satisfied, set `state: building` and update the ROADMAP phase-log line.
 
 ## Close — ritual + breadcrumb
 Run the close ritual (`CLOSE-FORMAT.md`): persist BLUEPRINT / ASSUMPTIONS / SPEC / PROGRESS / ROADMAP,

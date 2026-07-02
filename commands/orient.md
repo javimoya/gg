@@ -118,7 +118,8 @@ This is the one "audit" gg has — and it audits the **record's integrity**, nev
   reference (a `B-NN` / `A-NN` that points at nothing).
 - **Findings hygiene** (`FINDINGS-FORMAT.md`): a finding whose `Leads to` points at a `B-NN`
   that doesn't exist; a **duplicate `F-NN`** (ids are stable, never reused); raw logs pasted into a
-  finding instead of a reduced result.
+  finding instead of a reduced result; a finding recording a **pending state** ("verdict owed",
+  "deploy green — awaiting try-it") instead of an observation already made.
 - **Dangling blocks**: a `Blocked:` note in `PROGRESS.md` whose unblock condition already reads met.
 - **Language**: stray non-English prose in `.gg/` that isn't a marked verbatim user quote
   (`CONSTITUTION.md` → "Write `.gg/` content in English").

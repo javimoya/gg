@@ -40,6 +40,10 @@ never edited away, only its "Leads to" is updated when it spawns work.}
   build, never only in prose.
 - **Terse, like the rest of `.gg/`.** Record the *reduced* result — the number, the verdict, the
   one-line reading — not a pasted transcript or raw logs.
+- **A pending state is not a finding.** Never record "deploy green — verdict owed" as its own `F-NN`:
+  a finding is an observation already made. A phase close records **one** finding — the user's verdict
+  over the deliverable's try list (the deploy/suite facts fold into it); until the verdict arrives,
+  the wait lives in the breadcrumb and PROGRESS "Where to resume", not in this ledger.
 - **A `[discovered]` "done and perfect" clause is closed by a finding.** A VISION clause tagged
   `[discovered]` (`VISION-FORMAT.md`) can only be reported *met* at a phase close by citing the `F-NN`
   that observed it — the observation-analogue of "an `AC-N` is closed only by real evidence, never

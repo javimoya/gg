@@ -45,7 +45,10 @@ never left invisible); otherwise tell the user to `/gg:capture` an idea first.
   product decision, never a silent cut).
 - **Open with a one-line summary** of the backlog by state — across **all** sections, so deferred items
   are never invisible: *"Backlog: {N} new · {M} queued for the next phase · {K} later · {F} future ·
-  (archive: {A} applied, {D} discarded)."* The user sees the whole shape before triaging.
+  (archive: {A} applied, {D} discarded)."* The user sees the whole shape before triaging. When
+  `## Later` holds an item captured **two or more shipped phases ago** (compare its `Captured` date
+  with the phase log's dates), say so and recommend a `--later` review in this run's report — the
+  radar only works if it is looked at.
 - **Read the argument** `$ARGUMENTS` to pick which section to report (gate on the literal value):
   **empty** → `## New`; **`--later`** → `## Later`; **`--future`** → `## Future`. The dispositions are
   the same wherever you report; only which tier counts as "stay put" differs (§2).
@@ -101,6 +104,7 @@ No `state` change — triage doesn't open a phase (`/gg:discover` does). Run the
 (`CLOSE-FORMAT.md`): persist `.gg/BACKLOG.md` and `.gg/BACKLOG-ARCHIVE.md`, append a `JOURNAL.md` entry
 recording the dispositions taken (cite the `B-NN`s; `State change: —`), then the breadcrumb:
 - **Something queued**: *"Backlog refined: {X} queued for the next phase, {Y} later, {W} future, {Z}
-  discarded. Next: `/clear` then `/gg:discover` to design the next phase."*
+  discarded. Next: `/gg:discover` to design the next phase — this same session is fine (the triage
+  context is its input)."*
 - **Nothing queued** (all later/discarded): *"Backlog refined: nothing queued for now. `/gg:capture`
   more, or come back later — no phase to open yet."*

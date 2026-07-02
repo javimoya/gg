@@ -3,6 +3,56 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 2.9.0
+
+**The flow, tuned by evidence** — from mining a real 15-phase project's 133 sessions: where the loop
+leaked defects (a close try-it that never exercised the load-bearing routes), where it paid ceremony
+nobody used (a show offered and vetoed 13 phases straight, multi-round default-flip sign-offs, a
+"verdict owed" finding per close), and where real practice was already ahead of the spec (the phase
+boundary chained in one session, `capture --next` assembling phases without triage).
+
+### Added
+- **The Try list — the close certifies named flows (`SPEC-FORMAT.md`).** The deliverable now carries
+  the phase's load-bearing flows as a short transient **Try** list (each citing its `AC-N`/`B-NN`,
+  rewritten whole at phase open like `## Shows`); the user's decisive try-it walks *that list* and the
+  close's single `F-NN` cites it. A flow too risky for a visual pass — a user-triggered write, a heavy
+  job — belongs on it by name. (`discover.md` §4 writes it; `next-task.md` §6 walks it.)
+- **Route-level evidence for user-triggered writes (`SPEC-FORMAT.md`).** An `automated` criterion for
+  a user-triggered write path drives the real route end-to-end — request → guard → persistence →
+  read-back — never only isolated units. (The lesson of a guard that silently 400'd two answer types
+  for ten phases while every unit stayed green.)
+- **`/gg:quick` is the hotfix lane by name.** A failure of a just-shipped load-bearing flow (the Try
+  list) after the verdict is captured as a `[bug]` and fast-tracked through `/gg:quick` — never an
+  inline hot-fix outside a phase (no task, no test, no JOURNAL entry). `next-task.md` §0/§6 route it;
+  the close breadcrumb names the branch.
+- **A `## Later` freshness nudge (`refine-backlog.md` §1).** When `## Later` holds an item captured
+  two or more shipped phases ago, the opening summary says so and recommends a `--later` review — the
+  radar only works if it is looked at.
+
+### Changed
+- **A show is offered only when it applies (`discover.md` §4, `VISION-FORMAT.md`, `CONSTITUTION.md`).**
+  "In play" is earned, not inherited: a `[discovered]` clause triggers the mandatory-first-show rule
+  only while it is unconfirmed (no cited `F-NN`) or when the phase's queued set touches its area or
+  adds a new one. A confirmed clause the phase doesn't touch → close-only, no show question at
+  sign-off.
+- **The sign-off is one pass, one question (`discover.md` §5, `GRILLING.md`).** One consolidated
+  summary — kind · areas worth probing · high/medium defaults · show placement (when in play) — and a
+  single veto question, free-form answer open; never successive rounds of "tick the defaults to flip".
+- **One `F-NN` per close (`FINDINGS-FORMAT.md`, `next-task.md` §6).** A pending state is not a
+  finding: "deploy green — verdict owed" never gets its own `F-NN`; the close records one finding —
+  the verdict over the Try list — and the wait lives in the breadcrumb and PROGRESS "Where to resume".
+  `/gg:orient --audit` flags pending-state findings.
+- **The phase boundary may run in one session (`CONSTITUTION.md`, breadcrumbs).** After a close, the
+  capture burst → `/gg:refine-backlog` → `/gg:discover` chain shares the try-it context that is its
+  input — no `/clear` between them. `/clear` stays mandatory between build tasks and before the new
+  phase's first `/gg:next-task`.
+- **Two first-class lanes into `## Next phase` (`BACKLOG-FORMAT.md`).** Deliberate triage
+  (`/gg:refine-backlog`) and the assembled next phase (`/gg:capture --next` jots, or one `/gg:quick`)
+  — neither is a shortcut around the other.
+- **The close takes one consolidated go (`next-task.md` §6).** Every outward action of the close —
+  deploy, prod reads, regenerates — is enumerated upfront, each with its rollback, under a single
+  explicit approval; a drip of mid-close confirmations is how an accidental "no" derails a close.
+
 ## 2.8.0
 
 **The record that doesn't bloat** — informed by a real 15-phase project whose `.gg/` grew past what a

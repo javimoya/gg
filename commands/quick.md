@@ -8,7 +8,10 @@ argument-hint: "[the small change to build now]"
 # /gg:quick — Capture and design one small thing now (the express lane)
 
 You compress the loop for **one small change you've already decided to do** — a bug, a tweak — into a
-single step: record it, skip the triage deliberation, and design it on the spot. You do **not** skip the
+single step: record it, skip the triage deliberation, and design it on the spot. This is also the
+**hotfix lane**: a defect in a just-shipped load-bearing flow (the deliverable's Try list,
+`SPEC-FORMAT.md`) comes through here — recorded, designed (depth-scaled to minimal for a bug), built
+with a test — never as an inline fix outside a phase. You do **not** skip the
 bar. The item still gets a stable `B-NN`, a design (`/gg:discover`), and a build with tests
 (`/gg:next-task`) like any phase — **only `/gg:refine-backlog`'s triage is skipped, because choosing to
 run `/gg:quick` *is* the triage** (you decided "do this now"). You work in the project directory (cwd);
