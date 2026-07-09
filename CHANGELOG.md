@@ -3,6 +3,61 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.0.0
+
+**The lean rebuild — redesigned from measured evidence.** v3 comes from auditing v2 in production:
+309 real sessions across two projects (klasse: 43 phases in 14 days; flights: 6 phases in 6 days),
+where **45.5% / 41.4% of every character the agent wrote went to `.gg/` documentation instead of
+code**, ~70-75% of the `.gg/` bytes were write-only history nobody (human or agent) ever re-read,
+every live decision was recorded 4-7 times across files, a phase close updated 7-9 files, and the
+express lane (`/gg:quick`) spent 9 ledger writes and three sessions on a 5-line fix without writing
+it. The redesign keeps everything the evidence showed working — cold-start orientation, recorded
+assumptions, green-suite gates, evidence-based closes, grilling for load-bearing decisions, stable
+ids, the safety floor — and deletes the rest. A clean break: **no migration logic in commands**;
+`CONVERSION.md` converts an existing v2 `.gg/` by hand (or by an AI session).
+
+### The new shape
+- **Five commands** (were seven): **`/gg:new`** (kickoff: vision + whole-product design + batch-0
+  board, one resumable arc — merges `ideate` + phase-0 `discover`), **`/gg:plan`** (opens a batch in
+  ONE ceremony with ONE consolidated veto gate — merges the capture burst + `refine-backlog` +
+  `discover`), **`/gg:go`** (builds board rows; chains S rows in one session under hard stop
+  conditions; closes the batch on evidence — replaces `next-task`), **`/gg:fix`** (fix now, record
+  after — one line in the Fix log; replaces `quick`, which designed but never fixed), **`/gg:where`**
+  (read-only GPS + `--audit`; replaces `orient`). Capture is an inline two-line protocol in every
+  session, no longer a command.
+- **Seven bounded state files** (were 13 + 2 archives): `WORK.md` (state + board + Try list +
+  provenance + fix log — exactly one batch, reset at close), `BACKLOG.md` (New/Later, `next-id:`
+  counter in the header), `PRODUCT.md` (the destination; `[discovered]` clauses carry ✓ marks when
+  observed), `DESIGN.md` (current truth, edited in place), `NOTES.md` (open A-NNs + live F-NNs),
+  `CONTEXT.md`, `RUNBOOK.md`, plus `adr/`.
+- **History is git's job.** Deleted outright: `JOURNAL.md`, `ASSUMPTIONS-ARCHIVE.md`,
+  `BACKLOG-ARCHIVE.md`, `ROADMAP.md` (state → WORK header; the structural changelog was self-described
+  write-only), `SPEC.md` (acceptance = per-row "done when" lines + the test suite itself),
+  `BLUEPRINT.md`'s append-only phase sections (DESIGN is edited in place), `FINDINGS.md` close-verdict
+  receipts, and the per-project `PRINCIPLES.md` copy (the method is read from the plugin). Applied
+  items and consumed assumptions are **deleted at close** — `git log -S "B-12"` recovers anything;
+  `next-id:` counters keep ids stable without archives.
+- **gg may commit** (the one constitutional break, opt-in): `commit: ask | auto | never` chosen once
+  at `/gg:new` (default `ask`). Commits are the journal (`gg(bN): close — applied B-12 B-13 ·
+  consumed A-31`), always pathspec-scoped to `.gg/` + owned paths, never a push.
+- **Ceremony scales with item weight**: S (bug/tweak — zero questions, zero design prose, one board
+  row) / M (1-3 questions) / L (full grilling + ADR), each weight shown at the gate with a one-line
+  why so a silent cut can't hide in a misclassification.
+- **Stage (`dev`/`launched`) removed** — unused in practice. gg assumes a product under active
+  development (recreate & reseed; no migrations/backward-compat unless explicitly asked for); the
+  safety floor (name the rollback + a yes before destroying existing data; never touch the user's
+  dirty paths) is unconditional.
+- **Output discipline** (METHOD.md): no bolded restatement of the user's answers, no empty-bucket
+  reports, no recaps duplicating WORK; the close summary is the Try list; one-line breadcrumbs.
+- Plugin docs shrink from 17 shared files / ~174KB of specs to **2 files (`METHOD.md` + `FORMATS.md`)
+  + 5 commands, ~40KB total**.
+
+### The numbers it targets (from the audit)
+A 4-bugs + 1-feature batch: ~10 command invocations / 3 hard gates / 7-9-file close in v2 →
+**3-4 sessions / 1 gate + the Try-list verdict / a 3-file close (4 at worst)** in v3. Orientation per build
+session: ~17k tokens (disciplined) → **~4-6k**. Docs share of written output: **45% → ~15%
+(projected)**.
+
 ## 2.9.0
 
 **The flow, tuned by evidence** — from mining a real 15-phase project's 133 sessions: where the loop

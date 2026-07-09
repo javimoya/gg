@@ -13,17 +13,21 @@ When you change a command or a `gg-shared/` format, write **only the clean, goin
 **Never add migration, back-fill, or backward-compat logic to "fix up" projects created under an older
 version** — no "back-fill the id for items that lack one", no "if the old field is missing, default
 it", no version-detection branches. A command spec describes **one** behavior, not a version history. A
-`.gg/` that predates a change is the user's to reconcile by hand (or by re-running the relevant
-command); the plugin never silently repairs it. This mirrors gg's own constitution — in `dev` there is
-nothing real to migrate: recreate, don't shim. The same rule applies to `/gg:orient --audit`: it may
-**report** drift, but it never assumes older projects must be upgraded.
+`.gg/` that predates a change is the user's to reconcile by hand (or via `CONVERSION.md` in a
+dedicated session); the plugin never silently repairs it. This mirrors gg's own method — recreate,
+don't shim. The same rule applies to `/gg:where --audit`: it may **report** drift, but it never
+assumes older projects must be upgraded.
 
 ## What gg is
-A pure-Markdown command plugin: seven commands (`ideate`, `discover`, `next-task`, `refine-backlog`,
-`capture`, `quick`, `orient`) that build a product in **phase 0** then refine it **phase by phase**. A
-"phase" is one `discover → next-task*` cycle; between phases, `refine-backlog` triages the captured
-backlog (`.gg/BACKLOG.md`) — one reviewed report, then a single decision — into the next phase.
-`quick` is the express lane: it records one small item straight to `## Next phase` and runs `discover`
-on it immediately, skipping triage (for a single change you've already decided to do). All project state
-lives in each project's `.gg/`; the shared protocols/formats live in `gg-shared/`. There is no runtime
+A pure-Markdown command plugin: five commands (`new`, `plan`, `go`, `fix`, `where`) that build a
+product in **batch 0** (`new`: vision + whole design, one arc) then refine it **batch by batch**. A
+"batch" is one `plan → go*` cycle: `plan` opens it in one ceremony (capture + triage + design, one
+consolidated gate; ceremony scales with item weight S/M/L), `go` builds it row by row (chaining S
+rows under hard stop conditions) and closes it on evidence (green suite + the user walking the Try
+list). `fix` is the fix-now-record-after lane for small decided changes; `where` is the read-only
+GPS. All project state lives in each project's `.gg/` — **seven bounded files** (WORK, BACKLOG,
+PRODUCT, DESIGN, NOTES, CONTEXT, RUNBOOK) plus `adr/`; the method/formats live in `gg-shared/`
+(METHOD.md + FORMATS.md), read from the plugin and never copied into projects. **History is git's**:
+no journals, archives, or changelogs — applied/consumed record blocks are deleted, and gg may commit
+its own record per the project's `commit: ask|auto|never` policy (never push). There is no runtime
 and no state.json by design.
