@@ -1,5 +1,5 @@
 ---
-description: "Builds the open batch. Orients from WORK.md in seconds, then implements board rows to the full bar (with tests): one M/L row per fresh session, but consecutive S rows chain in a single session under hard stop conditions. Checkpoints WORK after every row so /clear + /gg:go always resumes cleanly. On the last row it closes the batch — green full suite, the user walks the Try list live, consumed records are swept (deleted; git keeps history), one close commit if the policy says so. Run it after /gg:new or /gg:plan, and again while rows remain."
+description: "Builds the open batch. Orients from WORK.md in seconds, then implements board rows to the full bar (with tests): one M/L row per fresh session, but consecutive S rows chain in a single session under hard stop conditions. New scope the user wants NOW folds into the live batch right here — mint the B-NN, grill what its weight demands, append the rows; no /gg:plan ceremony. Checkpoints WORK after every row so /clear + /gg:go always resumes cleanly. On the last row it closes the batch — green full suite, the user walks the Try list live, consumed records are swept (deleted; git keeps history), one close commit if the policy says so. Run it after /gg:new or /gg:plan, and again while rows remain."
 model: inherit
 disable-model-invocation: true
 ---
@@ -12,19 +12,24 @@ safe. You work in the project directory (cwd); state lives in `<cwd>/.gg/`. Meth
 both now.
 
 ## 0. Precondition
-Read `.gg/WORK.md ## State`:
+Read ONLY `.gg/WORK.md ## State` and `## Where to resume` — routing must cost nothing; the full
+orient (§1) happens only once this gate passes:
 - **No `.gg/`** → **stop**, route to `/gg:new`.
 - **`state: shaping`** → the kickoff/plan isn't finished. **Stop**, route to `/gg:new` (batch 0) or
   `/gg:plan`.
 - **`state: idle`** → nothing on the board. **Stop**, route to `/gg:plan` (or `/gg:fix` for one small
   decided thing).
+- **A `Blocked:` note whose condition still holds** → say so and stop — don't pay the orient to
+  rediscover it.
 - **`state: building`** → proceed. If no pending row remains, run the batch close (§5).
 
 ## 1. Orient (cheap by design)
 Read whole: `WORK.md` (the board — which row is next), `CONTEXT.md`, `RUNBOOK.md`,
-`NOTES.md ## Assumptions`. Read `git log --oneline -5` (the journal tail). Read by section, on
-demand: `DESIGN.md` sections and the ADRs (`ls .gg/adr/`) the row touches; `PRODUCT.md` when the row
-bears on a "done and perfect" clause; the `F-NN`s the row cites.
+`NOTES.md ## Assumptions`. Read `git log --oneline -5` (the journal tail) — commits since the last
+close that aren't gg's mean off-lane work landed: say so and offer a one-line record catch-up (fold
+what changed into `DESIGN`/`RUNBOOK`/`PRODUCT` or a `B-NN`) before building on top of it. Read by
+section, on demand: `DESIGN.md` sections and the ADRs (`ls .gg/adr/`) the row touches; `PRODUCT.md`
+when the row bears on a "done and perfect" clause; the `F-NN`s the row cites.
 
 ## 2. Durable start (first build of the batch only)
 If Provenance is still a placeholder: record the base commit (`git rev-parse HEAD`, or
@@ -42,11 +47,28 @@ red, say so and decide with the user before building on it. Never commit to set 
   thin but real spine, no stub. Run it yourself, then stop and invite the user to look (§4a).
 - Tempted to stub, defer, or TODO? Apply METHOD.md's test — the honest moves are a later row
   (record it on the board) or a boundary taken to the user. Never a silent drop.
-- **New scope mid-row** (yours or the user's): jot it — a `B-NN` to `BACKLOG.md ## New` (METHOD.md →
-  Capture) — and **return to the row**. Never derail the build.
+- **New scope mid-row**: if the user asked for it now, fold it (§3a) — after finishing the row in
+  flight. Otherwise jot it — a `B-NN` to `BACKLOG.md ## New` (METHOD.md → Capture) — **return to
+  the row**, and offer it at the next checkpoint the user sees: fold into this batch, or leave in
+  `## New` (one line, their call). Never derail the row; never let captures pile up unoffered.
 - **An external wall** (missing credential, third party, a product decision only the user can make):
   record `Blocked: {reason} / unblock when {condition}` in "Where to resume" and stop — don't fake or
   cut. Record ADRs on the three criteria; observations as `F-NN`s.
+
+### 3a. Fold — scope the user wants in THIS batch
+
+Folding is go's move — no `/gg:plan`, no state flip, no gate beyond the user's own ask, whatever the
+weight:
+- Mint the `B-NN` (bump `next-id:`), weigh it **S/M/L with a one-line why** (plan's scale).
+- Grill what the weight demands, inline: **S** — zero questions (but an ambiguous capture earns its
+  one deciding question); **M** — 1-3; **L** — the full grilling (METHOD.md), `DESIGN.md` edited in
+  place, an ADR when the three criteria hold.
+- Append the row(s) — or insert them where ordering matters (before a regenerate/deploy row) — with
+  real done-whens, extend `## Try`, and note the fold in "Where to resume": *"folded {date}: B-NN as
+  row(s) {K–L}"*.
+- Deep in a spent session, say so: checkpoint and offer to fold at the top of a fresh `/gg:go` — the
+  fold itself is never a reason to route to `/gg:plan`. Route there **only** when the look/new scope
+  invalidates the *remaining* board — that's plan's re-scope in place, a redesign, not a fold.
 
 ## 4. Checkpoint, then chain or stop
 Update `WORK.md`: row → `done`, add touched files to Owned paths, set "Where to resume" to the next
@@ -56,12 +78,16 @@ row. Then decide:
   `show` is waiting for the user · the session is comfortably under ~half its context · the row just
   closed needed no debugging detour longer than the row itself. Chain = go back to §3.
 - **Otherwise stop.** Commit per policy (`gg(b{N}): rows {K–L} — …`, pathspec-scoped). Breadcrumb:
-  *"Batch {N}: row {K}/{M} done. Next: `/clear` + `/gg:go` (row {K+1} — {where})."* One M/L row per
-  fresh session is the rule; chaining S rows is the only widening.
+  *"Batch {N}: row {K}/{M} done. Next: `/clear` + `/gg:go` (row {K+1} — {where})."* If this session
+  captured `B-NN`s, the breadcrumb lists them with the standing offer — fold into this batch (§3a)
+  or leave in `## New`. One M/L row per fresh session is the rule; chaining S rows is the only
+  widening.
 
 ### 4a. A `show` row just closed
-Run its done-when yourself, then make the breadcrumb a *look-at-this*: invite the user to run it and
-react now, and **record the wait in "Where to resume → Notes"** (*"show row {K} awaiting the user's
+Run its done-when yourself — on the surface the user actually judges: if that's the deployed product
+on their phone, the show's job includes proposing that deploy (per the `deploy:` policy), not
+staging a local stand-in they won't look at. Then make the breadcrumb a *look-at-this*: invite the
+user to run it and react now, and **record the wait in "Where to resume → Notes"** (*"show row {K} awaiting the user's
 look"* — cleared when the reaction is routed), so a fresh session never chains past an un-looked-at
 show. Route the reactions (METHOD.md → Capture): the verdict on the `[discovered]` target → its
 ✓ mark in `PRODUCT.md` (or an `F-NN` if it observed something beyond the clause); wanted changes /
@@ -70,8 +96,8 @@ bugs → `B-NN`s. **If the look means the remaining rows must change**, stop and
 
 ## 5. Last row done → close the batch
 - **Enumerate every outward action of this close upfront** (deploy, regenerate, anything
-  irreversible), each with its rollback named, and take **one** explicit go for the set. Anything not
-  enumerated still asks separately.
+  irreversible), each with its rollback named, and take **one** explicit go for the set — deploys
+  run per the `deploy:` policy (METHOD.md → Safety). Anything not enumerated still asks separately.
 - Run the **RUNBOOK full suite** — it must be **green**; record the delta against Provenance's
   Suite baseline. (You may delegate the run to a subagent and take back only the counts, keeping
   test spew out of context.) A `question` batch's harness is real code under this suite; only its
@@ -90,13 +116,16 @@ bugs → `B-NN`s. **If the look means the remaining rows must change**, stop and
 - **Sweep by deletion** (git keeps *committed* history): mark the last row done; delete the applied
   items' traces from `BACKLOG.md` if any remain; delete consumed `A-NN`s and done `F-NN`s from
   `NOTES.md` (the test: reversing it now would be a change to shipped behavior → consumed). **The
-  close's own `F-NN` always survives** — it informs the next plan. Leave surviving blocks'
+  close's own `F-NN` always survives** — it informs the next plan. **Prune accretion back to current
+  truth** wherever this batch left it (`FORMATS.md` bounds): a CONTEXT entry beyond definition +
+  _Avoid_, a RUNBOOK one-time procedure that has run, a PRODUCT clause's superseded ✓ — deletion,
+  never an archive. Leave surviving blocks'
   references to deleted ids intact (`FORMATS.md`). **If the blocks were never committed** (policy
   `never`, or every ask declined), deleting them is permanent: say so and get a yes, or leave them
   and only mark the close (METHOD.md → Commits). Add the one-line entry to `## Last closes` (cap 5),
   set `state: idle`.
 - Commit per policy: `gg(b{N}): close — applied {B-NNs} · consumed {A-NNs}` with the suite line in
-  the body. **The close touches WORK + NOTES (+BACKLOG/PRODUCT only if their content changed) —
-  nothing else.**
+  the body. **The close touches WORK + NOTES (+BACKLOG/PRODUCT/CONTEXT/RUNBOOK only where content
+  changed or a bound demands pruning) — nothing else.**
 - Breadcrumb (post-verdict): *"Batch {N} closed — verdict acted on: {one line}. Bring the next batch
   to `/gg:plan` (or one small thing to `/gg:fix`)."*

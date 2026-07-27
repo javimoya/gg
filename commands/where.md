@@ -39,8 +39,13 @@ its findings. Check:
   applied/consumed id is **not** dangling (`FORMATS.md`); duplicate ids; a `next-id:` at or below an
   id in use.
 - **Invented structure**: sections or fields not in `FORMATS.md`; an archive-like section anywhere;
-  "Last closes" grown past its cap of 5; a Fix log carrying lines from before the current batch
-  open.
+  "Last closes" grown past its cap of 5, or an entry that is a paragraph instead of a line; a Fix
+  log carrying lines from before the current batch open.
+- **Bounds and register** (`FORMATS.md` bounds, METHOD.md → The record register): a file past its
+  bound (WORK 10KB, other whole-read files 20KB); a done-when past ~500 chars; a show row sitting as
+  the board's final row; a CONTEXT entry carrying history or implementation beyond definition +
+  _Avoid_; an ADR with an amendment block or a body far past 1-3 sentences; narrative batch history
+  living inside any current-truth file.
 - **Evidence honesty**: a `[discovered]` clause carrying a ✓ with no named observation; a done row
   whose done-when names behavior the product no longer has; a `question` batch closed with no `F-NN`.
 - **Staleness**: `RUNBOOK.md` naming commands that no longer exist; `CONTEXT.md` terms or `PRODUCT.md`

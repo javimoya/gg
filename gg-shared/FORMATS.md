@@ -1,10 +1,12 @@
 # FORMATS.md — the `.gg/` files (shared)
 
 Seven bounded files plus `adr/`. Each file is small enough to read whole (only `DESIGN.md` and `adr/`
-are read by section/slug). **Formats are closed**: exactly these sections and fields, never invented
-ones. **History is git's**: applied, consumed, and superseded blocks are **deleted**, not archived —
-`git log -S "B-12"` recovers anything. No secrets anywhere (`.gg/` is committed): env var *names*,
-never values.
+are read by section/slug). **Bounds have teeth**: `WORK.md` stays under **10KB**; every other
+whole-read file stays under **20KB**. A file past its bound is pruned at the next close — back to
+its current-truth core (METHOD.md → The record register), deleted, never parked in an archive.
+**Formats are closed**: exactly these sections and fields, never invented ones. **History is
+git's**: applied, consumed, and superseded blocks are **deleted**, not archived — `git log -S
+"B-12"` recovers anything. No secrets anywhere (`.gg/` is committed): env var *names*, never values.
 
 ## WORK.md — the hot file (state + the current batch)
 
@@ -18,14 +20,16 @@ Bounded hard: exactly one batch; the close resets it. Always readable whole (<10
 - **batch**: {N}                     <!-- counts batches, 0 = the initial product -->
 - **kind**: {build | question}       <!-- question = a research batch: closes on a measured answer -->
 - **commit**: {ask | auto | never}   <!-- set once at /gg:new -->
+- **deploy**: {ask | user-runs | auto} <!-- set once at /gg:new (METHOD.md → Safety) -->
 
 ## Board
 | # | item | size | done when | status |
 |---|------|------|-----------|--------|
 | 1 | B-12 {short name} | S | {one-line observable done-when} | done |
-| 2 | B-14 {short name} | M | {…} | pending |
-| 3 | B-14 show: {slice} | show | runs and is watchable via: {command} | pending |
+| 2 | B-14 show: {slice} | show | runs and is watchable via: {command} | pending |
+| 3 | B-14 {short name} | M | {…} | pending |
 <!-- batch 0's rows, born before any backlog, carry the short name alone — no B-NN -->
+<!-- a show is never the final row — the close's Try walk is the batch's last look -->
 
 ## Try
 {The batch's deliverable + load-bearing flows, walked at the close. Rewritten whole at batch open.}
@@ -47,7 +51,8 @@ Bounded hard: exactly one batch; the close resets it. Always readable whole (<10
 - {YYYY-MM-DD} — {what} — {test added?} — {suite result}
 
 ## Last closes
-{One line per batch close, newest first, capped at 5 — older history is git's.}
+{ONE single line per batch close (≤200 chars), newest first, capped at 5 — never a paragraph;
+older history is git's.}
 - batch {N} ({YYYY-MM-DD}): {applied B-NNs} — {one-line outcome}
 ```
 
@@ -55,11 +60,18 @@ Rules: **state** ∈ `shaping` (mid `/gg:new` or `/gg:plan`, resumable — "Wher
 open questions) / `building` (rows pending) / `idle` (no batch open). **Board rows** are short names
 citing the `B-NN` they build (batch 0's rows carry the short name alone), ≤80 chars; status ∈
 `pending / done` — the row in flight is the one "Where to resume" names; a `[bug]` row's done-when
-carries the broken-vs-expected essence, so the build session needs no other source. **size** ∈ `S`
+carries the broken-vs-expected essence, so the build session needs no other source. **A done-when
+is the observable check plus only the pins the build genuinely needs, as short clauses — ≤500
+chars**; anything longer is design prose that belongs in `DESIGN.md` or an ADR, cited by id.
+**size** ∈ `S`
 (bug/tweak, no design contact — zero questions, zero design prose) / `M` (light design contact — 1-3
 questions) / `L` (genuinely designed — full grilling, ADR if warranted) / `show` (a watchable slice
-whose done-when is its "how to see it"; placed where a `[discovered]` clause becomes judgeable, as
-early as the foundation allows). A `question` batch's done-when is "answered: recorded as `F-NN`".
+whose done-when is its "how to see it"; **mid-batch only, where the look can still change the
+remaining rows** — riskiest first, as early as the foundation allows. **Never the final row**: when
+the earliest judgeable moment is the batch's end, there is no show row — the close's Try walk is
+that look. A show runs on the surface the user actually judges — usually the deployed product on
+their own device, not a locally staged stand-in). A `question` batch's done-when is "answered:
+recorded as `F-NN`".
 **Provenance is written once** per batch, before the first code change; only Owned paths grows.
 **Opening a batch rewrites Board/Try/Where-to-resume whole and resets Provenance to placeholders**;
 the Fix log is pruned; **`## Last closes` always survives** (capped at 5 — under `commit: never` it
@@ -80,15 +92,24 @@ next-id: B-47
 - **Idea**: {in the user's words; for a [bug], broken vs expected}
 - **Touches**: {area(s), if known}
 - **Relates**: {refines: B-03 / contradicts: B-05 / reverses: A-NN — optional}
+- **Decided**: {YYYY-MM-DD} — {the settled calls, one line}   <!-- optional: grilled and sealed -->
 
 ## Later
 {Deliberately deferred at a /gg:plan. Same block shape.}
+
+## Staged
+{Optional: pre-grouped future batches (a programme), decided ahead with the user. One line per
+batch, in order — the next /gg:plan takes the top group instead of re-deriving triage.}
+- {batch name}: B-12 · B-14 · B-19 — {one-line intent}
 ```
 
 Rules: **`next-id:` is the only counter** — every `B-NN` mint (capture or `/gg:plan`) bumps it,
 wherever the item lands: **assign the current value to the item, then increment the header**. Ids
 are zero-padded to two digits (`B-05`), grow naturally past 99 (`B-100`), and are stable, never
-reused. When `/gg:plan` takes an item, its block **moves out** of BACKLOG onto the WORK board — the
+reused. **An agent-minted item's Idea opens with one plain sentence anyone can triage** — a concrete
+example, no internal jargon: its owner reads it cold, days later. An item marked **`Decided`** was
+grilled and settled with the user — `/gg:plan` executes it and never re-opens its recorded calls,
+even where they contradict an older record (only a genuinely new fork inside its scope may ask). When `/gg:plan` takes an item, its block **moves out** of BACKLOG onto the WORK board — the
 row cites the `B-NN`, and the block's load-bearing detail (a `[bug]`'s broken-vs-expected) lands in
 the row's done-when, never only in the chat report. Applied/discarded items are **deleted** — a
 discard's reason is stated at the plan gate; if it's a "never", it becomes a PRODUCT boundary. **A
@@ -122,6 +143,8 @@ intact.
 Rules: the destination, not an MVP; product intent, not architecture. `[declared]` = judgeable
 without running (closed by a done-when); `[discovered]` = only judgeable by watching it run (closed
 by an observed ✓; when in doubt, `[declared]` — never use the tag to leave a checkable thing vague).
+**A clause carries at most its latest ✓** (one line); a new observation replaces the old one — the
+walk history is git's, not a ledger under the clause.
 **Edited in place; a "done and perfect" clause is revised only by observed evidence** (name the
 observation in the edit's session and commit message) — never because it was hard to build.
 "It is not" is load-bearing: it's what prevents drift. An Unknown a `question` batch answered is
@@ -191,7 +214,9 @@ _Avoid_: {the synonyms not to use}
 ```
 
 Rules: only domain terms specific to this project; be opinionated (pick the word, list the rest under
-_Avoid_); updated the moment a term is resolved in grilling. No implementation details, no history.
+_Avoid_); updated the moment a term is resolved in grilling. **An entry is the definition plus its
+_Avoid_ list — nothing else**: no implementation details, no history, no batch citations, no
+how-it-used-to-work. An entry that outgrew this is pruned back at the next close (git keeps the rest).
 
 ## RUNBOOK.md — how to run and verify
 
@@ -211,14 +236,18 @@ for a yes (METHOD.md → Safety).}
 ```
 
 Rules: one canonical full-suite command; every entry copy-pasteable; update it the session the stack
-changes ("n/a" for sections that don't apply yet).
+changes ("n/a" for sections that don't apply yet). **An entry is the command, a one-line purpose,
+and the trap warnings that keep it safe — war stories stay in git.** A one-time procedure that has
+run to completion (a migration, a reset recipe) is deleted at that close.
 
 ## adr/ — decisions
 
 `.gg/adr/NNNN-slug.md`, created lazily; the slug says the decision (`0007-sqlite-over-postgres.md`).
 Body: 1-3 sentences — context, decision, why (optional Status / Options / Consequences only when they
 earn it). Offer an ADR **only** when all three hold: hard to reverse · surprising without context ·
-a real trade-off. Next number = highest in `ls .gg/adr/` + 1.
+a real trade-off. Next number = highest in `ls .gg/adr/` + 1. **No amendment blocks**: an ADR whose
+body went stale is rewritten to current truth in place (git keeps the old text) — and a body kept to
+1-3 sentences has almost nothing that *can* go stale.
 
 ## Commit messages (when the commit policy says to commit)
 

@@ -86,13 +86,13 @@ flowchart LR
 
 A **batch** is one `plan → go*` cycle. **Batch 0** is the whole product; each later batch folds in whatever you brought to `/gg:plan`.
 
-1. **`/gg:new`** runs once: divergent brainstorming, convergent grilling, the whole-product design (settled up front so later batches extend instead of re-layering), the recorded defaults, and the batch-0 board. It also asks, once, whether gg may **commit** its own work (`ask` / `auto` / `never`) — commits are the project's journal.
-2. **`/gg:go`** builds the next board row to the full bar, with tests. Small rows (S) chain in one session under hard stop conditions; anything with design weight gets a fresh session. Every row checkpoints `WORK.md`, so `/clear` + `/gg:go` always resumes cleanly. On the last row it closes the batch: green full suite, you walk the **Try list** (the batch's load-bearing flows, by name), consumed records are swept, one close commit.
+1. **`/gg:new`** runs once: divergent brainstorming, convergent grilling, the whole-product design (settled up front so later batches extend instead of re-layering), the recorded defaults, and the batch-0 board. It also asks, once, whether gg may **commit** its own work (`ask` / `auto` / `never`) — commits are the project's journal — and how **deploys** run (`ask` / `user-runs` / `auto`).
+2. **`/gg:go`** builds the next board row to the full bar, with tests. Small rows (S) chain in one session under hard stop conditions; anything with design weight gets a fresh session. Something new you want *now*, mid-batch? go **folds it in place** — mints the `B-NN`, grills what its weight demands, appends the rows — no plan ceremony. Every row checkpoints `WORK.md`, so `/clear` + `/gg:go` always resumes cleanly. On the last row it closes the batch: green full suite, you walk the **Try list** (the batch's load-bearing flows, by name), consumed records are swept, one close commit.
 3. **`/gg:plan`** opens the next batch from whatever you bring — a pasted list of nine ideas, two bugs from your phone, an item from the backlog. It records each with a stable `B-NN`, weighs every item **S/M/L (with a one-line why)**, grills *only* what has design weight, and takes **exactly one consolidated veto gate**. The gate is also where you add or slice work — it's an input channel, not a formality.
 4. **`/gg:fix`** is the everyday lane for a small decided change: it fixes it *in this session* (with a pinning test when the defect merits one), runs the suite green, and records one line. If the "5-line fix" grows design weight, it stops honestly and routes to `/gg:plan`.
 5. **`/gg:where`** reconstructs where you are — read-only, always. `--audit` adds a deeper integrity check of the record.
 
-An idea that surfaces mid-build never derails it: any session jots it as a `B-NN` into the backlog in two lines and returns to work. A **research batch** (`kind: question`) designs an experiment instead of a capability and closes honestly on the measured answer — yes, no, and inconclusive all count.
+An idea that surfaces mid-build never derails it: any session jots it as a `B-NN` into the backlog in two lines, returns to work — and offers it back at the next checkpoint: fold it into the live batch, or leave it for a later plan. A **research batch** (`kind: question`) designs an experiment instead of a capability and closes honestly on the measured answer — yes, no, and inconclusive all count.
 
 ---
 
@@ -104,7 +104,7 @@ An idea that surfaces mid-build never derails it: any session jots it as a `B-NN
 |---|---|
 | **`/gg:new`** | to **start** a project (no `.gg/` yet) — or to **resume** an unfinished kickoff. Once per project. |
 | **`/gg:plan`** | when the board is empty and you have the next batch in hand — one item or ten. Also re-scopes a batch in place when a show changed the plan. |
-| **`/gg:go`** | while the board has pending rows: after `new`, after `plan`, after a previous `go`. |
+| **`/gg:go`** | while the board has pending rows: after `new`, after `plan`, after a previous `go`. Also folds new scope into the live batch when you want it *now*. |
 | **`/gg:fix`** | any time, in any state — one small, decided, local change, fixed now. |
 | **`/gg:where`** | any time. Read-only, changes nothing. |
 
@@ -180,7 +180,7 @@ Developing locally? Point the marketplace at your checkout instead of GitHub:
 
 **What about open-ended or experimental projects?** Batch 0 settles the irreversible foundation, designs extension points where a property genuinely can't be known yet, and names the riskiest open question. From there, a batch can be a **research batch** — an experiment that closes on what it *learned* (yes, no, or inconclusive — all honest), recorded as a citable finding that can even correct the destination, with a paper trail instead of a quiet scope cut.
 
-**Do I try the product between tasks?** At the **shows** — watchable slices `/gg:plan` places where the product's felt character first becomes judgeable — and at the **batch close**, where you walk the Try list. Between those, the agent runs its own tests and checks; you don't babysit it row by row.
+**Do I try the product between tasks?** At the **shows** — watchable slices `/gg:plan` places mid-batch, where the product's felt character first becomes judgeable and your look can still change the remaining rows — and at the **batch close**, where you walk the Try list (a show is never the last row: the close *is* the batch's final look). Between those, the agent runs its own tests and checks; you don't babysit it row by row.
 
 **Why clean sessions and `/clear`?** Long sessions degrade. Rows are sized to fit one fresh session (small ones chain, with hard stop conditions), and `WORK.md` carries the state across, so you're always working with a sharp context.
 

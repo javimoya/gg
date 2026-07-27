@@ -53,7 +53,10 @@ good defaults instead of asking everything.
 
 - **One question at a time**, wait for the answer. **Always lead with your recommended answer** and
   why, plus the alternatives you weighed — a question without a recommendation is work pushed back
-  onto the user.
+  onto the user. A recommendation never proposes below the bar: a shim, stub, or compat-out is never
+  the recommended option.
+- **Ask in the concrete**: a question the user answers with "no te entiendo" was asked in the
+  abstract. Lead with the example — the card, the screen, the number — and let the rule follow.
 - **Explore before asking**: if code or docs can answer it, don't ask.
 - **Ask the load-bearing questions; default the rest as `A-NN`s.** High-blast decisions — the data
   model, the stack, sync vs async, the core UX — are always questions, never defaults. Only low/medium
@@ -89,6 +92,10 @@ The moment an idea surfaces, jot it and get back to work. Route by tense:
 - **Not capture**: a bug in the task you're building right now (fix it — that's the bar), or a cut
   you were tempted to make (the test above). One-line confirmation, then **return to the task** —
   never derail the build.
+- **A capture is offered, never buried**: an item jotted while the user was away is surfaced at the
+  next moment they're present — the row checkpoint, a show, the close — with a one-line now-vs-later
+  offer: fold it into the live batch (`/gg:go` folds it, `go.md` §3a) or leave it in `## New`.
+  Silent accumulation across a batch is a drop with extra steps.
 
 ## Evidence (what "done" means)
 
@@ -117,6 +124,12 @@ The moment an idea surfaces, jot it and get back to work. Route by tense:
 - **Name the rollback and stop for a yes** before any irreversible or outward action — delete,
   overwrite, drop or recreate a *populated* store, deploy, send, push. At a batch close, **enumerate
   every outward action upfront and take one explicit go** for the set.
+- **Deploys follow the WORK header's `deploy:` policy** (`ask | user-runs | auto`, set once at
+  `/gg:new`): `ask` proposes each deploy, named with its rollback, and waits for the yes;
+  `user-runs` composes the exact command for the user to run themselves (`!` in the prompt) and
+  reads the output back — the lane for a harness that blocks agent-run deploys; `auto` is a standing
+  yes for the project's named deploy command at show/close points — still announced, never silent.
+  Every other outward or irreversible action stops for its own yes.
 - **Restore known-good state before stacking a fix** — when *your* change regresses behavior, revert
   that step first; never build a fix on a broken base.
 - **Secrets stay out of `.gg/`** (it's committed): names of env vars, never values.
@@ -138,16 +151,26 @@ batch close, and each `/gg:fix`. Message shapes in `FORMATS.md`. Rules:
 - **Never push. Never any outward action on gg's initiative.** Skip committing (and say so) if the
   repo is mid-rebase/merge or otherwise not yours to commit.
 
+## The record register
+
+`.gg/` files are **records, not prose**: present-tense current truth, terse and factual. **No
+narrative history** — how a fact came to be, what it was before, which batch changed it, the story
+of its discovery: that trail is git's and the ADR's, never the record's. Write the observable fact,
+not the aphorism about it. **One fact, one home**: a datum lives once; every other mention is its
+bare id (`B-12`, `A-07`, `ADR-0004`) — a fact kept in two homes is the fact that goes stale in one.
+`FORMATS.md` gives each file a hard bound; the batch close prunes accretion back to current truth
+wherever it grew — deletion, never an archive.
+
 ## Context discipline
 
 A long session degrades. The levers: `/gg:plan` sizes rows so each fits a session; `/gg:go` does one
 M/L row per fresh session and chains S rows only under its hard stop conditions (`go.md`); WORK is
 checkpointed after **every** row so `/clear` + `/gg:go` always resumes cleanly — `WORK.md` *is* the
-handoff. The `.gg/` files are bounded by design: read whole the ones the command names; read
-`DESIGN.md` and `adr/` by section/slug as the task needs. **Re-read the exact block from disk
-immediately before editing it** — never edit from memory. **Formats are closed**: write exactly the
-sections and fields `FORMATS.md` defines, never invented ones. **One fact, one home**: a datum lives
-once; every other mention is its bare id (`B-12`, `A-07`, `ADR-0004`).
+handoff. The `.gg/` files are bounded by design (`FORMATS.md` bounds): read whole the ones the
+command names; read `DESIGN.md` and `adr/` by section/slug as the task needs. **Re-read the exact
+block from disk immediately before editing it** — never edit from memory — and **never bulk-edit
+`.gg/` with regex/sed**: anchored, block-scoped replacements only. **Formats are closed**: write
+exactly the sections and fields `FORMATS.md` defines, never invented ones.
 
 ## Output discipline
 

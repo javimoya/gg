@@ -3,6 +3,49 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.1.0
+
+**Tuned from 17 days of 3.0 in production** — 280 klasse sessions (batches 44→86) analyzed end to
+end: every user message, the `.gg/` growth curve per batch, and a staleness audit of the record.
+What the evidence showed: the record was strikingly *accurate* (17 of 21 spot-checks exact) but had
+drifted to ~3.9x its conversion size in 41 batches; a `/gg:go` orient had grown to ~65k tokens
+(~⅓ load-bearing) against v3's ~4-6k target; 22 of 29 shows sat as the board's final row,
+duplicating the close's Try walk; the same "mételo en esta fase" got three different ceremonies
+depending on the day; and 29 of 34 live backlog items were agent-minted deferrals never offered
+back. 3.1 fixes what the data convicted:
+
+- **`/gg:go` folds** (new §3a): scope the user wants NOW enters the live batch in-session — mint
+  the `B-NN`, weigh S/M/L, grill what the weight demands (full grilling for an L), append/insert
+  rows, extend Try. No `/gg:plan`, no state flip, no gate beyond the user's ask. `/gg:plan`'s
+  re-scope-in-place remains for the real redesigns; `/gg:fix`'s honesty valve now offers the fold.
+- **A capture is offered, never buried**: mid-row discoveries still jot-and-return, but every
+  capture is surfaced at the next checkpoint the user sees with a one-line now-vs-later offer.
+  Agent-minted items open with one plain sentence anyone can triage cold.
+- **A show is never the final row**: the close's Try walk is the batch's last look — a show row
+  exists only mid-batch, where the look can still change the remaining rows, and it runs on the
+  surface the user actually judges (their deployed product, not a local stand-in).
+- **The record register + bounds with teeth** (METHOD/FORMATS): `.gg/` files are terse present-tense
+  records — no narrative history (it's git's). WORK <10KB, other whole-read files <20KB; done-whens
+  ≤500 chars; Last closes one line each; CONTEXT entries = definition + _Avoid_; RUNBOOK = commands
+  + traps (completed one-time procedures deleted); ADRs 1-3 sentences, no amendment blocks; one ✓
+  per PRODUCT clause. The close now prunes accretion in CONTEXT/RUNBOOK/PRODUCT too, and
+  `/gg:where --audit` reports bound/register violations. `CONVERSION.md` gains the one-time
+  3.0→3.1 prune for existing projects.
+- **Deploy policy** (`deploy: ask | user-runs | auto`) in the WORK header, set once at `/gg:new` —
+  ends the per-close permission renegotiation the sessions showed (`user-runs` composes the exact
+  command for the user's own `!` prompt).
+- **`Decided` items and `## Staged` groups** in BACKLOG: decisions grilled outside a plan are
+  sealed — plan executes them and never re-opens them; pre-grouped future batches (a programme) are
+  taken as-is instead of re-derived. Both were user-invented workarounds during the klasse genesis.
+- **Advisory `/gg:plan`**: invoked without a chosen set it explains and recommends, touching no
+  state until the user picks (an abandoned advisory plan used to leave `state: shaping` dirty).
+- Smaller, all evidence-backed: `/gg:go` routes from `## State` + `## Where to resume` alone before
+  paying the full orient (blocked/idle boards no longer cost a whole session); off-lane commits
+  since the last close are surfaced with a record catch-up offer; an ambiguous S capture earns its
+  one deciding question (the B-368 misbuild); small items sharing a surface group into one row;
+  grill questions lead with the concrete example; a recommended option never proposes below the bar;
+  never bulk-edit `.gg/` with regex/sed (two data-loss incidents, both saved by git).
+
 ## 3.0.0
 
 **The lean rebuild — redesigned from measured evidence.** v3 comes from auditing v2 in production:

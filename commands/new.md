@@ -25,8 +25,8 @@ Read `.gg/WORK.md ## State` if it exists:
 
 ## 1. Scaffold
 - `mkdir -p .gg`; create `WORK.md` (per `FORMATS.md`) **header first** so any surviving `.gg/` always
-  carries a state: `state: shaping`, `batch: 0`, `kind: build`, `commit: ask` (provisional — confirmed
-  in §3). Create `PRODUCT.md` as a skeleton. `CONTEXT.md`, `DESIGN.md`, `NOTES.md`, `BACKLOG.md`,
+  carries a state: `state: shaping`, `batch: 0`, `kind: build`, `commit: ask`, `deploy: ask` (both
+  provisional — confirmed in §3). Create `PRODUCT.md` as a skeleton. `CONTEXT.md`, `DESIGN.md`, `NOTES.md`, `BACKLOG.md`,
   `RUNBOOK.md`, `adr/` are created lazily when first written.
 
 ## 2. Grill the destination (METHOD.md → Grilling)
@@ -51,10 +51,14 @@ Read `.gg/WORK.md ## State` if it exists:
   hard-to-reverse calls as ADRs (the three criteria); every other choice becomes an `A-NN` in
   `NOTES.md` — **high-blast decisions are grilled, never defaulted**.
 - Pin run/verify commands into `RUNBOOK.md` as they firm up.
-- **Ask the two one-time configs** (together, one question each at most):
+- **Ask the one-time configs** (together, one question each at most):
   1. **Commit policy** — *"May gg commit its own record and the code it writes? `ask` (propose at
      each close — recommended) / `auto` / `never`."* Write the answer to the WORK header.
-  2. If the cwd is **not a git repo**, offer `git init` (git is gg's only history — without it,
+  2. **Deploy policy** — *"How do deploys run? `ask` (propose each, named with its rollback, wait
+     for the yes — recommended) / `user-runs` (gg composes the exact command, you run it yourself) /
+     `auto` (a standing yes for the named deploy command at show/close points)."* Write it to the
+     WORK header (METHOD.md → Safety).
+  3. If the cwd is **not a git repo**, offer `git init` (git is gg's only history — without it,
      deleted record blocks are unrecoverable; `never` + no git means WORK "Last closes" is the only
      trace).
 - **Write the batch-0 board** into `WORK.md` (`FORMATS.md`): the whole product decomposed into rows
@@ -62,7 +66,8 @@ Read `.gg/WORK.md ## State` if it exists:
   through the whole stack before breadth. Batch-0 rows carry short names alone (no `B-NN` — they
   were never backlog). Give each row a one-line observable **done when**. Place a **show** row where
   the riskiest `[discovered]` clause first becomes judgeable — as early as the expensive-to-retrofit
-  foundation allows; a product with no `[discovered]` clause needs no forced show. Write the `## Try`
+  foundation allows, and **never as the final row** (the close's Try walk is the batch's last look);
+  a product with no `[discovered]` clause needs no forced show. Write the `## Try`
   block (deliverable + how to see it + the load-bearing flows); Provenance stays a placeholder
   (`/gg:go`'s durable start fills it).
 

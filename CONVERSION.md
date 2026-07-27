@@ -122,6 +122,24 @@ BLUEPRINT→DESIGN are renames-with-rewrite, so the old names are removed here.)
 5. Breadcrumb to the user: the state, the batch, and the next command (`/gg:go` if a batch is in
    flight; `/gg:plan` otherwise).
 
+## 3.0 → 3.1 — the record diet (a one-time prune, in the project)
+
+3.1 tightened the record (measured from 3.0 in production: a `/gg:go` orient had grown to ~65k
+tokens, ~⅓ of it load-bearing): hard bounds (WORK <10KB, every other whole-read file <20KB), the
+record register (present-tense current truth, no narrative history — METHOD.md), CONTEXT entries =
+definition + _Avoid_ only, RUNBOOK = commands + traps (completed one-time procedures deleted), ADR
+bodies 1-3 sentences with no amendment blocks, at most one ✓ per PRODUCT clause, single-line Last
+closes, done-whens ≤500 chars. It also added a `deploy:` line to the WORK header (`ask | user-runs |
+auto` — ask the user once and write it).
+
+A `.gg/` written under 3.0 is pruned **once, deliberately, in a dedicated session in the project**:
+commit the current `.gg/` first, then rewrite each file to its 3.1 shape — **delete, don't archive**
+(git keeps everything); run `/gg:where --audit` before and after (it reports what's over the line).
+Ids, live items, open assumptions, and every current-truth fact survive untouched; only prose,
+duplication, and history go. Expect the biggest cuts in CONTEXT (entries back to definition +
+_Avoid_), RUNBOOK (war stories and completed procedures), WORK's Last closes, and PRODUCT's ✓
+ledgers.
+
 ## Notes for the two known v2 projects
 
 These projects keep moving — **read each ROADMAP header for the real state; the §3 mapping is

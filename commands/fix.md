@@ -1,5 +1,5 @@
 ---
-description: "The fix-it-now lane — fix first, record after. For a small, decided, local change (a spurious bug, an operational failure, a one-screen tweak): locate it, fix it in this session with a pinning test when the defect class merits one, run the full suite green, and the record is ONE line in WORK's Fix log (plus a commit if the policy says so). Runs in any state, even mid-batch (it checks overlap with the in-flight row's owned paths first). Honesty valve: if the fix grows design weight, it stops, jots a B-NN, and routes to /gg:plan."
+description: "The fix-it-now lane — fix first, record after. For a small, decided, local change (a spurious bug, an operational failure, a one-screen tweak): locate it, fix it in this session with a pinning test when the defect class merits one, run the full suite green, and the record is ONE line in WORK's Fix log (plus a commit if the policy says so). Runs in any state, even mid-batch (it checks overlap with the in-flight row's owned paths first). Honesty valve: if the fix grows design weight, it stops, jots a B-NN, and offers the fold into the live batch (/gg:go) or routes to /gg:plan."
 model: inherit
 disable-model-invocation: true
 argument-hint: "[what to fix]"
@@ -36,8 +36,9 @@ and formats: `${CLAUDE_PLUGIN_ROOT}/gg-shared/METHOD.md` +
 ## 2. The honesty valve
 If mid-flight the "5-line fix" turns out to have design weight — it changes the shape, touches a
 load-bearing seam, or keeps growing — **stop fixing**: jot it as a `B-NN` (METHOD.md → Capture) with
-what you learned, restore any half-applied step, and route to `/gg:plan`. The lane is express
-because it's bounded, not because it skips the bar.
+what you learned, restore any half-applied step, and offer the honest routes: **mid-batch, fold it
+into the live batch** (`go.md` §3a — the usual answer to "arréglalo ya"); otherwise `/gg:plan`. The
+lane is express because it's bounded, not because it skips the bar.
 
 ## 3. Record (one line) and close
 - Append one line to `WORK.md ## Fix log`: `{date} — {what} — {test added?} — {suite result}`, and
