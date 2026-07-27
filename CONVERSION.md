@@ -1,14 +1,25 @@
-# CONVERSION.md — convert a v2 `.gg/` to v3, by hand or by an AI session
+# CONVERSION.md — one-time `.gg/` conversions (v2 → v3 · 3.0 → 3.1)
 
-gg v3 ships **no migration logic in its commands** (see `CLAUDE.md`): an existing v2 `.gg/` is
-converted once, deliberately, in a dedicated session. This document is written so an AI session can
-execute it directly: open Claude Code **in the project to convert** (not in the gg repo) and say
-*"read CONVERSION.md from the gg plugin repo and convert this project's `.gg/` to v3"*.
+gg ships **no migration logic in its commands** (see `CLAUDE.md`): an existing `.gg/` is converted
+once, deliberately, in a dedicated session. This document holds both known conversions and is
+written so an AI session can execute either directly: open Claude Code **in the project to convert**
+(not in the gg repo) and say *"read CONVERSION.md from the gg plugin repo and convert this
+project's `.gg/`"*.
 
-The v3 formats you are writing are defined in `gg-shared/FORMATS.md`; read it first, then this.
-Write all converted content in English (verbatim user quotes stay in their language).
+**Which one applies** — look at the `.gg/` you have:
 
-## 0. Safety first — git is the archive this conversion relies on
+- `ROADMAP.md` / `SPEC.md` / `BLUEPRINT.md` / `VISION.md` … → a **v2** record: run **v2 → v3**
+  below. Its output is the *current* `gg-shared/FORMATS.md` — the 3.1 shapes — so a v2 project
+  converted today lands directly on 3.1 and never needs the prune.
+- The seven files (`WORK` `BACKLOG` `PRODUCT` `DESIGN` `NOTES` `CONTEXT` `RUNBOOK` + `adr/`)
+  written under 3.0 → run the **3.0 → 3.1 prune** only.
+
+The target shapes are defined in `gg-shared/FORMATS.md`; read it first, then this. Write all
+converted content in English (verbatim user quotes stay in their language).
+
+## v2 → v3 — the full conversion
+
+### 0. Safety first — git is the archive this conversion relies on
 
 1. The project must be a git repo with `.gg/` tracked. If `.gg/` has uncommitted changes, **commit
    them now** (e.g. `chore: .gg snapshot before v3 conversion`) — the v2 files you are about to
@@ -16,7 +27,7 @@ Write all converted content in English (verbatim user quotes stay in their langu
 2. Do not start if a gg session is mid-task elsewhere. The working tree outside `.gg/` is the
    user's — untouched, uncommitted.
 
-## 1. Read the v2 state (all of it, once)
+### 1. Read the v2 state (all of it, once)
 
 Read: `ROADMAP.md` (header + phase log), `PROGRESS.md`, `VISION.md`, `BLUEPRINT.md` (headings first;
 then the phase-0 sections and every `## Phase N` delta), `SPEC.md` (the current phase's `AC-N`s, the
@@ -25,7 +36,7 @@ the blocks cited by live work), `BACKLOG.md` (all sections), `CONTEXT.md`, `RUNB
 (list). The archives and `JOURNAL.md` are needed **only** for the id scan in §2 — never read them
 whole.
 
-## 2. Seed the id counters (the one thing the archives are needed for)
+### 2. Seed the id counters (the one thing the archives are needed for)
 
 - `BACKLOG.md next-id:` = 1 + the highest `B-NN` found in **both** `BACKLOG.md` and
   `BACKLOG-ARCHIVE.md` (grep the `### B-` anchors; don't read the files).
@@ -34,12 +45,13 @@ whole.
 
 Ids are never renumbered: every surviving block keeps its id.
 
-## 3. Write the v3 files (`gg-shared/FORMATS.md` shapes, exactly)
+### 3. Write the v3 files (`gg-shared/FORMATS.md` shapes, exactly)
 
 **`WORK.md`** — from ROADMAP + PROGRESS + the current-phase slice of SPEC:
 - Header: `state:` = v2 `building` → `building`; `shipped` → `idle`; `scoping`/`visioning` →
   `shaping`. `batch:` = v2 `phase`. `kind:` = v2 `research` → `question`, else `build`.
-  `commit:` — **ask the user now**: `ask` (recommended) / `auto` / `never`.
+  `commit:` — **ask the user now**: `ask` (recommended) / `auto` / `never`. `deploy:` — **ask the
+  user now**: `ask` (recommended) / `user-runs` / `auto`.
 - **The batch sections — Board, `## Try`, `## Provenance`, `## Where to resume` — are filled only if
   a phase is in flight** (`state: building`). For a shipped/idle project leave them empty per
   `FORMATS.md` (Where to resume: one line, *"idle — next: /gg:plan"*) — the next `/gg:plan` rewrites
@@ -100,7 +112,7 @@ or reference the product no longer has.
 
 **`adr/`** — keep as-is.
 
-## 4. Delete the v2 files
+### 4. Delete the v2 files
 
 ```
 git rm .gg/ROADMAP.md .gg/PROGRESS.md .gg/SPEC.md .gg/BLUEPRINT.md .gg/VISION.md \
@@ -111,7 +123,7 @@ git rm .gg/ROADMAP.md .gg/PROGRESS.md .gg/SPEC.md .gg/BLUEPRINT.md .gg/VISION.md
 (BACKLOG.md and CONTEXT.md and RUNBOOK.md were rewritten in place; VISION→PRODUCT and
 BLUEPRINT→DESIGN are renames-with-rewrite, so the old names are removed here.)
 
-## 5. Verify, then commit
+### 5. Verify, then commit
 
 1. Check the result against `gg-shared/FORMATS.md`: exactly `WORK.md`, `BACKLOG.md`, `PRODUCT.md`,
    `DESIGN.md`, `NOTES.md`, `CONTEXT.md`, `RUNBOOK.md`, `adr/` — no other file, no invented sections.
@@ -122,35 +134,106 @@ BLUEPRINT→DESIGN are renames-with-rewrite, so the old names are removed here.)
 5. Breadcrumb to the user: the state, the batch, and the next command (`/gg:go` if a batch is in
    flight; `/gg:plan` otherwise).
 
-## 3.0 → 3.1 — the record diet (a one-time prune, in the project)
+## 3.0 → 3.1 — the record diet (a one-time prune)
 
-3.1 tightened the record (measured from 3.0 in production: a `/gg:go` orient had grown to ~65k
-tokens, ~⅓ of it load-bearing): hard bounds (WORK <10KB, every other whole-read file <20KB), the
-record register (present-tense current truth, no narrative history — METHOD.md), CONTEXT entries =
-definition + _Avoid_ only, RUNBOOK = commands + traps (completed one-time procedures deleted), ADR
-bodies 1-3 sentences with no amendment blocks, at most one ✓ per PRODUCT clause, single-line Last
-closes, done-whens ≤500 chars. It also added a `deploy:` line to the WORK header (`ask | user-runs |
-auto` — ask the user once and write it).
+3.1 tightened the record, measured from 3.0 in production: a `.gg/` had grown to ~3.9x its
+conversion size in 41 batches, and a `/gg:go` orient to ~65k tokens with only ~⅓ of it load-bearing.
+What 3.1 requires (`FORMATS.md` bounds + METHOD.md → The record register): **WORK <10KB, every other
+whole-read file <20KB**; present-tense current truth with **no narrative history**; CONTEXT entries
+= definition + _Avoid_ only; RUNBOOK = commands + traps; ADR bodies with no amendment blocks; at
+most one ✓ per PRODUCT clause; single-line Last closes capped at 5; done-whens ≤500 chars — and a
+new `deploy:` line in the WORK header. A `.gg/` written under 3.0 is pruned to those shapes once,
+here.
 
-A `.gg/` written under 3.0 is pruned **once, deliberately, in a dedicated session in the project**:
-commit the current `.gg/` first, then rewrite each file to its 3.1 shape — **delete, don't archive**
-(git keeps everything); run `/gg:where --audit` before and after (it reports what's over the line).
-Ids, live items, open assumptions, and every current-truth fact survive untouched; only prose,
-duplication, and history go. Expect the biggest cuts in CONTEXT (entries back to definition +
-_Avoid_), RUNBOOK (war stories and completed procedures), WORK's Last closes, and PRODUCT's ✓
-ledgers.
+Ground rules for every step: **delete, never archive** — git keeps everything; ids are **never
+renumbered**; every current-truth fact survives — only prose, duplication, and history go; English;
+env var names, never values.
 
-## Notes for the two known v2 projects
+### 0. Safety first
 
-These projects keep moving — **read each ROADMAP header for the real state; the §3 mapping is
-authoritative**, never these notes. Durable facts only:
+1. The project must be a git repo with `.gg/` tracked. Commit a snapshot **now**:
+   `chore: .gg snapshot before 3.1 prune` — everything this prune deletes survives only in git, and
+   the snapshot is the "before" for the size report in §2.
+2. Prune only with **no batch in flight**: `WORK.md` must say `state: idle`. If it doesn't, **stop
+   and say so** — finish or close the batch first (`/gg:go`), then come back.
+3. Never touch the working tree outside `.gg/`.
+4. **Anchored, block-scoped edits only — never regex/sed bulk edits** (METHOD.md): re-read the
+   exact block from disk immediately before editing it.
 
-- **klasse** (`~/code/klasse`): large v2 files (SPEC ~230KB with 200+ ACs, BLUEPRINT ~208KB with
-  ~49 `## Phase N` sections). For DESIGN, **skim every phase section — including ones labeled "No
-  design change"**, whose re-scope/close paragraphs still carry component contracts; fold whatever
-  still describes shipped behavior, and skip only what a later phase superseded (e.g. phase 40
-  removed the phase-6 guided lesson — CONTEXT.md flags removals). Its ASSUMPTIONS `## Open` mixes
-  truly-open blocks with `_(swept at close)_` pointer stubs — only the former survive.
-- **flights** (`~/code/flights`): watch A-55 (the launch-flip assumption) — it drops with the stage
-  concept; the backup/recovery material in RUNBOOK stays. Some backlog blocks carry the v2 `[jot]`
-  tag — drop it (§3).
+### 1. Prune each file
+
+**`WORK.md`** (<10KB):
+- Header gains `deploy: {ask | user-runs | auto}` — **ask the user once, now** (`ask` recommended);
+  if they pre-decided it when commissioning this prune, write that without re-asking.
+- `## Last closes`: ONE line per close (≤200 chars), newest first, capped at 5. Collapse paragraph
+  entries to their line; delete everything past the cap.
+- `## Fix log`: one-line entries since the last batch open only — older lines and entries grown
+  past a line are cut back.
+- The batch sections (Board, `## Try`, `## Provenance`, `## Where to resume`) carry no load at
+  `idle`: the closed board's rows go (Last closes + git hold the close), Where to resume becomes
+  one line — *"idle — next: /gg:plan"* — and the next `/gg:plan` rewrites them all whole anyway.
+
+**`CONTEXT.md`** (<20KB): every entry reduced to its **definition + _Avoid_ list** — delete
+history, implementation detail, batch citations, and how-it-used-to-work. Merge duplicate headwords
+into one entry. **Keep every live term, and keep its full _Avoid_ list**: the _Avoid_ lists encode
+regression traps — the wrong word a fresh session would otherwise reach for — and the prune never
+trims them.
+
+**`RUNBOOK.md`** (<20KB): each entry = the command + a one-line purpose + the trap warnings that
+keep it safe. Delete war stories and **completed one-time procedures** — finished migrations,
+retired-world sections, one-shot reset recipes that already ran. The destructive-paths section
+stays whole.
+
+**`PRODUCT.md`** (<20KB): each "done and perfect" clause keeps **at most its latest ✓** (one line);
+delete the ✓-walk ledgers under clauses. Rewrite prose to current truth — a clause that narrates
+its own revisions becomes the current clause alone.
+
+**`NOTES.md`** (<20KB): backfill the sweep 3.0 closes didn't run. For **every** assumption, apply
+the test: *would reversing it now be a change to shipped behavior?* → consumed, **delete**. For
+every finding: delete unless live work cites it — an open item's `Relates`, an unconfirmed
+`[discovered]` clause. What survives is genuinely open. `next-id:` untouched (it only goes up).
+
+**`BACKLOG.md`** (<20KB): items keep their ids and blocks. Delete any archive-like section that
+accreted (`## Done`, `## Applied`, …) — git keeps it. Give each **agent-minted** item's Idea a
+plain opening sentence with a concrete example if it lacks one (its owner reads it cold, days
+later). The optional `Decided:` field and `## Staged` section now exist (`FORMATS.md`) — available
+going forward, never back-filled.
+
+**`DESIGN.md`** (no hard bound — it is read by section — but the same register): current truth
+only. Prune narrative history ("originally…", "batch N changed…") and fix any staleness found while
+reading — a section describing what the product no longer has is rewritten or deleted.
+
+**`adr/`**: an ADR carrying an amendment block is **rewritten to current truth in place** — one
+body, no trail (git keeps the old text); same for any body that reads stale. Wholesale shortening
+of *accurate* old ADRs is optional — they are read on demand; the bounds' teeth are on the seven
+whole-read files. New ADRs follow the 1-3 sentence rule going forward.
+
+### 2. Verify
+
+1. Run `/gg:where --audit` (or walk its checklist by hand) and fix what it reports: bounds and
+   register, dangling ids (a reference to a deleted id is **not** dangling if `git log -S` finds
+   it), a `next-id:` at or below an id in use, invented structure or archive-like sections.
+2. Report per-file **before → after** sizes to the user (the §0 snapshot holds the before; e.g.
+   `CONTEXT.md 41KB → 14KB`).
+3. Sanity-read `WORK.md` as a fresh session would: state, last closes, and the next command legible
+   at a glance, nothing load-bearing lost.
+
+### 3. Commit, then breadcrumb
+
+1. `git add .gg/` (pathspec-scoped — nothing outside `.gg/`) and commit:
+   `chore: prune .gg to gg 3.1 (record diet)`.
+2. One-line breadcrumb to the user: the sizes cut + the next command (`/gg:plan` — the state was
+   `idle` by precondition; `/gg:fix` for one small thing).
+
+## Notes for the two known projects
+
+These projects keep moving — read each project's actual `.gg/` for the real state; the procedures
+above are authoritative, never these notes. Durable facts only:
+
+- **klasse** (`~/code/klasse`): converted to v3 on **2026-07-10** — only the **3.0 → 3.1 prune**
+  applies. Its 3.0 record is where the 3.1 evidence came from (~3.9x growth in 41 batches); expect
+  the biggest cuts in CONTEXT, RUNBOOK, and PRODUCT's ✓ ledgers.
+- **flights** (`~/code/flights`): still **v2** — the full v2 → v3 conversion applies, landing
+  directly on 3.1 shapes. Watch A-55 (the launch-flip assumption) — it drops with the stage
+  concept; the backup/recovery material in RUNBOOK stays; some backlog blocks carry the v2 `[jot]`
+  tag — drop it (v2 → v3 §3).
