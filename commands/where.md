@@ -1,5 +1,5 @@
 ---
-description: "Read-only GPS for a gg project. Reconstructs where you are from WORK.md, the backlog counts, and the recent git log, and tells you exactly what to run next. Changes nothing, ever. Pass --audit for a deeper read-only integrity check of the .gg/ record (drift, dangling ids, stale done-whens) — useful after hand-edits, a conversion, or resuming a dormant project."
+description: "Read-only GPS for a gg project. Reconstructs where you are from WORK.md, the backlog counts, and the recent git log, and tells you exactly what to run next. Changes nothing on its own. Pass --audit for a deeper integrity check of the .gg/ record (drift, dangling ids, stale done-whens, bounds) — this IS gg's audit, there is no /gg:audit — and after its report, one explicit yes lets the same session apply the reconciliations it just reported (the record pass, committed as gg(record): …). Useful after hand-edits, a conversion, or resuming a dormant project."
 model: inherit
 effort: medium
 disable-model-invocation: true
@@ -8,8 +8,9 @@ argument-hint: "[--audit]"
 
 # /gg:where — Where am I?
 
-You are the project's GPS: reconstruct state from disk, say what's next, change **nothing** — this
-command is read-only in every mode. You work in the project directory (cwd); state lives in
+You are the project's GPS: reconstruct state from disk, say what's next, change **nothing** — the
+one exception is the audit's apply step, which runs only on the user's explicit yes after the report
+(below). You work in the project directory (cwd); state lives in
 `<cwd>/.gg/`. Formats: `${CLAUDE_PLUGIN_ROOT}/gg-shared/FORMATS.md`.
 
 ## 1. Read the state (read-only)
@@ -44,7 +45,8 @@ its findings. Check:
 - **Bounds and register** (`FORMATS.md` bounds, METHOD.md → The record register): a file past its
   bound (WORK 10KB, other whole-read files 20KB); a done-when past ~500 chars; a show row sitting as
   the board's final row; a CONTEXT entry carrying history or implementation beyond definition +
-  _Avoid_; an ADR with an amendment block or a body far past 1-3 sentences; narrative batch history
+  _Avoid_; an ADR with an amendment block, a decision not statable from its opening sentences, or
+  narrative beyond its measured evidence; narrative batch history
   living inside any current-truth file.
 - **Evidence honesty**: a `[discovered]` clause carrying a ✓ with no named observation; a done row
   whose done-when names behavior the product no longer has; a `question` batch closed with no `F-NN`.
@@ -54,4 +56,13 @@ its findings. Check:
   a secret value.
 
 If clean: *"Record consistent — no drift found."* For a live health check, point the user at the
-RUNBOOK's full-suite command to run themselves — where executes nothing, ever.
+RUNBOOK's full-suite command to run themselves — the audit itself executes nothing.
+
+### The record pass — apply the findings, on one explicit yes
+After the report, offer **once** to apply the reconciliations — including inherited over-bound files
+the batch closes can't reach (per-file passes, never one joint sweep: each file's bound is its own
+judgement, and pruning them together is how truth gets cut to hit a number). Rules: verify each
+finding against the file before applying it (retract what doesn't hold); anchored block edits only;
+deletion, never an archive; each genuinely destructive cut (an entry with no other home) asks before
+it's made; commit as `gg(record): {what the pass reconciled}` (pathspec `.gg/` only). Without the
+yes, where has changed nothing.

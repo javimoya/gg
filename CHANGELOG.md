@@ -3,6 +3,36 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.1.1
+
+**Tuned from 3.1's first day in production** (klasse b87-b90 — including a natural experiment: two
+batches ran old 3.0 specs against the dieted record and re-bloated it at the pre-diet rate, +11.6KB
+vs +2.2KB/batch under real 3.1, confirming the discipline lives in the specs). Fixes for what the
+first real 3.1 batches exposed:
+
+- **Caps bind where the text is born**: plan measures done-whens as written (an over-cap cell is
+  rewritten before the gate, never left for the audit); the close writes its Last-closes entry
+  measured (≤200 chars). The caps were being enforced by the audit and breached at write time.
+- **The record pass**: `/gg:where --audit` may now, on ONE explicit yes after its report, apply the
+  reconciliations it just reported — the sanctioned lane for inherited over-bound files that
+  batch-scoped close pruning structurally can't reach (B-458's gap; klasse's `gg(record)` commit was
+  already doing this off-spec). Per-file passes, never a joint sweep; each destructive cut still
+  asks; commits as `gg(record): …`. The close now re-measures every whole-read file instead of
+  trusting a standing list (PRODUCT crossed its bound unnoticed).
+- **ADR bodies match their real job**: the decision in 1-3 sentences up top, and below it only
+  measured evidence that defends the call — never narrative history. (Both post-diet ADRs were
+  excellent five-section essays; the evidence deserved a home, the narrative didn't.)
+- **Findings retire**: a NOTES finding with no live consumer (no open `Leads to`, no unconfirmed
+  clause, no pending time gate) is consumed at the second close it survives — findings were NOTES'
+  fastest growth with no judge.
+- **The record row is bounded**: a batch may group its doc-sync as one S row for convenience, but it
+  carries no `B-NN` and never certifies — a ✓ belongs to the close's walk (or a show's routed
+  verdict). The pattern had begun pre-writing close certifications into rows.
+- Smaller: the gate names its approving word ("…or say go") and reads a bare "ok"/"no" as assent
+  when nothing was raised; the audit's description says out loud that it IS gg's audit (a user
+  reached for `/gg:audit`); METHOD + CONVERSION warn that a product test reading `.gg/` couples the
+  suite to the record's diet (klasse's suite went red on exactly this).
+
 ## 3.1.0
 
 **Tuned from 17 days of 3.0 in production** — 280 klasse sessions (batches 44→86) analyzed end to

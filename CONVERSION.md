@@ -159,6 +159,10 @@ env var names, never values.
 3. Never touch the working tree outside `.gg/`.
 4. **Anchored, block-scoped edits only — never regex/sed bulk edits** (METHOD.md): re-read the
    exact block from disk immediately before editing it.
+5. **Check whether the product's suite reads `.gg/`** (grep the test code for `.gg/`). A test that
+   quote-pins record sentences or reads a record file by path couples the suite to this diet — the
+   prune will turn it red (klasse's did, 2026-07-27: three glossary words deleted → red suite).
+   Expect it, and route the fix as decoupling the test, never as keeping the prose.
 
 ### 1. Prune each file
 

@@ -81,12 +81,15 @@ Where-to-resume whole and reset Provenance to placeholders — prune the Fix log
 `## Last closes` intact**. The Board: rows sized so each fits one fresh session — an L item may span
 several rows, and **small items sharing a surface group into one row** (fewer, meatier rows beat a
 parade of S rows; an S with no siblings is one row). Each row's **done when** (a `[bug]` row's
-carries the broken-vs-expected essence; ≤500 chars — `FORMATS.md`), the **show** rows only where a
+carries the broken-vs-expected essence; **≤500 chars, measured as written** — an over-cap cell is
+rewritten before the gate, never left for the audit to report), the **show** rows only where a
 `[discovered]` clause in play becomes judgeable mid-batch (riskiest first, as early as the
 foundation allows — a bug-batch needs no show, and **never as the final row**: if the earliest
 judgeable moment is the batch's end, place no show — the close's Try walk is that look), and the
 `## Try` block (deliverable + how to see it + the load-bearing flows, citing B-NNs —
-a user-triggered write or heavy job belongs on it by name). **Do not touch `BACKLOG.md` yet** — the
+a user-triggered write or heavy job belongs on it by name). Record doc-sync the batch causes may
+group into one S row for convenience — no `B-NN` of its own, and it never certifies (`FORMATS.md`).
+**Do not touch `BACKLOG.md` yet** — the
 block moves, deferrals, and discard deletions happen only after the gate, so a veto never has to
 reconstruct deleted blocks.
 
@@ -94,7 +97,9 @@ reconstruct deleted blocks.
 Present one report: every item with its disposition and **weight + why**, the grilled decisions, the
 high/medium-blast `A-NN`s (low ones listed), any discards with reasons, show placement and why not
 earlier, and the board. Take **one** question with the free-form answer open — the gate is where
-users *add* work, not just assent, so it is never skipped, and it is never two rounds. **Apply the
+users *add* work, not just assent, so it is never skipped, and it is never two rounds. Name the
+approving word in the question itself (*"add, cut, or change anything — or say **go**"*), and read a
+bare "ok"/"no" as assent when nothing was raised — don't make the user guess which word you wanted. **Apply the
 answer in one pass**: a gate-added S item folds straight onto the board; a gate-added M/L item
 re-enters §2 (its questions are the application of the answer, not a new gate). Only now touch
 `BACKLOG.md` — move the taken items' blocks out, send deferrals to `## Later`, delete discards

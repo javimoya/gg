@@ -115,15 +115,18 @@ bugs → `B-NN`s. **If the look means the remaining rows must change**, stop and
   when the user runs it"* in "Where to resume" and stop; a resumed close skips straight here.
 - **Sweep by deletion** (git keeps *committed* history): mark the last row done; delete the applied
   items' traces from `BACKLOG.md` if any remain; delete consumed `A-NN`s and done `F-NN`s from
-  `NOTES.md` (the test: reversing it now would be a change to shipped behavior → consumed). **The
+  `NOTES.md` (the test: reversing it now would be a change to shipped behavior → consumed; a finding
+  with no live consumer is consumed at the second close it survives — `FORMATS.md`). **The
   close's own `F-NN` always survives** — it informs the next plan. **Prune accretion back to current
   truth** wherever this batch left it (`FORMATS.md` bounds): a CONTEXT entry beyond definition +
   _Avoid_, a RUNBOOK one-time procedure that has run, a PRODUCT clause's superseded ✓ — deletion,
-  never an archive. Leave surviving blocks'
+  never an archive. **Measure every whole-read file now** (`wc -c`) — never trust a standing list;
+  a file over its bound from *before* this batch is the record pass's job (`/gg:where --audit`):
+  say so, don't cut another batch's truth to a number. Leave surviving blocks'
   references to deleted ids intact (`FORMATS.md`). **If the blocks were never committed** (policy
   `never`, or every ask declined), deleting them is permanent: say so and get a yes, or leave them
-  and only mark the close (METHOD.md → Commits). Add the one-line entry to `## Last closes` (cap 5),
-  set `state: idle`.
+  and only mark the close (METHOD.md → Commits). Add the entry to `## Last closes` — ONE line,
+  ≤200 chars, measured (cap 5) — and set `state: idle`.
 - Commit per policy: `gg(b{N}): close — applied {B-NNs} · consumed {A-NNs}` with the suite line in
   the body. **The close touches WORK + NOTES (+BACKLOG/PRODUCT/CONTEXT/RUNBOOK only where content
   changed or a bound demands pruning) — nothing else.**

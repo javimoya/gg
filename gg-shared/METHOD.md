@@ -159,7 +159,10 @@ of its discovery: that trail is git's and the ADR's, never the record's. Write t
 not the aphorism about it. **One fact, one home**: a datum lives once; every other mention is its
 bare id (`B-12`, `A-07`, `ADR-0004`) — a fact kept in two homes is the fact that goes stale in one.
 `FORMATS.md` gives each file a hard bound; the batch close prunes accretion back to current truth
-wherever it grew — deletion, never an archive.
+wherever it grew — deletion, never an archive. **The record is gg's, not the product's**: a product
+test that reads `.gg/` files couples the suite to the record's diet — surface it the moment it's
+found; a record prune may legitimately turn such a test red, and the honest fix is decoupling the
+test, never fattening the record.
 
 ## Context discipline
 

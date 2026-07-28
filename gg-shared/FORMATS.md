@@ -2,8 +2,10 @@
 
 Seven bounded files plus `adr/`. Each file is small enough to read whole (only `DESIGN.md` and `adr/`
 are read by section/slug). **Bounds have teeth**: `WORK.md` stays under **10KB**; every other
-whole-read file stays under **20KB**. A file past its bound is pruned at the next close — back to
-its current-truth core (METHOD.md → The record register), deleted, never parked in an archive.
+whole-read file stays under **20KB**. A file past its bound is pruned back to its current-truth core
+(METHOD.md → The record register): accretion the batch left, at its close; **inherited overage, in a
+record pass** (`/gg:where --audit`, applied on the user's explicit yes) — deleted, never parked in
+an archive.
 **Formats are closed**: exactly these sections and fields, never invented ones. **History is
 git's**: applied, consumed, and superseded blocks are **deleted**, not archived — `git log -S
 "B-12"` recovers anything. No secrets anywhere (`.gg/` is committed): env var *names*, never values.
@@ -72,6 +74,9 @@ the earliest judgeable moment is the batch's end, there is no show row — the c
 that look. A show runs on the surface the user actually judges — usually the deployed product on
 their own device, not a locally staged stand-in). A `question` batch's done-when is "answered:
 recorded as `F-NN`".
+A batch may group the record doc-sync its rows caused into **one S row for convenience** — that row
+carries no `B-NN` of its own (it is not product) and never certifies: a ✓ belongs to the close's
+walk (or a show's routed verdict), never to a record row.
 **Provenance is written once** per batch, before the first code change; only Owned paths grows.
 **Opening a batch rewrites Board/Try/Where-to-resume whole and resets Provenance to placeholders**;
 the Fix log is pruned; **`## Last closes` always survives** (capped at 5 — under `commit: never` it
@@ -197,7 +202,10 @@ next-id: A-31 · F-12
 
 Rules: high-blast decisions are never assumptions — they're grilled. At batch close, **delete**
 consumed assumptions (the test: would reversing it now be a change to shipped behavior? → consumed)
-and findings whose work is done — git keeps them; ids never reused (`next-id:` only goes up). A
+and findings whose work is done — git keeps them; ids never reused (`next-id:` only goes up).
+A finding stays only while something live cites it — an open `Leads to` item, an unconfirmed
+`[discovered]` clause, a time gate not yet reached; **one with no such consumer is consumed at the
+second close it survives** (its durable rule moves to RUNBOOK/DESIGN, or it is git's). A
 pending state ("verdict owed") is never a finding. A close with nothing observed records no finding —
 the Try-walk verdict is acted on, not archived.
 
@@ -243,8 +251,10 @@ run to completion (a migration, a reset recipe) is deleted at that close.
 ## adr/ — decisions
 
 `.gg/adr/NNNN-slug.md`, created lazily; the slug says the decision (`0007-sqlite-over-postgres.md`).
-Body: 1-3 sentences — context, decision, why (optional Status / Options / Consequences only when they
-earn it). Offer an ADR **only** when all three hold: hard to reverse · surprising without context ·
+Body: the decision in **1-3 sentences up top** — context, decision, why. Below that, only
+**measured evidence** that defends the call (the numbers, the sensitivity run, the live counts) —
+never narrative history (optional Status / Options / Consequences only when they earn it). Offer an
+ADR **only** when all three hold: hard to reverse · surprising without context ·
 a real trade-off. Next number = highest in `ls .gg/adr/` + 1. **No amendment blocks**: an ADR whose
 body went stale is rewritten to current truth in place (git keeps the old text) — and a body kept to
 1-3 sentences has almost nothing that *can* go stale.
@@ -255,6 +265,7 @@ body went stale is rewritten to current truth in place (git keeps the old text) 
 - Batch close: `gg(b{N}): close — applied {B-NNs} · consumed {A-NNs}` (+ a suite line in the body;
   batch 0 names the deliverable instead of applied ids)
 - Fix: `gg(fix): {what} — {root cause, one line}`
+- Record pass: `gg(record): {what the pass reconciled}`
 - Kickoff: `gg(b0): plan — {M} rows` · Plan: `gg(b{N}): plan — {B-NNs} · {M} rows`
 
 Always pathspec-scoped (`git add .gg/ {owned paths}`); never push (METHOD.md → Commits).
