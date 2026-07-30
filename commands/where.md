@@ -43,7 +43,9 @@ its findings. Check:
   "Last closes" grown past its cap of 5, or an entry that is a paragraph instead of a line; a Fix
   log carrying lines from before the current batch open.
 - **Bounds and register** (`FORMATS.md` bounds, METHOD.md → The record register): a file past its
-  bound (WORK 10KB, other whole-read files 20KB); a done-when past ~500 chars; a show row sitting as
+  bound (WORK 16KB, other whole-read files 32KB) — for `BACKLOG.md` the reconcile is triage at the
+  next `/gg:plan` (merge or discard items), never rewording blocks to fit; a done-when past ~500
+  chars; a show row sitting as
   the board's final row; a CONTEXT entry carrying history or implementation beyond definition +
   _Avoid_; an ADR with an amendment block, a decision not statable from its opening sentences, or
   narrative beyond its measured evidence; narrative batch history
@@ -52,6 +54,9 @@ its findings. Check:
   whose done-when names behavior the product no longer has; a `question` batch closed with no `F-NN`.
 - **Staleness**: `RUNBOOK.md` naming commands that no longer exist; `CONTEXT.md` terms or `PRODUCT.md`
   clauses referring to removed surfaces; a `Blocked:` note whose condition reads met.
+- **Backlog debt**: agent-minted `## New` items whose Captured date predates the last two
+  `## Last closes` entries — report count and ages; the reconcile is `/gg:plan`'s keep-or-discard
+  call at its gate, never a silent sweep.
 - **Language & secrets**: non-English prose that isn't a marked user quote; anything that looks like
   a secret value.
 

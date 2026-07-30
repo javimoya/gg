@@ -46,7 +46,10 @@ candidate set:
 - **What the user points at** in `BACKLOG.md ## New` / `## Later` (by id, or "and the backlog ones"),
   or the top `## Staged` group when one exists (that grouping was decided ahead — take it, don't
   re-derive it). Items *not* brought in stay where they are — never invisible: open with one line of
-  counts (*"backlog holds {K} new · {J} later"*) when anything stays behind.
+  counts (*"backlog holds {K} new · {J} later"*) when anything stays behind. Name for a
+  keep-or-discard call at the gate any **agent-minted `## New` item now stale** — its Captured date
+  predates the last two `## Last closes` entries; stale agent captures never ride the backlog
+  indefinitely.
 - **Reconcile lightly** (METHOD.md → Capture): fold duplicates into the survivor (keep its `B-NN`),
   surface contradictions. An item that reverses a default notes `reverses: A-NN`.
 
@@ -89,6 +92,8 @@ judgeable moment is the batch's end, place no show — the close's Try walk is t
 `## Try` block (deliverable + how to see it + the load-bearing flows, citing B-NNs —
 a user-triggered write or heavy job belongs on it by name). Record doc-sync the batch causes may
 group into one S row for convenience — no `B-NN` of its own, and it never certifies (`FORMATS.md`).
+**Inherited record overage is never batch work**: a `.gg/` file past its bound from before this
+batch routes to `/gg:where --audit` (the record pass), never onto the board or into a `B-NN`.
 **Do not touch `BACKLOG.md` yet** — the
 block moves, deferrals, and discard deletions happen only after the gate, so a veto never has to
 reconstruct deleted blocks.

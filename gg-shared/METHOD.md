@@ -92,10 +92,16 @@ The moment an idea surfaces, jot it and get back to work. Route by tense:
 - **Not capture**: a bug in the task you're building right now (fix it — that's the bar), or a cut
   you were tempted to make (the test above). One-line confirmation, then **return to the task** —
   never derail the build.
-- **A capture is offered, never buried**: an item jotted while the user was away is surfaced at the
-  next moment they're present — the row checkpoint, a show, the close — with a one-line now-vs-later
-  offer: fold it into the live batch (`/gg:go` folds it, `go.md` §3a) or leave it in `## New`.
-  Silent accumulation across a batch is a drop with extra steps.
+- **A capture is offered, never buried — one triage card, once**: items jotted while the user was
+  away are surfaced at the next moment they're present — the row checkpoint, a show, the close — as
+  **one card for the session's captures**, never a question per item. Each entry: the id + title,
+  the Idea's opening sentence (the plain, concrete example `FORMATS.md` already requires — the card
+  is where that sentence earns its keep), a weight guess, and your recommendation. Three
+  dispositions, the user's call per item: **fold** into the live batch (`/gg:go` folds it, `go.md`
+  §3a) · **backlog** (stays in `## New` for a later plan) · **discard** (delete the block; a
+  "never" becomes a `PRODUCT.md` boundary, as at the plan gate). The card never blocks — no answer
+  leaves the items in `## New` — and an offered item is not re-offered next session: `/gg:plan` is
+  its next look. Silent accumulation across a batch is a drop with extra steps.
 
 ## Evidence (what "done" means)
 
@@ -158,8 +164,10 @@ narrative history** — how a fact came to be, what it was before, which batch c
 of its discovery: that trail is git's and the ADR's, never the record's. Write the observable fact,
 not the aphorism about it. **One fact, one home**: a datum lives once; every other mention is its
 bare id (`B-12`, `A-07`, `ADR-0004`) — a fact kept in two homes is the fact that goes stale in one.
-`FORMATS.md` gives each file a hard bound; the batch close prunes accretion back to current truth
-wherever it grew — deletion, never an archive. **The record is gg's, not the product's**: a product
+`FORMATS.md` gives each file a hard bound, checked at exactly two points: the batch close prunes
+accretion back to current truth wherever it grew (to ~¾ of the bound — `FORMATS.md`), and the
+record pass (`/gg:where --audit`) takes inherited overage — deletion, never an archive; no session
+polices bounds mid-row. **The record is gg's, not the product's**: a product
 test that reads `.gg/` files couples the suite to the record's diet — surface it the moment it's
 found; a record prune may legitimately turn such a test red, and the honest fix is decoupling the
 test, never fattening the record.

@@ -1,18 +1,21 @@
 # FORMATS.md — the `.gg/` files (shared)
 
 Seven bounded files plus `adr/`. Each file is small enough to read whole (only `DESIGN.md` and `adr/`
-are read by section/slug). **Bounds have teeth**: `WORK.md` stays under **10KB**; every other
-whole-read file stays under **20KB**. A file past its bound is pruned back to its current-truth core
-(METHOD.md → The record register): accretion the batch left, at its close; **inherited overage, in a
-record pass** (`/gg:where --audit`, applied on the user's explicit yes) — deleted, never parked in
-an archive.
+are read by section/slug). **Bounds have teeth**: `WORK.md` stays under **16KB**; every other
+whole-read file stays under **32KB**. A file past its bound is pruned back to its current-truth core
+(METHOD.md → The record register), and **a prune buys headroom**: cut to about **three quarters of
+the bound** (WORK ≤12KB, others ≤24KB), never to just under the line — a file trimmed to the edge
+is back over it one session later. **Bounds are checked at exactly two points**: the batch close
+(accretion this batch left) and the record pass (`/gg:where --audit`, applied on the user's
+explicit yes — inherited overage). No other moment measures or trims: mid-batch, an over-bound
+file is noted in passing at most, never cut. Deleted, never parked in an archive.
 **Formats are closed**: exactly these sections and fields, never invented ones. **History is
 git's**: applied, consumed, and superseded blocks are **deleted**, not archived — `git log -S
 "B-12"` recovers anything. No secrets anywhere (`.gg/` is committed): env var *names*, never values.
 
 ## WORK.md — the hot file (state + the current batch)
 
-Bounded hard: exactly one batch; the close resets it. Always readable whole (<10KB).
+Bounded hard: exactly one batch; the close resets it. Always readable whole (<16KB).
 
 ```md
 # WORK — {Project name}

@@ -9,8 +9,8 @@ project's `.gg/`"*.
 **Which one applies** — look at the `.gg/` you have:
 
 - `ROADMAP.md` / `SPEC.md` / `BLUEPRINT.md` / `VISION.md` … → a **v2** record: run **v2 → v3**
-  below. Its output is the *current* `gg-shared/FORMATS.md` — the 3.1 shapes — so a v2 project
-  converted today lands directly on 3.1 and never needs the prune.
+  below. Its output is the *current* `gg-shared/FORMATS.md` shapes — so a v2 project converted
+  today lands directly on them and never needs the prune.
 - The seven files (`WORK` `BACKLOG` `PRODUCT` `DESIGN` `NOTES` `CONTEXT` `RUNBOOK` + `adr/`)
   written under 3.0 → run the **3.0 → 3.1 prune** only.
 
@@ -70,7 +70,7 @@ Ids are never renumbered: every surviving block keeps its id.
   rewrite v2 command names to their v3 equivalents (`/gg:next-task`→`/gg:go`, `/gg:orient`→
   `/gg:where`, `/gg:capture`/`/gg:refine-backlog`/`/gg:discover`→`/gg:plan`, `/gg:quick`→`/gg:fix`),
   strip stage/STAGE.md language, drop mentions of A-NNs this conversion deletes, and condense —
-  WORK.md must stay under 10KB.
+  WORK.md must stay under its `FORMATS.md` bound (16KB).
 - `## Fix log`: empty. `## Last closes`: the last ≤5 shipped phases from the ROADMAP phase log, one
   line each (`batch {N} ({date}): {the B-NNs / one-line summary}`).
 
@@ -138,8 +138,9 @@ BLUEPRINT→DESIGN are renames-with-rewrite, so the old names are removed here.)
 
 3.1 tightened the record, measured from 3.0 in production: a `.gg/` had grown to ~3.9x its
 conversion size in 41 batches, and a `/gg:go` orient to ~65k tokens with only ~⅓ of it load-bearing.
-What 3.1 requires (`FORMATS.md` bounds + METHOD.md → The record register): **WORK <10KB, every other
-whole-read file <20KB**; present-tense current truth with **no narrative history**; CONTEXT entries
+What the prune targets (`FORMATS.md` bounds + METHOD.md → The record register — always the current
+numbers: **WORK <16KB, every other whole-read file <32KB**); present-tense current truth with **no
+narrative history**; CONTEXT entries
 = definition + _Avoid_ only; RUNBOOK = commands + traps; ADR bodies with no amendment blocks; at
 most one ✓ per PRODUCT clause; single-line Last closes capped at 5; done-whens ≤500 chars — and a
 new `deploy:` line in the WORK header. A `.gg/` written under 3.0 is pruned to those shapes once,
@@ -166,7 +167,7 @@ env var names, never values.
 
 ### 1. Prune each file
 
-**`WORK.md`** (<10KB):
+**`WORK.md`** (<16KB):
 - Header gains `deploy: {ask | user-runs | auto}` — **ask the user once, now** (`ask` recommended);
   if they pre-decided it when commissioning this prune, write that without re-asking.
 - `## Last closes`: ONE line per close (≤200 chars), newest first, capped at 5. Collapse paragraph
@@ -177,27 +178,27 @@ env var names, never values.
   `idle`: the closed board's rows go (Last closes + git hold the close), Where to resume becomes
   one line — *"idle — next: /gg:plan"* — and the next `/gg:plan` rewrites them all whole anyway.
 
-**`CONTEXT.md`** (<20KB): every entry reduced to its **definition + _Avoid_ list** — delete
+**`CONTEXT.md`** (<32KB): every entry reduced to its **definition + _Avoid_ list** — delete
 history, implementation detail, batch citations, and how-it-used-to-work. Merge duplicate headwords
 into one entry. **Keep every live term, and keep its full _Avoid_ list**: the _Avoid_ lists encode
 regression traps — the wrong word a fresh session would otherwise reach for — and the prune never
 trims them.
 
-**`RUNBOOK.md`** (<20KB): each entry = the command + a one-line purpose + the trap warnings that
+**`RUNBOOK.md`** (<32KB): each entry = the command + a one-line purpose + the trap warnings that
 keep it safe. Delete war stories and **completed one-time procedures** — finished migrations,
 retired-world sections, one-shot reset recipes that already ran. The destructive-paths section
 stays whole.
 
-**`PRODUCT.md`** (<20KB): each "done and perfect" clause keeps **at most its latest ✓** (one line);
+**`PRODUCT.md`** (<32KB): each "done and perfect" clause keeps **at most its latest ✓** (one line);
 delete the ✓-walk ledgers under clauses. Rewrite prose to current truth — a clause that narrates
 its own revisions becomes the current clause alone.
 
-**`NOTES.md`** (<20KB): backfill the sweep 3.0 closes didn't run. For **every** assumption, apply
+**`NOTES.md`** (<32KB): backfill the sweep 3.0 closes didn't run. For **every** assumption, apply
 the test: *would reversing it now be a change to shipped behavior?* → consumed, **delete**. For
 every finding: delete unless live work cites it — an open item's `Relates`, an unconfirmed
 `[discovered]` clause. What survives is genuinely open. `next-id:` untouched (it only goes up).
 
-**`BACKLOG.md`** (<20KB): items keep their ids and blocks. Delete any archive-like section that
+**`BACKLOG.md`** (<32KB): items keep their ids and blocks. Delete any archive-like section that
 accreted (`## Done`, `## Applied`, …) — git keeps it. Give each **agent-minted** item's Idea a
 plain opening sentence with a concrete example if it lacks one (its owner reads it cold, days
 later). The optional `Decided:` field and `## Staged` section now exist (`FORMATS.md`) — available

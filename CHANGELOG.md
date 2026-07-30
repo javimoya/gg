@@ -3,6 +3,37 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.2.0
+
+**Tuned from klasse b92–b93** (14 sessions analyzed): bounds were being policed at every row —
+`wc -c` in every orient and checkpoint, WORK trimmed mid-row to 5–224 bytes under its 10KB line
+and back over it one session later (one session spent 6 edits + 5 measures + a dedicated commit
++ 3 amends on the trim alone), and a prune planned as batch work (B-458 as rows 6–7, ~90 tool
+calls) that still left files at or over the bound. Root causes: bounds below a mature project's
+irreducible truth (after a maximal prune, CONTEXT/PRODUCT/RUNBOOK floors sat at 20–21KB), prunes
+that land at the edge, and enforcement points the specs never named. Also measured: 35 of klasse's
+42 live backlog items are agent-minted — captured with a bare-id offer nobody can triage cold,
+then ridden to a plan weeks later.
+
+- **Bounds re-tuned, with headroom**: WORK <16KB (was 10), every other whole-read file <32KB
+  (was 20). A prune now cuts to **~¾ of the bound** (WORK ≤12KB, others ≤24KB), never to just
+  under the line — a file trimmed to the edge is re-trimmed every session after.
+- **Bounds are checked at exactly two points**: the batch close (accretion this batch left) and
+  the record pass (`/gg:where --audit`, inherited overage). go's orient and checkpoints never
+  measure or trim; plan never mints prune rows or `B-NN`s for inherited overage — it routes them
+  to the record pass (B-458's anti-pattern, named).
+- **Captures get a triage card**: agent-minted `B-NN`s are offered at the next checkpoint/show/
+  close as ONE card for the session's captures — id + the Idea's plain opening sentence (the
+  concrete example FORMATS already required, now actually shown) + weight guess + recommendation —
+  with three dispositions: **fold** into the live batch · **backlog** · **discard** (a "never"
+  becomes a PRODUCT boundary). The card never blocks (no answer → `## New`) and is offered once —
+  `/gg:plan` is the next look.
+- **Stale agent captures surface for discard**: at plan, an agent-minted `## New` item whose
+  Captured date predates the last two closes is named for a keep-or-discard call at the gate;
+  `--audit` reports the same as backlog debt. A `BACKLOG.md` over its bound reconciles by triage
+  at the next plan (merge or discard items), never by rewording blocks to fit.
+- CONVERSION.md targets the current bounds instead of pinning 3.1's numbers.
+
 ## 3.1.1
 
 **Tuned from 3.1's first day in production** (klasse b87-b90 — including a natural experiment: two

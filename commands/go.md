@@ -29,7 +29,8 @@ Read whole: `WORK.md` (the board — which row is next), `CONTEXT.md`, `RUNBOOK.
 close that aren't gg's mean off-lane work landed: say so and offer a one-line record catch-up (fold
 what changed into `DESIGN`/`RUNBOOK`/`PRODUCT` or a `B-NN`) before building on top of it. Read by
 section, on demand: `DESIGN.md` sections and the ADRs (`ls .gg/adr/`) the row touches; `PRODUCT.md`
-when the row bears on a "done and perfect" clause; the `F-NN`s the row cites.
+when the row bears on a "done and perfect" clause; the `F-NN`s the row cites. Orient reads — it
+never measures `.gg/` sizes; bounds are the close's job (§5, `FORMATS.md`).
 
 ## 2. Durable start (first build of the batch only)
 If Provenance is still a placeholder: record the base commit (`git rev-parse HEAD`, or
@@ -49,8 +50,9 @@ red, say so and decide with the user before building on it. Never commit to set 
   (record it on the board) or a boundary taken to the user. Never a silent drop.
 - **New scope mid-row**: if the user asked for it now, fold it (§3a) — after finishing the row in
   flight. Otherwise jot it — a `B-NN` to `BACKLOG.md ## New` (METHOD.md → Capture) — **return to
-  the row**, and offer it at the next checkpoint the user sees: fold into this batch, or leave in
-  `## New` (one line, their call). Never derail the row; never let captures pile up unoffered.
+  the row**, and offer it at the next checkpoint the user sees via the capture **triage card**
+  (METHOD.md → Capture): fold into this batch (§3a), backlog, or discard — their call. Never derail
+  the row; never let captures pile up unoffered.
 - **An external wall** (missing credential, third party, a product decision only the user can make):
   record `Blocked: {reason} / unblock when {condition}` in "Where to resume" and stop — don't fake or
   cut. Record ADRs on the three criteria; observations as `F-NN`s.
@@ -72,15 +74,17 @@ weight:
 
 ## 4. Checkpoint, then chain or stop
 Update `WORK.md`: row → `done`, add touched files to Owned paths, set "Where to resume" to the next
-row. Then decide:
+row. **No bound-keeping here**: the checkpoint never measures `.gg/` sizes or trims record content —
+bounds are checked at the close (§5) and nowhere else in go (`FORMATS.md`). Then decide:
 
 - **Chain** to the next row in this same session **only if ALL hold**: the next row is `S` · no
   `show` is waiting for the user · the session is comfortably under ~half its context · the row just
   closed needed no debugging detour longer than the row itself. Chain = go back to §3.
 - **Otherwise stop.** Commit per policy (`gg(b{N}): rows {K–L} — …`, pathspec-scoped). Breadcrumb:
   *"Batch {N}: row {K}/{M} done. Next: `/clear` + `/gg:go` (row {K+1} — {where})."* If this session
-  captured `B-NN`s, the breadcrumb lists them with the standing offer — fold into this batch (§3a)
-  or leave in `## New`. One M/L row per fresh session is the rule; chaining S rows is the only
+  captured `B-NN`s, the breadcrumb carries their **triage card** (METHOD.md → Capture): one card
+  for all of them — fold into this batch (§3a) · backlog · discard — and no answer leaves them in
+  `## New`. One M/L row per fresh session is the rule; chaining S rows is the only
   widening.
 
 ### 4a. A `show` row just closed
@@ -121,7 +125,9 @@ bugs → `B-NN`s. **If the look means the remaining rows must change**, stop and
   truth** wherever this batch left it (`FORMATS.md` bounds): a CONTEXT entry beyond definition +
   _Avoid_, a RUNBOOK one-time procedure that has run, a PRODUCT clause's superseded ✓ — deletion,
   never an archive. **Measure every whole-read file now** (`wc -c`) — never trust a standing list;
-  a file over its bound from *before* this batch is the record pass's job (`/gg:where --audit`):
+  this close is the only point in go that measures. A file this batch pushed over its bound is
+  pruned to **~¾ of the bound** (`FORMATS.md`), never to just under the line; a file over its bound
+  from *before* this batch is the record pass's job (`/gg:where --audit`):
   say so, don't cut another batch's truth to a number. Leave surviving blocks'
   references to deleted ids intact (`FORMATS.md`). **If the blocks were never committed** (policy
   `never`, or every ask declined), deleting them is permanent: say so and get a yes, or leave them
