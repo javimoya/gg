@@ -3,6 +3,25 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.4.0
+
+**Three borrows from wayfinder** (Matt Pocock's decision-mapping skill), each folded into gg's
+existing ceremonies — no new commands, no new files, not format-changing:
+
+- **Grilling questions split two ways** (METHOD.md → Grilling): a question research can answer
+  (code, docs, an API's actual behavior) is never put to the user — answered directly or handed to
+  a subagent while the grilling continues, its result feeding the next recommendation. Judgement,
+  taste, and product intent stay the user's alone — and the agent never answers those for them.
+- **The fog test** (plan §2): a question you can state precisely is ready to be a `question`
+  batch — even one you can't answer today; one you can't yet phrase that sharply stays a
+  `PRODUCT.md` Unknown, never pre-sliced into vague `B-NN`s.
+- **Name first, id after** (METHOD.md → Output discipline): in everything the user reads, lead
+  with the item's name — "the export button (B-46)", never a wall of bare ids.
+
+Deliberately **not** borrowed: the shared decision map on an issue tracker (wayfinder's core) —
+gg stays single-session, seven files, no tracker by design; `## Staged` + Unknowns + resumable
+`shaping` cover the programme view.
+
 ## 3.3.0
 
 **Records now carry their gg version, and the audit knows the way forward.** Until now a `.gg/`'s

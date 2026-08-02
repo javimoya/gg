@@ -57,7 +57,12 @@ good defaults instead of asking everything.
   the recommended option.
 - **Ask in the concrete**: a question the user answers with "no te entiendo" was asked in the
   abstract. Lead with the example — the card, the screen, the number — and let the rule follow.
-- **Explore before asking**: if code or docs can answer it, don't ask.
+- **Explore before asking — questions split two ways**: a question research can answer (the code,
+  the docs, an API's actual behavior) is **never put to the user** — answer it yourself, or hand it
+  to a subagent and keep grilling while it runs, folding what comes back into the next
+  recommendation. The user's questions are the ones only they can answer — judgement, taste,
+  product intent — and there the reverse holds: never answer for them; a grilling that self-answers
+  its own questions has stopped being one.
 - **Ask the load-bearing questions; default the rest as `A-NN`s.** High-blast decisions — the data
   model, the stack, sync vs async, the core UX — are always questions, never defaults. Only low/medium
   blast-radius choices are defaulted. **The cut is the *unrecorded* assumption.**
@@ -188,6 +193,8 @@ exactly the sections and fields `FORMATS.md` defines, never invented ones.
 - **Act, don't narrate.** Batch tool calls; report at natural checkpoints; open with the result.
 - **Never restate the user's answer back in bold before moving on.** Decisions land in files; the
   chat shows ids and one-liners.
+- **Name first, id after** in everything the user reads: *"the export button (B-46)"*, never a wall
+  of bare ids — the id is for the record; the name is what a human scans.
 - **No empty-bucket reports** ("0 later · 0 discarded"), no recaps that duplicate what WORK already
   says, no ritual disclosures nobody asked for.
 - **The close summary is the Try list, presented for the user's walk and verdict** — what to run

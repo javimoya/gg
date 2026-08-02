@@ -74,7 +74,9 @@ into `CONTEXT.md`; pin new run/verify commands into `RUNBOOK.md`.
 
 **A `question` batch**: when the set is an open question / `[exp]` items, set `kind: question` and
 design the *search* — the experiment, the harness (real code under the green suite), the observable
-signal, and what result answers it. Its rows' done-when is "answered: recorded as `F-NN`";
+signal, and what result answers it. **The fog test gates entry**: a question you can state
+precisely is ready — even one you can't answer today; one you can't yet phrase that sharply is
+still fog — it stays a `PRODUCT.md` Unknown, never pre-sliced into vague `B-NN`s. Its rows' done-when is "answered: recorded as `F-NN`";
 `yes`/`no`/`inconclusive` all close it honestly. **A mixed set opens as `build`** — an `[exp]` item
 rides as a row with an `answered:` done-when.
 
