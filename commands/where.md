@@ -1,5 +1,5 @@
 ---
-description: "Read-only GPS for a gg project. Reconstructs where you are from WORK.md, the backlog counts, and the recent git log, and tells you exactly what to run next. Changes nothing on its own. Pass --audit for a deeper integrity check of the .gg/ record (drift, dangling ids, stale done-whens, bounds) — this IS gg's audit, there is no /gg:audit — and after its report, one explicit yes lets the same session apply the reconciliations it just reported (the record pass, committed as gg(record): …). Useful after hand-edits, a conversion, or resuming a dormant project."
+description: "Read-only GPS for a gg project. Reconstructs where you are from WORK.md, the backlog counts, and the recent git log, and tells you exactly what to run next. Changes nothing on its own. Pass --audit for a deeper integrity check of the .gg/ record (record version vs plugin, drift, dangling ids, stale done-whens, bounds) — this IS gg's audit, there is no /gg:audit — and after its report, one explicit yes lets the same session apply the reconciliations it just reported (the record pass, committed as gg(record): …), and a separate explicit yes runs the CONVERSION.md conversion when the record's gg version is behind a format-changing release. Useful after hand-edits, a conversion, or resuming a dormant project."
 model: inherit
 effort: medium
 disable-model-invocation: true
@@ -33,6 +33,15 @@ resuming after a gap or after hand-edits; do not run it unasked.
 Check the record against `FORMATS.md` and report each finding as `{file}: {problem} → {the command
 or edit that reconciles it}`; change nothing. You may delegate the sweep to a subagent and report
 its findings. Check:
+- **Version — this check runs first**: the WORK header's `gg:` stamp vs the plugin's version
+  (`${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json`), judged via the conversion index
+  (`${CLAUDE_PLUGIN_ROOT}/CONVERSION.md`). No `gg:` line → drift; the reconcile is the record pass
+  adding `gg: {plugin version}` once this audit finds the shapes conforming. Stamp behind a
+  format-changing release (an index row crossed) → the reconcile is **that conversion, offered
+  after the report** (below) — and it is the reconcile for the shape drift wholesale: report the
+  version finding plus only what the conversion won't fix (secrets, dangling ids, evidence
+  honesty); don't itemize shape drift the conversion rewrites anyway. Stamp merely older, no row
+  crossed → conforming; the record pass refreshes the line.
 - **Header vs board drift**: `building` with every row done (an unclosed batch); `idle` with pending
   rows; a board bigger than one batch.
 - **Dangling ids**: a `Relates`/`reverses`/`Leads to` pointing at an id that is neither live in
@@ -71,3 +80,12 @@ finding against the file before applying it (retract what doesn't hold); anchore
 deletion, never an archive; each genuinely destructive cut (an entry with no other home) asks before
 it's made; commit as `gg(record): {what the pass reconciled}` (pathspec `.gg/` only). Without the
 yes, where has changed nothing.
+
+### The conversion offer — when the index names one
+When the version check found an applicable conversion, offer it **once** after the report, as its
+own question — never bundled into the record pass yes. Name the conversion, one line on what it
+does, and note its procedure opens with a git snapshot. On the user's explicit yes, execute that
+conversion's procedure from `${CLAUDE_PLUGIN_ROOT}/CONVERSION.md` in this session — it ends by
+writing the new `gg:` stamp and making its own commit. Without the yes, nothing changes and the
+finding simply stands in the report: the audit never assumes an older project must be upgraded,
+and never converts on its own.

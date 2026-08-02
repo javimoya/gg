@@ -26,7 +26,9 @@ Read `.gg/WORK.md ## State` if it exists:
 ## 1. Scaffold
 - `mkdir -p .gg`; create `WORK.md` (per `FORMATS.md`) **header first** so any surviving `.gg/` always
   carries a state: `state: shaping`, `batch: 0`, `kind: build`, `commit: ask`, `deploy: ask` (both
-  provisional — confirmed in §3). Create `PRODUCT.md` as a skeleton. `CONTEXT.md`, `DESIGN.md`, `NOTES.md`, `BACKLOG.md`,
+  provisional — confirmed in §3), and `gg:` = the plugin's version — read it from
+  `${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json`; it stamps the formats this record is born
+  under. Create `PRODUCT.md` as a skeleton. `CONTEXT.md`, `DESIGN.md`, `NOTES.md`, `BACKLOG.md`,
   `RUNBOOK.md`, `adr/` are created lazily when first written.
 
 ## 2. Grill the destination (METHOD.md → Grilling)

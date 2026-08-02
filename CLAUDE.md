@@ -2,6 +2,10 @@
 
 ## Releasing a version
 - Bump `version` in `.claude-plugin/plugin.json` and add a `## X.Y.Z` entry to `CHANGELOG.md`.
+- If the release changes `gg-shared/` formats or the record's shape, it is **format-changing**: add
+  its conversion section to `CONVERSION.md` **and its row to the index there** — the `gg:` stamp in
+  each project's WORK header plus that index is how `/gg:where --audit` detects and offers
+  conversions. A release that changes only command behavior needs neither.
 - Commit to `main` (repo convention: commit title `X.Y.Z — summary`), then `git push origin main`.
 - Annotated tag: `git tag -a vX.Y.Z -F -` then `git push origin vX.Y.Z`.
 - **`gh` is NOT installed here and there is no `GH_TOKEN`/`GITHUB_TOKEN`** — don't investigate gh/the
@@ -15,8 +19,9 @@ version** — no "back-fill the id for items that lack one", no "if the old fiel
 it", no version-detection branches. A command spec describes **one** behavior, not a version history. A
 `.gg/` that predates a change is the user's to reconcile by hand (or via `CONVERSION.md` in a
 dedicated session); the plugin never silently repairs it. This mirrors gg's own method — recreate,
-don't shim. The same rule applies to `/gg:where --audit`: it may **report** drift, but it never
-assumes older projects must be upgraded.
+don't shim. The same rule applies to `/gg:where --audit`: it may **report** drift and **offer** the
+conversion `CONVERSION.md` records (run only on the user's explicit yes) — it never assumes an
+older project must be upgraded and never converts on its own.
 
 ## What gg is
 A pure-Markdown command plugin: five commands (`new`, `plan`, `go`, `fix`, `where`) that build a

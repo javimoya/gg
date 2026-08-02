@@ -26,6 +26,7 @@ Bounded hard: exactly one batch; the close resets it. Always readable whole (<16
 - **kind**: {build | question}       <!-- question = a research batch: closes on a measured answer -->
 - **commit**: {ask | auto | never}   <!-- set once at /gg:new -->
 - **deploy**: {ask | user-runs | auto} <!-- set once at /gg:new (METHOD.md → Safety) -->
+- **gg**: {X.Y.Z}                      <!-- the plugin version whose formats this record follows -->
 
 ## Board
 | # | item | size | done when | status |
@@ -62,7 +63,10 @@ older history is git's.}
 ```
 
 Rules: **state** ∈ `shaping` (mid `/gg:new` or `/gg:plan`, resumable — "Where to resume" holds the
-open questions) / `building` (rows pending) / `idle` (no batch open). **Board rows** are short names
+open questions) / `building` (rows pending) / `idle` (no batch open). **gg** is the version stamp:
+the plugin version whose `FORMATS.md` shapes this record follows — written once at `/gg:new`;
+rewritten **only** by a conversion (`CONVERSION.md`, its closing step) or by the record pass after
+it verifies the shapes conform, never by a working session merely running under a newer plugin. **Board rows** are short names
 citing the `B-NN` they build (batch 0's rows carry the short name alone), ≤80 chars; status ∈
 `pending / done` — the row in flight is the one "Where to resume" names; a `[bug]` row's done-when
 carries the broken-vs-expected essence, so the build session needs no other source. **A done-when

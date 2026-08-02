@@ -1,18 +1,27 @@
-# CONVERSION.md — one-time `.gg/` conversions (v2 → v3 · 3.0 → 3.1)
+# CONVERSION.md — one-time `.gg/` conversions
 
 gg ships **no migration logic in its commands** (see `CLAUDE.md`): an existing `.gg/` is converted
-once, deliberately, in a dedicated session. This document holds both known conversions and is
-written so an AI session can execute either directly: open Claude Code **in the project to convert**
+once, deliberately, in a dedicated session. This document holds every known conversion and is
+written so an AI session can execute one directly: open Claude Code **in the project to convert**
 (not in the gg repo) and say *"read CONVERSION.md from the gg plugin repo and convert this
-project's `.gg/`"*.
+project's `.gg/`"* — or take `/gg:where --audit`'s offer, which runs the same procedure on an
+explicit yes.
 
-**Which one applies** — look at the `.gg/` you have:
+## The index — which conversion applies
 
-- `ROADMAP.md` / `SPEC.md` / `BLUEPRINT.md` / `VISION.md` … → a **v2** record: run **v2 → v3**
-  below. Its output is the *current* `gg-shared/FORMATS.md` shapes — so a v2 project converted
-  today lands directly on them and never needs the prune.
-- The seven files (`WORK` `BACKLOG` `PRODUCT` `DESIGN` `NOTES` `CONTEXT` `RUNBOOK` + `adr/`)
-  written under 3.0 → run the **3.0 → 3.1 prune** only.
+The stamp is the WORK header's `gg:` line (`FORMATS.md`): the plugin version whose formats the
+record follows. Only **format-changing releases** have rows here — a stamp merely older than the
+plugin with no row crossed needs no conversion (the record pass refreshes the line). Every release
+that changes `gg-shared/` formats or the record's shape adds its row here and its procedure below
+(`CLAUDE.md` → Releasing); `/gg:where --audit` reads this index to detect and offer the right
+conversion. **Every conversion's closing step writes the new stamp** — an unstamped or old-stamped
+record after a conversion is a conversion that didn't finish.
+
+| The `.gg/` you have | What applies |
+|---|---|
+| v2 files (`ROADMAP.md` / `SPEC.md` / `BLUEPRINT.md` / `VISION.md` …) | **v2 → v3** below — its output is the *current* `FORMATS.md` shapes, so it never needs the prune |
+| The seven files (`WORK` `BACKLOG` `PRODUCT` `DESIGN` `NOTES` `CONTEXT` `RUNBOOK` + `adr/`), no `gg:` stamp | Written under 3.0–3.2. Judge the shapes directly: 3.0 marks (ADR amendment blocks, ✓ ledgers under PRODUCT clauses, paragraph-sized Last closes) → **3.0 → 3.1 prune** below; already conforming → no conversion — the record pass adds the stamp |
+| `gg:` stamp at 3.3.0 or above | Nothing — no format-changing release has shipped since the stamp was born |
 
 The target shapes are defined in `gg-shared/FORMATS.md`; read it first, then this. Write all
 converted content in English (verbatim user quotes stay in their language).
@@ -51,7 +60,8 @@ Ids are never renumbered: every surviving block keeps its id.
 - Header: `state:` = v2 `building` → `building`; `shipped` → `idle`; `scoping`/`visioning` →
   `shaping`. `batch:` = v2 `phase`. `kind:` = v2 `research` → `question`, else `build`.
   `commit:` — **ask the user now**: `ask` (recommended) / `auto` / `never`. `deploy:` — **ask the
-  user now**: `ask` (recommended) / `user-runs` / `auto`.
+  user now**: `ask` (recommended) / `user-runs` / `auto`. `gg:` = the plugin's current version
+  (`.claude-plugin/plugin.json` in the plugin repo) — the formats this conversion lands on.
 - **The batch sections — Board, `## Try`, `## Provenance`, `## Where to resume` — are filled only if
   a phase is in flight** (`state: building`). For a shipped/idle project leave them empty per
   `FORMATS.md` (Where to resume: one line, *"idle — next: /gg:plan"*) — the next `/gg:plan` rewrites
@@ -126,7 +136,8 @@ BLUEPRINT→DESIGN are renames-with-rewrite, so the old names are removed here.)
 ### 5. Verify, then commit
 
 1. Check the result against `gg-shared/FORMATS.md`: exactly `WORK.md`, `BACKLOG.md`, `PRODUCT.md`,
-   `DESIGN.md`, `NOTES.md`, `CONTEXT.md`, `RUNBOOK.md`, `adr/` — no other file, no invented sections.
+   `DESIGN.md`, `NOTES.md`, `CONTEXT.md`, `RUNBOOK.md`, `adr/` — no other file, no invented
+   sections — and the WORK header carries the `gg:` stamp written in §3.
 2. Run `/gg:where --audit` and fix what it reports (dangling ids are usually a missed `Relates`).
 3. Sanity-read `WORK.md` as if you were a fresh session: could you resume from "Where to resume"
    alone? If not, sharpen it.
@@ -169,7 +180,8 @@ env var names, never values.
 
 **`WORK.md`** (<16KB):
 - Header gains `deploy: {ask | user-runs | auto}` — **ask the user once, now** (`ask` recommended);
-  if they pre-decided it when commissioning this prune, write that without re-asking.
+  if they pre-decided it when commissioning this prune, write that without re-asking. It also
+  gains `gg: {the plugin's current version}` — the stamp of the formats this prune lands on.
 - `## Last closes`: ONE line per close (≤200 chars), newest first, capped at 5. Collapse paragraph
   entries to their line; delete everything past the cap.
 - `## Fix log`: one-line entries since the last batch open only — older lines and entries grown

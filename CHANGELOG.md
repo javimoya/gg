@@ -3,6 +3,28 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.3.0
+
+**Records now carry their gg version, and the audit knows the way forward.** Until now a `.gg/`'s
+vintage was guesswork (the CONVERSION.md notes tracked two known projects by hand); now the record
+says it itself, and the conversion knowledge is indexed so any session can act on it.
+
+- **The version stamp**: the WORK header gains `gg: {X.Y.Z}` — the plugin version whose `FORMATS.md`
+  shapes the record follows. Written once at `/gg:new`; rewritten **only** by a conversion's closing
+  step or by the record pass after verifying conformance — never bumped by a session merely running
+  under a newer plugin.
+- **CONVERSION.md gains the index**: which `.gg/` state needs which conversion, keyed on the stamp.
+  Only format-changing releases get rows; every conversion procedure now ends by writing the new
+  stamp. The old two-known-conversions framing becomes a growing, agent-executable manual.
+- **`/gg:where --audit` checks the version first**: a missing stamp is drift (the record pass adds
+  it once the shapes check out); a stamp behind a format-changing release is reported and the
+  recorded conversion **offered once** — its own explicit yes, never bundled with the record pass,
+  executed in-session per CONVERSION.md (which opens with a git snapshot). When a conversion
+  applies it is the reconcile for shape drift wholesale — the audit doesn't itemize what the
+  conversion rewrites anyway. No yes → nothing changes.
+- **Releasing** (CLAUDE.md): a format-changing release must ship its CONVERSION.md section + index
+  row; a commands-only release needs neither.
+
 ## 3.2.0
 
 **Tuned from klasse b92–b93** (14 sessions analyzed): bounds were being policed at every row —
