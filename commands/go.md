@@ -53,6 +53,9 @@ red, say so and decide with the user before building on it. Never commit to set 
   the row**, and offer it at the next checkpoint the user sees via the capture **triage card**
   (METHOD.md → Capture): fold into this batch (§3a), backlog, or discard — their call. Never derail
   the row; never let captures pile up unoffered.
+- **A debugging detour runs the red loop** (`fix.md` §1): one command that already goes red on the
+  bug before any theory; falsifiable hypotheses shown ranked; `[DEBUG-xxxx]`-tagged instrumentation,
+  cleaned by one grep.
 - **An external wall** (missing credential, third party, a product decision only the user can make):
   record `Blocked: {reason} / unblock when {condition}` in "Where to resume" and stop — don't fake or
   cut. Record ADRs on the three criteria; observations as `F-NN`s.
@@ -107,8 +110,8 @@ bugs → `B-NN`s. **If the look means the remaining rows must change**, stop and
   test spew out of context.) A `question` batch's harness is real code under this suite; only its
   *answer* is open — record the measured result as an `F-NN`, close each "answered:" row citing it
   (`yes`/`no`/`inconclusive` all honest), and edit/remove the answered Unknown in `PRODUCT.md`.
-- **Self-accounting, spoken** (METHOD.md → Evidence): list everything simplified/deferred/defaulted;
-  give each its honest home or justify it. Ask the PRODUCT-conformance question: does the product now
+- **Self-accounting, spoken** (METHOD.md → Evidence): list everything simplified/deferred/defaulted
+  **and anything built that no row or clause asked for**; give each its honest home or justify it. Ask the PRODUCT-conformance question: does the product now
   meet "done and perfect", or what remains?
 - **Present the Try list (`WORK.md ## Try`) and STOP — the verdict gates the close.** The user walks
   the load-bearing flows by name, not a free visual pass, and gives a live verdict; the sweep, the

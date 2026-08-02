@@ -26,12 +26,19 @@ and formats: `${CLAUDE_PLUGIN_ROOT}/gg-shared/METHOD.md` +
 ## 1. Fix it
 - First, note the intent in `WORK.md` "Where to resume → Notes" (*"fixing: {what}"* — cleared at §3)
   so an interrupted session leaves a trace, not unexplained dirty files.
-- Locate the defect (`$ARGUMENTS` or what the user just showed you). Diagnose against the real code —
-  read what you need; the open assumptions often point at the cause.
+- Locate the defect (`$ARGUMENTS` or what the user just showed you); the open assumptions often
+  point at the cause. **For a non-obvious defect, the red loop comes before any theory**: name one
+  command that already goes red on this bug — usually the pinning test, written first — and
+  minimise the repro until every remaining element is load-bearing. Reading code to build a theory
+  before that command exists is the classic trap. When hypotheses are needed, make them
+  **falsifiable** ("if it's X, changing Y flips it") and show the ranked list before testing any —
+  the user's domain knowledge often re-ranks them instantly. Tag temporary instrumentation
+  `[DEBUG-xxxx]` so cleanup at the end is a single grep.
 - Fix it **in this session**, at the bar: cover the case properly, no `// for now`. Add a **pinning
   test** when the defect class merits one (a logic bug: yes; a typo in a label: say why not and
-  skip). Run the focused check, then the **RUNBOOK full suite** — **green, or red only where it was
-  already red before the fix** (state which in the Fix log line).
+  skip) — the red-loop command, gone green, usually *is* it. Run the focused check, then the
+  **RUNBOOK full suite** — **green, or red only where it was already red before the fix** (state
+  which in the Fix log line).
 
 ## 2. The honesty valve
 If mid-flight the "5-line fix" turns out to have design weight — it changes the shape, touches a

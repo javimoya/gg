@@ -3,6 +3,38 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.5.0
+
+**Seven borrows from the deep read of the rest of mattpocock/skills** (diagnosing-bugs, tdd,
+codebase-design, code-review's Spec axis, triage's AGENT-BRIEF, its OUT-OF-SCOPE companion,
+research) — each a surgical fold into existing files; no new commands, no new state files, not
+format-changing (no CONVERSION.md section, no index row). Considered and declined at the gate:
+design-it-twice and the variant show (the user's call), plus the tracker substrate, throwaway
+prototypes, batch grilling, handoff documents, and the git-guardrails hook (Safety stays prose
+until observed broken).
+
+- **The red loop** (fix §1, echoed in go §3): for a non-obvious defect, one command that already
+  goes red on the bug comes before any theory; minimise the repro until every element is
+  load-bearing; hypotheses are falsifiable and shown ranked (the user's domain knowledge re-ranks
+  them instantly); instrumentation is `[DEBUG-xxxx]`-tagged so cleanup is one grep. The red-loop
+  command, gone green, usually *is* the pinning test fix already required.
+- **The tautological-test rule** (METHOD → Evidence): a test's expected value comes from an
+  independent source of truth, never recomputed the way the code computes it — a test that mirrors
+  the implementation passes by construction and certifies nothing.
+- **The anti-padding razor** (METHOD → The bar): the bar polices padding as well as cuts —
+  abstractions no clause needs are not "the better option"; one adapter is a hypothetical seam,
+  two are a real one; a structure whose deletion leaves the product just as complete was padding.
+- **Symmetric self-accounting** (METHOD → Evidence, go §5): the close also names anything built
+  that no row or clause asked for — keep-and-record, or remove; nothing closes with unasked-for
+  additions.
+- **Boundary match at capture** (METHOD → Capture): a capture that re-raises a PRODUCT "It is not"
+  boundary is surfaced as such — *"still feel the same?"* — never silently backlogged.
+- **Primary sources for research answers** (METHOD → Grilling): a research answer stands on the
+  current docs, the code, observed behavior — never parametric memory — and names its source.
+- **Backlog durability** (FORMATS → BACKLOG): a `B-NN` block describes behavior and contracts,
+  never file paths or line numbers (they go stale while the item waits); file:line lives only in
+  WORK's "Where to resume".
+
 ## 3.4.0
 
 **Three borrows from wayfinder** (Matt Pocock's decision-mapping skill), each folded into gg's

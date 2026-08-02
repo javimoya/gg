@@ -119,7 +119,9 @@ Rules: **`next-id:` is the only counter** — every `B-NN` mint (capture or `/gg
 wherever the item lands: **assign the current value to the item, then increment the header**. Ids
 are zero-padded to two digits (`B-05`), grow naturally past 99 (`B-100`), and are stable, never
 reused. **An agent-minted item's Idea opens with one plain sentence anyone can triage** — a concrete
-example, no internal jargon: its owner reads it cold, days later. An item marked **`Decided`** was
+example, no internal jargon: its owner reads it cold, days later. **A block describes behavior and
+contracts, never file paths or line numbers** — those go stale while the item waits; file:line
+belongs only in WORK's "Where to resume". An item marked **`Decided`** was
 grilled and settled with the user — `/gg:plan` executes it and never re-opens its recorded calls,
 even where they contradict an older record (only a genuinely new fork inside its scope may ask). When `/gg:plan` takes an item, its block **moves out** of BACKLOG onto the WORK board — the
 row cites the `B-NN`, and the block's load-bearing detail (a `[bug]`'s broken-vs-expected) lands in

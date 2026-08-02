@@ -17,6 +17,10 @@ recorded item or assumption — visibly, never silently. "Close, not perfect, th
 - **No "v1 / later" as an excuse to ship less.** No `TODO`, stub, left-in mock, `// for now`, or
   half-finished implementation in the product.
 - **Never pick the easier option over the better one.**
+- **Never pad either — the bar is the *agreed* product complete.** Abstractions, hooks, and
+  parameters no clause or row needs are not "the better option": one adapter is a hypothetical
+  seam, two adapters are a real one — and a structure whose deletion leaves the product just as
+  complete was padding, not quality.
 - gg assumes a product under active development: when the shape changes, **recreate and reseed** —
   no migrations, no backward-compat shims, no preservation tests, unless the user explicitly asks for
   them (then they're work like any other, at full bar).
@@ -62,7 +66,9 @@ good defaults instead of asking everything.
   to a subagent and keep grilling while it runs, folding what comes back into the next
   recommendation. The user's questions are the ones only they can answer — judgement, taste,
   product intent — and there the reverse holds: never answer for them; a grilling that self-answers
-  its own questions has stopped being one.
+  its own questions has stopped being one. A research answer stands on **primary sources** — the
+  current docs, the code, the API's observed behavior — never on parametric memory, and the
+  recommendation it feeds names its source.
 - **Ask the load-bearing questions; default the rest as `A-NN`s.** High-blast decisions — the data
   model, the stack, sync vs async, the core UX — are always questions, never defaults. Only low/medium
   blast-radius choices are defaulted. **The cut is the *unrecorded* assumption.**
@@ -89,8 +95,10 @@ The moment an idea surfaces, jot it and get back to work. Route by tense:
   current `next-id:` value, then increment it** (ids zero-padded: `B-05`).
   **Reconcile lightly** against the active backlog: fold a refinement into an existing item
   (note `refines: B-NN`), surface a contradiction, otherwise stand alone. An item that reverses a
-  recorded default points at it (`reverses: A-NN`). No grilling, no design, no triage — that's
-  `/gg:plan`.
+  recorded default points at it (`reverses: A-NN`); one that re-raises a `PRODUCT.md` "It is not"
+  boundary is surfaced as such — *"this re-raises {boundary} — still feel the same?"* — never
+  silently backlogged (re-deciding a boundary is legitimate, but it happens out loud). No grilling,
+  no design, no triage — that's `/gg:plan`.
 - **Past tense** ("when I ran it, X happened") → an `F-NN` in `NOTES.md ## Findings`: observed /
   what happened / reading / leads-to. A finding is a fact, not a decision — if it implies a change,
   that change is its own `B-NN`, linked from **Leads to**.
@@ -113,6 +121,9 @@ The moment an idea surfaces, jot it and get back to work. Route by tense:
 - **A done-when closes only on real, observed evidence** — a run test, a driven route, a watched
   behavior — never "should work". **A user-triggered write path is verified through the real route**,
   end to end (request → guard → persistence → read-back), never only isolated units.
+- **A test's expected value comes from an independent source of truth** — a known literal, a worked
+  example, the spec — never recomputed the way the code computes it: a test that mirrors the
+  implementation passes by construction and certifies nothing.
 - **A `[discovered]` clause closes only on observation**: someone watched it run. Mark it in
   `PRODUCT.md` (`✓ YYYY-MM-DD: {one-line observation}`) only when a try-it confirmed it — never
   inferred from a green suite. Unlooked-at = not yet met, and saying so is the honest close.
@@ -122,9 +133,11 @@ The moment an idea surfaces, jot it and get back to work. Route by tense:
   real code under the green suite.
 - **The close certifies the Try list**: the user walks the batch's load-bearing flows by name
   (`WORK.md ## Try`) and gives a live verdict. The verdict is acted on, not archived.
-- **Self-accounting, spoken**: before any close, explicitly list everything simplified, deferred,
-  defaulted, or shortcut — and give each its honest home (a row, a `B-NN`, an `A-NN`) or justify it.
-  Nothing closes with uncounted cuts. This is the primary cut-defense; run it honestly.
+- **Self-accounting, spoken — and symmetric**: before any close, explicitly list everything
+  simplified, deferred, defaulted, or shortcut — and give each its honest home (a row, a `B-NN`, an
+  `A-NN`) or justify it. Then the other half: name anything built that **no row or clause asked
+  for**, and give it the same treatment — keep it and record it, or remove it. Nothing closes with
+  uncounted cuts or unasked-for additions. This is the primary cut-defense; run it honestly.
 
 ## Safety (unconditional)
 
