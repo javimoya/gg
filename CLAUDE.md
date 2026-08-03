@@ -8,9 +8,12 @@
   conversions. A release that changes only command behavior needs neither.
 - Commit to `main` (repo convention: commit title `X.Y.Z — summary`), then `git push origin main`.
 - Annotated tag: `git tag -a vX.Y.Z -F -` then `git push origin vX.Y.Z`.
-- **`gh` is NOT installed here and there is no `GH_TOKEN`/`GITHUB_TOKEN`** — don't investigate gh/the
-  API. I can't publish the GitHub Release; pushing the tag is the deliverable. The user publishes the
-  Release via the web (`https://github.com/javimoya/gg/releases/new?tag=vX.Y.Z`) or their own `gh`.
+- **`gh` IS installed** and authenticated against both `github.com` (account `javimoya` — the one
+  this repo uses) and `git.epo.org` (work). Publish the Release with
+  `gh release create vX.Y.Z --title "X.Y.Z — summary" --notes "…"` after pushing the tag. If
+  `github.com` auth has lapsed (401), pushing the tag is the deliverable — ask the user to re-run
+  `gh auth login --hostname github.com --web`, or they publish via
+  `https://github.com/javimoya/gg/releases/new?tag=vX.Y.Z`.
 
 ## Changing a command or format
 When you change a command or a `gg-shared/` format, write **only the clean, going-forward behavior**.
