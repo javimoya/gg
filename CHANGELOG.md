@@ -3,7 +3,32 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
-## 3.5.0
+## 3.6.0
+
+**The `diataxis` skill** (`skills/diataxis/`) — user-facing documentation written and audited
+with the Diátaxis framework (diataxis.fr). Not a command: a complementary skill, auto-triggered
+by description or invoked ad-hoc, that go/new lean on when a row's deliverable is documentation.
+Not format-changing (no `.gg/` shape touched — the skill explicitly excludes record files; no
+CONVERSION.md section, no index row).
+
+- **The compass first**: two questions (action or cognition? study or work?) classify every doc
+  into tutorial / how-to / reference / explanation before a word is written; the form is declared
+  so the user can veto it; genuinely ambiguous audience → the compass questions go to the user.
+- **One reference file per form** (`references/`): obligations, do/don't, sentence patterns
+  (EN/ES), title conventions, shipping checklist — loaded only for the form being written.
+- **Audit mode** (`references/audit.md`): map and classify existing docs, findings with severity,
+  then fixes one at a time, each self-contained and shippable — never big-bang.
+- **Cross-cutting rules**: one form per document, link don't absorb; never scaffold empty
+  structures; README stance by project size; language follows the project (default English).
+- **Nudges**: go §3 — a row delivering user-facing docs is built with the skill; new §3 — such a
+  row names its Diátaxis form in the done-when.
+- **`TUTORIAL.md` — Your first project with gg**: the repo's missing tutorial quadrant, found by
+  the skill's own audit of the README — builds a toy dice-roller end to end (kickoff → board →
+  build loop → Try walk), written under the skill's tutorial rules.
+- **README re-formed by that same audit**: "How it works" command detail deduplicated to
+  one-liners linking the specs (drift risk removed), FAQ commit answer deduplicated, "How to
+  manage the plugin" retitled to the how-to convention, install success signal added, tutorial
+  linked from Quick start.
 
 **Seven borrows from the deep read of the rest of mattpocock/skills** (diagnosing-bugs, tdd,
 codebase-design, code-review's Spec axis, triage's AGENT-BRIEF, its OUT-OF-SCOPE companion,

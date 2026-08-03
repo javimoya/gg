@@ -46,6 +46,9 @@ red, say so and decide with the user before building on it. Never commit to set 
   METHOD.md → Evidence). Run the focused check and record its real result.
 - **A `show` row**'s definition of done is *it runs and is watchable* via its done-when command — a
   thin but real spine, no stub. Run it yourself, then stop and invite the user to look (§4a).
+- **A row whose deliverable is user-facing documentation** (README, tutorial, guide, reference,
+  conceptual doc) is written with the **`diataxis` skill**: classify with its compass, follow the
+  form's rules. `.gg/` files are record, not documentation — their shapes stay `FORMATS.md`'s.
 - Tempted to stub, defer, or TODO? Apply METHOD.md's test — the honest moves are a later row
   (record it on the board) or a boundary taken to the user. Never a silent drop.
 - **New scope mid-row**: if the user asked for it now, fold it (§3a) — after finishing the row in

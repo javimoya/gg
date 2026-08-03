@@ -71,7 +71,9 @@ Read `.gg/WORK.md ## State` if it exists:
   foundation allows, and **never as the final row** (the close's Try walk is the batch's last look);
   a product with no `[discovered]` clause needs no forced show. Write the `## Try`
   block (deliverable + how to see it + the load-bearing flows); Provenance stays a placeholder
-  (`/gg:go`'s durable start fills it).
+  (`/gg:go`'s durable start fills it). A row whose deliverable is user-facing documentation names
+  its Diátaxis form in the done-when (the **`diataxis` skill** classifies; go builds it with that
+  skill).
 
 ## 4. Sign-off (one consolidated summary, one veto question)
 Present together: the destination in one paragraph, the design's load-bearing calls, the

@@ -58,6 +58,8 @@ In Claude Code:
 /plugin install gg@javimoya
 ```
 
+Type `/gg` — you should see the five commands offered in the slash-command menu.
+
 Then, from inside the folder of the project you want to build:
 
 ```
@@ -67,6 +69,8 @@ Then, from inside the folder of the project you want to build:
 Every step ends with a one-line breadcrumb telling you exactly what to run next.
 
 > Lost, or back after a break? Run **`/gg:where`**. It reads your project, says where you are and what to run next, and changes nothing — ever.
+
+Prefer a guided first run? **[Your first project with gg](TUTORIAL.md)** walks you through building a small product end to end.
 
 ---
 
@@ -86,11 +90,11 @@ flowchart LR
 
 A **batch** is one `plan → go*` cycle. **Batch 0** is the whole product; each later batch folds in whatever you brought to `/gg:plan`.
 
-1. **`/gg:new`** runs once: divergent brainstorming, convergent grilling, the whole-product design (settled up front so later batches extend instead of re-layering), the recorded defaults, and the batch-0 board. It also asks, once, whether gg may **commit** its own work (`ask` / `auto` / `never`) — commits are the project's journal — and how **deploys** run (`ask` / `user-runs` / `auto`).
-2. **`/gg:go`** builds the next board row to the full bar, with tests. Small rows (S) chain in one session under hard stop conditions; anything with design weight gets a fresh session. Something new you want *now*, mid-batch? go **folds it in place** — mints the `B-NN`, grills what its weight demands, appends the rows — no plan ceremony. Every row checkpoints `WORK.md`, so `/clear` + `/gg:go` always resumes cleanly. On the last row it closes the batch: green full suite, you walk the **Try list** (the batch's load-bearing flows, by name), consumed records are swept, one close commit.
-3. **`/gg:plan`** opens the next batch from whatever you bring — a pasted list of nine ideas, two bugs from your phone, an item from the backlog. It records each with a stable `B-NN`, weighs every item **S/M/L (with a one-line why)**, grills *only* what has design weight, and takes **exactly one consolidated veto gate**. The gate is also where you add or slice work — it's an input channel, not a formality.
-4. **`/gg:fix`** is the everyday lane for a small decided change: it fixes it *in this session* (with a pinning test when the defect merits one), runs the suite green, and records one line. If the "5-line fix" grows design weight, it stops honestly and routes to `/gg:plan`.
-5. **`/gg:where`** reconstructs where you are — read-only, always. `--audit` adds a deeper integrity check of the record.
+1. **`/gg:new`** runs once: brainstorm → grilling → whole-product design → recorded defaults → the batch-0 board. It also asks, once, how commits and deploys run. Full spec: [`commands/new.md`](commands/new.md).
+2. **`/gg:go`** builds the next board row to the full bar, with tests — chaining small rows, folding in scope you want *now*, checkpointing `WORK.md` so `/clear` always resumes cleanly — and closes the batch on evidence: a green suite and you walking the **Try list**. Full spec: [`commands/go.md`](commands/go.md).
+3. **`/gg:plan`** opens the next batch from whatever you bring — pasted ideas, bugs, backlog items — weighs each **S/M/L**, grills only what has design weight, and takes **one consolidated veto gate**. Full spec: [`commands/plan.md`](commands/plan.md).
+4. **`/gg:fix`** fixes a small decided change *now*, runs the suite green, records one line — and routes honestly to `/gg:plan` if it grows design weight. Full spec: [`commands/fix.md`](commands/fix.md).
+5. **`/gg:where`** reconstructs where you are — read-only, always. `--audit` adds a deeper integrity check. Full spec: [`commands/where.md`](commands/where.md).
 
 An idea that surfaces mid-build never derails it: any session jots it as a `B-NN` into the backlog in two lines, returns to work — and offers it back at the next checkpoint: fold it into the live batch, or leave it for a later plan. A **research batch** (`kind: question`) designs an experiment instead of a capability and closes honestly on the measured answer — yes, no, and inconclusive all count.
 
@@ -143,7 +147,7 @@ Enforced by `gg-shared/METHOD.md` and the commands themselves.
 
 ---
 
-## Managing the plugin
+## How to manage the plugin
 
 ```
 /plugin marketplace update javimoya     # pull the latest version
@@ -172,7 +176,7 @@ Developing locally? Point the marketplace at your checkout instead of GitHub:
 
 **Does it run hooks or anything in the background?** No. gg is five Markdown commands you invoke by hand. When you don't call one, it does nothing. The only thing it leaves in your repo is the plain-text `.gg/` folder.
 
-**Does gg commit my code?** Only if you let it. `/gg:new` asks once: `ask` (it proposes a commit at each close and you say yes or no), `auto`, or `never`. Commits are always pathspec-scoped to `.gg/` plus the files gg itself changed — your own uncommitted work is never swept in — and gg never pushes.
+**Does gg commit my code?** Only if you let it — you set the policy once at kickoff (see "How it works"). Commits are always pathspec-scoped to gg's own changes — your uncommitted work is never swept in — and gg never pushes.
 
 **Coming from gg v2?** v3 is a clean break: five commands instead of seven, seven state files instead of fifteen, history in git instead of journals and archives. `CONVERSION.md` in this repo is a step-by-step conversion an AI session can run against your existing `.gg/`.
 
