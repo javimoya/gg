@@ -97,21 +97,24 @@ group into one S row for convenience — no `B-NN` of its own, and it never cert
 **Inherited record overage is never batch work**: a `.gg/` file past its bound from before this
 batch routes to `/gg:where --audit` (the record pass), never onto the board or into a `B-NN`.
 **Do not touch `BACKLOG.md` yet** — the
-block moves, deferrals, and discard deletions happen only after the gate, so a veto never has to
-reconstruct deleted blocks.
+block moves and deferrals happen at the gate's open step (§4), and a discard deletion only ever on
+its yes, so a veto never has to reconstruct deleted blocks.
 
-## 4. The gate — exactly ONE consolidated veto question, always
-Present one report: every item with its disposition and **weight + why**, the grilled decisions, the
-high/medium-blast `A-NN`s (low ones listed), any discards with reasons, show placement and why not
-earlier, and the board. Take **one** question with the free-form answer open — the gate is where
-users *add* work, not just assent, so it is never skipped, and it is never two rounds. Name the
-approving word in the question itself (*"add, cut, or change anything — or say **go**"*), and read a
-bare "ok"/"no" as assent when nothing was raised — don't make the user guess which word you wanted. **Apply the
-answer in one pass**: a gate-added S item folds straight onto the board; a gate-added M/L item
-re-enters §2 (its questions are the application of the answer, not a new gate). Only now touch
-`BACKLOG.md` — move the taken items' blocks out, send deferrals to `## Later`, delete discards
-(reason already stated in the report; a "never" becomes a `PRODUCT.md` boundary). Then set
-`state: building`.
+## 4. The gate — open first, then exactly ONE veto window, always
+**Open the batch, then report** (METHOD.md → Veto, not go-ahead): you designed this board — waiting
+for a "go" you were about to recommend is ceremony charged to the user. Opening: move the taken
+items' blocks out of `BACKLOG.md`, send deferrals to `## Later`, set `state: building` — all of it
+reversible moves. **A discard is the one disposition that waits** (a deletion — METHOD.md →
+Safety): state it in the report with its reason and delete only on its yes (a "never" becomes a
+`PRODUCT.md` boundary); without one the block simply stays in the backlog. Then present one report,
+in past tense: every item with its disposition and **weight + why**, the grilled decisions, the
+high/medium-blast `A-NN`s (low ones listed), the discards awaiting their yes, show placement and
+why not earlier, and the board. The report ends in **one open veto window** — the gate is where
+users *add* work, not just assent, so it is never skipped, and it is never two rounds: *"add, cut,
+or change anything — or `/clear` + `/gg:go`"*. Silence leaves the batch standing. **Apply a veto in
+one pass**: a gate-added S item folds straight onto the board; a gate-added M/L item re-enters §2
+(its questions are the application of the answer, not a new gate); a cut item's block moves back to
+`BACKLOG.md`.
 
 ## Close
 Persist WORK/BACKLOG/NOTES (+DESIGN/CONTEXT/RUNBOOK/PRODUCT if touched); commit per policy

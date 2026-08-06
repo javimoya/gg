@@ -75,11 +75,13 @@ Read `.gg/WORK.md ## State` if it exists:
   its Diátaxis form in the done-when (the **`diataxis` skill** classifies; go builds it with that
   skill).
 
-## 4. Sign-off (one consolidated summary, one veto question)
-Present together: the destination in one paragraph, the design's load-bearing calls, the
-high/medium-blast `A-NN`s taken (low ones listed, not walked), where the first show lands and why it
-can't be earlier, and the board. Take **one** veto question (free-form open — that's where real
-vetoes arrive). Then set `state: building` in WORK.
+## 4. Sign-off (open first, one consolidated summary, one veto window)
+Set `state: building` in WORK, then present together (METHOD.md → Veto, not go-ahead — the
+questions that were the user's are already asked; the opening is yours): the destination in one
+paragraph, the design's load-bearing calls, the high/medium-blast `A-NN`s taken (low ones listed,
+not walked), where the first show lands and why it can't be earlier, and the board. Leave **one**
+veto window open (free-form — that's where real vetoes arrive): a veto is applied in one pass;
+silence leaves batch 0 standing, and `/clear` + `/gg:go` builds it.
 
 ## Close
 Persist everything written; commit per the policy just set (`gg(b0): plan — {M} rows`,

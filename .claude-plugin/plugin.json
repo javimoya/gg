@@ -1,7 +1,7 @@
 {
   "name": "gg",
   "description": "A disciplined, low-ceremony workflow for building software with Claude Code: /gg:new kicks off the product (vision + whole design, one arc), /gg:plan opens each batch of work in one ceremony with one gate, /gg:go builds it row by row with tests and evidence-based closes, /gg:fix is the fix-now-record-after lane, /gg:where is the read-only GPS — seven bounded state files on disk, history in git, no journals or archives.",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "author": {
     "name": "Francisco J. Moya",
     "email": "francisco.j.moya@gmail.com"

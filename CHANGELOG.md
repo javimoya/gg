@@ -3,6 +3,32 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.7.0
+
+**Veto, not go-ahead** (METHOD.md, new section) — where gg would ask the user to choose between
+dispositions it already has a read on (triaging a capture, opening a board it just designed), it
+now takes its read, executes it, and reports it in past tense with its why and its way back. The
+user's move is the veto, not the go-ahead: silence leaves the decision standing and the next
+command runs with no round trip — a question whose answer you were going to recommend anyway is
+ceremony charged to the user. Two kinds of decision are never taken this way: irreversible/outward
+actions (Safety) still stop for their yes, and judgement/taste/product intent (Grilling) is still
+asked — the disposition is yours; the design is theirs. The honesty rule: acting replaces the
+question, never the telling — an unreported decision is a silent drop, whichever way it went. Not
+format-changing (no `.gg/` shape touched; no CONVERSION.md section, no index row). The three
+frictions it removes:
+
+- **go's triage card reports, it no longer asks** (METHOD → Capture, go §3/§4): captures jotted
+  while the user was away arrive triaged — an S fold already folded (§3a), a backlog resting in
+  `## New` — each with its why and way back. An M/L fold (its grilling is the user's) and a
+  discard (a deletion) are the two reads the card can only offer.
+- **plan's gate opens first** (plan §4): block moves, deferrals, and `state: building` happen
+  before the report — all reversible moves — and the report ends in an open veto window (*"add,
+  cut, or change anything — or `/clear` + `/gg:go`"*) instead of waiting for a "go". A discard
+  still deletes only on its yes; a vetoed item's block moves back.
+- **new's sign-off opens batch 0** (new §4): `state: building` is set before the consolidated
+  summary; a veto is applied in one pass, silence leaves the batch standing and `/clear` +
+  `/gg:go` builds it. TUTORIAL §5 rewritten to match ("Pass the gate" → "Read the sign-off").
+
 ## 3.6.0
 
 **The `diataxis` skill** (`skills/diataxis/`) — user-facing documentation written and audited

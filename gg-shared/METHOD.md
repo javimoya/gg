@@ -81,9 +81,30 @@ good defaults instead of asking everything.
   contrasts and record the reaction. A dimension that stays subjective becomes a `[discovered]`
   "done and perfect" clause, confirmed later by watching the product run — and it earns a **show** row
   on the board (`FORMATS.md`).
-- **One consolidated sign-off, one veto question**: name the areas not yet probed, show the
-  high/medium-blast defaults taken, and take a single free-form veto — never successive rounds of
-  "tick the defaults to flip". Grilling is never a tool for reducing scope.
+- **One consolidated sign-off, one veto window** (→ Veto, not go-ahead): name the areas not yet
+  probed, show the high/medium-blast defaults taken, and leave a single free-form veto open —
+  never successive rounds of "tick the defaults to flip". Grilling is never a tool for reducing
+  scope.
+
+## Veto, not go-ahead
+
+Where gg would ask the user to choose between dispositions it already has a read on — triaging a
+capture, opening a board it just designed — it **takes its read, executes it, and reports it in
+past tense** with its why and its way back. The user's move is the veto, not the go-ahead: silence
+leaves the decision standing, and the next command runs with no round trip. A question whose answer
+you were going to recommend anyway is ceremony charged to the user.
+
+Two kinds of decision are never taken this way:
+
+- **Irreversible or outward** (→ Safety): delete, deploy, send, push, overwrite still stop for
+  their yes. A disposition you couldn't cheaply undo on a veto was never yours to take.
+- **Answerable only by the user** (→ Grilling): judgement, taste, product intent are still asked —
+  the disposition is yours; the design is theirs. Deciding taste for the user is the same failure
+  as making them triage.
+
+And the honesty rule: **acting replaces the question, never the telling.** Every decision taken
+appears in the card or the gate report, with its why. An unreported decision is a silent drop,
+whichever way it went.
 
 ## Capture (inline, any session — there is no capture command)
 
@@ -105,16 +126,18 @@ The moment an idea surfaces, jot it and get back to work. Route by tense:
 - **Not capture**: a bug in the task you're building right now (fix it — that's the bar), or a cut
   you were tempted to make (the test above). One-line confirmation, then **return to the task** —
   never derail the build.
-- **A capture is offered, never buried — one triage card, once**: items jotted while the user was
-  away are surfaced at the next moment they're present — the row checkpoint, a show, the close — as
-  **one card for the session's captures**, never a question per item. Each entry: the id + title,
-  the Idea's opening sentence (the plain, concrete example `FORMATS.md` already requires — the card
-  is where that sentence earns its keep), a weight guess, and your recommendation. Three
-  dispositions, the user's call per item: **fold** into the live batch (`/gg:go` folds it, `go.md`
-  §3a) · **backlog** (stays in `## New` for a later plan) · **discard** (delete the block; a
-  "never" becomes a `PRODUCT.md` boundary, as at the plan gate). The card never blocks — no answer
-  leaves the items in `## New` — and an offered item is not re-offered next session: `/gg:plan` is
-  its next look. Silent accumulation across a batch is a drop with extra steps.
+- **A capture is triaged, then reported — one card, once** (→ Veto, not go-ahead): items jotted
+  while the user was away are triaged at the next moment they're present — the row checkpoint, a
+  show, the close — and reported as **one card for the session's captures**, never a question per
+  item. Take your read per item and execute what is yours to take: an **S fold** into the live
+  batch is folded (`go.md` §3a), a **backlog** rests in `## New` for a later plan. Two reads the
+  card can only *offer*: a fold whose weight needs grilling (M/L — its questions are the user's),
+  and a **discard** (a deletion — Safety; a "never" becomes a `PRODUCT.md` boundary, as at the
+  plan gate). Each entry: the id + title, the Idea's opening sentence (the plain, concrete example
+  `FORMATS.md` already requires — the card is where that sentence earns its keep), the weight, and
+  the disposition taken or offered **with its why and its way back**. The card never blocks —
+  silence leaves every disposition standing — and a triaged item is not re-offered next session:
+  `/gg:plan` is its next look. Silent accumulation across a batch is a drop with extra steps.
 
 ## Evidence (what "done" means)
 

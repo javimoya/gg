@@ -62,11 +62,12 @@ Near the end of the kickoff, gg asks its one-time configuration questions. Answe
 - **git init** — yes
 - **Deploy policy** — `ask` (our product has no deploy; the answer just gets recorded)
 
-## 5. Pass the gate
+## 5. Read the sign-off
 
 gg now presents one consolidated summary: the vision in a paragraph, the design calls, the
-assumptions it took, and the **batch-0 board** — the whole product cut into rows. It takes a
-single veto question. Say it looks good.
+assumptions it took, and the **batch-0 board** — the whole product cut into rows. Notice it does
+not ask you to approve: the batch is already open, and the summary ends in an open veto window.
+You could change anything here — nothing needs changing, so don't answer and move on.
 
 The session ends with a breadcrumb that should look something like:
 
@@ -75,7 +76,7 @@ Batch 0 designed: 4 rows on the board. Next: /clear then /gg:go.
 ```
 
 Before moving on, look at what appeared: a `.gg/` folder. Open `.gg/WORK.md` — that's the
-board we just approved, with one row marked as next. This file is how every future session
+board gg just opened, with one row marked as next. This file is how every future session
 knows exactly where we are.
 
 ## 6. Build the board

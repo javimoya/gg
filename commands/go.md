@@ -53,9 +53,10 @@ red, say so and decide with the user before building on it. Never commit to set 
   (record it on the board) or a boundary taken to the user. Never a silent drop.
 - **New scope mid-row**: if the user asked for it now, fold it (§3a) — after finishing the row in
   flight. Otherwise jot it — a `B-NN` to `BACKLOG.md ## New` (METHOD.md → Capture) — **return to
-  the row**, and offer it at the next checkpoint the user sees via the capture **triage card**
-  (METHOD.md → Capture): fold into this batch (§3a), backlog, or discard — their call. Never derail
-  the row; never let captures pile up unoffered.
+  the row**, and triage it at the next checkpoint the user sees via the capture **triage card**
+  (METHOD.md → Veto, not go-ahead): your read taken and reported — an S fold executed (§3a), a
+  backlog resting in `## New`; an M/L fold or a discard only offered. Never derail the row; never
+  let captures pile up untriaged.
 - **A debugging detour runs the red loop** (`fix.md` §1): one command that already goes red on the
   bug before any theory; falsifiable hypotheses shown ranked; `[DEBUG-xxxx]`-tagged instrumentation,
   cleaned by one grep.
@@ -89,9 +90,9 @@ bounds are checked at the close (§5) and nowhere else in go (`FORMATS.md`). The
 - **Otherwise stop.** Commit per policy (`gg(b{N}): rows {K–L} — …`, pathspec-scoped). Breadcrumb:
   *"Batch {N}: row {K}/{M} done. Next: `/clear` + `/gg:go` (row {K+1} — {where})."* If this session
   captured `B-NN`s, the breadcrumb carries their **triage card** (METHOD.md → Capture): one card
-  for all of them — fold into this batch (§3a) · backlog · discard — and no answer leaves them in
-  `## New`. One M/L row per fresh session is the rule; chaining S rows is the only
-  widening.
+  for all of them, dispositions taken and reported with their why and way back — silence leaves
+  them standing, and the next `/gg:go` runs with no round trip. One M/L row per fresh session is
+  the rule; chaining S rows is the only widening.
 
 ### 4a. A `show` row just closed
 Run its done-when yourself — on the surface the user actually judges: if that's the deployed product
