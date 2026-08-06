@@ -33,7 +33,8 @@ Read `.gg/WORK.md ## State`:
 
 ## 1. Ingest (capture happens here — there is no separate capture step)
 **Advisory entry**: invoked without a chosen set ("what should we do next?"), stay read-only —
-explain the backlog items in plain terms (concrete examples, no jargon), recommend the next batch,
+explain the backlog items in plain terms (METHOD.md → Grilling, explain-before-you-ask: context,
+one easy example each, `CONTEXT.md`'s words), recommend the next batch,
 and touch nothing until the user picks; an advisory conversation that ends without a batch leaves
 the record untouched. A `## Staged` group in BACKLOG is the standing answer: take the top group.
 **Once the set is chosen, set `state: shaping` in WORK** — the arc runs under it (any death,

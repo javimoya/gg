@@ -59,8 +59,15 @@ good defaults instead of asking everything.
   why, plus the alternatives you weighed — a question without a recommendation is work pushed back
   onto the user. A recommendation never proposes below the bar: a shim, stub, or compat-out is never
   the recommended option.
-- **Ask in the concrete**: a question the user answers with "no te entiendo" was asked in the
-  abstract. Lead with the example — the card, the screen, the number — and let the rule follow.
+- **Explain before you ask.** Anything put to the user for a decision — a grilling question, a
+  recommended next batch, a triage entry — opens with its plain explanation: a little context
+  first (what this decides, what hangs on it), then the example — the card, the screen, the
+  number — one easy-to-follow example per option, and let the rule come after. Write it in
+  Simplified Technical English (ASD-STE100: short sentences, one idea per sentence, active voice,
+  everyday words — the style holds in whatever language the conversation runs in) and in the
+  project's own terms (`CONTEXT.md`'s language, never its avoided synonyms). The explanation the
+  user has to ask for — "no te entiendo", "explícamelo más fácil" — is the one that should have
+  come first.
 - **Explore before asking — questions split two ways**: a question research can answer (the code,
   the docs, an API's actual behavior) is **never put to the user** — answer it yourself, or hand it
   to a subagent and keep grilling while it runs, folding what comes back into the next

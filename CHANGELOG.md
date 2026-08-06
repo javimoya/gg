@@ -3,6 +3,21 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.8.0
+
+**Explain before you ask** (METHOD → Grilling, rewriting "Ask in the concrete") — measured from
+the klasse + flights session transcripts (2026-07-19 → 2026-08-04): ~15 times in under three
+weeks the user had to answer a grilling question, a recommended batch, or a triage entry with
+"no te entiendo / explícamelo de manera sencilla, con ejemplos fáciles de seguir" before they
+could decide. The explanation the user has to ask for is the one that should have come first.
+Now anything put to the user for a decision opens with its plain explanation: a little context
+first (what this decides, what hangs on it), one easy-to-follow example per option, written in
+Simplified Technical English (ASD-STE100: short sentences, one idea per sentence, active voice,
+everyday words — the style holds in whatever language the conversation runs in) and in the
+project's own terms (`CONTEXT.md`'s ubiquitous language, never its avoided synonyms). plan's
+advisory entry now cites the standard. Not format-changing (no `.gg/` shape touched; no
+CONVERSION.md section, no index row).
+
 ## 3.7.0
 
 **Veto, not go-ahead** (METHOD.md, new section) — where gg would ask the user to choose between
