@@ -30,7 +30,7 @@ There's the trap: vibe-coding is fast but forgetful; spec-driven remembers but i
 
 **One kickoff builds the whole product.** `/gg:new` grills you first (one sharp question at a time, always leading with its recommendation), designs the entire thing up front — the data model, the architecture, the seams — and writes down **every default it assumed because it didn't stop to ask you**, numbered and reversible. You end up with a complete, running product to actually try, *and* a paper trail of why it is the way it is.
 
-**Then you refine in batches, at the ceremony each change deserves.** You use the product, you collect what you want changed — four bugs, a tweak, one real feature — and you bring the whole list to `/gg:plan`: **one ceremony, one gate**. Decided bugs get zero questions and zero paperwork; the feature with real design weight gets the full grilling. `/gg:go` builds the batch with tests, chains the small stuff in one session, and closes on evidence — a green suite and *you* walking the load-bearing flows. And when something just needs fixing *now*, `/gg:fix` fixes it now and records it in one line — no board, no batch, no gate.
+**Then you refine in batches, at the ceremony each change deserves.** You use the product, you collect what you want changed — four bugs, a tweak, one real feature — and you bring the whole list to `/gg:plan`: **one ceremony, one gate**. Decided bugs get zero questions and zero paperwork; the feature with real design weight gets the full grilling. `/gg:go` builds the batch with tests, one row per run, and closes on evidence — a green suite and *you* walking the load-bearing flows. And when something just needs fixing *now*, `/gg:fix` fixes it now and records it in one line — no board, no batch, no gate.
 
 **And it stays out of your way.** gg is five Markdown commands and nothing else. The only trace it leaves in your repo is a plain-text `.gg/` folder of **seven bounded files** you can read in one sitting — because everything that's *done* is deleted from them, and git remembers it forever. gg v3 was redesigned from the measured evidence of its own v2 in production: 309 real sessions where ~45% of everything the agent wrote was documentation ceremony. v3 exists to spend those tokens on your product instead.
 
@@ -91,7 +91,7 @@ flowchart LR
 A **batch** is one `plan → go*` cycle. **Batch 0** is the whole product; each later batch folds in whatever you brought to `/gg:plan`.
 
 1. **`/gg:new`** runs once: brainstorm → grilling → whole-product design → recorded defaults → the batch-0 board. It also asks, once, how commits and deploys run. Full spec: [`commands/new.md`](commands/new.md).
-2. **`/gg:go`** builds the next board row to the full bar, with tests — chaining small rows, folding in scope you want *now*, checkpointing `WORK.md` so `/clear` always resumes cleanly — and closes the batch on evidence: a green suite and you walking the **Try list**. Full spec: [`commands/go.md`](commands/go.md).
+2. **`/gg:go`** builds the next board row to the full bar, with tests — one row per run, folding in scope you want *now*, checkpointing `WORK.md` so `/clear` always resumes cleanly — and closes the batch on evidence: a green suite and you walking the **Try list**. Full spec: [`commands/go.md`](commands/go.md).
 3. **`/gg:plan`** opens the next batch from whatever you bring — pasted ideas, bugs, backlog items — weighs each **S/M/L**, grills only what has design weight, and takes **one consolidated veto gate**. Full spec: [`commands/plan.md`](commands/plan.md).
 4. **`/gg:fix`** fixes a small decided change *now*, runs the suite green, records one line — and routes honestly to `/gg:plan` if it grows design weight. Full spec: [`commands/fix.md`](commands/fix.md).
 5. **`/gg:where`** reconstructs where you are — read-only, always. `--audit` adds a deeper integrity check. Full spec: [`commands/where.md`](commands/where.md).
@@ -186,7 +186,7 @@ Developing locally? Point the marketplace at your checkout instead of GitHub:
 
 **Do I try the product between tasks?** At the **shows** — watchable slices `/gg:plan` places mid-batch, where the product's felt character first becomes judgeable and your look can still change the remaining rows — and at the **batch close**, where you walk the Try list (a show is never the last row: the close *is* the batch's final look). Between those, the agent runs its own tests and checks; you don't babysit it row by row.
 
-**Why clean sessions and `/clear`?** Long sessions degrade. Rows are sized to fit one fresh session (small ones chain, with hard stop conditions), and `WORK.md` carries the state across, so you're always working with a sharp context.
+**Why clean sessions and `/clear`?** Long sessions degrade. Rows are sized to fit one fresh session — `/gg:go` builds one row per run and stops; whether to `/clear` before the next run is your call — and `WORK.md` carries the state across, so you're always working with a sharp context.
 
 ---
 

@@ -120,8 +120,7 @@ one pass**: a gate-added S item folds straight onto the board; a gate-added M/L 
 ## Close
 Persist WORK/BACKLOG/NOTES (+DESIGN/CONTEXT/RUNBOOK/PRODUCT if touched); commit per policy
 (`gg(b{N}): plan — {B-NNs} · {M} rows`); breadcrumb: *"Batch {N} open: {M} rows. Next: `/clear` then
-`/gg:go`."* One sanctioned exception to the `/clear`: if the session still has plenty of context and
-the batch is all-S, you may offer to start `/gg:go` right here — the user's call.
+`/gg:go`."*
 
 **Cut mid-plan**: persist partial state, `state: shaping`, open questions into "Where to resume",
 breadcrumb: *"Plan checkpointed; {K} questions open. `/clear` + `/gg:plan` continues."*

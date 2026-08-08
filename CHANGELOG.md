@@ -3,6 +3,21 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.9.2
+
+**gg never gauges its own context** (`go.md` §4 + fold bullet, `plan.md` Close, METHOD → Context
+discipline). The chain rule told go to keep building only while "the session is comfortably under
+~half its context" — a measurement the model cannot make, so sessions invented one ("well over
+half its context") to narrate their stop. The same tell lived in the fold bullet ("deep in a spent
+session, say so") and in plan's sanctioned exception to the `/clear` ("if the session still has
+plenty of context"). All three are gone, and **no self-assessment replaces them** — the rules are
+now bare conduct: `/gg:go` builds one row, checkpoints, and stops (chaining removed entirely;
+§4 is "Checkpoint and stop", commit `gg(b{N}): row {K}`); plan's Close always ends at the
+breadcrumb; whether to `/clear` before the next run is the user's call, never gg's. METHOD's
+Context discipline keeps its read/edit rules but drops the "a long session degrades" framing —
+mechanics stated, rationale removed. README/CLAUDE.md updated to match. Not format-changing (no
+`.gg/` shape touched; no CONVERSION.md section, no index row).
+
 ## 3.9.1
 
 **The re-pitch prescribes no vocabulary** (`skills/what/SKILL.md`, "The register" → "Simple to

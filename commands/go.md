@@ -1,13 +1,13 @@
 ---
-description: "Builds the open batch. Orients from WORK.md in seconds, then implements board rows to the full bar (with tests): one M/L row per fresh session, but consecutive S rows chain in a single session under hard stop conditions. New scope the user wants NOW folds into the live batch right here — mint the B-NN, grill what its weight demands, append the rows; no /gg:plan ceremony. Checkpoints WORK after every row so /clear + /gg:go always resumes cleanly. On the last row it closes the batch — green full suite, the user walks the Try list live, consumed records are swept (deleted; git keeps history), one close commit if the policy says so. Run it after /gg:new or /gg:plan, and again while rows remain."
+description: "Builds the open batch. Orients from WORK.md in seconds, then implements the next board row to the full bar (with tests) — one row per run. New scope the user wants NOW folds into the live batch right here — mint the B-NN, grill what its weight demands, append the rows; no /gg:plan ceremony. Checkpoints WORK after every row so /clear + /gg:go always resumes cleanly. On the last row it closes the batch — green full suite, the user walks the Try list live, consumed records are swept (deleted; git keeps history), one close commit if the policy says so. Run it after /gg:new or /gg:plan, and again while rows remain."
 model: inherit
 disable-model-invocation: true
 ---
 
 # /gg:go — Build the next row(s)
 
-You implement the board **to the highest bar**, one row at a time — chaining small ones when it's
-safe. You work in the project directory (cwd); state lives in `<cwd>/.gg/`. Method and formats:
+You implement the board **to the highest bar**, one row at a time. You work in the project
+directory (cwd); state lives in `<cwd>/.gg/`. Method and formats:
 `${CLAUDE_PLUGIN_ROOT}/gg-shared/METHOD.md` + `${CLAUDE_PLUGIN_ROOT}/gg-shared/FORMATS.md` — read
 both now.
 
@@ -75,35 +75,29 @@ weight:
 - Append the row(s) — or insert them where ordering matters (before a regenerate/deploy row) — with
   real done-whens, extend `## Try`, and note the fold in "Where to resume": *"folded {date}: B-NN as
   row(s) {K–L}"*.
-- Deep in a spent session, say so: checkpoint and offer to fold at the top of a fresh `/gg:go` — the
-  fold itself is never a reason to route to `/gg:plan`. Route there **only** when the look/new scope
-  invalidates the *remaining* board — that's plan's re-scope in place, a redesign, not a fold.
+- The fold itself is never a reason to route to `/gg:plan`. Route there **only** when the look/new
+  scope invalidates the *remaining* board — that's plan's re-scope in place, a redesign, not a fold.
 
-## 4. Checkpoint, then chain or stop
+## 4. Checkpoint and stop
 Update `WORK.md`: row → `done`, add touched files to Owned paths, set "Where to resume" to the next
 row. **No bound-keeping here**: the checkpoint never measures `.gg/` sizes or trims record content —
-bounds are checked at the close (§5) and nowhere else in go (`FORMATS.md`). Then decide:
-
-- **Chain** to the next row in this same session **only if ALL hold**: the next row is `S` · no
-  `show` is waiting for the user · the session is comfortably under ~half its context · the row just
-  closed needed no debugging detour longer than the row itself. Chain = go back to §3.
-- **Otherwise stop.** Commit per policy (`gg(b{N}): rows {K–L} — …`, pathspec-scoped). Breadcrumb:
-  *"Batch {N}: row {K}/{M} done. Next: `/clear` + `/gg:go` (row {K+1} — {where})."* If this session
-  captured `B-NN`s, the breadcrumb carries their **triage card** (METHOD.md → Capture): one card
-  for all of them, dispositions taken and reported with their why and way back — silence leaves
-  them standing, and the next `/gg:go` runs with no round trip. One M/L row per fresh session is
-  the rule; chaining S rows is the only widening.
+bounds are checked at the close (§5) and nowhere else in go (`FORMATS.md`). Commit per policy
+(`gg(b{N}): row {K} — …`, pathspec-scoped). Breadcrumb: *"Batch {N}: row {K}/{M} done. Next:
+`/clear` + `/gg:go` (row {K+1} — {where})."* If this session captured `B-NN`s, the breadcrumb
+carries their **triage card** (METHOD.md → Capture): one card for all of them, dispositions taken
+and reported with their why and way back — silence leaves them standing, and the next `/gg:go`
+runs with no round trip.
 
 ### 4a. A `show` row just closed
 Run its done-when yourself — on the surface the user actually judges: if that's the deployed product
 on their phone, the show's job includes proposing that deploy (per the `deploy:` policy), not
 staging a local stand-in they won't look at. Then make the breadcrumb a *look-at-this*: invite the
 user to run it and react now, and **record the wait in "Where to resume → Notes"** (*"show row {K} awaiting the user's
-look"* — cleared when the reaction is routed), so a fresh session never chains past an un-looked-at
+look"* — cleared when the reaction is routed), so a fresh session never builds past an un-looked-at
 show. Route the reactions (METHOD.md → Capture): the verdict on the `[discovered]` target → its
 ✓ mark in `PRODUCT.md` (or an `F-NN` if it observed something beyond the clause); wanted changes /
 bugs → `B-NN`s. **If the look means the remaining rows must change**, stop and route to `/gg:plan`
-(re-scope in place — it keeps the done rows); otherwise continue the batch.
+(re-scope in place — it keeps the done rows); otherwise the batch stands.
 
 ## 5. Last row done → close the batch
 - **Enumerate every outward action of this close upfront** (deploy, regenerate, anything
