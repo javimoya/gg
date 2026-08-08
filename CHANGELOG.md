@@ -3,6 +3,27 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.9.0
+
+**The `what` skill** (`skills/what/SKILL.md`) — the recovery lane for the message that did not
+land. 3.8.0 taught the commands to explain before they ask (METHOD → Grilling); this is the
+user's side of the same coin: one standalone skill, fired by `/gg:what` or by the words
+themselves ("no entiendo", "explícamelo de manera sencilla, con ejemplos fáciles de seguir"),
+that re-pitches the last thing put to the user — most often a question with options they cannot
+tell apart. Borrowed from mattpocock/skills' `wait-what`, keeping its insight — name the
+listener's state, not the wanted output; "be brief" over-corrects into blunter, not clearer —
+and dropping its `CONTEXT.md` lean: a record that grew without the user can be exactly the
+vocabulary they do not understand. The re-pitch: **back up, don't trim** (what we are deciding +
+what hangs on it, before any detail); **one easy example per option** — the project's real
+objects, example first, rule after; the STE register in the conversation's language and the
+user's own words, no new vocabulary; for a question, the same option set 1:1 with the
+recommendation restated and the question asked again — confusion is never license to decide for
+the user. A second fire on the
+same message changes the example and backs up further, never the same words louder. METHOD →
+Grilling's "Explain before you ask" now names the skill as its recovery. Works in any project,
+gg or not. Not format-changing (no `.gg/` shape touched; no CONVERSION.md section, no index
+row).
+
 ## 3.8.0
 
 **Explain before you ask** (METHOD → Grilling, rewriting "Ask in the concrete") — measured from

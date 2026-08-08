@@ -67,7 +67,8 @@ good defaults instead of asking everything.
   everyday words — the style holds in whatever language the conversation runs in) and in the
   project's own terms (`CONTEXT.md`'s language, never its avoided synonyms). The explanation the
   user has to ask for — "no te entiendo", "explícamelo más fácil" — is the one that should have
-  come first.
+  come first. When it still doesn't land, the **`what` skill** is the recovery: it re-pitches
+  from further back with a new example — never the same words, louder.
 - **Explore before asking — questions split two ways**: a question research can answer (the code,
   the docs, an API's actual behavior) is **never put to the user** — answer it yourself, or hand it
   to a subagent and keep grilling while it runs, folding what comes back into the next
