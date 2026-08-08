@@ -41,16 +41,15 @@ general statement is the caption of the example, not the other way round.
 A load-bearing technical detail that must survive, survives *inside* an example — never as a
 bare term.
 
-## The register
+## Simple to understand
 
-Simplified Technical English (ASD-STE100), held in whatever language the conversation runs in:
+The one measure of the re-pitch is that it is easy to follow. It prescribes no word source and
+forbids none: use whatever words explain best, in whatever language the conversation runs in.
 
 - Short sentences. One idea per sentence.
 - Active voice. Everyday words.
-- A term of art you cannot avoid is defined in one clause, the first time it appears.
-- The user's own words: the words they have been using in this conversation. A re-pitch never
-  introduces new vocabulary — not even a record's official terms, if the user is not the one
-  using them.
+- New vocabulary is welcome when it makes the thing easier to understand — give a term worth
+  introducing its plain meaning in one clause, the first time it appears.
 
 ## When it was a question with options (the common case)
 

@@ -3,6 +3,19 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.9.1
+
+**The re-pitch prescribes no vocabulary** (`skills/what/SKILL.md`, "The register" → "Simple to
+understand") — 3.9.0 swapped `wait-what`'s `CONTEXT.md` words for "the user's own words"; the
+user vetoed both the same day: he is sparing with words, and a re-pitch bound to any word
+source is a constraint on the wrong axis, whichever source it names. The section now states the
+one measure — easy to follow — and grants the freedom: no word source prescribed, none
+forbidden, new vocabulary welcome when it makes the thing easier to understand (a term worth
+introducing gets its plain meaning in one clause, the first time it appears). The STE mechanics
+stay — short sentences, one idea per sentence, active voice, everyday words — because they are
+what "simple to understand" means, not a vocabulary rule. Not format-changing (no `.gg/` shape
+touched; no CONVERSION.md section, no index row).
+
 ## 3.9.0
 
 **The `what` skill** (`skills/what/SKILL.md`) — the recovery lane for the message that did not
