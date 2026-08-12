@@ -3,6 +3,20 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.9.3
+
+**The re-pitch names its level: ELI18** (`skills/what/SKILL.md`, "Simple to understand" →
+"Simple to understand — the level is ELI18"). 3.9.1 settled that the re-pitch prescribes no
+vocabulary, which left the *altitude* unstated: how much prior knowledge the second explanation
+may assume. The section now opens with it — pitch at a bright eighteen-year-old, someone who
+follows any chain of reasoning laid out for them and knows nothing of the field that was not
+told to them — and names the failure on the other side: **ELI5**, where a toy analogy stands in
+for the real thing, the user still cannot make the call, and has to ask a third time. Level, not
+vocabulary: the 3.9.1 freedom (no word source prescribed, none forbidden) and the STE mechanics
+stand unchanged beneath it. The `description` also gains the trigger "explain it like I'm five" —
+the ask that most wants this skill, now answered at ELI18. Not format-changing (no `.gg/` shape
+touched; no CONVERSION.md section, no index row).
+
 ## 3.9.2
 
 **gg never gauges its own context** (`go.md` §4 + fold bullet, `plan.md` Close, METHOD → Context

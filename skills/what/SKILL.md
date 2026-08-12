@@ -4,9 +4,9 @@ description: >
   Re-pitch what you just told the user — it did not land. Use whenever the user signals they did
   not understand your last message: "no entiendo", "no te entiendo", "I don't understand", "you
   lost me", "wait — what?", "explícamelo de manera sencilla", "explícamelo más fácil", "con
-  ejemplos fáciles de seguir", "explain that simply", "in plain terms" — or when their reply
-  answers a different question than the one you asked. Most often fired at a question with
-  options the user cannot tell apart. Also use when the user asks for a simple, easy-to-follow
+  ejemplos fáciles de seguir", "explain that simply", "in plain terms", "explain it like I'm
+  five" — or when their reply answers a different question than the one you asked. Most often
+  fired at a question with options the user cannot tell apart. Also use when the user asks for a simple, easy-to-follow
   explanation (with easy examples) of anything you are telling them.
 ---
 
@@ -41,7 +41,13 @@ general statement is the caption of the example, not the other way round.
 A load-bearing technical detail that must survive, survives *inside* an example — never as a
 bare term.
 
-## Simple to understand
+## Simple to understand — the level is ELI18
+
+Pitch it at a bright eighteen-year-old: someone who follows any chain of reasoning you lay out,
+and who knows nothing of this field that you have not told them. **ELI5 is the failure on the
+other side** — a toy analogy stands in for the real thing, the user still cannot make the call,
+and they have to ask a third time. ELI18 drops the assumed knowledge and keeps the real
+mechanism.
 
 The one measure of the re-pitch is that it is easy to follow. It prescribes no word source and
 forbids none: use whatever words explain best, in whatever language the conversation runs in.
