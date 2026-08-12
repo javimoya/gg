@@ -3,6 +3,19 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 3.9.4
+
+**The prevention gets the same level** (`gg-shared/METHOD.md` → Grilling, "Explain before you
+ask"). 3.9.3 named ELI18 in the recovery lane only, so gg aimed at a level *after* the user had
+already typed "no entiendo" — the first explanation, the one `/gg:new` and `/gg:plan` actually
+put to the user, still had no stated altitude. The bullet now carries it, between the example
+rule and the STE mechanics: pitch at a bright eighteen-year-old who follows any chain of
+reasoning laid out for them and knows nothing of the field they were not told — no term taken as
+given, and no toy analogy either. The bullet's closing sentence has the `what` skill inherit it
+by name (`…with a new example, at the same ELI18 level`), so the level is defined once and the
+recovery points at it rather than restating it. Not format-changing (no `.gg/` shape touched; no
+CONVERSION.md section, no index row).
+
 ## 3.9.3
 
 **The re-pitch names its level: ELI18** (`skills/what/SKILL.md`, "Simple to understand" →

@@ -62,13 +62,16 @@ good defaults instead of asking everything.
 - **Explain before you ask.** Anything put to the user for a decision — a grilling question, a
   recommended next batch, a triage entry — opens with its plain explanation: a little context
   first (what this decides, what hangs on it), then the example — the card, the screen, the
-  number — one easy-to-follow example per option, and let the rule come after. Write it in
-  Simplified Technical English (ASD-STE100: short sentences, one idea per sentence, active voice,
-  everyday words — the style holds in whatever language the conversation runs in) and in the
-  project's own terms (`CONTEXT.md`'s language, never its avoided synonyms). The explanation the
-  user has to ask for — "no te entiendo", "explícamelo más fácil" — is the one that should have
-  come first. When it still doesn't land, the **`what` skill** is the recovery: it re-pitches
-  from further back with a new example — never the same words, louder.
+  number — one easy-to-follow example per option, and let the rule come after. **Pitch it at
+  ELI18**: a bright eighteen-year-old follows any chain of reasoning you lay out and knows
+  nothing of this field you have not told them — no term taken as given, and no toy analogy
+  either. Write it in Simplified Technical English (ASD-STE100: short sentences, one idea per
+  sentence, active voice, everyday words — the style holds in whatever language the conversation
+  runs in) and in the project's own terms (`CONTEXT.md`'s language, never its avoided synonyms).
+  The explanation the user has to ask for — "no te entiendo", "explícamelo más fácil" — is the
+  one that should have come first. When it still doesn't land, the **`what` skill** is the
+  recovery: it re-pitches from further back with a new example, at the same ELI18 level — never
+  the same words, louder.
 - **Explore before asking — questions split two ways**: a question research can answer (the code,
   the docs, an API's actual behavior) is **never put to the user** — answer it yourself, or hand it
   to a subagent and keep grilling while it runs, folding what comes back into the next
