@@ -3,25 +3,6 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
-## 4.0.3
-
-**A relayed answer is record, not chat** (`gg-shared/DELEGATION.md` → While agents run, new
-bullet; plus one clarifying clause in the crash ledger). From the user's resilience questions on
-delegated batches (2026-08-19): what happens when the orchestrator's context fills, or the
-terminal dies mid-orchestration? The analysis found the design already answers both — WORK
-checkpoints per integration, the Delegations line written at each launch, agents' branches as the
-durable copy, and one recovery path that doesn't care why the agents died — with exactly one gap:
-a user's answer to a relayed question lived only in two contexts (orchestrator + agent) until the
-row integrated, so a death in that window meant asking the user the same question twice. Now the
-answer is written where it belongs — a pin folded into the row's done-when, a `DESIGN.md` edit, an
-ADR if the three criteria hold — **before** it is sent on, and a relaunched row inherits the
-recorded decision in its brief. The crash-ledger paragraph also now says out loud what was only
-implied: "no live agents — whatever killed them: a crash, a closed terminal, a `/clear`".
-Deliberately NOT added: any auto-checkpoint cadence or session-fullness condition — 3.9.2's rule
-stands (gg never gauges its own context; when to `/clear` is the user's call, and the mechanics
-make any moment safe). Not format-changing (no `.gg/` shape touched — records stamped 4.0.x stay
-conforming; no CONVERSION.md section, no index row).
-
 ## 4.0.2
 
 **One integration, one commit** (`gg-shared/DELEGATION.md` → Integrate, steps 1/2/5;
