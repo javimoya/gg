@@ -265,10 +265,12 @@ only on boards a 4.0.0 plan writes as `delegated` — an older record never need
 These projects keep moving — read each project's actual `.gg/` for the real state; the procedures
 above are authoritative, never these notes. Durable facts only:
 
-- **klasse** (`~/code/klasse`): converted to v3 on **2026-07-10**, pruned and stamped since
-  (3.9.2 as of 2026-08-19) — the **3.x → 4.0.0** insert is what applies next. Its 3.0 record is
-  where the 3.1 evidence came from (~3.9x growth in 41 batches).
-- **flights** (`~/code/flights`): still **v2** — the full v2 → v3 conversion applies, landing
-  directly on current shapes (`exec:` included). Watch A-55 (the launch-flip assumption) — it drops with the stage
-  concept; the backup/recovery material in RUNBOOK stays; some backlog blocks carry the v2 `[jot]`
-  tag — drop it (v2 → v3 §3).
+- **klasse** (`~/code/klasse`): converted to v3 on **2026-07-10**, stamped **4.0.2** on
+  2026-08-19 — no conversion pending. Its 3.0 record is where the 3.1 evidence came from (~3.9x
+  growth in 41 batches); its batch 108 was the first delegated batch in production.
+- **flights** (`~/code/flights`): **full v3** (an earlier note here claiming v2 was stale),
+  stamped **4.0.2** on 2026-08-19 — no conversion pending. What it does carry is inherited
+  overage for the record pass (`/gg:where --audit`), measured that day: RUNBOOK 90KB, BACKLOG
+  65KB, CONTEXT 36KB, NOTES 35KB — each past the 32KB bound — and DESIGN at 188KB (no hard bound,
+  but the same register applies).
+- **jmux** and **jgit**: full v3, stamped **4.0.2** on 2026-08-19 — nothing pending.
