@@ -41,5 +41,5 @@ brief. A brief too thin to build to the bar is a question to return, never a lic
 - `new-scope`: backlog candidates that surfaced (never built — your row only)
 - `self-accounting`: everything simplified, deferred, or defaulted — and anything built the row
   did not ask for. Empty only if truly empty.
-- `question` / `blocked`: the question with its recommendation, or the wall (a missing credential,
-  a third party) — never faked around.
+- `question` / `blocked`: the question(s), each with its recommendation — several in one stop
+  beat several stops — or the wall (a missing credential, a third party) — never faked around.

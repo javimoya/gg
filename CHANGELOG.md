@@ -3,6 +3,25 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 4.0.1
+
+**Questions batch, answers route** (`gg-shared/DELEGATION.md` → While agents run, new bullet;
+`ROW-BRIEF.md` report line pluralized). 4.0.0 wrote the question relay in the singular — "its
+question" — leaving unstated the two shapes real batches produce: one agent returning **several
+questions in one stop**, and **several agents waiting at once**. Both were proved end to end on
+2026-08-19 with live relay tests before writing the rule: a single agent stopped once with three
+questions, got the user's three answers in one send, and applied all three (two of them against
+its own recommendations — it could not have been right by default); and two agents with disjoint
+option sets were answered from one card and each resumed with its own answer, zero crossing. Each
+test carried a cryptographic commitment (SHA-256 of a secret held only in the agent's context,
+hashed before the user answered, revealed after) proving the resume reaches the **same** agent
+context, not a fresh launch. The rule the tests earned: relay the waiting questions as **one**
+card — each named by its row, with its recommendation, never a ping per agent — then route each
+answer set back to the agent that asked it, one send per agent carrying that agent's whole set;
+answer sets never mix, and a batch card never blocks the lanes that aren't waiting. ROW-BRIEF now
+tells the agent the same from its side: several questions in one stop beat several stops. Not
+format-changing (no `.gg/` shape touched; no CONVERSION.md section, no index row).
+
 ## 4.0.0
 
 **Delegated execution** — the first new execution shape since v3 defined the row. A batch may now

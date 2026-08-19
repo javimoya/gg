@@ -43,9 +43,14 @@ unchanged), reporting the one-line `exec:` header fix.
 ## While agents run
 
 - **Relay questions, don't absorb them.** An agent that stopped with `status: question` gets its
-  question put to the user **now**, with the agent's recommendation, explained in plain terms
-  (METHOD.md → Grilling). Send the answer back to the **same agent** — its context is intact;
-  never relaunch fresh to deliver an answer. Other lanes keep running while one waits.
+  questions put to the user **now**, each with the agent's recommendation, explained in plain
+  terms (METHOD.md → Grilling). Send the answers back to the **same agent** — its context is
+  intact; never relaunch fresh to deliver an answer. Other lanes keep running while one waits.
+- **Questions batch, answers route.** An agent may return several questions in one stop, and
+  several agents may be waiting at once: relay them as **one** card — each question named by its
+  row, with its recommendation — never a ping per agent. Then route each answer set back to the
+  agent that asked it, one send per agent carrying that agent's whole set: answer sets never mix,
+  and a batch card never blocks the lanes that aren't waiting.
 - Mid-flight captures and folds route as always (METHOD.md → Capture; go.md §3a) — a folded row
   lands with its `after`/`by` and launches when ready.
 
