@@ -51,6 +51,11 @@ unchanged), reporting the one-line `exec:` header fix.
   row, with its recommendation — never a ping per agent. Then route each answer set back to the
   agent that asked it, one send per agent carrying that agent's whole set: answer sets never mix,
   and a batch card never blocks the lanes that aren't waiting.
+- **A relayed answer is record, not chat.** The moment the user's answer lands, write it where it
+  belongs — a pin folded into the row's done-when, a `DESIGN.md` edit, an ADR if the three
+  criteria hold — before sending it on. Until the row integrates, that answer otherwise lives
+  only in two contexts that can die; a relaunched row inherits the recorded decision in its
+  brief instead of asking the user the same question twice.
 - Mid-flight captures and folds route as always (METHOD.md → Capture; go.md §3a) — a folded row
   lands with its `after`/`by` and launches when ready.
 
@@ -83,7 +88,8 @@ agent event.
 
 Every launch writes its line in WORK "Where to resume → Delegations" (`row {K} → {branch}`); every
 integration clears it. It is also the crash ledger: a session that orients into `exec: delegated`
-with Delegations listed but no live agents inspects each branch — work that meets its done-when
+with Delegations listed but no live agents — whatever killed them: a crash, a closed terminal, a
+`/clear` — inspects each branch — work that meets its done-when
 (focused check passes) is integrated above; incomplete work is reported with the default read
 **relaunch fresh from current HEAD**, the stale branch deleted only on a yes (it is committed
 work — METHOD.md → Safety).
