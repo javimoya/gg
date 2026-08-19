@@ -1,5 +1,5 @@
 ---
-description: "Builds the open batch. Orients from WORK.md in seconds, then implements the next board row to the full bar (with tests) — one row per run. New scope the user wants NOW folds into the live batch right here — mint the B-NN, grill what its weight demands, append the rows; no /gg:plan ceremony. Checkpoints WORK after every row so /clear + /gg:go always resumes cleanly. On the last row it closes the batch — green full suite, the user walks the Try list live, consumed records are swept (deleted; git keeps history), one close commit if the policy says so. Run it after /gg:new or /gg:plan, and again while rows remain."
+description: "Builds the open batch. Orients from WORK.md in seconds, then implements the next board row to the full bar (with tests) — one row per run. New scope the user wants NOW folds into the live batch right here — mint the B-NN, grill what its weight demands, append the rows; no /gg:plan ceremony. Checkpoints WORK after every row so /clear + /gg:go always resumes cleanly. A batch planned as exec: delegated flips the session into its orchestrator (gg-shared/DELEGATION.md): row agents build in parallel worktrees while it launches, integrates, relays their questions to the user, and keeps the record — same bar, same close. On the last row it closes the batch — green full suite, the user walks the Try list live, consumed records are swept (deleted; git keeps history), one close commit if the policy says so. Run it after /gg:new or /gg:plan, and again while rows remain."
 model: inherit
 disable-model-invocation: true
 ---
@@ -22,6 +22,9 @@ orient (§1) happens only once this gate passes:
 - **A `Blocked:` note whose condition still holds** → say so and stop — don't pay the orient to
   rediscover it.
 - **`state: building`** → proceed. If no pending row remains, run the batch close (§5).
+- **`exec: delegated`** in State → this session **orchestrates** instead of building one row: run
+  §§1–2 as written, then follow `${CLAUDE_PLUGIN_ROOT}/gg-shared/DELEGATION.md`. §§3–4 govern the
+  rows it keeps (`by: session`) and any fold; §5 still closes the batch.
 
 ## 1. Orient (cheap by design)
 Read whole: `WORK.md` (the board — which row is next), `CONTEXT.md`, `RUNBOOK.md`,

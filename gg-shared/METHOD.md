@@ -227,7 +227,9 @@ test, never fattening the record.
 ## Context discipline
 
 `/gg:plan` sizes rows so each fits one session; `/gg:go` builds one row, checkpoints WORK, and
-stops — `/clear` + `/gg:go` always resumes cleanly; `WORK.md` *is* the handoff. The `.gg/` files are bounded by design (`FORMATS.md` bounds): read whole the ones the
+stops (a delegated batch's session instead orchestrates row agents, checkpointing at each
+integration — `DELEGATION.md`) — `/clear` + `/gg:go` always resumes cleanly; `WORK.md` *is* the
+handoff. The `.gg/` files are bounded by design (`FORMATS.md` bounds): read whole the ones the
 command names; read `DESIGN.md` and `adr/` by section/slug as the task needs. **Re-read the exact
 block from disk immediately before editing it** — never edit from memory — and **never bulk-edit
 `.gg/` with regex/sed**: anchored, block-scoped replacements only. **Formats are closed**: write

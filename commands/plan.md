@@ -1,5 +1,5 @@
 ---
-description: "Opens the next batch in ONE ceremony — capture, triage, and design together, one gate. Bring whatever you have (a pasted list of bugs/ideas, items from the backlog, one thing or ten): it records each with a stable B-NN, folds duplicates, weighs every item S/M/L, grills ONLY what has design weight (a decided bug gets zero questions), and writes the board /gg:go builds from. Exactly one consolidated veto gate, always. Invoked without a chosen set ('what should we do next?') it advises first — explains the backlog in plain terms and recommends — touching nothing until you pick. Also the lane for a research batch (an open question closed by a measured answer) and for re-scoping a batch already under way when a show changed the remaining plan. Folding one item you want NOW into a live batch is /gg:go's move, not a plan."
+description: "Opens the next batch in ONE ceremony — capture, triage, and design together, one gate. Bring whatever you have (a pasted list of bugs/ideas, items from the backlog, one thing or ten): it records each with a stable B-NN, folds duplicates, weighs every item S/M/L, grills ONLY what has design weight (a decided bug gets zero questions), and writes the board /gg:go builds from. Exactly one consolidated veto gate, always. Invoked without a chosen set ('what should we do next?') it advises first — explains the backlog in plain terms and recommends — touching nothing until you pick. Also decides each batch's execution shape — exec: solo (one row per go session) or delegated (the go session orchestrates row agents in parallel worktrees; boards designed for it get after/by columns), reported vetoably at the same single gate. Also the lane for a research batch (an open question closed by a measured answer) and for re-scoping a batch already under way when a show changed the remaining plan. Folding one item you want NOW into a live batch is /gg:go's move, not a plan."
 model: inherit
 disable-model-invocation: true
 argument-hint: "[the items — pasted list, backlog ids, or one thing]"
@@ -97,6 +97,18 @@ a user-triggered write or heavy job belongs on it by name). Record doc-sync the 
 group into one S row for convenience — no `B-NN` of its own, and it never certifies (`FORMATS.md`).
 **Inherited record overage is never batch work**: a `.gg/` file past its bound from before this
 batch routes to `/gg:where --audit` (the record pass), never onto the board or into a `B-NN`.
+
+**Execution shape** (METHOD.md → Veto, not go-ahead — your read, taken and reported): with the rows
+drafted, read their dependency structure. When ≥2 rows are genuinely independent and the
+preconditions hold (a git repo, `commit: ask | auto` — worktrees live on commits), design for
+**delegated execution**: slice rows by disjoint surfaces (pages, modules) rather than layers, write
+`exec: delegated`, and fill the `after` and `by` columns (`FORMATS.md`). Keep for the session
+(`by: session`) what delegation would degrade: every show row (the look is the user's), the record
+doc-sync row, integration-heavy rows, and any row that rewords surfaces other rows are building. A
+show row is a barrier — every row past it in the graph names it in `after`. Agents inherit the
+session's model; propose `agent:{model}` (a cheaper model) only for mechanical S rows, never where
+judgement or design contact lives. Otherwise write `exec: solo` — the lane go runs unchanged; a
+batch with no real parallelism never fakes one.
 **Do not touch `BACKLOG.md` yet** — the
 block moves and deferrals happen at the gate's open step (§4), and a discard deletion only ever on
 its yes, so a veto never has to reconstruct deleted blocks.
@@ -110,7 +122,8 @@ Safety): state it in the report with its reason and delete only on its yes (a "n
 `PRODUCT.md` boundary); without one the block simply stays in the backlog. Then present one report,
 in past tense: every item with its disposition and **weight + why**, the grilled decisions, the
 high/medium-blast `A-NN`s (low ones listed), the discards awaiting their yes, show placement and
-why not earlier, and the board. The report ends in **one open veto window** — the gate is where
+why not earlier, the execution shape (`solo`, or the delegation read: each row's `after`/`by`, one
+line of why per session-kept row and per model override), and the board. The report ends in **one open veto window** — the gate is where
 users *add* work, not just assent, so it is never skipped, and it is never two rounds: *"add, cut,
 or change anything — or `/clear` + `/gg:go`"*. Silence leaves the batch standing. **Apply a veto in
 one pass**: a gate-added S item folds straight onto the board; a gate-added M/L item re-enters §2

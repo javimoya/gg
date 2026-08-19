@@ -24,6 +24,7 @@ Bounded hard: exactly one batch; the close resets it. Always readable whole (<16
 - **state**: {shaping | building | idle}
 - **batch**: {N}                     <!-- counts batches, 0 = the initial product -->
 - **kind**: {build | question}       <!-- question = a research batch: closes on a measured answer -->
+- **exec**: {solo | delegated}       <!-- set per batch at open: solo = one row per go session; delegated = the go session orchestrates row agents (DELEGATION.md) -->
 - **commit**: {ask | auto | never}   <!-- set once at /gg:new -->
 - **deploy**: {ask | user-runs | auto} <!-- set once at /gg:new (METHOD.md → Safety) -->
 - **gg**: {X.Y.Z}                      <!-- the plugin version whose formats this record follows -->
@@ -36,6 +37,9 @@ Bounded hard: exactly one batch; the close resets it. Always readable whole (<16
 | 3 | B-14 {short name} | M | {…} | pending |
 <!-- batch 0's rows, born before any backlog, carry the short name alone — no B-NN -->
 <!-- a show is never the final row — the close's Try walk is the batch's last look -->
+<!-- a delegated batch's board (exec: delegated) carries two extra columns between size and done when:
+     | # | item | size | after | by | done when | status |
+     after = the row numbers this row builds on (— = none); by = agent | agent:{model} | session -->
 
 ## Try
 {The batch's deliverable + load-bearing flows, walked at the close. Rewritten whole at batch open.}
@@ -51,6 +55,8 @@ Bounded hard: exactly one batch; the close resets it. Always readable whole (<16
 ## Where to resume
 - **Next**: row {K} — {file:line / the concrete next step a stranger could act on}
 - **Notes**: {gotchas; or "Blocked: {reason} / unblock when {observable condition}"}
+- **Delegations**: {delegated batches only — the in-flight rows: row {K} → {branch} · …; the line
+  is absent when nothing is in flight}
 
 ## Fix log
 {One line per /gg:fix since the last batch open; pruned at batch open.}
@@ -66,9 +72,20 @@ Rules: **state** ∈ `shaping` (mid `/gg:new` or `/gg:plan`, resumable — "Wher
 open questions) / `building` (rows pending) / `idle` (no batch open). **gg** is the version stamp:
 the plugin version whose `FORMATS.md` shapes this record follows — written once at `/gg:new`;
 rewritten **only** by a conversion (`CONVERSION.md`, its closing step) or by the record pass after
-it verifies the shapes conform, never by a working session merely running under a newer plugin. **Board rows** are short names
+it verifies the shapes conform, never by a working session merely running under a newer plugin.
+**exec** is set per batch at open — `/gg:new` writes `solo` for batch 0; `/gg:plan` decides each
+later batch, `delegated` only when its preconditions hold (a git repo, `commit: ask | auto`):
+`solo` = one row per go session (`go.md`); `delegated` = the go session orchestrates row agents
+(`DELEGATION.md`). A delegated board carries **after** — the row numbers this row builds on (`—` =
+none; a show row is a barrier: every row past it in the graph names it) — and **by** ∈ `agent`
+(inherits the session's model) / `agent:{model}` (an explicit cheaper model — mechanical S rows
+only) / `session` (the orchestrator builds it — every show and record doc-sync row always is). The
+**Delegations** line exists only in a delegated batch and lists only in-flight rows: launches write
+it, integrations clear it. **Board rows** are short names
 citing the `B-NN` they build (batch 0's rows carry the short name alone), ≤80 chars; status ∈
-`pending / done` — the row in flight is the one "Where to resume" names; a `[bug]` row's done-when
+`pending / done` — the row in flight is the one "Where to resume" names (a delegated batch's
+in-flight rows are the Delegations line's; its `done` means integrated — merged, merged-tree suite
+green); a `[bug]` row's done-when
 carries the broken-vs-expected essence, so the build session needs no other source. **A done-when
 is the observable check plus only the pins the build genuinely needs, as short clauses — ≤500
 chars**; anything longer is design prose that belongs in `DESIGN.md` or an ADR, cited by id.

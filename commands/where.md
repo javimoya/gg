@@ -15,8 +15,8 @@ one exception is the audit's apply step, which runs only on the user's explicit 
 
 ## 1. Read the state (read-only)
 - **No `.gg/`** → say so, route to `/gg:new`. Done.
-- `WORK.md` whole: state / batch / kind / commit policy, the board, "Where to resume", the Fix log,
-  "Last closes". `BACKLOG.md`: counts (`{K} new · {J} later`) and the newest titles. The **"It is"
+- `WORK.md` whole: state / batch / kind / exec / commit policy, the board, "Where to resume" (a
+  delegated batch's Delegations included), the Fix log, "Last closes". `BACKLOG.md`: counts (`{K} new · {J} later`) and the newest titles. The **"It is"
   essence line** from `PRODUCT.md`. `git log --oneline -5` for what recently landed. Keep it quick —
   this is the GPS, not the audit.
 
@@ -43,7 +43,9 @@ its findings. Check:
   honesty); don't itemize shape drift the conversion rewrites anyway. Stamp merely older, no row
   crossed → conforming; the record pass refreshes the line.
 - **Header vs board drift**: `building` with every row done (an unclosed batch); `idle` with pending
-  rows; a board bigger than one batch.
+  rows; a board bigger than one batch; `exec: delegated` under `commit: never` or without git (its
+  preconditions — `FORMATS.md`), a delegated board missing its `after`/`by` columns, or a
+  Delegations line naming branches `git branch`/`git worktree list` no longer has.
 - **Dangling ids**: a `Relates`/`reverses`/`Leads to` pointing at an id that is neither live in
   `.gg/` nor recoverable in git history (`git log -S "B-NN"`) — a reference to a deleted
   applied/consumed id is **not** dangling (`FORMATS.md`); duplicate ids; a `next-id:` at or below an

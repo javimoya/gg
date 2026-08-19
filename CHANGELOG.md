@@ -3,6 +3,52 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 4.0.0
+
+**Delegated execution** — the first new execution shape since v3 defined the row. A batch may now
+be built by **row agents in parallel git worktrees, orchestrated by the `/gg:go` session**, instead
+of one row per session. Measured from the flights session of 2026-08-19, where one user ask
+("¿puedes lanzar en un subagente la row mientras tú avanzas?") turned a go session into an
+improvised orchestrator — four rows built in isolated worktrees while it merged, ran the suite on
+the fused tree, and kept the record — and surfaced every mechanic and trap this release makes law:
+the semantic conflict only the merged suite can see (two rows green in isolation, red together),
+the worktree branched from a stale HEAD, the agent decision reported veto-style (A-383), the show
+row colliding with rows already built behind it.
+
+- **plan decides the shape, veto-style** (plan.md §3): sequential-vs-parallel is not a binary but a
+  dependency graph, and "sequential" is its degenerate chain. When ≥2 rows are genuinely
+  independent and the preconditions hold (git, `commit: ask | auto`), plan slices rows by disjoint
+  surfaces, writes `exec: delegated`, fills the `after` (dependencies; a show is a barrier) and
+  `by` (agent / agent:{model} / session) columns, and reports the read at the same single gate.
+  Agents inherit the session's model; a cheaper model is proposed only for mechanical S rows. A
+  batch with no real parallelism stays `exec: solo` — the lane go runs unchanged.
+- **the go session is the orchestrator** (go.md §0 + `gg-shared/DELEGATION.md`, new) — never a
+  special row 1: a row is product work with an observable done-when, and orchestration has none.
+  The session launches ready rows (each worktree branched from the integrated HEAD at launch),
+  builds the `by: session` rows itself, and checkpoints WORK after every integration, so `/clear`
+  + `/gg:go` resumes orchestration exactly as it resumes a row. Integration is the row's real
+  gate: merge, **merged-tree full suite green before the next merge lands**, diff review against
+  the bar, records, cleanup. The Delegations line in "Where to resume" is the in-flight and crash
+  ledger.
+- **questions still reach the user** (`gg-shared/ROW-BRIEF.md`, new — the ~2KB contract a row
+  agent reads instead of METHOD/FORMATS/orient): the ask-vs-assume split one level down. Research
+  self-answered; low-blast decided and returned as assumption candidates (reported veto-style at
+  integration); judgement, taste, product intent, the brief's open list, and anything
+  irreversible/outward **stop the agent** — the orchestrator relays the question to the user with
+  the agent's recommendation and sends the answer back to the same agent, context intact.
+- **the record has one writer**: row agents never read or write `.gg/` — candidates come back in
+  a structured report; the orchestrator mints every id (one `next-id:` counter, no races).
+- **cost goes to whoever uses it**: DELEGATION.md is read only by orchestrating sessions,
+  ROW-BRIEF.md only by row agents — a delegated row skips the whole-file orient entirely (~190KB
+  in an undieted project, measured in flights); the solo lane pays one header line and nothing
+  else. METHOD's Context discipline gains one parenthetical.
+
+**Format-changing**: the WORK header gains `exec: {solo | delegated}` (per batch at open — `/gg:new`
+writes `solo` for batch 0); delegated boards gain the `after`/`by` columns and the Delegations
+line. CONVERSION.md gains the **3.x → 4.0.0** section (one header-line insert) and its index row;
+the v2 → v3 and 3.0 → 3.1 procedures now land `exec: solo` too. `/gg:where --audit` checks the
+delegated preconditions and ledger.
+
 ## 3.9.4
 
 **The prevention gets the same level** (`gg-shared/METHOD.md` → Grilling, "Explain before you

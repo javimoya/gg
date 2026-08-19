@@ -30,11 +30,14 @@ older project must be upgraded and never converts on its own.
 A pure-Markdown command plugin: five commands (`new`, `plan`, `go`, `fix`, `where`) that build a
 product in **batch 0** (`new`: vision + whole design, one arc) then refine it **batch by batch**. A
 "batch" is one `plan → go*` cycle: `plan` opens it in one ceremony (capture + triage + design, one
-consolidated gate; ceremony scales with item weight S/M/L), `go` builds it one row per run and
+consolidated gate; ceremony scales with item weight S/M/L — and decides its execution shape,
+`exec: solo | delegated`), `go` builds it one row per run — or, on a delegated batch, orchestrates
+row agents in parallel worktrees (DELEGATION.md; agents read only ROW-BRIEF.md) — and
 closes it on evidence (green suite + the user walking the Try list). `fix` is the fix-now-record-after lane for small decided changes; `where` is the read-only
 GPS. All project state lives in each project's `.gg/` — **seven bounded files** (WORK, BACKLOG,
 PRODUCT, DESIGN, NOTES, CONTEXT, RUNBOOK) plus `adr/`; the method/formats live in `gg-shared/`
-(METHOD.md + FORMATS.md), read from the plugin and never copied into projects. **History is git's**:
+(METHOD.md + FORMATS.md + DELEGATION.md + ROW-BRIEF.md), read from the plugin and never copied into
+projects. **History is git's**:
 no journals, archives, or changelogs — applied/consumed record blocks are deleted, and gg may commit
 its own record per the project's `commit: ask|auto|never` policy (never push). There is no runtime
 and no state.json by design.

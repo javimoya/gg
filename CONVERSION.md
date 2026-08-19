@@ -20,8 +20,9 @@ record after a conversion is a conversion that didn't finish.
 | The `.gg/` you have | What applies |
 |---|---|
 | v2 files (`ROADMAP.md` / `SPEC.md` / `BLUEPRINT.md` / `VISION.md` …) | **v2 → v3** below — its output is the *current* `FORMATS.md` shapes, so it never needs the prune |
-| The seven files (`WORK` `BACKLOG` `PRODUCT` `DESIGN` `NOTES` `CONTEXT` `RUNBOOK` + `adr/`), no `gg:` stamp | Written under 3.0–3.2. Judge the shapes directly: 3.0 marks (ADR amendment blocks, ✓ ledgers under PRODUCT clauses, paragraph-sized Last closes) → **3.0 → 3.1 prune** below; already conforming → no conversion — the record pass adds the stamp |
-| `gg:` stamp at 3.3.0 or above | Nothing — no format-changing release has shipped since the stamp was born |
+| The seven files (`WORK` `BACKLOG` `PRODUCT` `DESIGN` `NOTES` `CONTEXT` `RUNBOOK` + `adr/`), no `gg:` stamp | Written under 3.0–3.2. Judge the shapes directly: 3.0 marks (ADR amendment blocks, ✓ ledgers under PRODUCT clauses, paragraph-sized Last closes) → **3.0 → 3.1 prune** below (its output lands on current shapes, `exec:` included); already conforming to the 3.x shapes → only **3.x → 4.0.0** below |
+| `gg:` stamp from 3.3.0 through 3.9.4 | **3.x → 4.0.0** below — one header-line insert |
+| `gg:` stamp at 4.0.0 or above | Nothing — no format-changing release has shipped since the stamp was born |
 
 The target shapes are defined in `gg-shared/FORMATS.md`; read it first, then this. Write all
 converted content in English (verbatim user quotes stay in their language).
@@ -59,7 +60,8 @@ Ids are never renumbered: every surviving block keeps its id.
 **`WORK.md`** — from ROADMAP + PROGRESS + the current-phase slice of SPEC:
 - Header: `state:` = v2 `building` → `building`; `shipped` → `idle`; `scoping`/`visioning` →
   `shaping`. `batch:` = v2 `phase`. `kind:` = v2 `research` → `question`, else `build`.
-  `commit:` — **ask the user now**: `ask` (recommended) / `auto` / `never`. `deploy:` — **ask the
+  `exec:` = `solo` (every v2 batch was sequential by definition; `delegated` is only ever a
+  `/gg:plan` decision, never a conversion's). `commit:` — **ask the user now**: `ask` (recommended) / `auto` / `never`. `deploy:` — **ask the
   user now**: `ask` (recommended) / `user-runs` / `auto`. `gg:` = the plugin's current version
   (`.claude-plugin/plugin.json` in the plugin repo) — the formats this conversion lands on.
 - **The batch sections — Board, `## Try`, `## Provenance`, `## Where to resume` — are filled only if
@@ -181,7 +183,8 @@ env var names, never values.
 **`WORK.md`** (<16KB):
 - Header gains `deploy: {ask | user-runs | auto}` — **ask the user once, now** (`ask` recommended);
   if they pre-decided it when commissioning this prune, write that without re-asking. It also
-  gains `gg: {the plugin's current version}` — the stamp of the formats this prune lands on.
+  gains `exec: solo` (the board is idle by precondition — `delegated` is only ever a `/gg:plan`
+  decision) and `gg: {the plugin's current version}` — the stamp of the formats this prune lands on.
 - `## Last closes`: ONE line per close (≤200 chars), newest first, capped at 5. Collapse paragraph
   entries to their line; delete everything past the cap.
 - `## Fix log`: one-line entries since the last batch open only — older lines and entries grown
@@ -242,15 +245,30 @@ whole-read files. New ADRs follow the 1-3 sentence rule going forward.
 2. One-line breadcrumb to the user: the sizes cut + the next command (`/gg:plan` — the state was
    `idle` by precondition; `/gg:fix` for one small thing).
 
+## 3.x → 4.0.0 — the execution field
+
+4.0.0 added **delegated execution**: `/gg:plan` may design a batch for row agents in parallel
+worktrees, and `/gg:go` orchestrates them (`gg-shared/DELEGATION.md`). The record's only new shape
+is the WORK header's `exec:` field. The `after`/`by` board columns and the Delegations line exist
+only on boards a 4.0.0 plan writes as `delegated` — an older record never needs them back-filled.
+
+1. **Safety first**: if `.gg/` has uncommitted changes, commit a snapshot now
+   (`chore: .gg snapshot before 4.0.0 conversion`).
+2. In `WORK.md ## State`, insert `- **exec**: solo` between `kind:` and `commit:`. Every
+   pre-4.0.0 batch was sequential by definition; `delegated` is only ever a `/gg:plan` decision,
+   never a conversion's.
+3. Rewrite the header's `gg:` stamp to the plugin's current version.
+4. Commit (pathspec `.gg/` only): `chore: convert .gg to gg 4.0.0 (exec field)`.
+
 ## Notes for the two known projects
 
 These projects keep moving — read each project's actual `.gg/` for the real state; the procedures
 above are authoritative, never these notes. Durable facts only:
 
-- **klasse** (`~/code/klasse`): converted to v3 on **2026-07-10** — only the **3.0 → 3.1 prune**
-  applies. Its 3.0 record is where the 3.1 evidence came from (~3.9x growth in 41 batches); expect
-  the biggest cuts in CONTEXT, RUNBOOK, and PRODUCT's ✓ ledgers.
+- **klasse** (`~/code/klasse`): converted to v3 on **2026-07-10**, pruned and stamped since
+  (3.9.2 as of 2026-08-19) — the **3.x → 4.0.0** insert is what applies next. Its 3.0 record is
+  where the 3.1 evidence came from (~3.9x growth in 41 batches).
 - **flights** (`~/code/flights`): still **v2** — the full v2 → v3 conversion applies, landing
-  directly on 3.1 shapes. Watch A-55 (the launch-flip assumption) — it drops with the stage
+  directly on current shapes (`exec:` included). Watch A-55 (the launch-flip assumption) — it drops with the stage
   concept; the backup/recovery material in RUNBOOK stays; some backlog blocks carry the v2 `[jot]`
   tag — drop it (v2 → v3 §3).
