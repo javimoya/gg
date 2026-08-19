@@ -16,8 +16,9 @@ brief. A brief too thin to build to the bar is a question to return, never a lic
   real route, end to end. A test's expected value comes from an independent source of truth —
   never recomputed the way the code computes it. Run the brief's focused check and report its
   **real** result.
-- Work only in your worktree, on your branch; commit there (`b{N}-r{K}: {summary}`). Touch only
-  what the row needs.
+- Work only in your worktree, on your branch; **commit as you go** (`b{N}-r{K}: {summary}`) —
+  your branch is the only durable copy of your work; an uncommitted worktree can vanish with the
+  session. Touch only what the row needs.
 
 ## Decide — or stop
 

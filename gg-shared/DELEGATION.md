@@ -56,22 +56,24 @@ unchanged), reporting the one-line `exec:` header fix.
 
 ## Integrate (per landed row, in completion order — the row's real gate)
 
-1. **Merge** the row's branch into the batch's branch. Textual conflicts: resolve trivial ones
-   yourself; bounce real ones back to the agent with the current HEAD (*"merge {sha}, re-run your
-   check, recommit"*).
-2. **Full suite on the merged tree — green before the next merge lands.** This is the only place
-   cross-row drift shows (two rows green in isolation, red together): fix small drift yourself;
-   bounce structural drift back to its agent. A slow suite makes this guard expensive — say the
-   cost out loud; never skip the guard.
+1. **Merge, uncommitted**: `git merge --no-commit {branch}`. Textual conflicts: resolve trivial
+   ones yourself; real ones → `git merge --abort` and bounce back to the agent with the current
+   HEAD (*"merge {sha}, re-run your check, recommit"*).
+2. **Full suite on the merged tree — green before anything lands.** This is the only place
+   cross-row drift shows (two rows green in isolation, red together): fix small drift in place;
+   structural drift → `git merge --abort`, bounce to its agent. The batch branch never carries a
+   red merge — an integration that can't go green now leaves no commit at all. A slow suite makes
+   this guard expensive — say the cost out loud; never skip the guard.
 3. **Review the diff against the done-when and the bar** — you are the one with full context:
    sweep for TODO/stub/mock leftovers, read the agent's self-accounting, name anything built that
    no row asked for (METHOD.md → Evidence).
 4. **Route the report's candidates**: mint the `A-NN`s (decisions the agent took), `F-NN`s,
    `B-NN`s. An agent's decision is reported like your own — veto-style, with its why and way back
    (METHOD.md → Veto, not go-ahead).
-5. **Record + checkpoint**: row → `done`, Owned paths extended, the row's Delegations entry
-   cleared, "Where to resume" updated; commit per policy (`gg(b{N}): row {K} — …`,
-   pathspec-scoped).
+5. **Record, then land it all as ONE commit**: row → `done`, Owned paths extended, the row's
+   Delegations entry cleared, "Where to resume" updated; stage `.gg/` on top of the merge index
+   and commit the merge and the record together, per policy (`gg(b{N}): row {K} — …`). One
+   integration, one commit — never a merge commit and a record commit sharing a message.
 6. **Clean up**: `git worktree remove` + delete the merged branch. Never leave debris.
 
 Report per integration — one compact card (what landed, suite delta, decisions routed) — never per

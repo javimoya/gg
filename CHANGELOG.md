@@ -3,6 +3,23 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 4.0.2
+
+**One integration, one commit** (`gg-shared/DELEGATION.md` → Integrate, steps 1/2/5;
+`ROW-BRIEF.md` build bullet). Measured from klasse batch 108 — the first delegated batch in
+production (2026-08-19): each integration left two commits with the same message (the `--no-ff`
+merge plus the record checkpoint), and the log read as duplicates even to a trained eye. The merge
+now lands uncommitted (`git merge --no-commit`), the merged-tree suite runs before anything is
+committed, and the record update is staged on top of the merge index — the row lands as **one**
+commit. The bonus is the safety property: the batch branch never carries a red merge — an
+integration that can't go green aborts (`git merge --abort`) and bounces to its agent, leaving no
+commit at all, where before a red post-merge verify left a committed broken merge on the branch
+until fixed. The batch's second finding: the row worktrees lived under the session scratchpad —
+legitimate (the spec fixes no location), but an agent's uncommitted work in tmp evaporates with the
+session; `ROW-BRIEF.md` now says **commit as you go** — the branch is the only durable copy. Not
+format-changing (no `.gg/` shape touched — records stamped 4.0.0 stay conforming; no CONVERSION.md
+section, no index row).
+
 ## 4.0.1
 
 **Questions batch, answers route** (`gg-shared/DELEGATION.md` → While agents run, new bullet;
