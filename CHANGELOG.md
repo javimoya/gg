@@ -48,6 +48,15 @@ What remains is a **record with habits, not a workflow engine**:
   `question` batches, Provenance, Fix log, Last closes, A-NN/F-NN, `exec: delegated`, and the
   `commit:`/`deploy:` policy headers. Bounds live only in tidy: BACKLOG/CONTEXT/RUNBOOK 32KB,
   DESIGN 64KB.
+- **Decisions age — the record is memory, not law** (GG.md, new section; folded into 5.0.0 the
+  day of the release, measured from the flights session of 2026-08-30 where a recorded ADR was
+  presented as a wall: the user's MCP idea was framed "could not … without breaking that rule"
+  and ranked below the ADR-compliant option, when the honest first answer — reached only after
+  two rounds of pushback — was "viable; it supersedes ADR-0023". The rule: a new idea that
+  conflicts with any recorded decision is presented on its merits, naming what it would
+  supersede and whether the original why still holds — never withheld, never ranked by
+  record-compliance, never framed as impossible. The user's yes is what supersedes; a sealed
+  `Decided` item still executes without re-grilling.
 
 ## 4.0.2
 

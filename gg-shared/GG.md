@@ -102,7 +102,8 @@ ships), it replaces per-session asking about what it already settles.
 (`0007-sqlite-over-postgres.md`). The decision in **1–3 sentences up top** — context, decision,
 why — and below it only measured evidence that defends the call. Offer an ADR only when all three
 hold: hard to reverse · surprising without context · a real trade-off. A stale body is rewritten
-to current truth in place — no amendment blocks; git keeps the old text.
+to current truth in place — no amendment blocks; git keeps the old text. **An ADR is how a
+decision is remembered, never enforced** (→ Decisions age).
 
 ### Bounds — checked by `/gg:tidy` and nowhere else
 
@@ -110,6 +111,21 @@ BACKLOG, CONTEXT, RUNBOOK ≤ **32KB**; DESIGN ≤ **64KB** (it is read by secti
 session measures or trims — tidy does, on the user's yes; a prune cuts to ~¾ of the bound, never
 to just under the line. **One fact, one home**: a datum lives once; every other mention is its
 bare id — a fact kept in two homes is the fact that goes stale in one.
+
+## Decisions age — the record is memory, not law
+
+Every recorded decision — an ADR, an it-is-not boundary, a `Decided` item, a DESIGN choice — was
+right in the context it was written in, and contexts move. None of them is a wall. When a new
+idea conflicts with one, **present the idea on its merits and name what it would supersede**:
+*"this breaks ADR-0023 — its why was {X}, which {still holds / has lapsed because Y}"* — then
+let the user decide. Never withhold or handicap an idea because a record forbids it; never rank
+options by record-compliance; never present a recorded decision as an impossibility — a
+constraint is something the world imposes, a decision is something the project chose and can
+un-choose. Superseding a stale decision out loud is the record working, not breaking. Two things
+stay: executing a sealed `Decided` item doesn't re-open its calls (that protects the user from
+re-grilling — but a new idea against those calls is still presented, never suppressed), and
+**the user's yes is what supersedes** — on it, the old record is rewritten or deleted in the
+landing commit like any other record edit; until it, the decision stands.
 
 ## Capture (inline, any session — no command)
 
