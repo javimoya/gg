@@ -4,28 +4,33 @@ gg ships **no migration logic in its commands** (see `CLAUDE.md`): an existing `
 once, deliberately, in a dedicated session. This document holds every known conversion and is
 written so an AI session can execute one directly: open Claude Code **in the project to convert**
 (not in the gg repo) and say *"read CONVERSION.md from the gg plugin repo and convert this
-project's `.gg/`"* — or take `/gg:where --audit`'s offer, which runs the same procedure on an
-explicit yes.
+project's `.gg/`"* — or take `/gg:tidy`'s offer, which runs the same procedure on an explicit yes.
 
 ## The index — which conversion applies
 
-The stamp is the WORK header's `gg:` line (`FORMATS.md`): the plugin version whose formats the
-record follows. Only **format-changing releases** have rows here — a stamp merely older than the
-plugin with no row crossed needs no conversion (the record pass refreshes the line). Every release
-that changes `gg-shared/` formats or the record's shape adds its row here and its procedure below
-(`CLAUDE.md` → Releasing); `/gg:where --audit` reads this index to detect and offer the right
-conversion. **Every conversion's closing step writes the new stamp** — an unstamped or old-stamped
-record after a conversion is a conversion that didn't finish.
+The stamp is the record's `gg:` line: **from 5.0.0 it lives in the `BACKLOG.md` header**
+(`GG.md`); records written under 3.3.0–4.x carry it in the `WORK.md` header. Only
+**format-changing releases** have rows here — a stamp merely older than the plugin with no row
+crossed needs no conversion (`/gg:tidy` refreshes the line). Every release that changes
+`gg-shared/` formats or the record's shape adds its row here and its procedure below (`CLAUDE.md`
+→ Releasing); `/gg:tidy` reads this index to detect and offer the right conversion. **Every
+conversion's closing step writes the new stamp** — an unstamped or old-stamped record after a
+conversion is a conversion that didn't finish.
 
 | The `.gg/` you have | What applies |
 |---|---|
-| v2 files (`ROADMAP.md` / `SPEC.md` / `BLUEPRINT.md` / `VISION.md` …) | **v2 → v3** below — its output is the *current* `FORMATS.md` shapes, so it never needs the prune |
-| The seven files (`WORK` `BACKLOG` `PRODUCT` `DESIGN` `NOTES` `CONTEXT` `RUNBOOK` + `adr/`), no `gg:` stamp | Written under 3.0–3.2. Judge the shapes directly: 3.0 marks (ADR amendment blocks, ✓ ledgers under PRODUCT clauses, paragraph-sized Last closes) → **3.0 → 3.1 prune** below (its output lands on current shapes, `exec:` included); already conforming to the 3.x shapes → only **3.x → 4.0.0** below |
-| `gg:` stamp from 3.3.0 through 3.9.4 | **3.x → 4.0.0** below — one header-line insert |
-| `gg:` stamp at 4.0.0 or above | Nothing — no format-changing release has shipped since the stamp was born |
+| v2 files (`ROADMAP.md` / `SPEC.md` / `BLUEPRINT.md` / `VISION.md` …) | **v2 → v3** below (its output is the v4-era shapes, so it never needs the prune), then **4.x → 5.0.0** |
+| The seven files (`WORK` `BACKLOG` `PRODUCT` `DESIGN` `NOTES` `CONTEXT` `RUNBOOK` + `adr/`), no `gg:` stamp | Written under 3.0–3.2. Judge the shapes directly: 3.0 marks (ADR amendment blocks, ✓ ledgers under PRODUCT clauses, paragraph-sized Last closes) → **3.0 → 3.1 prune** below; already conforming to the 3.x shapes → **3.x → 4.0.0** below. Either way, then **4.x → 5.0.0** |
+| `gg:` stamp from 3.3.0 through 3.9.4 | **3.x → 4.0.0** below (one header-line insert), then **4.x → 5.0.0** |
+| `gg:` stamp from 4.0.0 through 4.0.2 | **4.x → 5.0.0** below — the record without the machine |
+| `gg:` stamp at 5.0.0 or above | Nothing — no format-changing release has shipped since |
 
-The target shapes are defined in `gg-shared/FORMATS.md`; read it first, then this. Write all
-converted content in English (verbatim user quotes stay in their language).
+The current target shapes are defined in `gg-shared/GG.md`. The pre-5 procedures below reference
+`gg-shared/FORMATS.md` and `gg-shared/METHOD.md`, which 5.0.0 retired — read them from git in the
+plugin repo (`git show v4.0.2:gg-shared/FORMATS.md`) when executing one of those steps — and
+retired commands (`/gg:where --audit`, `/gg:plan`): walk those verify checklists by hand instead,
+and read every "next command" they name as its v5 successor (`/gg:go` to build, `/gg:tidy` to
+audit). Write all converted content in English (verbatim user quotes stay in their language).
 
 ## v2 → v3 — the full conversion
 
@@ -260,17 +265,75 @@ only on boards a 4.0.0 plan writes as `delegated` — an older record never need
 3. Rewrite the header's `gg:` stamp to the plugin's current version.
 4. Commit (pathspec `.gg/` only): `chore: convert .gg to gg 4.0.0 (exec field)`.
 
-## Notes for the two known projects
+## 4.x → 5.0.0 — the record without the machine
+
+5.0.0 retired the workflow engine and kept the record: three commands (`new`, `go`, `tidy`) over
+**four files + `adr/`** (`BACKLOG` `DESIGN` `CONTEXT` `RUNBOOK`). `WORK.md`, `NOTES.md`, and
+`PRODUCT.md` are retired; the version stamp moves to the `BACKLOG.md` header; `RUNBOOK.md` gains
+`## Deploy`. Target shapes: `gg-shared/GG.md` — read it first.
+
+### 0. Safety first
+
+1. The project must be a git repo with `.gg/` tracked. If `.gg/` has uncommitted changes, commit
+   a snapshot now (`chore: .gg snapshot before 5.0.0 conversion`) — the files this conversion
+   deletes survive only in git.
+2. Never touch the working tree outside `.gg/`.
+3. Anchored, block-scoped edits only — never regex/sed bulk edits; re-read each block from disk
+   immediately before editing it.
+
+### 1. Salvage from the retiring files
+
+- **`WORK.md`**: every **pending** Board row becomes a `B-NN` block in `BACKLOG.md ## New` — keep
+  the row's `B-NN` where it cites one (rebuild the block from the row's done-when), else mint
+  one; a live `Blocked:` note lands inside the block it belongs to. Done rows, `## Try`,
+  Provenance, the Fix log, and Last closes are history — git already holds them; salvage nothing.
+- **`NOTES.md`**: each open `A-NN` still load-bearing → state the decision as current truth in
+  the `DESIGN.md` section it governs (no id); each `F-NN` with a live consumer → fold its fact
+  into DESIGN/RUNBOOK, or a `B-NN` if it implies work. Everything else is deleted — git keeps it.
+- **`PRODUCT.md`**: distill into `DESIGN.md`'s new **`## Product`** section, up top: the essence,
+  who it's for, every "It is not" boundary, and the bar (fold the "done and perfect" clauses and
+  the quality bar into a compact statement; drop the `[declared]`/`[discovered]` tags and the ✓
+  marks — the walk history is git's). Each open Unknown → a `B-NN` (`[exp]` if an experiment
+  should answer it) or a line in `## Product`.
+
+### 2. Reshape the survivors
+
+- **`BACKLOG.md`**: under `next-id:`, add the stamp line `gg: {the plugin's current version}`.
+  Merge `## Later` and `## Staged` into `## New` (blocks unchanged; drop the emptied sections).
+  Blocks keep their ids; nothing is renumbered.
+- **`RUNBOOK.md`**: add **`## Deploy`** — ask the user once, now: how does shipping run, what may
+  run unasked when a change lands, what always waits for their explicit ok. Write the answer as
+  the standing convention (it replaces the old WORK-header `deploy:` policy; the old `commit:`
+  policy has no successor — one commit per landed change, code + record together, is the v5
+  convention).
+
+### 3. Delete the retired files
+
+```
+git rm .gg/WORK.md .gg/NOTES.md .gg/PRODUCT.md
+```
+
+### 4. Verify, then commit
+
+1. `.gg/` holds exactly `BACKLOG.md`, `DESIGN.md`, `CONTEXT.md`, `RUNBOOK.md`, and `adr/` — and
+   the BACKLOG header carries `next-id:` plus the new `gg:` stamp.
+2. Commit (pathspec `.gg/` only): `gg(convert): 4.x → 5.0.0 — the record without the machine`.
+3. **A conversion changes shape, never weight**: a record over its bounds routes to `/gg:tidy`
+   afterwards — offer it as the natural next step.
+
+## Notes for the known projects
 
 These projects keep moving — read each project's actual `.gg/` for the real state; the procedures
 above are authoritative, never these notes. Durable facts only:
 
 - **klasse** (`~/code/klasse`): converted to v3 on **2026-07-10**, stamped **4.0.2** on
-  2026-08-19 — no conversion pending. Its 3.0 record is where the 3.1 evidence came from (~3.9x
+  2026-08-19 — **4.x → 5.0.0 pending**. Its 3.0 record is where the 3.1 evidence came from (~3.9x
   growth in 41 batches); its batch 108 was the first delegated batch in production.
-- **flights** (`~/code/flights`): **full v3** (an earlier note here claiming v2 was stale),
-  stamped **4.0.2** on 2026-08-19 — no conversion pending. What it does carry is inherited
-  overage for the record pass (`/gg:where --audit`), measured that day: RUNBOOK 90KB, BACKLOG
-  65KB, CONTEXT 36KB, NOTES 35KB — each past the 32KB bound — and DESIGN at 188KB (no hard bound,
-  but the same register applies).
-- **jmux** and **jgit**: full v3, stamped **4.0.2** on 2026-08-19 — nothing pending.
+- **flights** (`~/code/flights`): full v3, stamped **4.0.2** on 2026-08-19 — **4.x → 5.0.0
+  pending**, and it is where the 5.0.0 evidence came from (see `CHANGELOG.md`). It also carries
+  heavy overage for the first `/gg:tidy` after converting — measured 2026-08-30: DESIGN 228KB,
+  BACKLOG 156KB (~115 open items), RUNBOOK 111KB, CONTEXT 52KB. Its WORK.md has been stale since
+  2026-08-24 (batch 42, `idle`) — nothing to salvage from the Board; check "Blocked" notes anyway.
+- **jmux** and **jgit**: full v3, stamped **4.0.2** on 2026-08-19 — **4.x → 5.0.0 pending**.
+- **awake**: was awaiting its 3.x → 4.0.0 header insert; both conversions now chain (3.x → 4.0.0,
+  then 4.x → 5.0.0).

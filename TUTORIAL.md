@@ -1,16 +1,16 @@
 # Your first project with gg
 
 In this tutorial we will build and ship a small product with gg — a one-page dice-roller web
-app — from an empty folder to a closed batch 0. Along the way we will meet gg's kickoff
-grilling, the batch-0 board, the build loop, and the Try walk that closes a batch.
+app — from an empty folder to a landed change. Along the way we will meet gg's kickoff grilling,
+the seeded record, and the `/gg:go` loop that turns one ask into one commit.
 
 You need [Claude Code](https://claude.com/claude-code) installed and a terminal. Nothing else —
 the product we build is a single HTML file, so there is no toolchain to set up. Expect the whole
-run to take around twenty minutes, most of it watching the agent work.
+run to take ten to fifteen minutes, most of it watching the agent work.
 
 Because gg drives a live AI session, the *exact* words you see will differ from run to run. What
-never differs is the shape: the questions, the gates, the files and the breadcrumbs land the
-same way every time — and those are what we are here to learn.
+never differs is the shape: the questions, the files, and the commits land the same way every
+time — and those are what we are here to learn.
 
 ## 1. Start clean
 
@@ -33,8 +33,8 @@ Inside Claude Code, run:
 /plugin install gg@javimoya
 ```
 
-Now type `/gg` — you should see five commands offered: `new`, `plan`, `go`, `fix`, `where`. If
-you don't, the install didn't finish; run `/plugin` and check that `gg` is enabled.
+Now type `/gg` — you should see three commands offered: `new`, `go`, `tidy`. If you don't, the
+install didn't finish; run `/plugin` and check that `gg` is enabled.
 
 ## 3. Kick off the product
 
@@ -48,69 +48,62 @@ I can open in a browser.
 
 Now the **grilling** starts: gg asks one sharp question at a time — should the history persist
 across reloads? is there a roll animation? — and every question leads with its recommendation.
-For this first run, accept the recommendations: just answer "ok" each time. We are here to
-watch the machine work; steering it comes naturally on your second project.
+For this first run, accept the recommendations: just answer "ok" each time. We are here to watch
+the machine work; steering it comes naturally on your second project.
 
-Notice that gg *also* writes down the questions it decided **not** to ask you — numbered
-assumptions you can veto later. That paper trail is the point of the kickoff.
+When it offers `git init`, say yes — git is gg's only history.
 
-## 4. Answer the one-time policies
+## 4. Look at what appeared
 
-Near the end of the kickoff, gg asks its one-time configuration questions. Answer:
+The kickoff ends with a commit and a concrete recommendation for the first slice to build.
+Before following it, look at the `.gg/` folder that appeared:
 
-- **Commit policy** — `ask`
-- **git init** — yes
-- **Deploy policy** — `ask` (our product has no deploy; the answer just gets recorded)
+- **`DESIGN.md`** — open it. The `## Product` section at the top is your product in a few lines,
+  including what it is *not*. Below it, the design the grilling pinned.
+- **`CONTEXT.md`** — the words your project uses (and the synonyms to avoid).
+- **`RUNBOOK.md`** — how to run and verify it.
+- **`BACKLOG.md`** — probably near-empty, with an id counter. Every idea you ever mention will
+  get a stable `B-NN` block here, in two lines, without derailing whatever is being built.
 
-## 5. Read the sign-off
+These four files are how every future session — today or in three months — knows your project.
 
-gg now presents one consolidated summary: the vision in a paragraph, the design calls, the
-assumptions it took, and the **batch-0 board** — the whole product cut into rows. Notice it does
-not ask you to approve: the batch is already open, and the summary ends in an open veto window.
-You could change anything here — nothing needs changing, so don't answer and move on.
+## 5. Build the first slice
 
-The session ends with a breadcrumb that should look something like:
+Do what the breadcrumb recommends — something like:
 
 ```
-Batch 0 designed: 4 rows on the board. Next: /clear then /gg:go.
+/gg:go the page: two dice, the roll button, the total
 ```
 
-Before moving on, look at what appeared: a `.gg/` folder. Open `.gg/WORK.md` — that's the
-board gg just opened, with one row marked as next. This file is how every future session
-knows exactly where we are.
+Watch the rhythm: it orients from the record in seconds, builds, verifies (open the page
+yourself when it invites you to — done means *observed*), and lands **one commit** whose title
+cites the work. That commit carries the code *and* any record edits together — that's the core
+gg habit: the record never drifts from the product, because they land in the same commit.
 
-## 6. Build the board
+Repeat with the next slice (the roll history), and you've shipped the product.
 
-Do what the breadcrumb says: run `/clear`, then `/gg:go`.
+## 6. Live with it — the loop
 
-Watch the session orient itself — it reads `WORK.md`, announces which row it's building, builds
-it with tests, and checkpoints. Each stop ends with a breadcrumb naming the next step. Repeat
-the rhythm — `/clear`, then `/gg:go` — until the last row.
+Roll the dice a few times. Something will itch — say the die faces are boring. That itch is the
+whole workflow now:
 
-Notice that every session started from zero context and still knew exactly where it was. No
-re-explaining, no drift: that's the checkpoint doing its job.
+```
+/gg:go nicer die faces — proper pips, not numbers
+```
 
-## 7. Walk the Try list — the close
+A tweak like this gets **zero questions**. A real feature gets a short grilling. A bug gets a
+failing test before any theory. Either way it ends the same: one commit, code + record together.
 
-On the last row, gg runs the full suite and then stops and hands you the **Try list**: the
-product's load-bearing flows, by name. For us that means: open `index.html` in your browser,
-click **Roll**, watch the dice land, roll a few more times, check the history grows.
+And if mid-build you have an idea you *don't* want now — "someday, sound effects" — just say it:
+it becomes `B-01` in the backlog, two lines, and the work continues. Weeks later,
+`/gg:go B-01` picks it up with full context.
 
-Do it for real — the close waits for your verdict, and the verdict must come from your own
-eyes, not the agent's claim. Then tell it what you saw. If you allowed commits, gg proposes the
-close commit; say yes.
+## 7. What you have learned
 
-## 8. What you have built
-
-You have shipped a working product with a design on disk, a numbered trail of every default the
-AI took, tests, and a git history that can answer "why is it like this?" — and you have felt
-the whole gg rhythm: one grilled kickoff, then breadcrumb → `/clear` → next command, until the
-Try walk closes the batch.
+One grilled kickoff, then a loop: bring one thing, land one commit. The record on disk stays
+small and true; git holds every story. When months of work eventually make the record heavy,
+`/gg:tidy` reports what went stale and prunes it on your yes — that's the entire maintenance
+surface of gg.
 
 More than the dice roller, *that rhythm* is what you've learned — it is the same at every scale,
-from this toy to a real product.
-
-Want to keep going? Roll the dice a few times, collect what you'd change — a nicer die face, a
-"clear history" button — and bring the list to `/gg:plan`: that's batch 1, and it works exactly
-like what you just did, minus the kickoff. The [README](README.md) has the full picture of when
-to run each command.
+from this toy to a real product. The [README](README.md) has the full picture.

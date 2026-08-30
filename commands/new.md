@@ -1,93 +1,51 @@
 ---
-description: "Kicks off a new gg project from a vague idea, in one arc. Runs divergent brainstorming then convergent grilling to pin a sharp PRODUCT (the destination), then designs the whole product (DESIGN — data model, architecture, seams) and writes the batch-0 board — so the next session can start building with /gg:go. Sets the commit policy once (ask/auto/never). Resumable: an arc cut mid-grilling checkpoints to WORK and re-running /gg:new continues it. Once batch 0 is building it does nothing and routes you onward."
+description: "Kicks off a new gg project from an idea, in one conversation: divergent brainstorming, then convergent grilling (one question at a time, always leading with its recommendation) to pin the destination and the load-bearing design — then seeds the record: DESIGN.md with the product up top, CONTEXT.md, RUNBOOK.md (including the standing Deploy convention), BACKLOG.md with its id counter and version stamp, and any ADR a hard call earned. No board, no batches, no policy questionnaire — it ends recommending the first /gg:go. Runs once per project; an interrupted kickoff continues by re-running it (the files written so far stand)."
 model: inherit
 disable-model-invocation: true
 argument-hint: "[the idea]"
 ---
 
-# /gg:new — Kick off a project (vision + whole-product design, one arc)
+# /gg:new — Kick off a project (grill the destination, seed the record)
 
-You turn a vague idea into a **sharp destination and a designed batch 0** in one resumable arc — the
-user never wanted these as two ceremonies. You work in the project directory (cwd); state lives in
-`<cwd>/.gg/`. Method and formats: `${CLAUDE_PLUGIN_ROOT}/gg-shared/METHOD.md` +
-`${CLAUDE_PLUGIN_ROOT}/gg-shared/FORMATS.md` — read both now; the method is never copied into the
-project.
+You turn an idea into a pinned destination and a seeded record, in one conversation. You work in
+the project directory (cwd); state lives in `<cwd>/.gg/`. The method and the record's shapes:
+`${CLAUDE_PLUGIN_ROOT}/gg-shared/GG.md` — read it now; it is never copied into the project.
 
 ## 0. Precondition
-Read `.gg/WORK.md ## State` if it exists:
-- **No `.gg/`** → a new project. Proceed to §1.
-- **`state: shaping`, `batch: 0`** → a prior kickoff was cut mid-arc. **Resume**: read `WORK.md`
-  whole (its "Where to resume" holds the open questions), the partial `PRODUCT.md`, `CONTEXT.md`,
-  and `DESIGN.md` if present — continue from the first incomplete step (§2, §3, or §4: a written
-  board still at `shaping` means only the sign-off remains). Do not re-scaffold.
-- **Anything else** → the project is already kicked off; `/gg:new` runs once. **Stop** and route to
-  `/gg:where`.
+- **`.gg/` with a stamped `BACKLOG.md` exists** → already kicked off; `/gg:new` runs once. Say so
+  and route to `/gg:go` (or `/gg:tidy` if the record looks stale).
+- **A partial `.gg/`** (a prior kickoff cut short) → continue: read what exists, fill what's
+  missing. Do not re-derive what's already written.
+- **No `.gg/`** → proceed.
 
-## 1. Scaffold
-- `mkdir -p .gg`; create `WORK.md` (per `FORMATS.md`) **header first** so any surviving `.gg/` always
-  carries a state: `state: shaping`, `batch: 0`, `kind: build`, `exec: solo` (batch 0 builds the
-  foundation — everything touches everything; delegation is a later `/gg:plan`'s call),
-  `commit: ask`, `deploy: ask` (both provisional — confirmed in §3), and `gg:` = the plugin's version — read it from
-  `${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json`; it stamps the formats this record is born
-  under. Create `PRODUCT.md` as a skeleton. `CONTEXT.md`, `DESIGN.md`, `NOTES.md`, `BACKLOG.md`,
-  `RUNBOOK.md`, `adr/` are created lazily when first written.
+## 1. Grill the destination (GG.md → Grilling)
+- **Diverge first**: widen the space — options, prior art, lateral ideas the user hasn't named,
+  risks, "have you considered X?". Then **converge**: one question at a time, recommendation
+  first, to pin the essence — the problem, who it's for, the **it-is-not** boundaries, the bar.
+  The input is `$ARGUMENTS` if passed, else what the user brings.
+- Then the **load-bearing design**: the data model, the architecture, the stack — settled whole
+  up front, so later work extends instead of re-layering. High-blast calls are questions, never
+  defaults; record the hard-to-reverse ones as ADRs (the three criteria). Where a property space
+  genuinely can't be enumerated yet, design an extension point — never as a dodge for a knowable
+  schema.
+- A "someday we could X" surfacing mid-grilling is captured as a `B-NN` and the grilling resumes;
+  a genuinely open central question becomes a line in `## Product` (and a `[exp]` item if an
+  experiment should answer it).
 
-## 2. Grill the destination (METHOD.md → Grilling)
-- **Diverge first**: widen the space — options, prior art, lateral ideas the user hasn't named, risks,
-  "have you considered X?". Then **converge**: one question at a time, with your recommended answer,
-  to pin the destination — the problem, who it's for, what it is and is NOT, the "done and perfect"
-  bar, the non-negotiables. Sharpen terms into `CONTEXT.md` inline. The input is `$ARGUMENTS` if
-  passed, else what the user brings.
-- Write `PRODUCT.md` as it firms up (`FORMATS.md`): tag each "done and perfect" clause `[declared]` or
-  `[discovered]` — a felt/emergent property the user can only judge by watching it run is
-  `[discovered]` (sharpen it by showing contrasts, not adjective menus). An open/empirical idea names
-  its central open question under Unknowns — answered later by a `question` batch, not pinned now.
-- A decision about the product being pinned belongs **in this grilling**; a genuinely-later idea
-  ("someday we could X") is still jotted as a `B-NN` (METHOD.md → Capture — the backlog may be born
-  during kickoff), then the grilling resumes.
+## 2. Seed the record (GG.md shapes, exactly)
+- `DESIGN.md` — `## Product` up top, then Shape / Data model / Stack & platform.
+- `CONTEXT.md` — the terms the grilling sharpened.
+- `RUNBOOK.md` — commands as they're known ("n/a" is honest for what doesn't exist yet), and
+  **`## Deploy` the moment the project has a way to ship**: ask the user once how shipping runs —
+  what may run unasked when a change lands, what always waits for their ok — and write it down.
+- `BACKLOG.md` — `next-id:` (past whatever this arc minted), the `gg:` stamp read from
+  `${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json`, and the captured blocks under `## New`.
+- If the cwd is **not a git repo**, offer `git init` — git is gg's only history; without it,
+  deleted record blocks are unrecoverable.
 
-## 3. Design the whole product (same arc — no new command, no /clear)
-- Grill the **load-bearing** design decisions and write `DESIGN.md` (`FORMATS.md`): the data model
-  and architecture **settled whole up front** — the irreversible foundation and the seams decided
-  once, so later batches extend instead of re-layering. Where a property space genuinely can't be
-  enumerated yet, design an extension point; never as a dodge for a knowable schema. Record the
-  hard-to-reverse calls as ADRs (the three criteria); every other choice becomes an `A-NN` in
-  `NOTES.md` — **high-blast decisions are grilled, never defaulted**.
-- Pin run/verify commands into `RUNBOOK.md` as they firm up.
-- **Ask the one-time configs** (together, one question each at most):
-  1. **Commit policy** — *"May gg commit its own record and the code it writes? `ask` (propose at
-     each close — recommended) / `auto` / `never`."* Write the answer to the WORK header.
-  2. **Deploy policy** — *"How do deploys run? `ask` (propose each, named with its rollback, wait
-     for the yes — recommended) / `user-runs` (gg composes the exact command, you run it yourself) /
-     `auto` (a standing yes for the named deploy command at show/close points)."* Write it to the
-     WORK header (METHOD.md → Safety).
-  3. If the cwd is **not a git repo**, offer `git init` (git is gg's only history — without it,
-     deleted record blocks are unrecoverable; `never` + no git means WORK "Last closes" is the only
-     trace).
-- **Write the batch-0 board** into `WORK.md` (`FORMATS.md`): the whole product decomposed into rows
-  sized so each fits one fresh `/gg:go` session, **foundational-first** — a thin vertical spine
-  through the whole stack before breadth. Batch-0 rows carry short names alone (no `B-NN` — they
-  were never backlog). Give each row a one-line observable **done when**. Place a **show** row where
-  the riskiest `[discovered]` clause first becomes judgeable — as early as the expensive-to-retrofit
-  foundation allows, and **never as the final row** (the close's Try walk is the batch's last look);
-  a product with no `[discovered]` clause needs no forced show. Write the `## Try`
-  block (deliverable + how to see it + the load-bearing flows); Provenance stays a placeholder
-  (`/gg:go`'s durable start fills it). A row whose deliverable is user-facing documentation names
-  its Diátaxis form in the done-when (the **`diataxis` skill** classifies; go builds it with that
-  skill).
+## 3. Close
+Commit: `gg(new): {project} — record seeded` (pathspec-scoped: `.gg/` plus anything the kickoff
+wrote). End with the first build, concrete and recommended: *"First slice I'd build: {the thin
+vertical spine through the stack}. `/gg:go {it}` starts it."*
 
-## 4. Sign-off (open first, one consolidated summary, one veto window)
-Set `state: building` in WORK, then present together (METHOD.md → Veto, not go-ahead — the
-questions that were the user's are already asked; the opening is yours): the destination in one
-paragraph, the design's load-bearing calls, the high/medium-blast `A-NN`s taken (low ones listed,
-not walked), where the first show lands and why it can't be earlier, and the board. Leave **one**
-veto window open (free-form — that's where real vetoes arrive): a veto is applied in one pass;
-silence leaves batch 0 standing, and `/clear` + `/gg:go` builds it.
-
-## Close
-Persist everything written; commit per the policy just set (`gg(b0): plan — {M} rows`,
-`FORMATS.md`); breadcrumb: *"Batch 0 designed: {M} rows on the board. Next: `/clear` then `/gg:go`."*
-
-**Cut mid-arc**: persist the partial PRODUCT/CONTEXT/DESIGN, leave `state: shaping`, write the open
-questions into WORK "Where to resume", breadcrumb: *"Kickoff checkpointed at {where}; `/clear` +
-`/gg:new` continues."*
+**Cut mid-arc**: the files written so far stand; re-running `/gg:new` continues from them.

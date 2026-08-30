@@ -79,6 +79,6 @@ example and backs up further. Never the same words, louder.
 
 ## In gg projects
 
-METHOD.md → Grilling, "Explain before you ask", is the prevention: anything put to the user
+GG.md → Grilling, "explain before you ask", is the prevention: anything put to the user
 should arrive already explained like this. This skill is the recovery for when that failed —
 and it stands alone: it works in any conversation, in any project, gg or not.

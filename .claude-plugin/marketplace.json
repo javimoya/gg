@@ -11,7 +11,7 @@
     {
       "name": "gg",
       "source": "./",
-      "description": "A disciplined, low-ceremony workflow for building software with Claude Code: /gg:new kicks off the product, /gg:plan opens each batch of work in one ceremony, /gg:go builds it with tests and evidence-based closes, /gg:fix fixes now and records after, /gg:where orients you — seven bounded state files on disk, history in git.",
+      "description": "A record with habits, not a workflow engine: /gg:new grills a new project's destination and seeds the record, /gg:go takes one thing from ask to a landed commit carrying code + record together, /gg:tidy keeps the record bounded and current — four plain-Markdown state files plus ADRs, history in git.",
       "category": "productivity"
     }
   ]

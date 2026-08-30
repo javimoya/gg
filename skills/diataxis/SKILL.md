@@ -6,7 +6,7 @@ description: >
   restructure product documentation — a README, getting-started or installation guide, usage
   guide, API/CLI reference, conceptual or architecture doc, or a whole docs/ tree — even if the
   user never says "Diátaxis". Also use when asked whether existing docs are well organised. Not
-  for `.gg/` record files (FORMATS.md owns those), changelogs, commit messages, docstrings or
+  for `.gg/` record files (GG.md owns those), changelogs, commit messages, docstrings or
   code comments.
 ---
 
@@ -83,7 +83,7 @@ rules and the sentence patterns for that form:
 - **Accuracy is on you, not the framework.** Diátaxis structures content; it does not make it
   true. Verify every command, flag, path and behaviour against the actual code or product before
   asserting it — a perfectly-formed document that lies is worse than none.
-- **Out of scope.** `.gg/` record files keep their FORMATS.md shapes; changelogs, commit
+- **Out of scope.** `.gg/` record files keep their GG.md shapes; changelogs, commit
   messages, docstrings and code comments are not Diátaxis documents.
 
 ## 4. Self-check: misplaced-content detectors

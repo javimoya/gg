@@ -3,6 +3,52 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 5.0.0
+
+**The record without the machine** — gg cut down to what its own production use proved
+fundamental. **Format-changing** (`CONVERSION.md` → 4.x → 5.0.0, index row added).
+
+Measured from flights, the plugin's heaviest production user, across two windows. The last gg
+days (2026-08-21/22): a fixed ~80KB prompt tax per command (METHOD + FORMATS + spec + WORK)
+before any work; **42% of all file edits maintaining the record** (94 `.gg/` edits vs 128 code
+edits across 8 sessions), each batch carrying a record-sync row that was a full session of zero
+code; and gates that decided nothing — every design-gate answer in the window was the
+"(Recommended)" option, the restart gate asked 4 times and approved 4 times, the user's
+participation shrunk to monosyllables ("GO", "cierra", "yes outward"). Then the week after
+(2026-08-23/30), the user abandoned the commands and kept, voluntarily and by hand, exactly half
+the system: 38 commits touching `.gg/`, ADRs 0027–0031 all authored post-abandonment, `B-NN` ids
+minted to B-495 and cited in every commit title, BACKLOG/DESIGN/CONTEXT/RUNBOOK current to the
+day — while WORK.md (the state machine), NOTES.md (A-NN/F-NN), and the plan→go cycle went
+untouched. And the 4.0.0 delegated-execution machinery was never used once: every batch ever
+planned on flights was `exec: solo` — the direct workflow (grilling to open, implementation
+subagents per layer with the verified API handed forward, the session reviewing every diff)
+already does delegation better than a board column can.
+
+What remains is a **record with habits, not a workflow engine**:
+
+- **Three commands.** `/gg:new` (grill the destination, seed the record — no board, no batch 0,
+  no policy questionnaire), `/gg:go` (one thing from ask to landed commit: orient cheap, grill
+  only design weight, build directly or through implementation subagents, prove it, land **one
+  commit carrying code + record together**, titled `{area}: {summary} (B-NN)`), and `/gg:tidy`
+  (the record's diet — the only command that reads `.gg/` whole, the only point that measures
+  bounds; report first, apply on one yes). `plan`, `fix`, and `where` are retired: a batch was a
+  board the conversation now replaces, a fix is just a `/gg:go` with zero questions, and with no
+  state machine there is nothing for a GPS to reconstruct.
+- **Four files + `adr/`.** BACKLOG (capture only — a block is never a chronicle; the lesson
+  lives in the landing commit's body), DESIGN (with `## Product` up top — essence, it-is-not
+  boundaries, the bar), CONTEXT, RUNBOOK (with `## Deploy` — the standing shipping convention,
+  written once, replacing the per-session policy machinery). WORK, NOTES, and PRODUCT are
+  retired; the `gg:` version stamp moves to the BACKLOG header.
+- **One shared file.** `gg-shared/GG.md` (~10KB) replaces METHOD + FORMATS + DELEGATION +
+  ROW-BRIEF (~44KB): the bar, evidence, capture, grilling, safety, commits, and the four
+  formats. The kept gems keep their teeth: the red loop before any theory, real-route
+  verification, recommendation-first grilling at ELI18, capture-not-chronicle, history is
+  git's, never push.
+- **What died**: batches, boards, S/M/L weighing, done-whens, Try walks, gates, shows,
+  `question` batches, Provenance, Fix log, Last closes, A-NN/F-NN, `exec: delegated`, and the
+  `commit:`/`deploy:` policy headers. Bounds live only in tidy: BACKLOG/CONTEXT/RUNBOOK 32KB,
+  DESIGN 64KB.
+
 ## 4.0.2
 
 **One integration, one commit** (`gg-shared/DELEGATION.md` → Integrate, steps 1/2/5;

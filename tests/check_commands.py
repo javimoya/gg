@@ -21,10 +21,10 @@ REPO = Path(__file__).resolve().parent.parent
 COMMANDS = sorted((REPO / "commands").glob("*.md"))
 
 # The exact command set. A missing or stray command is a failure (keeps docs/tests honest).
-EXPECTED = {"new.md", "plan.md", "go.md", "fix.md", "where.md"}
+EXPECTED = {"new.md", "go.md", "tidy.md"}
 
 # Commands that take an explicit argument and must advertise it.
-WANT_ARG_HINT = {"new.md", "plan.md", "fix.md", "where.md"}
+WANT_ARG_HINT = {"new.md", "go.md"}
 
 
 def frontmatter(path: Path) -> dict:
