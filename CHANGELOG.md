@@ -3,6 +3,18 @@
 All notable changes to `gg` are recorded here. Versions follow the `version` field in
 `.claude-plugin/plugin.json`.
 
+## 5.0.1
+
+**`what` goes user-only** (`skills/what/SKILL.md` frontmatter: `disable-model-invocation: true`).
+Since 3.9 the skill auto-fired on "no entiendo"-style phrases, which required its ~10-line
+trigger description to load into **every** Claude Code session on the machine — any project,
+gg or not — as standing context. The user's own call (2026-08-31): the re-pitch is worth keeping
+as a completely isolated, on-demand command, not as an always-loaded trigger. Now nothing loads
+until `/gg:what` is typed — zero standing tokens — and the description shrinks to a human-facing
+line for the slash menu. The body (back up don't trim, ELI18, one new easy example per option,
+re-ask) is unchanged. `diataxis` keeps its auto-trigger: `/gg:go` leans on it for user-facing
+doc deliverables. Not format-changing.
+
 ## 5.0.0
 
 **The record without the machine** — gg cut down to what its own production use proved

@@ -1,13 +1,10 @@
 ---
 name: what
 description: >
-  Re-pitch what you just told the user — it did not land. Use whenever the user signals they did
-  not understand your last message: "no entiendo", "no te entiendo", "I don't understand", "you
-  lost me", "wait — what?", "explícamelo de manera sencilla", "explícamelo más fácil", "con
-  ejemplos fáciles de seguir", "explain that simply", "in plain terms", "explain it like I'm
-  five" — or when their reply answers a different question than the one you asked. Most often
-  fired at a question with options the user cannot tell apart. Also use when the user asks for a simple, easy-to-follow
-  explanation (with easy examples) of anything you are telling them.
+  Re-pitch the last thing that did not land: back up, explain it again at ELI18 with one new,
+  easy-to-follow example per option, and re-ask the question. Invoke it yourself (/gg:what) when
+  an explanation or a question's options lost you — nothing loads until you do.
+disable-model-invocation: true
 ---
 
 # what — re-pitch the thing that did not land

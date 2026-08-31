@@ -1,7 +1,7 @@
 {
   "name": "gg",
   "description": "A record with habits, not a workflow engine: /gg:new grills a new project's destination and seeds the record, /gg:go takes one thing — a pitch, a bug, backlog ids — from ask to a landed commit carrying code + record together, /gg:tidy keeps the record bounded and current on your yes. Four plain-Markdown state files plus ADRs on disk, stable B-NN ids cited in commit titles, history in git — no journals, no state machine, no ceremony.",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "author": {
     "name": "Francisco J. Moya",
     "email": "francisco.j.moya@gmail.com"
